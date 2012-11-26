@@ -172,8 +172,28 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency> 
+		
+		<!-- Json Parse -->
+<!-- 		<dependency> -->
+<!--         <groupId>org.json</groupId> -->
+<!--         <artifactId>json</artifactId> -->
+<!--         <version>20070829</version> -->
+<!--       </dependency> -->
+		<dependency>
+  <groupId>org.codehaus.jackson</groupId>
+  <artifactId>jackson-mapper-asl</artifactId>
+  <version>1.8.5</version>
+  <scope>compile</scope>
+</dependency>
+<dependency>
+  <groupId>org.codehaus.jackson</groupId>
+  <artifactId>jackson-core-asl</artifactId>
+  <version>1.8.5</version>
+  <scope>compile</scope>
+</dependency>
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>

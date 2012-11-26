@@ -31,7 +31,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", txt );
 		
-		return "home";
+		return "index";
 	}
 
 	public HomeService getHomeService() {
