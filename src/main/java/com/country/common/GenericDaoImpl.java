@@ -23,7 +23,7 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 	
 	
 	  @SuppressWarnings("unchecked")
-      public PK save(E newInstance) {
+	  public PK save(E newInstance) {
             return (PK) getSession().save(newInstance);
       }
       @SuppressWarnings("unchecked")

@@ -2,52 +2,85 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "actividades", catalog = "country")
 public class Actividad implements Serializable {
 
-	private int id;
-	private  String nombre;
-	private  String descripcion;
-	private  Date fechaComienzo ;
-	private  Date fechaFin ;
-	private  Concepto  concepto ;
-	private  List <Cronograma> cronogramas ;
-	private List <Persona> integrantes;
-	private Instructor instructor;
+	/** Serial Version UID */
+	private static final long serialVersionUID = 1L;
+
 	
-	public int getId() {
+	@Id
+	@Column(name = "IdActividad", unique = true, nullable = false)
+	private Integer id;
+	
+	@Column(name = "Nombre")
+	private  String nombre;
+	
+	@Column(name = "Descripcion")
+	private  String descripcion;
+	
+	@Column(name = "FechaIni")
+	private  Date fechaComienzo ;
+	
+	@Column(name = "FechaFin")
+	private  Date fechaFin ;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private  Concepto  concepto ;
+//	private  List <Cronograma> cronogramas ;
+//	private List <Persona> integrantes;
+//	private Instructor instructor;
+
+	
+	public Integer getId() {
 		return id;
 	}
-	
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	public Date getFechaComienzo() {
 		return fechaComienzo;
 	}
-	
+
 	public void setFechaComienzo(Date fechaComienzo) {
 		this.fechaComienzo = fechaComienzo;
 	}
-	
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
 	public Concepto getConcepto() {
 		return concepto;
 	}
@@ -55,39 +88,8 @@ public class Actividad implements Serializable {
 	public void setConcepto(Concepto concepto) {
 		this.concepto = concepto;
 	}
+	
+	
+	
 
-	public List<Persona> getIntegrantes() {
-		return integrantes;
-	}
-
-	public void setIntegrantes(List<Persona> integrantes) {
-		this.integrantes = integrantes;
-	}
-
-	public Instructor getInstructor() {
-		return instructor;
-	}
-
-	public void setInstructor(Instructor instructor) {
-		this.instructor = instructor;
-	}
-
-	public Date getFechaFin() {
-		return fechaFin;
-	}
-	
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
-	}
-	
-	
-	
-	public List<Cronograma> getCronogramas() {
-		return cronogramas;
-	}
-	
-	public void setCronogramas(List<Cronograma> cronogramas) {
-		this.cronogramas = cronogramas;
-	}
-	
 }

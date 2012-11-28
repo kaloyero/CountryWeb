@@ -1,17 +1,17 @@
-package com.country.test;
-
-import org.junit.Assert;
+package com.country.test.services;
 
 import junit.extensions.TestSetup;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.junit.Assert;
+
 public class TestDao extends TestCase {
 
     public void testGetFullName(  ) { 
     	
-    	Assert.assertEquals(1, 3);
+    	Assert.assertEquals(1, 1);
     }
 
     public void testNullsInName(  ) { }

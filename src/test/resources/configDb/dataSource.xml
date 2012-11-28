@@ -6,7 +6,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 <bean 
 class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	<property name="location">
-		<value>/WEB-INF/spring/configDb/dataSource.properties</value>
+		<value>/configDb/dataSource.properties</value>
 	</property>
 </bean>
  

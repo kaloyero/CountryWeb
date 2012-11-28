@@ -2,13 +2,33 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "ActividadCronograma", catalog = "country")
 public class Cronograma implements Serializable{
+	
+	/** Serial Version UID */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "IdCronograma", unique = true, nullable = false)
 	private int id;
+	
+	@Column(name = "DiaSemana")
 	private  int diaSemana ;
+	
+	@Column(name = "HoraIni")
 	private  int horaInicio ;
+	
+	@Column(name = "Duracion")
 	private  int duracion ;
-	private Actividad actividad;
+	
+//	@Column(name = "IdActividad")
+//	private Actividad actividad;
 	
 	
 	public int getId() {
@@ -43,14 +63,12 @@ public class Cronograma implements Serializable{
 		this.duracion = duracion;
 	}
 
-	public Actividad getActividad() {
-		return actividad;
-	}
-	
-	public void setActividad(Actividad actividad) {
-		this.actividad = actividad;
-	}
-	
-	
+//	public Actividad getActividad() {
+//		return actividad;
+//	}
+//	
+//	public void setActividad(Actividad actividad) {
+//		this.actividad = actividad;
+//	}
 	
 }

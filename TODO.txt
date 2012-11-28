@@ -1,0 +1,18 @@
+ALE>
+
+MANANA  Commitear
+
+> TEst:	Hacer Test de Schedule e Instructor 
+		Probar todas las funciones del DAO.
+		Ver el tema de Mocks para probar.
+
+> Desarrollo:  Terminar mapeo de Actividad , Cronograma e Instructor
+			   El Servicio Actividad q inserte una actividad completa con sus respectivos cronogramas (Solo agrega actividad)
+			   
+> Pendiente:   Cambio en el modelo para Instructor - Cronograma - Actividad (preguntarle a Alex si le comento a Leo)
+			  
+> BAse de Datos: 	Amoldar mapeos a las tablas (faltan tablas)
+					
+					
+					
+					
