@@ -24,7 +24,7 @@ function  populateGrid (type) {
 
 	$('#table-example').dataTable( {
 		"bProcessing": true,
-		"sAjaxSource": "http://localhost:8080/CountryWeb/lista"
+		"sAjaxSource": "/CountryWeb/lista"
 	} );
 
 

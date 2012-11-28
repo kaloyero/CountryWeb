@@ -31,6 +31,7 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
     <property name="annotatedClasses">
 	<list>
 		<value>com.country.hibernate.model.Actividad</value>		
+		<value>com.country.hibernate.model.Concepto</value>
 	</list>
     </property>
 </bean>

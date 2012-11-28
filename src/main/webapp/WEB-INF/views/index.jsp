@@ -40,7 +40,7 @@
 		$('#menu').bind("click", function(e) {
 			$.ajax({
 				type: 'GET',
-				url: 'http://localhost:8080/CountryWeb/actividad',
+				url: '/CountryWeb/actividad',
 				success: function(data) {
 					$("#main-content").append(data);
 				 	createTabs($("#tab-panel-1"))
