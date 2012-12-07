@@ -3,6 +3,9 @@ package com.country.common;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
+@Transactional
 public interface GenericDao<E,PK  extends Serializable> {
     PK save(E newInstance);
     
