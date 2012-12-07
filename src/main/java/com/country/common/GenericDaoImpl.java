@@ -6,11 +6,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.country.beans.Property;
 
 //public abstract class GenericDaoImpl<E, PK extends Serializable> extends
 //            HibernateDaoSupport implements GenericDao<E, PK> {
@@ -20,6 +25,16 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 
 	@Resource(name = "sessionFactory")
 	private SessionFactory sessionFactory;
+	
+    protected abstract Class<E> getEntityClass();
+    
+    protected DetachedCriteria createDetachedCriteria() {
+          return DetachedCriteria.forClass(getEntityClass());
+    }
+    
+    protected Session getSession(){
+  	  return sessionFactory.getCurrentSession();
+    }
 	
 	
 	  @SuppressWarnings("unchecked")
@@ -31,10 +46,55 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
             return (E) getSession().get(getEntityClass(), id);
       }
       @SuppressWarnings("unchecked")
-      @Transactional(readOnly = true)
       public List<E> findAll() {
-            return (List<E>) createDetachedCriteria().getExecutableCriteria(getSession()).list();
+          DetachedCriteria criteria = createDetachedCriteria();
+          return (List<E>) criteria.getExecutableCriteria(getSession()).list();
       }
+      
+      /**
+       * @param pagIni
+       * @param qtRows
+       * @param orderByProperty
+       * @param asc Si es true orderBy asc.
+       * @return
+       */
+      @SuppressWarnings("unchecked")
+      public List<E> findByPagin(int pagIni,int qtRows, String orderByProperty, boolean asc) {
+    	  Criteria criteria = getSession().createCriteria(getEntityClass());
+    	  criteria.setFirstResult(pagIni);
+    	  criteria.setMaxResults(qtRows);
+    	  if (StringUtils.isNotBlank(orderByProperty)){
+    	  	if (asc){
+    	  		criteria.addOrder(Order.asc(orderByProperty));		
+    	  	} else {
+    	  		criteria.addOrder(Order.desc(orderByProperty));
+    	  	}
+    	  }
+    	  
+          return (List<E>) criteria.list();
+      }
+
+    @SuppressWarnings("unchecked")
+    public List<E> listByPropertiesPagin(int pagIni,int qtRows, List<Property> properties, String searchText,String orderByProperty, boolean asc) {
+    	Criteria criteria = getSession().createCriteria(getEntityClass());
+    	criteria.setFirstResult(pagIni);
+    	criteria.setMaxResults(qtRows);
+    	for (Property property : properties) {
+    		if (Property.TYPE_CADENA.equals(property.getType()) ){
+    			criteria.add(Restrictions.like(property.getName(), "%"+searchText+"%"));	
+    		}
+		}
+    	  if (StringUtils.isNotBlank(orderByProperty)){
+			  	if (asc){
+			  		criteria.addOrder(Order.asc(orderByProperty));		
+			  	} else {
+			  		criteria.addOrder(Order.desc(orderByProperty));
+			  	}
+			  }
+          return (List<E>) criteria.list();
+    }
+      
+      
       @SuppressWarnings("unchecked")
       @Transactional(readOnly = true)
       public List<E> findAllByProperty(String propertyName, Object value) {
@@ -42,19 +102,7 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
             criteria.add(Restrictions.eq(propertyName, value));
             return (List<E>) criteria.getExecutableCriteria(getSession()).list();
       }
-
-//      @Transactional(readOnly = true)
-//      public List<E> findByExample(E object) {
-////            List<E> resultList = getSession().findByExample(object, 0, 1);
-//            return resultList;
-//      }
-
-//      @Transactional(readOnly = true)
-//      public List<E> findByExample(E object, int firstResult, int maxResults) {
-//            List<E> resultList = getSession().findByExample(object,
-//                        firstResult, maxResults);
-//            return resultList;
-//      }
+      
       public void update(E transientObject) {
     	  getSession().update(transientObject);
       }
@@ -63,16 +111,6 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
       }
       public void delete(E persistentObject) {
     	  getSession().delete(persistentObject);
-      }
-      
-      protected abstract Class<E> getEntityClass();
-      
-      protected DetachedCriteria createDetachedCriteria() {
-            return DetachedCriteria.forClass(getEntityClass());
-      }
-      
-      protected Session getSession(){
-    	  return sessionFactory.getCurrentSession();
       }
       
 //  	@SuppressWarnings("unchecked")

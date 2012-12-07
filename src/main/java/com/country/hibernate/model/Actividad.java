@@ -2,13 +2,20 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "actividades", catalog = "country")
@@ -19,6 +26,7 @@ public class Actividad implements Serializable {
 
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdActividad", unique = true, nullable = false)
 	private Integer id;
 	
@@ -34,13 +42,46 @@ public class Actividad implements Serializable {
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="IdConcepto")	
 	private  Concepto  concepto ;
-//	private  List <Cronograma> cronogramas ;
-//	private List <Persona> integrantes;
-//	private Instructor instructor;
+	
+	
+    @OneToMany(cascade={CascadeType.ALL})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+    	org.hibernate.annotations.CascadeType.REFRESH,
+    	org.hibernate.annotations.CascadeType.EVICT, 
+    	org.hibernate.annotations.CascadeType.DELETE, 
+    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
+	private  List <Cronograma> cronogramas ;
+	
+    @OneToMany(cascade={CascadeType.ALL})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+    	org.hibernate.annotations.CascadeType.REFRESH,
+    	org.hibernate.annotations.CascadeType.EVICT, 
+    	org.hibernate.annotations.CascadeType.DELETE, 
+    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
+	private List <Asignacion> asignaciones;
 
 	
+	public List<Asignacion> getAsignaciones() {
+		return asignaciones;
+	}
+
+	public void setAsignaciones(List<Asignacion> asignaciones) {
+		this.asignaciones = asignaciones;
+	}
+
+	public List<Cronograma> getCronogramas() {
+		return cronogramas;
+	}
+
+	public void setCronogramas(List<Cronograma> cronogramas) {
+		this.cronogramas = cronogramas;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -88,8 +129,5 @@ public class Actividad implements Serializable {
 	public void setConcepto(Concepto concepto) {
 		this.concepto = concepto;
 	}
-	
-	
-	
 
 }

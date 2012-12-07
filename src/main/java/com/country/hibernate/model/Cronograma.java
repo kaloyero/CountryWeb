@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +19,7 @@ public class Cronograma implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdCronograma", unique = true, nullable = false)
 	private int id;
 	
@@ -27,8 +32,9 @@ public class Cronograma implements Serializable{
 	@Column(name = "Duracion")
 	private  int duracion ;
 	
-//	@Column(name = "IdActividad")
-//	private Actividad actividad;
+    @OneToOne
+    @JoinColumn(name="IdActividad")	
+	private Actividad actividad;
 	
 	
 	public int getId() {
@@ -63,12 +69,12 @@ public class Cronograma implements Serializable{
 		this.duracion = duracion;
 	}
 
-//	public Actividad getActividad() {
-//		return actividad;
-//	}
-//	
-//	public void setActividad(Actividad actividad) {
-//		this.actividad = actividad;
-//	}
+	public Actividad getActividad() {
+		return actividad;
+	}
+	
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
+	}
 	
 }

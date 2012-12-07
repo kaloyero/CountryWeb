@@ -30,9 +30,17 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
  
     <property name="annotatedClasses">
 	<list>
-		<value>com.country.hibernate.model.Actividad</value>		
+		<value>com.country.hibernate.model.Actividad</value>
 		<value>com.country.hibernate.model.Concepto</value>
-	</list>
+		<value>com.country.hibernate.model.Cronograma</value>
+		<value>com.country.hibernate.model.Asignacion</value>
+		<value>com.country.hibernate.model.Instructor</value>
+		<value>com.country.hibernate.model.Integrante</value>
+		<value>com.country.hibernate.model.Persona</value>
+		<value>com.country.hibernate.model.Tarifa</value>
+		<value>com.country.hibernate.model.Telefono</value>
+		<value>com.country.hibernate.model.TipoDocumento</value>
+		<value>com.country.hibernate.model.TipoTelefono</value>	</list>
     </property>
 </bean>
 

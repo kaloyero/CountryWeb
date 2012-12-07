@@ -3,12 +3,40 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "tarifas", catalog = "country")
 public class Tarifa implements Serializable{
 	
+	/** Serial Version UID */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "IdTarifa", unique = true, nullable = false)
 	private  int id ;
+	
+	@Column(name = "Importe")
 	private  double importe ;
+	
+	@Column(name = "FechaIni")
 	private  Date fechaComienzo ;
+	
+	@Column(name = "FechaFin")
 	private  Date fechaFin ;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="IdConcepto")	
 	private  Concepto concepto ;
 	
 	public int getId() {
