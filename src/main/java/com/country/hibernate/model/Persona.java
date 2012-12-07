@@ -52,11 +52,6 @@ public class Persona implements Serializable {
 	private TipoDocumento tipoDoc;
 	
     @OneToMany(cascade={CascadeType.ALL})
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-    	org.hibernate.annotations.CascadeType.REFRESH,
-    	org.hibernate.annotations.CascadeType.EVICT, 
-    	org.hibernate.annotations.CascadeType.DELETE, 
-    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
 	private  List <Telefono> telefonos ;
 	

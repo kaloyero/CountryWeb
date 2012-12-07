@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <div class="container_12">
 
@@ -52,35 +53,33 @@
 				</div>
 				<div id="tab-2" class="tab-content">
 					<p></p>
-					<form id="validate-form" class="block-content form" action=""
-						method="post">
+					 <form:form commandName="ACTIVIDAD">
+					
 						<fieldset>
 							<legend>General</legend>
 							<div class="_100">
 								<p>
-									<label for="textfield">Nombre</label><input id="textfield"
-										name="textfield" class="required" type="text" value="" />
+									<label for="textfield">Nombre</label><form:input path="name" class="required"/>
 								</p>
 							</div>
 
 							<div class="_100">
 								<p>
 									<label for="textarea">Descripcion</label>
-									<textarea id="textarea" name="textarea" class="required"
-										rows="5" cols="40"></textarea>
+									<form:textarea path="descripcion" class="required" rows="5" cols="40"/>
 								</p>
 							</div>
 							<div class="_25">
 								<p>
-									<label for="textfield">Costo</label><input id="textfield"
-										name="textfield" class="required" type="text" value="" />
+									<label for="textfield">Costo</label>
+									
+									<form:input path="nameCosto"  class="required"/>
 								</p>
 							</div>
 
 							<div class="_25">
 								<p>
-									<label for="datepicker">Comienzo</label><input id="datepicker"
-										name="datepicker" class="required" type="text" value="" />
+									<label for="datepicker">Comienzo</label><form:input path="fechaInicio"  class="required"/>
 								</p>
 							</div>
 							<div class="_50">
@@ -198,7 +197,8 @@
 								<li><input type="submit" class="button" value="Crear!"></li>
 							</ul>
 						</div>
-					</form>
+						        </form:form>
+
 				</div>
 			</div>
 		</div>

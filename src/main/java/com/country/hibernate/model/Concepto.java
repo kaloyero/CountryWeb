@@ -45,11 +45,6 @@ public class Concepto implements Serializable {
 	private String nombre;
 	
     @OneToMany(cascade={CascadeType.ALL})
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-    	org.hibernate.annotations.CascadeType.REFRESH,
-    	org.hibernate.annotations.CascadeType.EVICT, 
-    	org.hibernate.annotations.CascadeType.DELETE, 
-    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinColumn(name="IdConcepto",updatable = true, insertable = true , nullable = true)
 	private  List <Tarifa> tarifas ;
 

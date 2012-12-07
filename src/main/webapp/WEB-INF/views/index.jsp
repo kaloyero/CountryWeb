@@ -44,7 +44,7 @@
 				success: function(data) {
 					$("#main-content").append(data);
 				 	createTabs($("#tab-panel-1"))
-					populateGrid("actividad")
+					populateGrid("actividad");
 				}
 			});
 		});
