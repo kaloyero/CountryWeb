@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.country.beans.Property;
 
+
 @Transactional
 public interface GenericDao<E,PK  extends Serializable> {
     PK save(E newInstance);
