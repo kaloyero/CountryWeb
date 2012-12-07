@@ -1,7 +1,0 @@
-#java specific
-*.class
-#Maven compiled
-target/
-#Datbase config
-/src/test/resources/configDb/dataSource.xml
-
