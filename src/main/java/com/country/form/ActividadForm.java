@@ -6,7 +6,7 @@ public class ActividadForm {
 	private String name = null;
 	private String nameCosto = null;
     private String descripcion=null;
-    private Date fechaInicio=null;
+    private String fechaInicio=null;
 
 
 	public String getName() {
@@ -33,11 +33,11 @@ public class ActividadForm {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFechaInicio() {
+	public String getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 

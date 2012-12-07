@@ -3,6 +3,5 @@
 #Maven compiled
 target/
 #Datbase config
-.dataSource.xml
-
+/src/test/resources/configDb/dataSource.xml
 

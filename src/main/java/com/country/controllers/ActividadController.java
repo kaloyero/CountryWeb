@@ -95,10 +95,10 @@ public class ActividadController {
 			System.out.println("Actividad values2 is : " + actividadForm.getFechaInicio());
 			String yyyyMMdd = "20110914";
 			DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-	        Date convertedDate = (Date) formatter.parse(yyyyMMdd);
+	        Date convertedDate = (Date) formatter.parse( actividadForm.getFechaInicio());
 
 			Actividad actividad = new Actividad();
-			actividad.setId(3);
+			actividad.setId(5);
 			actividad.setDescripcion(actividadForm.getDescripcion());
 			actividad.setNombre(actividadForm.getName());
 			actividad.setFechaFin(convertedDate);
