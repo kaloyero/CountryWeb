@@ -2,11 +2,19 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 
 @Entity
@@ -16,14 +24,13 @@ public class Concepto implements Serializable {
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
 
-	
-	
 	public Concepto() {
 	}
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdConcepto", unique = true, nullable = false)
-	private  int id ;
+	private  Integer id ;
 	
 	@Column(name = "Descripcion")
 	private  String descripcion ;
@@ -37,6 +44,19 @@ public class Concepto implements Serializable {
 	@Column(name = "Nombre")
 	private String nombre;
 	
+    @OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="IdConcepto",updatable = true, insertable = true , nullable = true)
+	private  List <Tarifa> tarifas ;
+
+	
+	public List<Tarifa> getTarifas() {
+		return tarifas;
+	}
+
+	public void setTarifas(List<Tarifa> tarifas) {
+		this.tarifas = tarifas;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -45,10 +65,6 @@ public class Concepto implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public int getId() {
-		return id;
-	}
-	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -75,6 +91,14 @@ public class Concepto implements Serializable {
 	
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

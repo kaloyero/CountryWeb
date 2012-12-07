@@ -1,20 +1,27 @@
 package com.country.hibernate.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Instructores", catalog = "country")
-public class Instructor extends Persona {
+@Table(name = "instructores", catalog = "country")
+public class Instructor implements Serializable {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdInstructor", unique = true, nullable = false)
 	private Integer id;
 	
@@ -24,8 +31,12 @@ public class Instructor extends Persona {
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
 	
-	@Column(name = "IdPersona")
-	Persona persona;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="IdPersona")	
+	private Persona persona;
+	
+	public Instructor() {
+	}
 	
 	public Date getFechaComienzo() {
 		return fechaComienzo;

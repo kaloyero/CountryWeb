@@ -2,19 +2,30 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "Personas", catalog = "country")
 public class Persona implements Serializable {
 	
+	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdPersona", unique = true, nullable = false)	
 	private Integer id;
 	
@@ -36,10 +47,22 @@ public class Persona implements Serializable {
 	@Column(name = "DireccionEmail")
 	private String email;
 	
-	//@Column(name = "IdTipoDocumento")
-	//TipoDocumento tipoDoc;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="IdTipoDocumento")	
+	private TipoDocumento tipoDoc;
 	
+    @OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
+	private  List <Telefono> telefonos ;
 	
+	public List<Telefono> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(List<Telefono> telefonos) {
+		this.telefonos = telefonos;
+	}
+
 	public Date getDtNacimiento() {
 		return dtNacimiento;
 	}
@@ -81,13 +104,13 @@ public class Persona implements Serializable {
 		this.email = email;
 	}
 
-//	public TipoDocumento getTipoDoc() {
-//		return tipoDoc;
-//	}
-//
-//	public void setTipoDoc(TipoDocumento tipoDoc) {
-//		this.tipoDoc = tipoDoc;
-//	}
+	public TipoDocumento getTipoDoc() {
+		return tipoDoc;
+	}
+
+	public void setTipoDoc(TipoDocumento tipoDoc) {
+		this.tipoDoc = tipoDoc;
+	}
 
 	public Integer getId() {
 		return id;

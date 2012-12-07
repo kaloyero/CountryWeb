@@ -37,20 +37,6 @@ public class ActivityDaoTest extends AbstractTransactionalJUnit4SpringContextTes
 	@Autowired
     private ActivityDao dao;
 	
-	@Test
-	public void insert() {
-		System.out.println("Prueba de Insert");
-		
-		Actividad row = new Actividad();
-		row.setId(1);
-		row.setNombre("Futbol");
-		row.setFechaFin(new Date(2012,12,12));
-		row.setFechaComienzo(new Date(2012,12,12));
-		
-		Integer pk = dao.save(row);
-
-		Assert.assertEquals(pk, new Integer(1));
-    }
 
 	@Test
 	public void findAll() {

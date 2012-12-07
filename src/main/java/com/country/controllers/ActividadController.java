@@ -3,16 +3,10 @@ package com.country.controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.country.form.ActividadForm;
-import com.country.hibernate.dao.ActivityDao;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Concepto;
-import com.country.hibernate.model.User;
 import com.country.services.ActivityManager;
 
 /**
@@ -98,17 +90,21 @@ public class ActividadController {
 	        Date convertedDate = (Date) formatter.parse( actividadForm.getFechaInicio());
 
 			Actividad actividad = new Actividad();
+<<<<<<< HEAD
 			actividad.setId(5);
+=======
+//			actividad.setId(3);
+>>>>>>> 50758dfc53e32f719011b40bd242b3bf83d4e58e
 			actividad.setDescripcion(actividadForm.getDescripcion());
 			actividad.setNombre(actividadForm.getName());
 			actividad.setFechaFin(convertedDate);
 			actividad.setFechaComienzo(new Date(2012,12,12));
 			Concepto concepto = new Concepto();
-			concepto.setId(12);
+//			concepto.setId(12);
 			concepto.setNombre(actividadForm.getNameCosto());
 			concepto.setFechaComienzo(new Date(2012,12,12));
 			actividad.setConcepto(concepto);
-			activityManager.createActivity(actividad);
+			activityManager.save(actividad);
 			return "success";
 		}
 	}
