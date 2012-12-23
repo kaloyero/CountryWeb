@@ -57,8 +57,7 @@ public class ActividadMapper {
 
 	}
 	
-	public static List getAsignaciones (ActividadForm actividadForm,Actividad actividad,InstructorManager instructorManager){
-		// Profesores
+	public static List<Asignacion> getAsignaciones (ActividadForm actividadForm,Actividad actividad,InstructorManager instructorManager){
 				List<Asignacion> asignaciones = new ArrayList<Asignacion>();
 				for (Integer instructor : actividadForm.getInstructores()) {
 					Asignacion asignacion = new Asignacion();
@@ -72,7 +71,7 @@ public class ActividadMapper {
 		
 	}
 	
-	public static List getCronogramas (ActividadForm actividadForm,Actividad actividad){
+	public static List<Cronograma> getCronogramas (ActividadForm actividadForm,Actividad actividad){
 		List<Cronograma> cronogramas = new ArrayList<Cronograma>();
 		Iterator it = actividadForm.getDias().entrySet().iterator();
 		while (it.hasNext()) {
@@ -106,12 +105,13 @@ public class ActividadMapper {
 		
 	}
 	
-	public static List getTarifa (ActividadForm actividadForm,Concepto concepto){
+	public static List<Tarifa> getTarifa (ActividadForm actividadForm,Concepto concepto){
+		List<Tarifa> tarifas = new ArrayList<Tarifa>();
+
 		Tarifa tarifa = new Tarifa();
 		tarifa.setImporte(actividadForm.getImporte());
 		tarifa.setFechaComienzo(new Date(2012, 12, 12));
 		tarifa.setConcepto(concepto);
-		List<Tarifa> tarifas = new ArrayList<Tarifa>();
 		tarifas.add(tarifa);
 		return tarifas;
 		

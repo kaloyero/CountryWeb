@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
  <script type="text/javascript">
 	
-		function submitaa(){
+		function submitActividad(){
 			var html = [];
 			var form =$('#ACTIVIDAD');
 			var domingo=new Array();
@@ -64,27 +64,11 @@
 			    	  alert("Actividad Guarrrrdada!!")
 			      }
 			    } );
-
-
 		}
-// 		function onFormLoad(){
-// 			var myStringArray = ["11","12","13","14"];
-// 			for (var i = 0; i < myStringArray.length; i++) {
-// 			   // $('#tableBody').append( "<tr id="+myStringArray[i]+"><td>"+myStringArray[i]+"</td</tr> ");
-// 			    $.get("resources/snippets/calendarRowSnippet.html", function(data){
-// 			    	//$('#'+myStringArray[i]).append(data);
-// 			    });
-// 			    //Do something
-// 			}			
-// 			//<c:forEach var="valor" items="${ACTIVIDAD.martes}">	
-// 			//console.log("${valor} ");
-// 			//</c:forEach>
-// 			//$('#tableBody')
 
-// 		}
-	  </script>
 
-<!-- 	  <script>window.onload=onFormLoad();</script> -->
+</script> 
+
 <div class="container_12">
 
 	<div class="grid_12">
@@ -227,7 +211,7 @@
 									href="javascript:void(0);">Reset</a></li>
 							</ul>
 							<ul class="actions-right">
-								<li><input type="button" class="button" value="Crear!" onClick="submitaa()"></li>
+								<li><input type="button" class="button" value="Crear!" onClick="submitActividad()"></li>
 							</ul>
 						</div>
 				  </form:form>
