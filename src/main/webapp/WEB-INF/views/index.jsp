@@ -31,9 +31,19 @@
   <link rel="stylesheet" href="resources/css/charts.css"> <!-- Charts, optional -->
   <link rel="stylesheet" href="resources/css/jquery-ui-1.8.15.custom.css"> <!-- jQuery UI, optional -->
   <script src="resources/js/libs/jquery-1.6.2.min.js"></script>
-  <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+   <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+   <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
+   
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
+  
+  
+  	    <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
+  		<script src="resources/js/Uiclasses/ActividadRender.js"></script>
+  
+<!--   TEST->
+
+  
 
   <!-- end CSS-->
  <script type="text/javascript">
