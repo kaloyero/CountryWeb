@@ -1,6 +1,90 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page import="java.util.*" %>
+ <script type="text/javascript">
+	
+		function submitaa(){
+			var html = [];
+			var form =$('#ACTIVIDAD');
+			var domingo=new Array();
+			var lunes=new Array();
+			var martes=new Array();
+			var miercoles=new Array();
+			var jueves=new Array();
+			var viernes=new Array();
+			var sabado=new Array();
 
+			
+			$('.selected').each(function(index) {
+			
+				var dia =$(this).attr("id")
+				switch(parseInt(dia))
+				{
+				case 0:
+					domingo.push($(this).parent().attr("id"));
+					break;
+				case 1:
+					lunes.push($(this).parent().attr("id"));
+					break;
+				case 2:
+					martes.push($(this).parent().attr("id"));
+					break;
+				case 3:
+					miercoles.push($(this).parent().attr("id"));
+				    break;
+				case 4:
+					jueves.push($(this).parent().attr("id"));
+					break;
+				case 5:
+					viernes.push($(this).parent().attr("id"));
+					break;
+				 case 6:
+					sabado.push($(this).parent().attr("id"));
+					break;
+				default:
+						alert("ERROR Actividad.jsp")
+					}
+			});
+			
+			html.push("<input type=hidden id=testa  name='dias[0]' value="+domingo+">");
+			html.push("<input type=hidden id=testa name='dias[1]'value="+lunes+">");
+			html.push("<input type=hidden id=testa name='dias[2]'value="+martes+">");
+			html.push("<input type=hidden id=testa name='dias[3]'value="+miercoles+">");
+			html.push("<input type=hidden id=testa name='dias[4]'value="+jueves+">");
+			
+			html.push("<input type=hidden id=testa name='dias[5]'value="+viernes+">");
+			html.push("<input type=hidden id=testa name='dias[6]'value="+sabado+">");
+
+			form.append(html.join(''));
+			$.ajax( {
+			      type: "POST",
+			      url: form.attr('action'),
+			      data: form.serialize(),
+			      success: function( response ) {
+			    	  alert("Actividad Guarrrrdada!!")
+			      }
+			    } );
+
+
+		}
+// 		function onFormLoad(){
+// 			var myStringArray = ["11","12","13","14"];
+// 			for (var i = 0; i < myStringArray.length; i++) {
+// 			   // $('#tableBody').append( "<tr id="+myStringArray[i]+"><td>"+myStringArray[i]+"</td</tr> ");
+// 			    $.get("resources/snippets/calendarRowSnippet.html", function(data){
+// 			    	//$('#'+myStringArray[i]).append(data);
+// 			    });
+// 			    //Do something
+// 			}			
+// 			//<c:forEach var="valor" items="${ACTIVIDAD.martes}">	
+// 			//console.log("${valor} ");
+// 			//</c:forEach>
+// 			//$('#tableBody')
+
+// 		}
+	  </script>
+
+<!-- 	  <script>window.onload=onFormLoad();</script> -->
 <div class="container_12">
 
 	<div class="grid_12">
@@ -30,31 +114,18 @@
 							
 						</tr>
 				</thead>
-<!-- 							<tr> -->
-<!-- 								<th>Actividad</th> -->
-<!-- 								<th>Integrantes</th> -->
-<!-- 								<th>Descripcion</th> -->
-
-<!-- 							</tr> -->
-<!-- 						</thead> -->
-<!-- 						<tbody> -->
-
-<%-- 							<c:forEach var="elemento" items="${lista}"> --%>
-<!-- 								<tr> -->
-<%-- 									<td>${elemento}</td> --%>
-<%-- 									<td>${elemento}</td> --%>
-<%-- 									<td>${elemento}</td> --%>
-
-<!-- 								</tr> -->
-<%-- 							</c:forEach> --%>
 						<tbody>
 						</tbody>
 					</table>
 				</div>
 				<div id="tab-2" class="tab-content">
 					<p></p>
-					 <form:form commandName="ACTIVIDAD">
+					 <form:form commandName="ACTIVIDAD" >
+					<input type=hidden name="name" value="al"/>  
+<%-- 					<form:input path="dias[0]" />  --%>
+<%-- 										<form:input path="contactMap['name']" /> --%>
 					
+					<input type='checkbox' name='lunes' value="22">
 						<fieldset>
 							<legend>General</legend>
 							<div class="_100">
@@ -73,7 +144,7 @@
 								<p>
 									<label for="textfield">Costo</label>
 									
-									<form:input path="nameCosto"  class="required"/>
+									<form:input path="importe"  class="required"/>
 								</p>
 							</div>
 
@@ -82,24 +153,20 @@
 									<label for="datepicker">Comienzo</label><form:input path="fechaInicio"  class="required"/>
 								</p>
 							</div>
-							<div class="_50">
-								<p>
-									<span class="label">Apto</span> <label><input
-										type="checkbox" name="checkbox" />Menores</label> <label><input
-										type="checkbox" />Adultos</label> <label><input
-										type="checkbox" />Hombres</label> <label><input
-										type="checkbox" />Mujeres</label>
-								</p>
-							</div>
+							
 							<div class="_100">
 								<p>
-									<label for="select">Profesor</label> <select>
-										<option>Alexis</option>
-										<option>Oski</option>
-										<option>Jackie</option>
-									</select>
+									<label for="select">Profesor</label>
+									<form:select path="instructores" multiple="false">
+										<form:options items="${instructores}" itemValue="id" itemLabel="persona.nombre"/>
+									</form:select>
 								</p>
 							</div>
+							 <c:forEach items="${roleList}" var="role" varStatus="status">
+            					<tr>
+                					<td><form:checkbox path="roles" value="${role}" label="${role.id}" /></td>
+           				 	</tr>
+        				</c:forEach>
 						</fieldset>
 						<fieldset>
 							<legend>Cronograma</legend>
@@ -118,69 +185,35 @@
 											<th>Viernes</th>
 											<th>Sabado</th>
 										</tr>
+
+								<c:forEach items="${ACTIVIDAD.lunes}" var="hora" varStatus="status">
+											
+									</c:forEach>							
+		
 									</thead>
-									<tbody>
-										<tr>
-											<td>11:00</td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-										</tr>
-										<tr>
-											<td>12:00</td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-										</tr>
-										<tr>
-											<td>14:00</td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-										</tr>
-										<tr>
-											<td>15:00</td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-										</tr>
-										<tr>
-											<td>16:00</td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-										</tr>
-										<tr>
-											<td>16:00</td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-											<td id="h" class="selectable" style="padding-left: 43px;"></td>
-										</tr>
-										<tr>
+									<tbody id="tableBody">
+									<c:set var="show" value="false"/>
+										<c:forEach items="${ACTIVIDAD.horas}" var="hora" varStatus="status">
+										<tr id="${hora}"><td>${hora}</td>
+										 <c:forEach items="${ACTIVIDAD.dias}" var="dia" varStatus="status">
+												<c:forEach var="valor" items="${dia.value}">
+												
+												<c:if test="${valor == hora}">
+								                      <c:set var="show" value="true"/>
+							                        </c:if>
+												</c:forEach>
+												<c:if test="${show == 'true'}">
+												<td id="${dia.key}" class="selectable selected" style="padding-left: 43px;"></td>
+												</c:if>
+												<c:if test="${show == 'false'}">
+												<td id="${dia.key}" class="selectable" style="padding-left: 43px;"></td>
+												</c:if>
+								                      <c:set var="show" value="false"/>
+									</c:forEach>							
+									
+							</tr>
+									
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -194,10 +227,10 @@
 									href="javascript:void(0);">Reset</a></li>
 							</ul>
 							<ul class="actions-right">
-								<li><input type="submit" class="button" value="Crear!"></li>
+								<li><input type="button" class="button" value="Crear!" onClick="submitaa()"></li>
 							</ul>
 						</div>
-						        </form:form>
+				  </form:form>
 
 				</div>
 			</div>

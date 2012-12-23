@@ -3,7 +3,11 @@ package com.country.controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.country.form.ActividadForm;
 import com.country.hibernate.model.Actividad;
+import com.country.hibernate.model.Asignacion;
 import com.country.hibernate.model.Concepto;
+import com.country.hibernate.model.Cronograma;
+import com.country.hibernate.model.Instructor;
+import com.country.hibernate.model.Tarifa;
+import com.country.mappers.ActividadMapper;
 import com.country.services.ActivityManager;
+import com.country.services.InstructorManager;
 
 /**
  * Handles requests for the application home page.
@@ -28,43 +38,24 @@ public class ActividadController {
 
 	@Autowired
 	private ActivityManager activityManager;
+	@Autowired
+	private InstructorManager instructorManager;
     
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
-/*	public String home(Locale locale, Model model,HttpServletResponse res) {
-		model.addAttribute("prueba", "puta" );
-		System.out.println(res);
-		res.setContentType("application/Json");
-		List<String> strList = new ArrayList<String>();  
-	    strList.add("Test1");strList.add("Test2");
-	    strList.add("Test3");  
-	    model.addAttribute("lista",strList);  
-	    
-	    
-	    
-	    
-	    Actividad row = new Actividad();
-		row.setId(1);
-		row.setNombre("Futbol");
-		row.setFechaFin(new Date(2012,12,12));
-		row.setFechaComienzo(new Date(2012,12,12));
-		Concepto concepto = new Concepto();
-		concepto.setId(12);
-		concepto.setNombre("concepto");
-		concepto.setFechaComienzo(new Date(2012,12,12));
-		row.setConcepto(concepto);
-		activityManager.createActivity(row);
-	    
 
-	    
-	    
-		return "actividad";
-	}*/
 
 	public ActivityManager getActivityManager() {
 		return activityManager;
+	}
+
+	public InstructorManager getInstructorManager() {
+		return instructorManager;
+	}
+
+	public void setInstructorManager(InstructorManager instructorManager) {
+		this.instructorManager = instructorManager;
 	}
 
 	public void setActivityManager(ActivityManager activityManager) {
@@ -73,7 +64,9 @@ public class ActividadController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		ActividadForm actividad = new ActividadForm();
+		actividad.getInstructores().add(2);
 		model.addAttribute("ACTIVIDAD", actividad);
+		model.addAttribute("instructores", instructorManager.listAll());		
 		return "actividad";
 	}
 
@@ -83,31 +76,34 @@ public class ActividadController {
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
-			System.out.println("Actividad values is : " + actividadForm.getName());
-			System.out.println("Actividad values2 is : " + actividadForm.getFechaInicio());
-			String yyyyMMdd = "20110914";
-			DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-	        Date convertedDate = (Date) formatter.parse( actividadForm.getFechaInicio());
-
-			Actividad actividad = new Actividad();
-<<<<<<< HEAD
-			actividad.setId(5);
-=======
-//			actividad.setId(3);
->>>>>>> 50758dfc53e32f719011b40bd242b3bf83d4e58e
-			actividad.setDescripcion(actividadForm.getDescripcion());
-			actividad.setNombre(actividadForm.getName());
-			actividad.setFechaFin(convertedDate);
-			actividad.setFechaComienzo(new Date(2012,12,12));
-			Concepto concepto = new Concepto();
-//			concepto.setId(12);
-			concepto.setNombre(actividadForm.getNameCosto());
-			concepto.setFechaComienzo(new Date(2012,12,12));
-			actividad.setConcepto(concepto);
-			activityManager.save(actividad);
+			
+			activityManager.save(ActividadMapper.getActividad(actividadForm,instructorManager));
+			System.out.println("GRABAaa " );
 			return "success";
 		}
 	}
+//	
+//	@RequestMapping(method = RequestMethod.POST)
+//	public String showActidiad(@ModelAttribute(value = "ACTIVIDAD") ActividadForm actividadForm{
+//		Actividad activivad =actividadManager.findbyid(id)
+//		ActividadForm actividadForm =new ActividadForm(actividad)
+//		actividadForm.setNombre(actividad.setNombre)
+//		
+//		///Recorrer lista cronograma
+//		 for (Cronograma cronograma: actividad.getCronogramas()) {
+//			 
+//			 
+//			//Dependpenid la dia del cronograma
+//			 switch case cronograma.getDiaSemana()
+//			 
+//			  "Lunes" actividadForm.getLunes().add(cronograma.getHoraInicio())
+//			  "Martes" 
+//			
+//		 }
+//		model.addAttirubte ("ACtividad ",actividadForm)
+//		   
+//		
+//	}
 
 
 	
