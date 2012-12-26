@@ -2,8 +2,10 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,13 +31,14 @@ public class Telefono implements Serializable {
 	@Column(name = "Prefijo")
 	private int prefijo;
 	
-	@Column(name = "IdTipoTelefono")
+    @OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+    @JoinColumn(name="IdTipoTelefono")	
 	private TipoTelefono tipoTelefono;
 	
 	@Column(name = "Numero")
 	private int numero;
 	
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
     @JoinColumn(name="IdPersona")	
 	private Persona persona;
 	
@@ -88,6 +91,14 @@ public class Telefono implements Serializable {
 	
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
   
   

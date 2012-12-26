@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "Personas", catalog = "country")
@@ -47,20 +48,34 @@ public class Persona implements Serializable {
 	@Column(name = "DireccionEmail")
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
 	@JoinColumn(name="IdTipoDocumento")	
 	private TipoDocumento tipoDoc;
 	
-    @OneToMany(cascade={CascadeType.ALL})
-    @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
+    @OneToMany(cascade={CascadeType.ALL},fetch= FetchType.LAZY)
+    @BatchSize(size = 10)
+    @JoinColumn(name="IdPersona", updatable = true, insertable = true , nullable = true)
 	private  List <Telefono> telefonos ;
-	
-	public List<Telefono> getTelefonos() {
+
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
+	private List <Direccion> directions;
+
+    public List<Telefono> getTelefonos() {
 		return telefonos;
 	}
 
 	public void setTelefonos(List<Telefono> telefonos) {
 		this.telefonos = telefonos;
+	}
+
+	public List<Direccion> getDirections() {
+		return directions;
+	}
+
+	public void setDirections(List<Direccion> directions) {
+		this.directions = directions;
 	}
 
 	public Date getDtNacimiento() {
@@ -128,4 +143,5 @@ public class Persona implements Serializable {
 		this.nombre = nombre;
 	}
 
+	
 }

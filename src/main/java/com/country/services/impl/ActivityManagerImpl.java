@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.country.hibernate.dao.ActivityDao;
+import com.country.hibernate.dao.ScheduleDao;
 import com.country.hibernate.model.Actividad;
+import com.country.hibernate.model.Cronograma;
 import com.country.services.ActivityManager;
 
 @Service("activityManager")
@@ -15,6 +17,9 @@ public class ActivityManagerImpl implements ActivityManager{
 
 	@Autowired
     private ActivityDao activityDao;
+	@Autowired
+    private ScheduleDao scheduleDao;
+	
 
 	public Actividad findById(Integer id) {
 		Actividad act = activityDao.findById(id);
@@ -26,6 +31,30 @@ public class ActivityManagerImpl implements ActivityManager{
 		return pk;
 	}
 
+	public Integer edit(Actividad dto) {
+		//Chequea si existe
+		if (dto.getId() != null && activityDao.findById(dto.getId()) !=  null ){
+			List<Cronograma> listaScheduleDb =scheduleDao.findAllByProperty("IdActividad", dto.getId());
+			List<Cronograma> listaScheduleNew =dto.getCronogramas();
+
+			for (Cronograma cronoDb : listaScheduleDb) {
+				boolean exist = false;
+				
+				for (Cronograma cronoNew : listaScheduleNew) {
+					if (cronoDb.getId() == cronoNew.getId() ){
+						exist = true;
+					}
+				}
+				if (!exist){
+					scheduleDao.delete(cronoDb);
+				}
+			} 
+		}
+		
+		Integer pk = activityDao.save(dto);
+		return pk;
+	}
+	
 	public List<Actividad> listAll() {
 		List<Actividad> list = new ArrayList<Actividad>();
 		list = activityDao.findAll();

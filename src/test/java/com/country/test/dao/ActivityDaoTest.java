@@ -1,6 +1,5 @@
 package com.country.test.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -46,8 +45,9 @@ public class ActivityDaoTest extends AbstractTransactionalJUnit4SpringContextTes
 		System.out.println("Expected count list: 1 / Count List: " + lista.size());
 		Assert.assertEquals(lista.size(), 0);
     }	
-//	
-    @BeforeClass
+
+
+	@BeforeClass
     public static void setUpClass() throws Exception {
         System.out.println("@BeforeClass Esto se ejecuta ANTES de que empiece a corre la CLASE de test");
     }

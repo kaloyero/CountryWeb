@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,10 +33,9 @@ public class Cronograma implements Serializable{
 	@Column(name = "Duracion")
 	private  int duracion ;
 	
-    @OneToOne
+    @OneToOne(fetch=FetchType.LAZY )
     @JoinColumn(name="IdActividad")	
 	private Actividad actividad;
-	
 	
 	public int getId() {
 		return id;
@@ -76,5 +76,6 @@ public class Cronograma implements Serializable{
 	public void setActividad(Actividad actividad) {
 		this.actividad = actividad;
 	}
+
 	
 }
