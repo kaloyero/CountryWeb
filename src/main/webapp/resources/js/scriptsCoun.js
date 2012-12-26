@@ -31,3 +31,7 @@ function  populateGrid (type) {
 
 }
 
+function submitaa(){
+	alert("2")
+}
+

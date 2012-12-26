@@ -1,8 +1,4 @@
 #java specific
 *.class
-#Maven compiled
-target/
-#Datbase config
-.dataSource.xml
 
 

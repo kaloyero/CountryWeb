@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
  <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
@@ -29,9 +31,19 @@
   <link rel="stylesheet" href="resources/css/charts.css"> <!-- Charts, optional -->
   <link rel="stylesheet" href="resources/css/jquery-ui-1.8.15.custom.css"> <!-- jQuery UI, optional -->
   <script src="resources/js/libs/jquery-1.6.2.min.js"></script>
-  <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+   <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+   <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
+   
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
+  
+  
+  	    <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
+  		<script src="resources/js/Uiclasses/ActividadRender.js"></script>
+  
+<!--   TEST->
+
+  
 
   <!-- end CSS-->
  <script type="text/javascript">
@@ -48,8 +60,39 @@
 				}
 			});
 		});
+		
+		$('.selectable').live("click", function(){ 
+			
+			
+			
+			
+			if ($(this).hasClass('selected')){
+				$(this).removeClass('selected');
+				//$(this).css('background','none');
+			$(this).children(':first-child').remove();
 
-	} )
+			}else{
+				$(this).addClass('selected');
+				$(this).append('<img src="resources/img/check.png" alt="Smiley face" height="10" width="12">')
+				//$(this).css('background','url(img/check.png) no-repeat center');
+
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		});
+	});
+		
+
 	  </script>
 
 </head>
