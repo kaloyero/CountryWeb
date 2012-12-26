@@ -15,11 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-<<<<<<< HEAD
 import org.hibernate.annotations.BatchSize;
-=======
->>>>>>> d1a7ed5d02103a7c0096151e95ea2e7c579e2ccb
-
 
 @Entity
 @Table(name = "conceptos", catalog = "country")

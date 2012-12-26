@@ -50,17 +50,8 @@ public class Actividad implements Serializable {
 	private  Concepto  concepto ;
 	
 	
-<<<<<<< HEAD
     @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-=======
-    
-//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-//    	org.hibernate.annotations.CascadeType.REFRESH,
-//    	org.hibernate.annotations.CascadeType.EVICT, 
-//    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-	@OneToMany(cascade={CascadeType.ALL})
->>>>>>> d1a7ed5d02103a7c0096151e95ea2e7c579e2ccb
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
