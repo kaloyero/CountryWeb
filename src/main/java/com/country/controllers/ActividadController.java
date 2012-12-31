@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.country.form.ActividadForm;
+import com.country.hibernate.model.Actividad;
+import com.country.hibernate.model.Persona;
 
 import com.country.mappers.ActividadMapper;
 import com.country.services.ActivityManager;
@@ -29,16 +32,17 @@ public class ActividadController {
 	private InstructorManager instructorManager;
 
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		ActividadForm actividad = new ActividadForm();
-		actividad.getInstructores().add(2);
+		Persona per =new Persona();
+		per.setId(1);
 		model.addAttribute("ACTIVIDAD", actividad);
 		model.addAttribute("instructores", instructorManager.listAll());
 		return "actividad";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "ACTIVIDAD") ActividadForm actividadForm,
 			BindingResult result) throws ParseException {
@@ -49,6 +53,17 @@ public class ActividadController {
 					instructorManager));
 			return "success";
 		}
+	}
+	
+	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
+	public String load(ModelMap model,@PathVariable int id) throws ParseException {
+		System.out.println("ENTROOOO " + id);
+		Actividad actividad =activityManager.findById(id);
+		ActividadForm form = ActividadMapper.getForm(actividad);
+		model.addAttribute("ACTIVIDAD", form);
+		model.addAttribute("instructores", instructorManager.listAll());
+		return "forms/actividadForm";
+
 	}
 	
 	public ActivityManager getActivityManager() {

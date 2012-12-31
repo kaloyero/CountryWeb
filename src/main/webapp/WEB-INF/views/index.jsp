@@ -52,8 +52,9 @@
 		$('#menu').bind("click", function(e) {
 			$.ajax({
 				type: 'GET',
-				url: '/CountryWeb/actividad',
+				url: '/CountryWeb/actividad/create',
 				success: function(data) {
+
 					$("#main-content").append(data);
 				 	createTabs($("#tab-panel-1"))
 					populateGrid("actividad");
@@ -77,19 +78,22 @@
 				//$(this).css('background','url(img/check.png) no-repeat center');
 
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		});
+		
+		$('#table-example tbody').live("click", function(event) {
+			
+			
+			$.ajax({
+				type: 'GET',
+				url: '/CountryWeb/actividad/load/48',
+				success: function(data) {
+					var rowSelectedName=$(event.target.parentNode).children(0).eq(0).text();
+					addTab($("#tab-panel-1"),"pepito",data)
+				}
+			});
+		
+		
+	});
 	});
 		
 

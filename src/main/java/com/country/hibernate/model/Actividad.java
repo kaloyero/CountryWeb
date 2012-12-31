@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,7 +55,9 @@ public class Actividad implements Serializable {
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
-    @OneToMany(cascade={CascadeType.ALL})
+   
+	@OneToMany(cascade={CascadeType.ALL})
+	
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private List <Asignacion> asignaciones;
 

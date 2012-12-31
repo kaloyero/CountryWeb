@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.country.form.ActividadForm;
 import com.country.hibernate.model.Actividad;
@@ -18,23 +17,38 @@ import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.Cronograma;
 import com.country.hibernate.model.Tarifa;
 import com.country.services.InstructorManager;
-import com.country.services.impl.InstructorManagerImpl;
-
 public class ActividadMapper {
 
-////	private static InstructorManager instructorManager =new InstructorManagerImpl();
-////
-////	public static InstructorManager getInstructorManager() {
-////		return instructorManager;
-////	}
-//
-//	public void setInstructorManager(InstructorManager instructorManager) {
-//		instructorManager = instructorManager;
-//	}
+	public static ActividadForm  getForm(Actividad actividad){
+		
+		ActividadForm form = new ActividadForm();
+		form.setDescripcion(actividad.getDescripcion());
+		form.setNombre(actividad.getNombre());
+		//System.out.println("AFUERA ENRTA"+actividad.getAsignaciones());
+
+		for (Asignacion asignacion : actividad.getAsignaciones()) {
+			form.getInstructores().add(asignacion.getInstructor().getId());
+		}
+		//TODO se deberia tomar solo el importe reciente
+	   for (Tarifa tarifa :actividad.getConcepto().getTarifas()) {
+		   form.setImporte(tarifa.getImporte());
+		}
+	   
+	   for (Cronograma cronograma :actividad.getCronogramas()) {
+
+		    form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
+		   //form.getDias().get(cronograma.getDiaSemana())[last]=Integer.toString(cronograma.getHoraInicio());
+		   //form.getDias().get(0).length[0]="1";
+			
+		}
+		
+		return form;
+		
+	}
 
 	public static Actividad getActividad(ActividadForm actividadForm,InstructorManager instructorManager)
 			throws ParseException {
-		System.out.println("Actividad values is : " + actividadForm.getName());
+		System.out.println("Actividad values is : " + actividadForm.getNombre());
 		System.out.println("Actividad values2 is : "
 				+ actividadForm.getFechaInicio());
 		DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
@@ -44,7 +58,7 @@ public class ActividadMapper {
 		// Actividad General
 		Actividad actividad = new Actividad();
 		actividad.setDescripcion(actividadForm.getDescripcion());
-		actividad.setNombre(actividadForm.getName());
+		actividad.setNombre(actividadForm.getNombre());
 		actividad.setFechaFin(convertedDate);
 		actividad.setFechaComienzo(new Date(2012, 12, 12));
 
@@ -76,18 +90,14 @@ public class ActividadMapper {
 		Iterator it = actividadForm.getDias().entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry cronogramaEleccion = (Map.Entry) it.next();
-			for (String horas : (String[]) cronogramaEleccion.getValue()) {
-				String[] tokens = horas
-						.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-
-				for (String hora : tokens) {
+			for (String hora : (List<String>) cronogramaEleccion.getValue()) {
+			
 					Cronograma cronograma = new Cronograma();
 					cronograma.setActividad(actividad);
 					cronograma.setDiaSemana((Integer) cronogramaEleccion.getKey());
 					cronograma.setHoraInicio(Integer.parseInt(hora));
 					cronogramas.add(cronograma);
 					System.out.println(cronogramaEleccion.getKey() + " = " + hora);
-				}
 
 			}
 			it.remove();
@@ -98,7 +108,7 @@ public class ActividadMapper {
 	
 	public static Concepto getConcepto (ActividadForm actividadForm){
 		Concepto concepto = new Concepto();
-		concepto.setNombre(actividadForm.getName());
+		concepto.setNombre(actividadForm.getNombre());
 		concepto.setFechaComienzo(new Date(2012, 12, 12));
 		concepto.setTarifas(getTarifa(actividadForm,concepto));
 		return concepto;
