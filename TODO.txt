@@ -1,40 +1,22 @@
-MANANA  	(L)Cambiar mapeo para las PK autogeneradas
-			(L)Mapeo para Instructores
-			(L)Mapeo para actividadasignaciones
-			Test de Conceptos y test de instructores.
-			Commitear
-
-> TEst:	Hacer Test de Schedule e Instructor 
+MANANA  	
+> TEst:	(L)Hacer Test de Schedule e Instructor 
 		Probar todas las funciones del DAO.
 		Ver el tema de Mocks para probar.
 
 > Desarrollo:  
 			   
 			   
-> Pendiente:   Cambio en el modelo para Instructor - Cronograma - Actividad (preguntarle a Alex si le comento a Leo)
+> Pendiente:   
 			   SERVICIO GENERICO para agregar list all, etc.
 			  
-> BAse de Datos: 	Amoldar mapeos a las tablas (faltan tablas)
+> BAse de Datos: 	
 	
 	
-> Dudas: Donde va enganchado tarifas???					
-					
-- Investigar Dozer
-
+> Dudas: 					
+		
+		
 - SERVICIO ACTIVIDADES
-(L)>1 save Act (agregar q guarde Cronogramas)
-(L)>2 lista de actividades
-(L)>4 getActById
 > search by String 'nombre actividad'
+> Agregar paginacion a los servivios de findAll.		
 
-- SERVICIO PROFESORES
-> crear profesor
-(L)>get all profesores
-
-- SERVICIO CONCEPTO
-(L) get all Conceptos					
-	test all conceptos
-					
-Agregar paginacion a los servivios de findAll.		
-
-(L)Tener en cuenta si existen secuencias al momento de agregar		
+		

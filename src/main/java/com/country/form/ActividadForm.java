@@ -8,6 +8,8 @@ import java.util.Map;
 
 
 public class ActividadForm {
+	
+	private Integer id;
 	private String nombre = null;
 	private String descripcion = null;
 	private String fechaInicio = null;
@@ -188,5 +190,19 @@ public class ActividadForm {
 	public void setDias(Map<Integer, List<String>> dias) {
 		this.dias = dias;
 	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 
 }

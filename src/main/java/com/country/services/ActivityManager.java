@@ -14,4 +14,5 @@ public interface ActivityManager {
 	
 	List<Actividad> findAllByActivityName(String name);
 
+	void update(Actividad dto);
 }

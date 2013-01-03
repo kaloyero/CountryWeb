@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
 
 
 @Entity
@@ -44,7 +45,8 @@ public class Concepto implements Serializable {
 	@Column(name = "Nombre")
 	private String nombre;
 	
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
     @JoinColumn(name="IdConcepto",updatable = true, insertable = true , nullable = true)
 	private  List <Tarifa> tarifas ;
 

@@ -3,8 +3,10 @@ var ActividadRender = new Class({
         this.name = name;
     },
     onSubmit: function(id){
+    	
+    	var activeTab= $(".active").children().attr("href");
+    	var form=$(activeTab).find("form")
 		var html = [];
-		var form =$('#ACTIVIDAD');
 		var domingo=new Array();
 		var lunes=new Array();
 		var martes=new Array();
@@ -13,7 +15,6 @@ var ActividadRender = new Class({
 		var viernes=new Array();
 		var sabado=new Array();
 
-		console.log("FOPRMRMR ",form)
 		$('.selected').each(function(index) {
 		
 			var dia =$(this).attr("id")
@@ -44,7 +45,7 @@ var ActividadRender = new Class({
 					alert("ERROR Actividad.jsp")
 				}
 		});
-		
+
 		html.push("<input type=hidden id=testa  name='dias[0]' value="+domingo+">");
 		html.push("<input type=hidden id=testa name='dias[1]'value="+lunes+">");
 		html.push("<input type=hidden id=testa name='dias[2]'value="+martes+">");
@@ -55,13 +56,39 @@ var ActividadRender = new Class({
 		html.push("<input type=hidden id=testa name='dias[6]'value="+sabado+">");
 
 		form.append(html.join(''));
-		$.ajax( {
-		      type: "POST",
-		      url: form.attr('action'),
-		      data: form.serialize(),
-		      success: function( response ) {
-		    	  alert("Actividad Guarrrrdada!!")
-		      }
-		    } );
+		return form;
+    },
+    
+    populateGrid: function(){
+
+    	var tableActividad =$('#table-example').dataTable( {
+    		"bProcessing": true,
+    		"sAjaxSource": "/CountryWeb/actividad/lista",
+    		
+    		"fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+    							//Cada vez que se dibuja una fila,se ejecuta este Callback,y se pone el ID de la fila al TR
+    							var id = aData[0];
+    							$(nRow).attr("id",id);
+    							return nRow;
+    						},
+    	} );
+    	tableActividad.fnSetColumnVis( 0, false );
+    },
+
+    show: function(){
+    	var self=this;
+    	$.ajax({
+    		type: 'GET',
+    		url: '/CountryWeb/actividad/create',
+    		success: function(data) {
+    			$("#main-content").append(data);
+    		 	canvasController.createTabs();
+    			self.populateGrid();
+    		}
+    	});
+        
     }
+   
 });
+
+actividadRender=new ActividadRender();

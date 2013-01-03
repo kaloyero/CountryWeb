@@ -21,7 +21,6 @@ public class TipoDocumento implements Serializable{
 	@Column(name = "IdTipoDocumento", unique = true, nullable = false)
 	private int id;
 	
-	@Id
 	@Column(name = "Nombre", unique = true, nullable = false)
 	private String nombre;
 	
@@ -41,6 +40,7 @@ public class TipoDocumento implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	
 	
 }

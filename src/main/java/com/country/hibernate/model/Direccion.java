@@ -1,0 +1,126 @@
+package com.country.hibernate.model;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Direcciones", catalog = "country")
+public class Direccion implements Serializable {
+	
+	/** Serial Version UID */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "IdDireccion", unique = true, nullable = false)	
+	private Integer id;
+	
+	@Column(name = "CalleNombre", nullable = false)
+	private String streetName;
+	
+	@Column(name = "CalleNumero", nullable = false)
+	private String streetNumber;
+
+	@Column(name = "Torre", nullable = false)
+	private String tower;
+
+	@Column(name = "Bloque", nullable = false)
+	private String block;
+
+	@Column(name = "Piso", nullable = false)
+	private String floor;
+
+	@Column(name = "Departamento", nullable = false)
+	private String flat;
+	
+	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+	@JoinColumn(name="IdLocalidad")	
+	private Localidad town;
+
+	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+	@JoinColumn(name="IdPersona")	
+	private Persona person;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public String getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+
+	public String getTower() {
+		return tower;
+	}
+
+	public void setTower(String tower) {
+		this.tower = tower;
+	}
+
+	public String getBlock() {
+		return block;
+	}
+
+	public void setBlock(String block) {
+		this.block = block;
+	}
+
+	public String getFloor() {
+		return floor;
+	}
+
+	public void setFloor(String floor) {
+		this.floor = floor;
+	}
+
+	public String getFlat() {
+		return flat;
+	}
+
+	public void setFlat(String flat) {
+		this.flat = flat;
+	}
+
+	public Localidad getTown() {
+		return town;
+	}
+
+	public void setTown(Localidad town) {
+		this.town = town;
+	}
+
+	public Persona getPerson() {
+		return person;
+	}
+
+	public void setPerson(Persona person) {
+		this.person = person;
+	}
+
+}

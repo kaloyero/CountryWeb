@@ -4,7 +4,7 @@
  <script type="text/javascript">
 	
 		function submitActividad(){
-			var translator= new ComponentTranslator()
+			
 			translator.onSubmit('actividad');
 		}
 
@@ -25,8 +25,7 @@
 
 				<ul class="tabs">
 					<li><a href="#tab-1">Listado </a></li>
-					<li><a href="#tab-2">+</a></li>
-					<li><a href="#tab-3">Consectetur</a></li>
+					<li><a href="#new">+</a></li>
 				</ul>
 			</div>
 			<div class="block-content tab-container">
@@ -35,6 +34,7 @@
 					<table id="table-example" class="table">
 					<thead>
 						<tr>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Actividad</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
 							
@@ -44,7 +44,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="tab-2" class="tab-content">
+				<div id="new" class="tab-content">
 					
 					 <%@include file="forms/actividadForm.jsp" %>
 

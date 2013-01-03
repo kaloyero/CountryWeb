@@ -12,9 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "actividades", catalog = "country")
@@ -41,27 +45,44 @@ public class Actividad implements Serializable {
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="IdConcepto")	
 	private  Concepto  concepto ;
 	
 	
+
+    
+
     
 //    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
 //    	org.hibernate.annotations.CascadeType.REFRESH,
 //    	org.hibernate.annotations.CascadeType.EVICT, 
 //    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-	@OneToMany(cascade={CascadeType.ALL})
+
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
-   
-	@OneToMany(cascade={CascadeType.ALL})
-	
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private List <Asignacion> asignaciones;
 
-	
+    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @BatchSize(size = 10)
+    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdActividad", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "IdIntegrante", nullable = false, updatable = false) })
+	private  List <Integrante> integrants ;
+    
+	public List<Integrante> getIntegrants() {
+		return integrants;
+	}
+
+	public void setIntegrants(List<Integrante> integrants) {
+		this.integrants = integrants;
+	}
+
 	public List<Asignacion> getAsignaciones() {
 		return asignaciones;
 	}

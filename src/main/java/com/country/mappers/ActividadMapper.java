@@ -22,6 +22,7 @@ public class ActividadMapper {
 	public static ActividadForm  getForm(Actividad actividad){
 		
 		ActividadForm form = new ActividadForm();
+		form.setId(actividad.getId());
 		form.setDescripcion(actividad.getDescripcion());
 		form.setNombre(actividad.getNombre());
 		//System.out.println("AFUERA ENRTA"+actividad.getAsignaciones());
@@ -35,12 +36,8 @@ public class ActividadMapper {
 		}
 	   
 	   for (Cronograma cronograma :actividad.getCronogramas()) {
-
-		    form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
-		   //form.getDias().get(cronograma.getDiaSemana())[last]=Integer.toString(cronograma.getHoraInicio());
-		   //form.getDias().get(0).length[0]="1";
-			
-		}
+		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
+	   }
 		
 		return form;
 		
@@ -48,15 +45,14 @@ public class ActividadMapper {
 
 	public static Actividad getActividad(ActividadForm actividadForm,InstructorManager instructorManager)
 			throws ParseException {
-		System.out.println("Actividad values is : " + actividadForm.getNombre());
-		System.out.println("Actividad values2 is : "
-				+ actividadForm.getFechaInicio());
+		
 		DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		Date convertedDate = (Date) formatter.parse(actividadForm
 				.getFechaInicio());
 
 		// Actividad General
 		Actividad actividad = new Actividad();
+		actividad.setId(actividadForm.getId());
 		actividad.setDescripcion(actividadForm.getDescripcion());
 		actividad.setNombre(actividadForm.getNombre());
 		actividad.setFechaFin(convertedDate);
