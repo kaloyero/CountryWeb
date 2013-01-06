@@ -38,6 +38,7 @@
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
   <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>
+  <script src="resources/js/Uiclasses/InstructorRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
    <script src="resources/js/core/ServerManager.js"></script>
@@ -47,16 +48,13 @@
  <script type="text/javascript">
 	$().ready(function() {
 
-		$('#menu').bind("click", function(e) {
-			sideBarController.onOptionSelected('actividad');
+		$('.option').bind("click", function(e) {
+			var objectId=$(this).attr("id");
+			sideBarController.onOptionSelected(objectId);
 			
 		});
 		
 		$('.selectable').live("click", function(){ 
-			
-			
-			
-			
 			if ($(this).hasClass('selected')){
 				$(this).removeClass('selected');
 				//$(this).css('background','none');
@@ -66,7 +64,6 @@
 				$(this).addClass('selected');
 				$(this).append('<img src="resources/img/check.png" alt="Smiley face" height="10" width="12">')
 				//$(this).css('background','url(img/check.png) no-repeat center');
-
 			}
 		});
 		
@@ -122,7 +119,9 @@
     	<nav id="nav">
 	    	<ul class="menu collapsible shadow-bottom">
 	    		<li>
-	    			<a href="javascript:void(0);" class="current" id="menu"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
+	    			<a href="javascript:void(0);" class="option current" id="actividad"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
+	    			<a href="javascript:void(0);" class="option current" id="integrante"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Integrantes<span class="badge red">42</span></a>
+	    			
 	    		</li>
 	    	</ul>
     	</nav> <!--! end of #nav -->

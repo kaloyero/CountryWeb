@@ -3,8 +3,11 @@ var ServerManager = new Class({
         this.name = name;
         this.services={};
         this.services['actividad']={};
+        this.services['instructor']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
+        this.services['instructor']["load"]="/CountryWeb/instructor/load/";
+        this.services['instructor']["save"]="/CountryWeb/instructor/create/";
     },
  
 

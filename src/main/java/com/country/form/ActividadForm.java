@@ -6,16 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class ActividadForm {
-	
+
 	private Integer id;
 	private String nombre = null;
 	private String descripcion = null;
 	private String fechaInicio = null;
 	private double importe = 0;
 	List<Integer> instructores = new ArrayList();
-
 
 	private Map<Integer, List<String>> dias = new HashMap<Integer, List<String>>();
 	List<String> lunes = new ArrayList();
@@ -45,103 +43,69 @@ public class ActividadForm {
 
 	}
 
-
-
 	public List<String> getLunes() {
 		return lunes;
 	}
-
-
 
 	public void setLunes(List<String> lunes) {
 		this.lunes = lunes;
 	}
 
-
-
 	public List<String> getMartes() {
 		return martes;
 	}
-
-
 
 	public void setMartes(List<String> martes) {
 		this.martes = martes;
 	}
 
-
-
 	public List<String> getMiercoles() {
 		return miercoles;
 	}
-
-
 
 	public void setMiercoles(List<String> miercoles) {
 		this.miercoles = miercoles;
 	}
 
-
-
 	public List<String> getJueves() {
 		return jueves;
 	}
-
-
 
 	public void setJueves(List<String> jueves) {
 		this.jueves = jueves;
 	}
 
-
-
 	public List<String> getViernes() {
 		return viernes;
 	}
-
-
 
 	public void setViernes(List<String> viernes) {
 		this.viernes = viernes;
 	}
 
-
-
 	public List<String> getSabado() {
 		return sabado;
 	}
-
-
 
 	public void setSabado(List<String> sabado) {
 		this.sabado = sabado;
 	}
 
-
-
 	public List<String> getDomingo() {
 		return domingo;
 	}
-
-
 
 	public void setDomingo(List<String> domingo) {
 		this.domingo = domingo;
 	}
 
-
-
 	public void setHoras(List<String> horas) {
 		this.horas = horas;
 	}
 
-
-
 	public List getHoras() {
 		return horas;
 	}
-
-	
 
 	public List<Integer> getInstructores() {
 		return instructores;
@@ -191,18 +155,12 @@ public class ActividadForm {
 		this.dias = dias;
 	}
 
-
-
 	public Integer getId() {
 		return id;
 	}
 
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
 
 }

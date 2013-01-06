@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <p></p>
-<form:form commandName="ACTIVIDAD">
+<form:form commandName="ACTIVIDAD" class="block-content form">
 	<input type=hidden name="name" value="al" />
 	<%-- 					<form:input path="dias[0]" />  --%>
 	<%-- 										<form:input path="contactMap['name']" /> --%>
@@ -67,9 +67,6 @@
 						<th>Sabado</th>
 					</tr>
 
-					<c:forEach items="${ACTIVIDAD.lunes}" var="hora" varStatus="status">
-
-					</c:forEach>
 
 				</thead>
 				<tbody id="tableBody">
