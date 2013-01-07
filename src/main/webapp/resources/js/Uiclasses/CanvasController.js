@@ -34,11 +34,13 @@ var CanvasController = new Class({
    
    
     bindTableEvents: function(){
+    	
+    	var self=this;
     	this.getTableRows().live("click", function(event) {
-    		
+    		var objectType=self.getTableId(this);
     		var id=$(this).attr("id");
     		var rowSelectedName=$(event.target.parentNode).children(0).eq(0).text();
-    		translator.onLoad("actividad",id,rowSelectedName);
+    		translator.onLoad(objectType,id,rowSelectedName);
     	});
     },
     
@@ -46,12 +48,26 @@ var CanvasController = new Class({
     	this.addTab(rowSelectedName,id+object,data);
     },
     
+    onShowOption: function(objectType,data){
+     	$("#main-content").empty();
+		$("#main-content").append(data);
+	 	this.createTabs();
+	 	this.populateGrid(objectType);
+    },
+    
+    populateGrid: function(objectType){
+    	translator.onPopulateGrid(objectType);
+    },
     
     getTabContainer: function(){
     	return $("#tab-panel-1");
     },
     getTableRows: function(){
-    	return $('#table-example tbody tr');
+    	return $('.active-table tbody tr');
+    },
+    
+    getTableId: function(table){
+    	return $(table).parent().parent().attr("id");
     },
     
 });

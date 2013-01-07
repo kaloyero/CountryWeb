@@ -22,6 +22,7 @@ var ServerManager = new Class({
 			}
 		});
     },
+   
     save: function(config){
     	var self=this;
 
@@ -33,6 +34,16 @@ var ServerManager = new Class({
 		    	  config.onSuccess(data);
 				}
 		    } );
+    },
+    show: function(config){
+    	var self=this;
+    	$.ajax({
+    		type: 'GET',
+    		url: self.services[config.object]["save"],
+    		success: function(data) {
+    			config.onSuccess(data);	
+    		}
+    	});
     }
    
 });

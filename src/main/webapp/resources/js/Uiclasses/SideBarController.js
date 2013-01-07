@@ -3,16 +3,7 @@ var SideBarController = new Class({
        
     },
     onOptionSelected: function(objectType){
-    	switch (objectType) {
-		 case "actividad":
-			actividadRender.show();
-			break;
-		 case "integrante":
-			instructorRender.show();
-			break;
-		 default:
-			alert("ERROR")
-	}
+    	translator.onShow(objectType);
 },
     
 });

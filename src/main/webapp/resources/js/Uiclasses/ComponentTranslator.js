@@ -22,6 +22,10 @@ var ComponentTranslator = new Class({
 		}});
 	},
 	
+	onSaved : function() {
+		alert("YES")
+	},
+	
 	onLoad : function(objectType,objectId,rowSelectedName) {
 		var self=this;
 			serverManager.get({object:objectType,objectId:objectId,onSuccess : function(data) {
@@ -30,12 +34,41 @@ var ComponentTranslator = new Class({
 	},
 	
 	onLoaded : function(rowSelectedName,objectId,objectType,data) {
-			canvasController.onLoaded(rowSelectedName,objectId,objectType,data);
+		canvasController.onLoaded(rowSelectedName,objectId,objectType,data);
 	},
 	
-	onSaved : function() {
-		alert("YES")
-	}
+	onShow : function(objectType) {
+		var self=this;
+		serverManager.show({object:objectType,onSuccess : function(data) {
+			self.onShowed(objectType,data);
+	}});
+		
+	},
+	
+	onShowed : function(objectType,data) {
+		canvasController.onShowOption(objectType,data);
+	},
+	
+	onPopulateGrid : function(objectType) {
+		
+		//TODO esta bien esto o dejo lo que esta comentado
+		render.populateGrid(objectType);
+		
+//    	switch (objectType) {
+//		 case "actividad":
+//			actividadRender.populateGrid();
+//			break;
+//		 case "integrante":
+//			instructorRender.populateGrid();
+//			break;
+//		 default:
+//			alert("ERROR")
+//	}
+},
+	
+	
+	
+
 });
 
 var translator= new ComponentTranslator();

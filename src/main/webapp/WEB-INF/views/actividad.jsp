@@ -31,7 +31,7 @@
 			<div class="block-content tab-container">
 				<div id="tab-1" class="tab-content">
 
-					<table id="table-example" class="table">
+					<table id="actividad" class="table active-table">
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>

@@ -1,6 +1,7 @@
 var ActividadRender = new Class({
-    initialize: function(name){
-        this.name = name;
+	Extends: Render,
+   
+	initialize: function(name){
     },
     onSubmit: function(id){
     	
@@ -58,37 +59,6 @@ var ActividadRender = new Class({
 		form.append(html.join(''));
 		return form;
     },
-    
-    populateGrid: function(){
-
-    	var tableActividad =$('#table-example').dataTable( {
-    		"bProcessing": true,
-    		"sAjaxSource": "/CountryWeb/actividad/lista",
-    		
-    		"fnRowCallback": function( nRow, aData, iDisplayIndex ) {
-    							//Cada vez que se dibuja una fila,se ejecuta este Callback,y se pone el ID de la fila al TR
-    							var id = aData[0];
-    							$(nRow).attr("id",id);
-    							return nRow;
-    						},
-    	} );
-    	tableActividad.fnSetColumnVis( 0, false );
-    },
-
-    show: function(){
-    	var self=this;
-    	$.ajax({
-    		type: 'GET',
-    		url: '/CountryWeb/actividad/create',
-    		success: function(data) {
-    			$("#main-content").empty();
-    			$("#main-content").append(data);
-    		 	canvasController.createTabs();
-    			self.populateGrid();
-    		}
-    	});
-        
-    }
    
 });
 
