@@ -39,6 +39,10 @@
   <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  <script src="resources/js/Uiclasses/InstructorRender.js"></script>
+>>>>>>> d86d1dfde613f6d9dd7c40fac34d30eaa3f371f7
 =======
   <script src="resources/js/Uiclasses/InstructorRender.js"></script>
 >>>>>>> d86d1dfde613f6d9dd7c40fac34d30eaa3f371f7
@@ -52,8 +56,14 @@
 	$().ready(function() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$('#menu').bind("click", function(e) {
 			sideBarController.onOptionSelected('actividad');
+=======
+		$('.option').bind("click", function(e) {
+			var objectId=$(this).attr("id");
+			sideBarController.onOptionSelected(objectId);
+>>>>>>> d86d1dfde613f6d9dd7c40fac34d30eaa3f371f7
 =======
 		$('.option').bind("click", function(e) {
 			var objectId=$(this).attr("id");
@@ -128,7 +138,13 @@
 	    	<ul class="menu collapsible shadow-bottom">
 	    		<li>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    			<a href="javascript:void(0);" class="current" id="menu"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
+=======
+	    			<a href="javascript:void(0);" class="option current" id="actividad"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
+	    			<a href="javascript:void(0);" class="option current" id="integrante"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Integrantes<span class="badge red">42</span></a>
+	    			
+>>>>>>> d86d1dfde613f6d9dd7c40fac34d30eaa3f371f7
 =======
 	    			<a href="javascript:void(0);" class="option current" id="actividad"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
 	    			<a href="javascript:void(0);" class="option current" id="integrante"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Integrantes<span class="badge red">42</span></a>

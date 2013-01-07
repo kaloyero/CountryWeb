@@ -39,8 +39,6 @@ public class ActividadController {
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		ActividadForm actividad = new ActividadForm();
-		Persona per =new Persona();
-		per.setId(1);
 		model.addAttribute("ACTIVIDAD", actividad);
 		model.addAttribute("instructores", instructorManager.listAll());
 		return "actividad";
@@ -95,8 +93,7 @@ public class ActividadController {
 				row.add(actividad.getDescripcion());
 				dataTable.getAaData().add(row);
 			};
-           
-		   dataTable.setsEcho("1");
+			dataTable.setsEcho("1");
            dataTable.setiTotalDisplayRecords("2");
            dataTable.setiTotalRecords("1");
            return dataTable;

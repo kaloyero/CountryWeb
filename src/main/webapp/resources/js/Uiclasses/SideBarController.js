@@ -14,7 +14,5 @@ var SideBarController = new Class({
 			alert("ERROR")
 	}
 },
-
-    
 });
 var sideBarController=new SideBarController();
