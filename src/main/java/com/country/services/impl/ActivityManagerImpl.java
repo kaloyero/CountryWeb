@@ -35,7 +35,7 @@ public class ActivityManagerImpl implements ActivityManager{
 	}
 	
 	public void update(Actividad dto) {
-		 activityDao.save(dto);
+		 activityDao.saveOrUpdate(dto);
 	}
 
 	public Integer edit(Actividad dto) {

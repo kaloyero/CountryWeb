@@ -81,6 +81,7 @@ var ActividadRender = new Class({
     		type: 'GET',
     		url: '/CountryWeb/actividad/create',
     		success: function(data) {
+    			$("#main-content").empty();
     			$("#main-content").append(data);
     		 	canvasController.createTabs();
     			self.populateGrid();
