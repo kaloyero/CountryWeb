@@ -49,13 +49,12 @@ public class Actividad implements Serializable {
 	@JoinColumn(name="IdConcepto")	
 	private  Concepto  concepto ;
 	
-	
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private List <Asignacion> asignaciones;

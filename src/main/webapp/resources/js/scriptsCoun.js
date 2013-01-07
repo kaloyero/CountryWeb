@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function  createTabs (container) {
 
 		container.find('.tab-content').hide();
@@ -31,3 +32,5 @@ function  populateGrid (type) {
 
 }
 
+=======
+>>>>>>> 5a6ecafa073770c0bf099a0f407844a23dac3fa0

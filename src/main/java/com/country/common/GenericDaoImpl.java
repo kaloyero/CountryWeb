@@ -41,6 +41,19 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 	  public PK save(E newInstance) {
             return (PK) getSession().save(newInstance);
       }
+
+      public void update(E transientObject) {
+    	  getSession().update(transientObject);
+      }
+
+      public void saveOrUpdate(E transientObject) {
+    	  getSession().saveOrUpdate(transientObject);
+      }
+
+      public void delete(E persistentObject) {
+    	  getSession().delete(persistentObject);
+      }
+	  
       @SuppressWarnings("unchecked")
       public E findById(PK id) {
             return (E) getSession().get(getEntityClass(), id);
@@ -103,15 +116,6 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
             return (List<E>) criteria.getExecutableCriteria(getSession()).list();
       }
       
-      public void update(E transientObject) {
-    	  getSession().update(transientObject);
-      }
-      public void saveOrUpdate(E transientObject) {
-    	  getSession().saveOrUpdate(transientObject);
-      }
-      public void delete(E persistentObject) {
-    	  getSession().delete(persistentObject);
-      }
       
 //  	@SuppressWarnings("unchecked")
 //  	public <T> List<T> findByNamedParam(Class<T> entityClass, String query,

@@ -43,7 +43,7 @@ public class Direccion implements Serializable {
 	@Column(name = "Departamento", nullable = false)
 	private String flat;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
 	@JoinColumn(name="IdLocalidad")	
 	private Localidad town;
 

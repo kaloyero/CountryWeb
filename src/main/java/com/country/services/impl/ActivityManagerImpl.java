@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.hibernate.dao.ActivityDao;
 import com.country.hibernate.dao.ScheduleDao;
@@ -20,15 +21,21 @@ public class ActivityManagerImpl implements ActivityManager{
 	@Autowired
     private ScheduleDao scheduleDao;
 	
-
+	@Transactional
 	public Actividad findById(Integer id) {
 		Actividad act = activityDao.findById(id);
+		act.getAsignaciones();
+		act.getCronogramas();
+		act.getIntegrants();
 		return act;
 	}
 
-	public Integer save(Actividad dto) {
-		Integer pk = activityDao.save(dto);
-		return pk;
+	public void save(Actividad dto) {
+		activityDao.saveOrUpdate(dto);
+	}
+	
+	public void update(Actividad dto) {
+		 activityDao.save(dto);
 	}
 
 	public Integer edit(Actividad dto) {

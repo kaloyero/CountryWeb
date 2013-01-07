@@ -16,9 +16,8 @@ public class ConceptManagerImpl implements ConceptManager{
 	@Autowired
     private ConceptDao conceptDao;
 	
-	public Integer save(Concepto dto) {
-		Integer pk = conceptDao.save(dto);
-		return pk;
+	public void save(Concepto dto) {
+		conceptDao.saveOrUpdate(dto);
 	}
 
 	public List<Concepto> listAll() {

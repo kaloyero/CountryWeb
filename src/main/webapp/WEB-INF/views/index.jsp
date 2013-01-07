@@ -31,18 +31,16 @@
   <link rel="stylesheet" href="resources/css/charts.css"> <!-- Charts, optional -->
   <link rel="stylesheet" href="resources/css/jquery-ui-1.8.15.custom.css"> <!-- jQuery UI, optional -->
   <script src="resources/js/libs/jquery-1.6.2.min.js"></script>
-   <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
-   <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
+  <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+  <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
    
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
-  
-  
-  	    <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
-  		<script src="resources/js/Uiclasses/ActividadRender.js"></script>
-  
-<!--   TEST->
-
+  <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
+  <script src="resources/js/Uiclasses/ActividadRender.js"></script>
+  <script src="resources/js/Uiclasses/SideBarController.js"></script>
+  <script src="resources/js/Uiclasses/CanvasController.js"></script>
+   <script src="resources/js/core/ServerManager.js"></script>
   
 
   <!-- end CSS-->
@@ -50,15 +48,8 @@
 	$().ready(function() {
 
 		$('#menu').bind("click", function(e) {
-			$.ajax({
-				type: 'GET',
-				url: '/CountryWeb/actividad',
-				success: function(data) {
-					$("#main-content").append(data);
-				 	createTabs($("#tab-panel-1"))
-					populateGrid("actividad");
-				}
-			});
+			sideBarController.onOptionSelected('actividad');
+			
 		});
 		
 		$('.selectable').live("click", function(){ 
@@ -77,19 +68,9 @@
 				//$(this).css('background','url(img/check.png) no-repeat center');
 
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		});
+		
+
 	});
 		
 
@@ -141,12 +122,7 @@
     	<nav id="nav">
 	    	<ul class="menu collapsible shadow-bottom">
 	    		<li>
-	    			<a href="javascript:void(0);" class="current" id="menu"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Menu<span class="badge red">42</span></a>
-	    			<ul class="sub">
-	    				<li><a href="javascript:void(0);">Lorem ipsum #1</a></li>
-	    				<li><a href="javascript:void(0);">Lorem ipsum #2</a></li>
-	    				<li><a href="javascript:void(0);">Lorem ipsum #3</a></li>
-	    			</ul>
+	    			<a href="javascript:void(0);" class="current" id="menu"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
 	    		</li>
 	    	</ul>
     	</nav> <!--! end of #nav -->

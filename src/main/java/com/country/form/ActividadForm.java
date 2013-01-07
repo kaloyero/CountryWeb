@@ -6,27 +6,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.country.hibernate.model.Actividad;
-import com.country.hibernate.model.Instructor;
 
 public class ActividadForm {
-	private String name = null;
+	
+	private Integer id;
+	private String nombre = null;
 	private String descripcion = null;
 	private String fechaInicio = null;
-	private int importe = 0;
+	private double importe = 0;
 	List<Integer> instructores = new ArrayList();
-	private Map<Integer, String[]> dias = new HashMap<Integer, String[]>();
-	String[] lunes = {};
-	String[] martes = {};
-	String[] miercoles = {};
-	String[] jueves = {};
-	String[] viernes = {};
-	String[] sabado = {};
-	String[] domingo = {};
+
+
+	private Map<Integer, List<String>> dias = new HashMap<Integer, List<String>>();
+	List<String> lunes = new ArrayList();
+	List<String> martes = new ArrayList();
+	List<String> miercoles = new ArrayList();
+	List<String> jueves = new ArrayList();
+	List<String> viernes = new ArrayList();
+	List<String> sabado = new ArrayList();
+	List<String> domingo = new ArrayList();
 	private List<String> horas = new ArrayList<String>();
 
 	public ActividadForm() {
-		instructores.add(2);
 		horas.add("10");
 		horas.add("12");
 		horas.add("14");
@@ -35,7 +36,6 @@ public class ActividadForm {
 		horas.add("20");
 
 		this.getDias().put(0, this.getDomingo());
-
 		this.getDias().put(1, this.getLunes());
 		this.getDias().put(2, this.getMartes());
 		this.getDias().put(3, this.getMiercoles());
@@ -45,69 +45,103 @@ public class ActividadForm {
 
 	}
 
-	public String[] getLunes() {
+
+
+	public List<String> getLunes() {
 		return lunes;
 	}
 
-	public void setLunes(String[] lunes) {
+
+
+	public void setLunes(List<String> lunes) {
 		this.lunes = lunes;
 	}
 
-	public String[] getMartes() {
+
+
+	public List<String> getMartes() {
 		return martes;
 	}
 
-	public void setMartes(String[] martes) {
+
+
+	public void setMartes(List<String> martes) {
 		this.martes = martes;
 	}
 
-	public String[] getMiercoles() {
+
+
+	public List<String> getMiercoles() {
 		return miercoles;
 	}
 
-	public void setMiercoles(String[] miercoles) {
+
+
+	public void setMiercoles(List<String> miercoles) {
 		this.miercoles = miercoles;
 	}
 
-	public String[] getJueves() {
+
+
+	public List<String> getJueves() {
 		return jueves;
 	}
 
-	public void setJueves(String[] jueves) {
+
+
+	public void setJueves(List<String> jueves) {
 		this.jueves = jueves;
 	}
 
-	public String[] getViernes() {
+
+
+	public List<String> getViernes() {
 		return viernes;
 	}
 
-	public void setViernes(String[] viernes) {
+
+
+	public void setViernes(List<String> viernes) {
 		this.viernes = viernes;
 	}
 
-	public String[] getSabado() {
+
+
+	public List<String> getSabado() {
 		return sabado;
 	}
 
-	public void setSabado(String[] sabado) {
+
+
+	public void setSabado(List<String> sabado) {
 		this.sabado = sabado;
 	}
 
-	public String[] getDomingo() {
+
+
+	public List<String> getDomingo() {
 		return domingo;
 	}
 
-	public void setDomingo(String[] domingo) {
+
+
+	public void setDomingo(List<String> domingo) {
 		this.domingo = domingo;
 	}
+
+
+
+	public void setHoras(List<String> horas) {
+		this.horas = horas;
+	}
+
+
 
 	public List getHoras() {
 		return horas;
 	}
 
-	public void setHoras(List horas) {
-		this.horas = horas;
-	}
+	
 
 	public List<Integer> getInstructores() {
 		return instructores;
@@ -117,20 +151,20 @@ public class ActividadForm {
 		this.instructores = instructores;
 	}
 
-	public int getImporte() {
+	public double getImporte() {
 		return importe;
 	}
 
-	public void setImporte(int importe) {
+	public void setImporte(double importe) {
 		this.importe = importe;
 	}
 
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getDescripcion() {
@@ -149,12 +183,26 @@ public class ActividadForm {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Map<Integer, String[]> getDias() {
+	public Map<Integer, List<String>> getDias() {
 		return dias;
 	}
 
-	public void setDias(Map<Integer, String[]> dias) {
+	public void setDias(Map<Integer, List<String>> dias) {
 		this.dias = dias;
 	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 
 }
