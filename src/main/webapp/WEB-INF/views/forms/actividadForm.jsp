@@ -66,17 +66,6 @@
 						<th>Viernes</th>
 						<th>Sabado</th>
 					</tr>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-					<c:forEach items="${ACTIVIDAD.lunes}" var="hora" varStatus="status">
-
-					</c:forEach>
-=======
->>>>>>> d86d1dfde613f6d9dd7c40fac34d30eaa3f371f7
-=======
->>>>>>> d86d1dfde613f6d9dd7c40fac34d30eaa3f371f7
-
 				</thead>
 				<tbody id="tableBody">
 					<c:set var="show" value="false" />

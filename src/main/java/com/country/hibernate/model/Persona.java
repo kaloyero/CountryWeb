@@ -52,12 +52,12 @@ public class Persona implements Serializable {
 	@JoinColumn(name="IdTipoDocumento")	
 	private TipoDocumento tipoDoc;
 	
-    @OneToMany(cascade={CascadeType.ALL},fetch= FetchType.EAGER)
+    @OneToMany(cascade={CascadeType.ALL})
     @BatchSize(size = 10)
     @JoinColumn(name="IdPersona", updatable = true, insertable = true , nullable = true)
 	private  List <Telefono> telefonos ;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+    @OneToMany(cascade={CascadeType.ALL})
 	@BatchSize(size = 10)
     @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
 	private List <Direccion> directions;
