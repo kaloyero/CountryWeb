@@ -5,6 +5,5 @@ var SideBarController = new Class({
     onOptionSelected: function(objectType){
     	translator.onShow(objectType);
 },
-    
 });
 var sideBarController=new SideBarController();

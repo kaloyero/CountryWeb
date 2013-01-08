@@ -6,7 +6,7 @@ import com.country.hibernate.model.Actividad;
 
 public interface ActivityManager {
 
-	Integer save(Actividad dto);
+	void save(Actividad dto);
 	
 	Actividad findById(Integer id);
 	

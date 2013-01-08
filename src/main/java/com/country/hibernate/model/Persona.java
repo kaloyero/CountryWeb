@@ -48,16 +48,16 @@ public class Persona implements Serializable {
 	@Column(name = "DireccionEmail")
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
 	@JoinColumn(name="IdTipoDocumento")	
 	private TipoDocumento tipoDoc;
 	
-    @OneToMany(cascade={CascadeType.ALL},fetch= FetchType.LAZY)
+    @OneToMany(cascade={CascadeType.ALL})
     @BatchSize(size = 10)
     @JoinColumn(name="IdPersona", updatable = true, insertable = true , nullable = true)
 	private  List <Telefono> telefonos ;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(cascade={CascadeType.ALL})
 	@BatchSize(size = 10)
     @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
 	private List <Direccion> directions;

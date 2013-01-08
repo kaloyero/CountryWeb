@@ -93,7 +93,6 @@ public class ActividadController {
 				row.add(actividad.getDescripcion());
 				dataTable.getAaData().add(row);
 			};
-           
 			dataTable.setsEcho("1");
            dataTable.setiTotalDisplayRecords("2");
            dataTable.setiTotalRecords("1");

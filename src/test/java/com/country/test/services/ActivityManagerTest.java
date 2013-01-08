@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -35,6 +34,7 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 	@Autowired
     private ActivityManager activityManager;
 
+	
 //	@Test
 //	public void findAll() {
 //		System.out.println("Prueba de tomar lista de actividades");
@@ -107,45 +107,45 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 	@Test
 	public void EditAct() {
 				
-		Actividad act = activityManager.findById(9);
-		
-		for (Cronograma crono : act.getCronogramas()) {
-			System.out.println("CRONOGRAMA " + crono.getId() + " - " +crono.getDiaSemana());
-			crono.setDiaSemana(2);
-		}
-		System.out.println("TAMANO: " + act.getCronogramas().size());
-		System.out.println("BORRO un cronograma");
-		act.getCronogramas().remove(1);
-		System.out.println("TAMANO NUEVO: " + act.getCronogramas().size());
-
-		System.out.println("GUARDO");
-		activityManager.save(act);
-		
-		System.out.println("Tomo la actividad modificada");
-		Actividad act2 = activityManager.findById(9);
-		
-		System.out.println("Deberiamostrarme solo un cronograma con Dia de semana 2. ");
-		List<Cronograma> listaCronoNew = new ArrayList<Cronograma>();
-		for (Cronograma crono : act2.getCronogramas()) {
-			System.out.println("CRONOGRAMA " + crono.getId() + " - " +crono.getDiaSemana());
-			listaCronoNew.add(crono);
-		}
-		
-		System.out.println("---------------------------");
-		Cronograma crono2 = new Cronograma();
-		crono2.setDiaSemana(4);
-		crono2.setDuracion(1);
-		crono2.setHoraInicio(15);
-		listaCronoNew.add(crono2);
-		act2.setCronogramas(listaCronoNew);
-		activityManager.save(act2);
-		
-		Actividad act3 = activityManager.findById(9);
-		
-		for (Cronograma crono : act3.getCronogramas()) {
-			System.out.println("CRONOGRAMA " + crono.getId() + " - " +crono.getDiaSemana());
-		}
+//		Actividad act = activityManager.findById(9);
 //		
+//		for (Cronograma crono : act.getCronogramas()) {
+//			System.out.println("CRONOGRAMA " + crono.getId() + " - " +crono.getDiaSemana());
+//			crono.setDiaSemana(2);
+//		}
+//		System.out.println("TAMANO: " + act.getCronogramas().size());
+//		System.out.println("BORRO un cronograma");
+//		act.getCronogramas().remove(1);
+//		System.out.println("TAMANO NUEVO: " + act.getCronogramas().size());
+//
+//		System.out.println("GUARDO");
+//		activityManager.save(act);
+//		
+//		System.out.println("Tomo la actividad modificada");
+//		Actividad act2 = activityManager.findById(9);
+//		
+//		System.out.println("Deberiamostrarme solo un cronograma con Dia de semana 2. ");
+//		List<Cronograma> listaCronoNew = new ArrayList<Cronograma>();
+//		for (Cronograma crono : act2.getCronogramas()) {
+//			System.out.println("CRONOGRAMA " + crono.getId() + " - " +crono.getDiaSemana());
+//			listaCronoNew.add(crono);
+//		}
+//		
+//		System.out.println("---------------------------");
+//		Cronograma crono2 = new Cronograma();
+//		crono2.setDiaSemana(4);
+//		crono2.setDuracion(1);
+//		crono2.setHoraInicio(15);
+//		listaCronoNew.add(crono2);
+//		act2.setCronogramas(listaCronoNew);
+//		activityManager.save(act2);
+//		
+//		Actividad act3 = activityManager.findById(9);
+//		
+//		for (Cronograma crono : act3.getCronogramas()) {
+//			System.out.println("CRONOGRAMA " + crono.getId() + " - " +crono.getDiaSemana());
+//		}
+////		
 		
 		Assert.assertEquals(0, 0);
 		

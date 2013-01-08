@@ -38,7 +38,7 @@ public class Integrante implements Serializable {
 	@JoinColumn(name="IdPersona")	
 	private Persona persona;
 
-    @OneToOne(fetch=FetchType.LAZY )
+    @OneToOne(fetch=FetchType.EAGER )
     @JoinColumn(name="IdUnidad")	
 	private Unidad unidad;
     

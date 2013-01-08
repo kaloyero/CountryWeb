@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ActividadForm {
-
 	private Integer id;
 	private String nombre = null;
 	private String descripcion = null;

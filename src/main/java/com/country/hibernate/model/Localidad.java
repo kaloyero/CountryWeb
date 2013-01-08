@@ -30,7 +30,7 @@ public class Localidad implements Serializable {
 	@Column(name = "CodigoPostal")
 	private String postalCode;
 	
-	@OneToOne(fetch=FetchType.LAZY )
+	@OneToOne(fetch=FetchType.EAGER )
 	@JoinColumn(name="IdCiudad")	
 	private Ciudad city;
 

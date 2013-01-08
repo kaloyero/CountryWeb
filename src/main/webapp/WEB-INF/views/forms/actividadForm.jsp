@@ -66,8 +66,6 @@
 						<th>Viernes</th>
 						<th>Sabado</th>
 					</tr>
-
-
 				</thead>
 				<tbody id="tableBody">
 					<c:set var="show" value="false" />

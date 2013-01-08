@@ -32,7 +32,7 @@ public class Ciudad implements Serializable {
 	@Column(name = "Nombre")
 	private String name;
 	
-	@OneToOne(fetch=FetchType.LAZY )
+	@OneToOne(fetch=FetchType.EAGER )
     @JoinColumn(name="IdProvincia")	
 	private Provincia state;
 

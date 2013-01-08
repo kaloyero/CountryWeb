@@ -122,7 +122,7 @@
 	    		<li>
 	    			<a href="javascript:void(0);" class="option current" id="actividad"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Actividad<span class="badge red">42</span></a>
 	    			<a href="javascript:void(0);" class="option current" id="instructor"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Instructor<span class="badge red">42</span></a>
-	    			
+
 	    		</li>
 	    	</ul>
     	</nav> <!--! end of #nav -->

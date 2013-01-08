@@ -7,7 +7,7 @@ import com.country.hibernate.model.Instructor;
 public interface InstructorManager {
 
 
-	Integer save(Instructor dto);
+	void save(Instructor dto);
 	
 	Instructor findById(Integer id);
 	

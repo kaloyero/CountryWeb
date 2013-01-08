@@ -35,7 +35,7 @@ public class Emprendimiento implements Serializable {
 	@Column(name = "Descripcion")
 	private String description;
 	
-	@OneToOne(fetch=FetchType.LAZY )
+	@OneToOne(fetch=FetchType.EAGER )
     @JoinColumn(name="IdLocalidad")	
 	private Localidad town;
 

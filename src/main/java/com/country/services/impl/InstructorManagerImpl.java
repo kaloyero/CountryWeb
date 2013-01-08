@@ -16,9 +16,8 @@ public class InstructorManagerImpl implements InstructorManager{
 	@Autowired
     private InstructorDao instructorDao;
 	
-	public Integer save(Instructor dto) {
-		Integer pk = instructorDao.save(dto);
-		return pk;
+	public void save(Instructor dto) {
+		instructorDao.saveOrUpdate(dto);
 	}
 
 	public List<Instructor> listAll() {

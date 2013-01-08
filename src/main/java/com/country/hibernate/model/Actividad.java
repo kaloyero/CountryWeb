@@ -49,16 +49,6 @@ public class Actividad implements Serializable {
 	@JoinColumn(name="IdConcepto")	
 	private  Concepto  concepto ;
 	
-	
-
-    
-
-    
-//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-//    	org.hibernate.annotations.CascadeType.REFRESH,
-//    	org.hibernate.annotations.CascadeType.EVICT, 
-//    	org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
