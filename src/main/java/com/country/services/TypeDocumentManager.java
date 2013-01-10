@@ -1,13 +1,8 @@
 package com.country.services;
 
-import java.util.List;
-
 import com.country.hibernate.model.TipoDocumento;
 
-public interface TypeDocumentManager {
+public interface TypeDocumentManager extends AbstractManager<TipoDocumento>{
 
-	void save(TipoDocumento dto);
-	
-	List<TipoDocumento> listAll();
 	
 }

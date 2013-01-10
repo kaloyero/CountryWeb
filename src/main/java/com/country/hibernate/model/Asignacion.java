@@ -32,11 +32,11 @@ public class Asignacion implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-	@JoinColumn(name="IdInstructor")		
+	@JoinColumn(name="IdInstructor",updatable = false, insertable = false)		
 	private  Instructor instructor;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="IdActividad")	
+	@JoinColumn(name="IdActividad",updatable = false, insertable = false)	
 	private  Actividad actividad;
 	
 	@Column(name = "FechaIni")

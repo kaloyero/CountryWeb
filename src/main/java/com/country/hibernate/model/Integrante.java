@@ -35,11 +35,11 @@ public class Integrante implements Serializable {
 	private String tipo;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="IdPersona")	
+	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
 
     @OneToOne(fetch=FetchType.EAGER )
-    @JoinColumn(name="IdUnidad")	
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false)	
 	private Unidad unidad;
     
     @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)

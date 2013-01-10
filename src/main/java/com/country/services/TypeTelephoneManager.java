@@ -1,13 +1,8 @@
 package com.country.services;
 
-import java.util.List;
-
 import com.country.hibernate.model.TipoTelefono;
 
-public interface TypeTelephoneManager {
+public interface TypeTelephoneManager extends AbstractManager<TipoTelefono>{
 
-	void save(TipoTelefono dto);
-	
-	List<TipoTelefono> listAll();
 	
 }

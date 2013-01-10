@@ -33,7 +33,7 @@ public class Instructor implements Serializable {
 	private  Date fechaFin ;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="IdPersona")	
+	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
 	
 	public Instructor() {

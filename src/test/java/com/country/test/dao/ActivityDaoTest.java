@@ -1,7 +1,5 @@
 package com.country.test.dao;
 
-import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -13,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.country.hibernate.dao.ActivityDao;
-import com.country.hibernate.model.Actividad;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests

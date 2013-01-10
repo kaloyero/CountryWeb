@@ -18,6 +18,8 @@ public interface GenericDao<E,PK  extends Serializable> {
     
     void delete(E persistentObject);
     
+//    void deleteById(PK id);
+    
     E findById(PK id);
     
     List<E> findAll();

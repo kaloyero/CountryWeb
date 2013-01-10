@@ -1,15 +1,9 @@
 package com.country.services;
 
-import java.util.List;
-
 import com.country.hibernate.model.Emprendimiento;
 
-public interface BusinessManager {
+public interface BusinessManager extends AbstractManager<Emprendimiento>{
 
-	void save(Emprendimiento dto);
-	
 	Emprendimiento findById(Integer id);
-	
-	List<Emprendimiento> listAll();
 	
 }

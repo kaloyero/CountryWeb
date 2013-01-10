@@ -31,7 +31,7 @@ public class Localidad implements Serializable {
 	private String postalCode;
 	
 	@OneToOne(fetch=FetchType.EAGER )
-	@JoinColumn(name="IdCiudad")	
+	@JoinColumn(name="IdCiudad",updatable = false, insertable = false)	
 	private Ciudad city;
 
 	

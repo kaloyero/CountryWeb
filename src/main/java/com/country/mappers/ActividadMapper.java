@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 import com.country.form.ActividadForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Asignacion;
@@ -31,9 +30,9 @@ public class ActividadMapper {
 			form.getInstructores().add(asignacion.getInstructor().getId());
 		}
 		//TODO se deberia tomar solo el importe reciente
-	   for (Tarifa tarifa :actividad.getConcepto().getTarifas()) {
-		   form.setImporte(tarifa.getImporte());
-		}
+//	   for (Tarifa tarifa :actividad.getConcepto().getTarifas()) {
+//		   form.setImporte(tarifa.getImporte());
+//		}
 	   
 	   for (Cronograma cronograma :actividad.getCronogramas()) {
 		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
@@ -60,8 +59,9 @@ public class ActividadMapper {
 
 		//Listas
 		actividad.setAsignaciones(getAsignaciones(actividadForm,actividad,instructorManager));
-		actividad.setCronogramas(getCronogramas(actividadForm,actividad));
 		actividad.setConcepto(getConcepto(actividadForm));
+		actividad.setCronogramas(getCronogramas(actividadForm,actividad));
+		
 
 		return actividad;
 
@@ -91,7 +91,8 @@ public class ActividadMapper {
 					Cronograma cronograma = new Cronograma();
 					cronograma.setActividad(actividad);
 					cronograma.setDiaSemana((Integer) cronogramaEleccion.getKey());
-					cronograma.setHoraInicio(Integer.parseInt(hora));
+					cronograma.setHoraInicio(Integer.parseInt(hora));	
+					
 					cronogramas.add(cronograma);
 					System.out.println(cronogramaEleccion.getKey() + " = " + hora);
 

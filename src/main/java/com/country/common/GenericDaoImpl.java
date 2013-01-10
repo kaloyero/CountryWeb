@@ -39,25 +39,29 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
 	
 	  @SuppressWarnings("unchecked")
 	  public PK save(E newInstance) {
-            return (PK) getSession().save(newInstance);
+		  return (PK) getSession().save(newInstance);
       }
 
       public void update(E transientObject) {
+    	  getSession().merge(transientObject);
     	  getSession().update(transientObject);
       }
 
       public void saveOrUpdate(E transientObject) {
+    	  getSession().merge(transientObject);
     	  getSession().saveOrUpdate(transientObject);
+//    	  getSession().flush();
       }
 
       public void delete(E persistentObject) {
     	  getSession().delete(persistentObject);
       }
-	  
+
       @SuppressWarnings("unchecked")
       public E findById(PK id) {
             return (E) getSession().get(getEntityClass(), id);
       }
+      
       @SuppressWarnings("unchecked")
       public List<E> findAll() {
           DetachedCriteria criteria = createDetachedCriteria();

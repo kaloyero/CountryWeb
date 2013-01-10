@@ -32,14 +32,14 @@ public class Telefono implements Serializable {
 	private int prefijo;
 	
     @OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
-    @JoinColumn(name="IdTipoTelefono")	
+    @JoinColumn(name="IdTipoTelefono",updatable = false, insertable = false)	
 	private TipoTelefono tipoTelefono;
 	
 	@Column(name = "Numero")
 	private int numero;
 	
     @OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
-    @JoinColumn(name="IdPersona")	
+    @JoinColumn(name="IdPersona",updatable = false, insertable = false)	
 	private Persona persona;
 	
 	/** Serial Version UID */
