@@ -1,9 +1,8 @@
 package com.country.form;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class PersonaForm implements Serializable {
+public class PersonaForm extends Form  {
 
 	private Integer id;
 	private String nombre;

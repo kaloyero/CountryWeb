@@ -3,9 +3,9 @@
 <%@ page import="java.util.*" %>
  <script type="text/javascript">
 	
-		function submitInstructor(){
+		function submitUnidad(){
 			
-			translator.onSubmit('instructor');
+			translator.onSubmit('unidad');
 		}
 
 
@@ -14,8 +14,8 @@
 <div class="container_12">
 
 	<div class="grid_12">
-		<h1>Instructores</h1>
-		<p>Desde aqui controle los instructores</p>
+		<h1>Unidades</h1>
+		<p>Desde aqui controle las Unidades</p>
 	</div>
 	<div class="grid_12">
 		<div class="block-border" id="tab-panel-1">
@@ -34,8 +34,7 @@
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Instrucor</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Codigo</th>
 							
 						</tr>
 				</thead>
@@ -45,7 +44,7 @@
 				</div>
 				<div id="new" class="tab-content">
 					
-					 <%@include file="forms/instructorForm.jsp" %>
+					 <%@include file="forms/unidadForm.jsp" %>
 
 				</div>
 			</div>

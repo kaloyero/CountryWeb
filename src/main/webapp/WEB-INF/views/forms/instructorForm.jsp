@@ -2,24 +2,26 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <p></p>
-<form:form commandName="INTEGRANTE" class="block-content form">
+<form:form commandName="INSTRUCTOR" class="block-content form">
 
 <%@include file="personaForm.jsp" %>
 
 
 <fieldset>
-		<legend>Integrante</legend>
+		<legend>Instructor</legend>
 		<div class="_50">
-				<p>
-				<label for="select">Unidad</label>
-				<form:select path="unidad" multiple="false"> 
-					<form:options items="${unidaddes}" itemValue="id" 
-						itemLabel="code" />
-				</form:select> 
+			<p>
+				<label for="textfield">Fecha desde</label>
+				<form:input path="fechaComienzo" class="required" />
+			</p>
+		</div>
+			<div class="_50">
+			<p>
+				<label for="textfield">Fecha hasta</label>
+				<form:input path="fechaFin" class="required" />
 			</p>
 		</div>
 		
-				
 </fieldset>
 	<div class="clear"></div>
 	<div class="block-actions">
@@ -29,7 +31,7 @@
 		</ul>
 		<ul class="actions-right">
 			<li><input type="button" class="button" value="Crear!"
-				onClick="submitIntegrante()"></li>
+				onClick="submitInstructor()"></li>
 		</ul>
 	</div>
 </form:form>

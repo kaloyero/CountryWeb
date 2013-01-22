@@ -19,23 +19,23 @@ import com.country.hibernate.model.Tarifa;
 import com.country.services.InstructorManager;
 public class ActividadMapper {
 
-	public static ActividadForm  getForm(Actividad actividad){
+	public static ActividadForm  getForm(Actividad object){
 		
 		ActividadForm form = new ActividadForm();
-		form.setId(actividad.getId());
-		form.setDescripcion(actividad.getDescripcion());
-		form.setNombre(actividad.getNombre());
+		form.setId(object.getId());
+		form.setDescripcion(object.getDescripcion());
+		form.setNombre(object.getNombre());
 		//System.out.println("AFUERA ENRTA"+actividad.getAsignaciones());
 
-		for (Asignacion asignacion : actividad.getAsignaciones()) {
+		for (Asignacion asignacion : object.getAsignaciones()) {
 			form.getInstructores().add(asignacion.getInstructor().getId());
 		}
 		//TODO se deberia tomar solo el importe reciente
-	   for (Tarifa tarifa :actividad.getConcepto().getTarifas()) {
+	   for (Tarifa tarifa :object.getConcepto().getTarifas()) {
 		   form.setImporte(tarifa.getImporte());
 		}
 	   
-	   for (Cronograma cronograma :actividad.getCronogramas()) {
+	   for (Cronograma cronograma :object.getCronogramas()) {
 		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
 	   }
 		
@@ -122,6 +122,9 @@ public class ActividadMapper {
 		return tarifas;
 		
 	}
+
+
+
 
 
 }

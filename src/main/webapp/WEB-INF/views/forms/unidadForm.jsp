@@ -2,25 +2,30 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <p></p>
-<form:form commandName="INTEGRANTE" class="block-content form">
+<form:form commandName="UNIDAD" class="block-content form">
+	
+	 <p></p>
+	
+	<fieldset>
+		<legend>Unidad General</legend>
+		<div class="_25">
+			<p>
+				<label for="textfield">Codigo</label>
+				<form:input path="code" class="required" />
+			</p>
+		</div>
 
-<%@include file="personaForm.jsp" %>
-
-
-<fieldset>
-		<legend>Integrante</legend>
-		<div class="_50">
-				<p>
-				<label for="select">Unidad</label>
-				<form:select path="unidad" multiple="false"> 
-					<form:options items="${unidaddes}" itemValue="id" 
-						itemLabel="code" />
-				</form:select> 
+		<div class="_100">
+			<p>
+				<label for="textarea">Descripcion</label>
+				<form:textarea path="descripcion" class="required" rows="3"
+					cols="40" />
 			</p>
 		</div>
 		
-				
 </fieldset>
+
+
 	<div class="clear"></div>
 	<div class="block-actions">
 		<ul class="actions-left">
@@ -29,7 +34,7 @@
 		</ul>
 		<ul class="actions-right">
 			<li><input type="button" class="button" value="Crear!"
-				onClick="submitIntegrante()"></li>
+				onClick="submitUnidad()"></li>
 		</ul>
 	</div>
 </form:form>

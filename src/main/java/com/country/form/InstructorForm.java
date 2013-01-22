@@ -2,7 +2,7 @@ package com.country.form;
 
 import java.util.Date;
 
-public class InstructorForm  {
+public class InstructorForm extends Form  {
 
 	private Integer id;
 	

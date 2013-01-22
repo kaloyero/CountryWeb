@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActividadForm {
+public class ActividadForm extends Form {
 	private Integer id;
 	private String nombre = null;
 	private String descripcion = null;
