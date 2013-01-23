@@ -1,30 +1,24 @@
 package com.country.services.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.country.common.GenericDao;
 import com.country.hibernate.dao.StateDao;
 import com.country.hibernate.model.Ciudad;
 import com.country.hibernate.model.Provincia;
 import com.country.services.StateManager;
 
 @Service("stateManager")
-public class StateManagerImpl implements StateManager{
+public class StateManagerImpl extends AbstractManagerImpl<Provincia> implements StateManager{
 
 	@Autowired
     private StateDao stateDao;
-	
-	public void save(Provincia dto) {
-		stateDao.saveOrUpdate(dto);
-	}
 
-	public List<Provincia> listAll() {
-		List<Provincia> list = new ArrayList<Provincia>();
-		list = stateDao.findAll();
-		return list;
+	protected GenericDao<Provincia, Integer> getDao() {
+		return stateDao;
 	}
 
 	public Provincia findById(Integer id) {

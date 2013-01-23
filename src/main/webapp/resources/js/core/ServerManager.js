@@ -18,6 +18,7 @@ var ServerManager = new Class({
  
 
     get: function(config){
+
     	var self=this;
     	$.ajax({
 			type: 'GET',
@@ -41,8 +42,20 @@ var ServerManager = new Class({
 				}
 		    } );
     },
-    show: function(config){
+    
+    update: function(config){
+    	var self=this;
 
+    	$.ajax( {
+		      type: "POST",
+		      url: self.services[config.object]["load"]+config.objectId,
+		      data: config.form.serialize(),
+		      success: function(data) {
+		    	  config.onSuccess(data);
+				}
+		    } );
+    },   
+    show: function(config){
     	var self=this;
     	$.ajax({
     		type: 'GET',

@@ -1,5 +1,7 @@
 package com.country.mappers;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.country.form.Form;
@@ -21,9 +23,17 @@ public class PersonaMapper {
 
 	}
 
-	public Object getForm(Object object) {
-		// TODO Auto-generated method stub
-		return null;
+	public static PersonaForm getForm(Persona persona) {
+		PersonaForm form=new PersonaForm();
+		form.setApellido(persona.getApellido());
+		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		form.setNacimiento(formatter.format(persona.getDtNacimiento()));
+		form.setEmail(persona.getEmail());
+		form.setNombre(persona.getNombre());
+		form.setNroDoc(persona.getNroDoc());
+		form.setSexo(persona.getSexo());
+		
+		return form;
 	}
 
 

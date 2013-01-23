@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.form.ActividadForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Persona;
-
 import com.country.mappers.ActividadMapper;
 import com.country.services.ActivityManager;
 import com.country.services.InstructorManager;
@@ -52,6 +50,7 @@ public class ActividadController {
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
+//			actividadForm.setId(10);
 			activityManager.save(ActividadMapper.getActividad(actividadForm,
 					instructorManager));
 			return "success";

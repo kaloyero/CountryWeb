@@ -50,7 +50,7 @@ public class IntegranteController {
 	public String showForm(ModelMap model) {
 		IntegranteForm integrante = new IntegranteForm();
 		model.addAttribute("INTEGRANTE", integrante);
-		model.addAttribute("unidaddes", unidadManager.listAll());
+		model.addAttribute("unidades", unidadManager.listAll());
 		
 		return "integrante";
 	}
@@ -68,6 +68,10 @@ public class IntegranteController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
+		Integrante integrante =integranteManager.findById(id);
+		IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante);
+		model.addAttribute("INTEGRANTE", form);
+		model.addAttribute("unidades", unidadManager.listAll());
 		return "forms/integranteForm";
 
 	}
@@ -75,7 +79,8 @@ public class IntegranteController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-				return null;
+		integranteManager.update(IntegranteMapper.getIntegrante(integranteForm));
+		return "success";
 		
 
 	}
@@ -91,7 +96,7 @@ public class IntegranteController {
 				row.add(integrante.getUnidad().getCode());
 				dataTable.getAaData().add(row);
 			}
- ;
+
            dataTable.setsEcho("1");
            dataTable.setiTotalDisplayRecords("2");
            dataTable.setiTotalRecords("1");

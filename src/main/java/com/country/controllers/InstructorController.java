@@ -2,7 +2,6 @@ package com.country.controllers;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +19,8 @@ import com.country.form.InstructorForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
-import com.country.hibernate.model.Persona;
-
 import com.country.mappers.ActividadMapper;
 import com.country.mappers.InstructorMapper;
-import com.country.services.ActivityManager;
 import com.country.services.InstructorManager;
 
 /**
@@ -58,8 +54,10 @@ public class InstructorController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
-		return "forms/actividadForm";
+		Instructor instructor =instructorManager.findById(id);
+		InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor);
+		model.addAttribute("INSTRUCTOR", form);
+		return "forms/instructorForm";
 
 	}
 	

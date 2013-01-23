@@ -28,8 +28,39 @@ var ComponentTranslator = new Class({
 		}});
 	},
 	
+	
 	onSaved : function() {
+		//TODO actualizar el id del form
 		alert("YES")
+	},
+	
+	
+	onUpdate : function(objectType,objectId) {
+		var self=this;
+		var formToSend;
+		switch (objectType) {
+			case "actividad":
+				formToSend =actividadRender.onSubmit();
+				break;
+			case "instructor":
+				formToSend =instructorRender.onSubmit();
+				break;
+			case "unidad":
+				formToSend =unidadRender.onSubmit();
+				break;
+			case "integrante":
+				formToSend =integranteRender.onSubmit();
+				break;
+			default:
+				alert("ERROR")
+		}
+		serverManager.update({object:objectType,objectId:objectId,form:formToSend,onSuccess : function(data) {
+				self.onUpated();
+		}});
+	},
+	
+	onUpdated : function() {
+		alert("YES UP")
 	},
 	
 	onLoad : function(objectType,objectId,rowSelectedName) {

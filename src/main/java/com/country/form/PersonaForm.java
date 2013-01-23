@@ -7,7 +7,7 @@ public class PersonaForm extends Form  {
 	private Integer id;
 	private String nombre;
 	private String apellido;
-	private Date nacimiento;
+	private String nacimiento;
 	private String sexo;
 	private String nroDoc;
 	private String email;
@@ -37,11 +37,11 @@ public class PersonaForm extends Form  {
 		this.apellido = apellido;
 	}
 
-	public Date getNacimiento() {
+	public String getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(Date nacimiento) {
+	public void setNacimiento(String nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 

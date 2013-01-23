@@ -49,7 +49,7 @@ public class Persona implements Serializable {
 	private String email;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
-	@JoinColumn(name="IdTipoDocumento")	
+	@JoinColumn(name="IdTipoDocumento",updatable = false, insertable = false)	
 	private TipoDocumento tipoDoc;
 	
     @OneToMany(cascade={CascadeType.ALL})

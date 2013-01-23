@@ -28,7 +28,7 @@ public class Integrante implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "IdIntegrante", unique = true, nullable = false)	
+	@Column(name = "IdIntegrante")	
 	private Integer id;
 	
 	@Column(name = "Tipo")

@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Cronograma;
@@ -34,6 +39,57 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 	@Autowired
     private ActivityManager activityManager;
 
+	Actividad dto = null;
+	
+    @Before
+    public void setUp() {
+        dto = activityManager.findById(10);
+    }
+
+	
+	
+	@Test
+	@Rollback(false)
+	public void update() {
+		System.out.println("Prueba de tomar lista de actividades");
+
+		//Actividad dto = activityManager.findById(10);
+		
+		dto.setNombre("Broncha");
+		
+//		dto.setCronogramas(new ArrayList<Cronograma>());
+		
+		Actividad dto1 = new Actividad();
+		dto1.setId(10);
+		
+		List<Cronograma> list = new ArrayList<Cronograma>();
+		Cronograma cron = new Cronograma();
+		cron.setActividad(dto);
+		cron.setDiaSemana(5);
+		cron.setDuracion(4);
+		cron.setHoraInicio(12);
+		cron.setId(131);
+
+		Cronograma cron2 = new Cronograma();
+		cron2.setActividad(dto);
+		cron2.setDiaSemana(3);
+		cron2.setDuracion(11);
+		cron2.setHoraInicio(3);
+		
+		list.add(cron);
+		list.add(cron2);
+		dto.setCronogramas(list);
+		
+		activityManager.update(dto);
+		
+//		Actividad dto2 = activityManager.findById(10);
+//		
+//		dto2.getConcepto().getTarifas();
+		
+		Assert.assertEquals(dto.getConcepto().getTarifas().size(),1);
+    }	
+	
+	
 	
 //	@Test
 //	public void findAll() {

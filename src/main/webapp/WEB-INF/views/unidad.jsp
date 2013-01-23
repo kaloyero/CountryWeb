@@ -30,7 +30,7 @@
 			<div class="block-content tab-container">
 				<div id="tab-1" class="tab-content">
 
-					<table id="instructor" class="table active-table">
+					<table id="unidad" class="table active-table">
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>

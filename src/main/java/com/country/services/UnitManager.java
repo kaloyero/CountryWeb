@@ -1,15 +1,9 @@
 package com.country.services;
 
-import java.util.List;
-
 import com.country.hibernate.model.Unidad;
 
-public interface UnitManager {
+public interface UnitManager extends AbstractManager<Unidad>{
 
-	void save(Unidad dto);
-	
 	Unidad findById(Integer id);
-	
-	List<Unidad> listAll();
 	
 }

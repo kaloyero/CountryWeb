@@ -17,10 +17,22 @@ public class IntegranteMapper {
 		Integrante integrante = new Integrante();
 		Unidad unidad =new Unidad();
 		unidad.setId(integranteForm.getUnidad());
+		integrante.setId(integranteForm.getId());
 		integrante.setUnidad(unidad);
 		integrante.setTipo("T");
 		integrante.setPersona(PersonaMapper.getPersona(integranteForm.getPersona()));
 		return integrante;
+	
+	}
+	
+	public static IntegranteForm getForm(Integrante integrante)
+			throws ParseException {
+		
+		IntegranteForm integranteForm=new IntegranteForm();
+		integranteForm.setId(integrante.getId());
+		integranteForm.setPersona(PersonaMapper.getForm(integrante.getPersona()));
+		integranteForm.setUnidad(integrante.getUnidad().getId());
+		return integranteForm;
 	
 	}
 

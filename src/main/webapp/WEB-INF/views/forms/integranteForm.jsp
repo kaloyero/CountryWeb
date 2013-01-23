@@ -13,7 +13,7 @@
 				<p>
 				<label for="select">Unidad</label>
 				<form:select path="unidad" multiple="false"> 
-					<form:options items="${unidaddes}" itemValue="id" 
+					<form:options items="${unidades}" itemValue="id" 
 						itemLabel="code" />
 				</form:select> 
 			</p>
@@ -28,8 +28,15 @@
 				href="javascript:void(0);">Reset</a></li>
 		</ul>
 		<ul class="actions-right">
-			<li><input type="button" class="button" value="Crear!"
-				onClick="submitIntegrante()"></li>
+			<c:if test="${ empty INTEGRANTE.id }">
+				<li><input type="button" class="button" value="Crear!"
+				onClick="submitIntegrante()"></li>									
+								</c:if>
+			<c:if test="${ not empty INTEGRANTE.id }">
+				<li><input type="button" class="button" value="Crear!"
+				onClick="updateIntegrante(${INTEGRANTE.id})"></li>									
+								</c:if>
 		</ul>
+		
 	</div>
 </form:form>

@@ -7,6 +7,11 @@
 			
 			translator.onSubmit('integrante');
 		}
+		
+		function updateIntegrante(id){
+			
+			translator.onUpdate('integrante',id);
+		}
 
 
 </script> 
@@ -30,7 +35,7 @@
 			<div class="block-content tab-container">
 				<div id="tab-1" class="tab-content">
 
-					<table id="instructor" class="table active-table">
+					<table id="integrante" class="table active-table">
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>

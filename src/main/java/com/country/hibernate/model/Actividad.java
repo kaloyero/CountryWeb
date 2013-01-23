@@ -45,13 +45,13 @@ public class Actividad implements Serializable {
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinColumn(name="IdConcepto")	
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="IdConcepto",updatable = false, insertable = true)	
 	private  Concepto  concepto ;
 	
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdActividad",updatable = false, insertable = true , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)

@@ -44,11 +44,11 @@ public class Direccion implements Serializable {
 	private String flat;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
-	@JoinColumn(name="IdLocalidad")	
+	@JoinColumn(name="IdLocalidad",updatable = false, insertable = false)	
 	private Localidad town;
 
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
-	@JoinColumn(name="IdPersona")	
+	@JoinColumn(name="IdPersona",updatable = false, insertable = false)	
 	private Persona person;
 
 	public Integer getId() {
