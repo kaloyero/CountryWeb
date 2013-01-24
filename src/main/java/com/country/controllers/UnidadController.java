@@ -17,15 +17,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.ActividadForm;
 import com.country.form.InstructorForm;
+import com.country.form.IntegranteForm;
 import com.country.form.UnidadForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Unidad;
 
 import com.country.mappers.ActividadMapper;
 import com.country.mappers.InstructorMapper;
+import com.country.mappers.IntegranteMapper;
 import com.country.mappers.UnidadMapper;
 import com.country.services.ActivityManager;
 import com.country.services.InstructorManager;
@@ -62,7 +65,10 @@ public class UnidadController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
+		Unidad unidad =unidadManager.findById(id);
+		//List <Integrante> row =unidad.getIntegrantes()
+		UnidadForm form = (UnidadForm) UnidadMapper.getForm(unidad);
+		model.addAttribute("UNIDAD", form);
 		return "forms/unidadForm";
 
 	}
