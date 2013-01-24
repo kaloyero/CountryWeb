@@ -31,24 +31,24 @@ public class Direccion implements Serializable {
 	@Column(name = "CalleNumero", nullable = false)
 	private String streetNumber;
 
-	@Column(name = "Torre", nullable = false)
+	@Column(name = "Torre")
 	private String tower;
 
-	@Column(name = "Bloque", nullable = false)
+	@Column(name = "Bloque")
 	private String block;
 
-	@Column(name = "Piso", nullable = false)
+	@Column(name = "Piso")
 	private String floor;
 
-	@Column(name = "Departamento", nullable = false)
+	@Column(name = "Departamento")
 	private String flat;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
-	@JoinColumn(name="IdLocalidad",updatable = false, insertable = false)	
+	@JoinColumn(name="IdLocalidad",updatable = true, insertable = true)	
 	private Localidad town;
 
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
-	@JoinColumn(name="IdPersona",updatable = false, insertable = false)	
+	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona person;
 
 	public Integer getId() {

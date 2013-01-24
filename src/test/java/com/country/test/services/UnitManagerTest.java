@@ -1,9 +1,5 @@
 package com.country.test.services;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +8,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.country.hibernate.model.Concepto;
-import com.country.hibernate.model.Tarifa;
-import com.country.services.ConceptManager;
+import com.country.hibernate.model.Emprendimiento;
+import com.country.hibernate.model.Unidad;
+import com.country.services.TownManager;
+import com.country.services.UnitManager;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests
@@ -30,30 +27,29 @@ import com.country.services.ConceptManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/appServlet/servlet-context-test.xml"})
-public class ConceptManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class UnitManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
-    private ConceptManager conceptManager;
-
+    private UnitManager unitManager;
+	@Autowired
+    private TownManager townManager;
+	
 	@Test
 	@Rollback(false)
-	public void createConcept() {
-		Concepto dto =  new Concepto();
-		dto.setDescripcion("descripcion");
-		dto.setFechaComienzo(new Date(20130404));
-		dto.setFechaFin(new Date(20130404));
-		dto.setNombre("nombre");
-		List<Tarifa> tarifas = new ArrayList<Tarifa>();
-		Tarifa tari = new Tarifa();
-		tari.setConcepto(dto);
-		tari.setFechaComienzo(new Date(20130404));
-		tari.setFechaFin(new Date(20130404));
-		tari.setImporte(12.0);
-		tarifas.add(tari);
-		dto.setTarifas(tarifas);
+	public void create() {
+		System.out.println("Prueba: Crear una nueva unidad");
+			
+		Unidad dto = new Unidad();
+		dto.setDescription("description");
+		dto.setCode("code");
+		Emprendimiento emp = new Emprendimiento();
+		emp.setId(1);
+		dto.setBusiness(emp);
+		unitManager.save(dto);
 		
-		conceptManager.save(dto);
 		
-	}	
-    
+		
+    }	
+
+	
 }

@@ -28,7 +28,7 @@ public class Persona implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdPersona", unique = true, nullable = false)	
-	private Integer id;
+	private int id;
 	
 	@Column(name = "Nombre", nullable = false)
 	private String nombre;
@@ -49,7 +49,7 @@ public class Persona implements Serializable {
 	private String email;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
-	@JoinColumn(name="IdTipoDocumento",updatable = false, insertable = false)	
+	@JoinColumn(name="IdTipoDocumento",updatable = true, insertable = true)	
 	private TipoDocumento tipoDoc;
 	
     @OneToMany(cascade={CascadeType.ALL})
@@ -127,11 +127,11 @@ public class Persona implements Serializable {
 		this.tipoDoc = tipoDoc;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

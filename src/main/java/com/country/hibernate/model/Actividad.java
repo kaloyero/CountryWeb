@@ -46,12 +46,12 @@ public class Actividad implements Serializable {
 	private  Date fechaFin ;
 
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="IdConcepto",updatable = false, insertable = true)	
+	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private  Concepto  concepto ;
 	
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdActividad",updatable = false, insertable = true , nullable = true)
+    @JoinColumn(name="IdActividad",updatable = true, insertable = true , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
 	@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
@@ -61,8 +61,8 @@ public class Actividad implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @BatchSize(size = 10)
-    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdActividad", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "IdIntegrante", nullable = false, updatable = false) })
+    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdActividad", nullable = false, updatable = true) }, 
+			inverseJoinColumns = { @JoinColumn(name = "IdIntegrante", nullable = false, updatable = true) })
 	private  List <Integrante> integrants ;
     
 	public List<Integrante> getIntegrants() {

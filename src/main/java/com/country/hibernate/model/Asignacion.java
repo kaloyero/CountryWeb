@@ -30,7 +30,7 @@ public class Asignacion implements Serializable {
 	@Column(name = "IdAsignacion", unique = true, nullable = false)
 	private Integer id;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@BatchSize(size = 10)
 	@JoinColumn(name="IdInstructor")		
 	private  Instructor instructor;

@@ -34,7 +34,7 @@ public class Cronograma implements Serializable{
 	private  int duracion ;
 	
     @OneToOne(fetch=FetchType.LAZY )
-    @JoinColumn(name="IdActividad",updatable = false, insertable = true)	
+    @JoinColumn(name="IdActividad",updatable = true, insertable = true)	
 	private Actividad actividad;
 	
 	public int getId() {

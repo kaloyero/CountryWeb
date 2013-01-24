@@ -56,6 +56,7 @@ var CanvasController = new Class({
     },
     
     populateGrid: function(objectType){
+    	console.log("broke");
     	translator.onPopulateGrid(objectType);
     },
     
