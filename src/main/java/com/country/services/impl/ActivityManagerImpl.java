@@ -56,36 +56,6 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		}
 	}
 
-	public Integer edit(Actividad dto) {
-		//Chequea si existe
-		if (dto.getId() != null && activityDao.findById(dto.getId()) !=  null ){
-			List<Cronograma> listaScheduleDb =scheduleDao.findAllByProperty("IdActividad", dto.getId());
-			List<Cronograma> listaScheduleNew =dto.getCronogramas();
-
-			for (Cronograma cronoDb : listaScheduleDb) {
-				boolean exist = false;
-				
-				for (Cronograma cronoNew : listaScheduleNew) {
-					if (cronoDb.getId() == cronoNew.getId() ){
-						exist = true;
-					}
-				}
-				if (!exist){
-					scheduleDao.delete(cronoDb);
-				}
-			} 
-		}
-		
-		Integer pk = activityDao.save(dto);
-		return pk;
-	}
-	
-	public List<Actividad> listAllPagin() {
-		List<Actividad> list = new ArrayList<Actividad>();
-		list = activityDao.findAll();
-		return list;
-	}
-	
 	public List<Actividad> findAllByActivityName(String name) {
 		List<Actividad> list = new ArrayList<Actividad>();
 		list = activityDao.findAllByProperty("nombre", name);

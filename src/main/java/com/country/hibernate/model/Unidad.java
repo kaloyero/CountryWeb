@@ -36,7 +36,8 @@ public class Unidad implements Serializable {
 	private String description;
 	
 	@OneToOne(fetch=FetchType.EAGER )
-    @JoinColumn(name="IdEmprendimiento")	
+
+    @JoinColumn(name="IdEmprendimiento",updatable = true, insertable = true)	
 	private Emprendimiento business;
 
     @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)

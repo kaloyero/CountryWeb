@@ -37,7 +37,7 @@ public class Tarifa implements Serializable{
 	private  Date fechaFin ;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
-	@JoinColumn(name="IdConcepto",updatable = false, insertable = true)	
+	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private  Concepto concepto ;
 	
 	public int getId() {

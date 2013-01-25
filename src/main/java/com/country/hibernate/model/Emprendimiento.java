@@ -36,12 +36,12 @@ public class Emprendimiento implements Serializable {
 	private String description;
 	
 	@OneToOne(fetch=FetchType.EAGER )
-    @JoinColumn(name="IdLocalidad",updatable = false, insertable = false)	
+    @JoinColumn(name="IdLocalidad",updatable = true, insertable = true)	
 	private Localidad town;
 
     @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdEmprendimiento",updatable = false, insertable = false)
+    @JoinColumn(name="IdEmprendimiento",updatable = true, insertable = true)
 	private  List <Unidad> units ;
 	
 	public List<Unidad> getUnits() {

@@ -30,7 +30,7 @@ public class Concepto implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdConcepto", unique = true, nullable = false)
-	private  Integer id ;
+	private  int id ;
 	
 	@Column(name = "Descripcion")
 	private  String descripcion ;
@@ -46,7 +46,7 @@ public class Concepto implements Serializable {
 	
     @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdConcepto",updatable = false, insertable = true , nullable = true)
+    @JoinColumn(name="IdConcepto",updatable = true, insertable = true , nullable = true)
 	private  List <Tarifa> tarifas ;
 
 	
@@ -92,14 +92,6 @@ public class Concepto implements Serializable {
 	
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 	
 }

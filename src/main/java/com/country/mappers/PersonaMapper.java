@@ -19,6 +19,7 @@ public class PersonaMapper {
 		persona.setNombre(((PersonaForm) form).getNombre());
 		persona.setNroDoc(((PersonaForm) form).getNroDoc());
 		persona.setSexo(((PersonaForm) form).getSexo());
+//		persona.setId(((PersonaForm) form).getId());
 		return persona;
 
 	}
@@ -32,6 +33,7 @@ public class PersonaMapper {
 		form.setNombre(persona.getNombre());
 		form.setNroDoc(persona.getNroDoc());
 		form.setSexo(persona.getSexo());
+		form.setId(persona.getId());
 		
 		return form;
 	}

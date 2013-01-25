@@ -28,24 +28,24 @@ public class Integrante implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "IdIntegrante")	
+	@Column(name = "IdIntegrante", unique = true, nullable = false)	
 	private Integer id;
 	
 	@Column(name = "Tipo")
 	private String tipo;
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="IdPersona")	
+	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
 
     @OneToOne(fetch=FetchType.EAGER )
-    @JoinColumn(name="IdUnidad")	
+    @JoinColumn(name="IdUnidad",updatable = true, insertable = true)	
 	private Unidad unidad;
     
     @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @BatchSize(size = 10)
-    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = false) })
+    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = true) }, 
+			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = true) })
 	private  List <Actividad> activities ;
     
     
