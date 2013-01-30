@@ -42,7 +42,7 @@ public class Integrante implements Serializable {
     @JoinColumn(name="IdUnidad",updatable = true, insertable = true)	
 	private Unidad unidad;
     
-    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @ManyToMany(fetch=FetchType.LAZY)
     @BatchSize(size = 10)
     @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = true) }, 
 			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = true) })

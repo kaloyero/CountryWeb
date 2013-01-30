@@ -2,7 +2,6 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,14 +30,14 @@ public class Telefono implements Serializable {
 	@Column(name = "Prefijo")
 	private int prefijo;
 	
-    @OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="IdTipoTelefono",updatable = true, insertable = true)	
 	private TipoTelefono tipoTelefono;
 	
 	@Column(name = "Numero")
 	private int numero;
 	
-    @OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
 	

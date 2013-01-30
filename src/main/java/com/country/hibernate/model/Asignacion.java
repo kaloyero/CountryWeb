@@ -3,7 +3,6 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,7 +28,7 @@ public class Asignacion implements Serializable {
 	@Column(name = "IdAsignacion", unique = true, nullable = false)
 	private Integer id;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	@BatchSize(size = 10)
 	@JoinColumn(name="IdInstructor")		
 	private  Instructor instructor;

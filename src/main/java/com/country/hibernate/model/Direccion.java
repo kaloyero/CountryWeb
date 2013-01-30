@@ -2,7 +2,6 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "Direcciones", catalog = "country")
@@ -43,11 +45,12 @@ public class Direccion implements Serializable {
 	@Column(name = "Departamento")
 	private String flat;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
+	@OneToOne(fetch= FetchType.EAGER)
+	@Cascade(CascadeType.PERSIST)
 	@JoinColumn(name="IdLocalidad",updatable = true, insertable = true)	
 	private Localidad town;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+	@OneToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona person;
 

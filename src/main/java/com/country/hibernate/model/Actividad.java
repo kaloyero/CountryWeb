@@ -27,7 +27,6 @@ public class Actividad implements Serializable {
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdActividad", unique = true, nullable = false)

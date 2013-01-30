@@ -44,7 +44,42 @@ public class Unidad implements Serializable {
     @JoinColumn(name="IdUnidad",updatable = true, insertable = true , nullable = true)
 	private List <Integrante> integrantes;
 
-	
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdVehiculo",updatable = true, insertable = true , nullable = true)
+	private List <Vehiculo> vehiculos;
+
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdPago",updatable = true, insertable = true , nullable = true)
+	private List <Pago> pagos;
+
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdCargo",updatable = true, insertable = true , nullable = true)
+	private List <LiquidacionCargo> cargos;
+    
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdReserva",updatable = true, insertable = true , nullable = true)
+	private List <Reserva> reservas;
+    
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdInfraccion",updatable = true, insertable = true , nullable = true)
+	private List <Infraccion> infracciones;
+    
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdMascota",updatable = true, insertable = true , nullable = true)
+	private List <Mascota> mascotas;
+
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdAutorizado",updatable = true, insertable = true , nullable = true)
+	private List <Autorizado> autorizados;
+
+    
 	public Integer getId() {
 		return id;
 	}
@@ -84,6 +119,62 @@ public class Unidad implements Serializable {
 	public void setIntegrantes(List<Integrante> integrantes) {
 		this.integrantes = integrantes;
 	}
-	
+
+	public List<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+
+	public void setVehiculos(List<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
+	}
+
+	public List<Pago> getPagos() {
+		return pagos;
+	}
+
+	public void setPagos(List<Pago> pagos) {
+		this.pagos = pagos;
+	}
+
+	public List<LiquidacionCargo> getCargos() {
+		return cargos;
+	}
+
+	public void setCargos(List<LiquidacionCargo> cargos) {
+		this.cargos = cargos;
+	}
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public List<Infraccion> getInfracciones() {
+		return infracciones;
+	}
+
+	public void setInfracciones(List<Infraccion> infracciones) {
+		this.infracciones = infracciones;
+	}
+
+	public List<Mascota> getMascotas() {
+		return mascotas;
+	}
+
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
+
+	public List<Autorizado> getAutorizados() {
+		return autorizados;
+	}
+
+	public void setAutorizados(List<Autorizado> autorizados) {
+		this.autorizados = autorizados;
+	}
+
 	
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "Personas", catalog = "country")
@@ -48,16 +49,18 @@ public class Persona implements Serializable {
 	@Column(name = "DireccionEmail")
 	private String email;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
+	@OneToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name="IdTipoDocumento",updatable = true, insertable = true)	
 	private TipoDocumento tipoDoc;
 	
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany
+    @Cascade(CascadeType.ALL)
     @BatchSize(size = 10)
     @JoinColumn(name="IdPersona", updatable = true, insertable = true , nullable = true)
 	private  List <Telefono> telefonos ;
 
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany
+    @Cascade(CascadeType.ALL)
 	@BatchSize(size = 10)
     @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
 	private List <Direccion> directions;

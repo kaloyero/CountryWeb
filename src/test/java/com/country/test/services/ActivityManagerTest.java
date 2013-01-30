@@ -40,7 +40,7 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 	
     @Before
     public void setUp() {
-        dto = activityManager.findById(10);
+        dto = activityManager.findById(33);
     }
 
 	
@@ -65,7 +65,7 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 		cron.setDiaSemana(5);
 		cron.setDuracion(4);
 		cron.setHoraInicio(12);
-		cron.setId(131);
+		cron.setId(233);
 
 		Cronograma cron2 = new Cronograma();
 		cron2.setActividad(dto);

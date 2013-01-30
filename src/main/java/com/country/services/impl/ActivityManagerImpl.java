@@ -40,8 +40,9 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 //	}
 	
 	public void update(Actividad dto) {
-		activityDao.saveOrUpdate(dto);
 		
+		activityDao.saveOrUpdate(dto);
+
 		List<Cronograma> listCrono = scheduleDao.findAllByProperty("actividad.id", dto.getId());
 		for (Cronograma cronograma : listCrono) {
 			boolean delete = true;
@@ -54,6 +55,7 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 				scheduleDao.delete(cronograma);
 			}
 		}
+
 	}
 
 	public List<Actividad> findAllByActivityName(String name) {
