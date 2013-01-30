@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Direccion;
-import com.country.hibernate.model.Instructor;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Localidad;
 import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Telefono;
 import com.country.hibernate.model.TipoDocumento;
 import com.country.hibernate.model.TipoTelefono;
-import com.country.services.InstructorManager;
+import com.country.hibernate.model.Unidad;
+import com.country.services.IntegratorManager;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests
@@ -35,11 +38,19 @@ import com.country.services.InstructorManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/appServlet/servlet-context-test.xml"})
-public class InstructorsManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class IntegratorManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
-    private InstructorManager instructorManager;
+    private IntegratorManager integratorManager;
 
+	Integrante dto = null;
+	
+    @Before
+    public void setUp() {
+        dto = integratorManager.findById(2);
+    }
+
+	
 //	@Test
 //	public void findAll() {
 //		System.out.println("Prueba de tomar lista de actividades");
@@ -53,19 +64,21 @@ public class InstructorsManagerTest extends AbstractTransactionalJUnit4SpringCon
 //    }	
 
 	@Test
-	@Rollback(false)
+//	@Rollback(false)
 	public void create() {
 		System.out.println("Prueba: Crear un nuevo instructor");
 			
-		Instructor ins = new Instructor();
+		Integrante ins = new Integrante();
 		
-		ins.setFechaComienzo(new Date(20130101));
-		ins.setFechaFin(new Date(20130101));
+		ins.setTipo("2");
+		Unidad unit = new Unidad();
+		unit.setId(1);
+		ins.setUnidad(unit);
 		Persona per = new Persona();
 		per.setApellido("apellido");
 		per.setDtNacimiento(new Date(20130101));
 		per.setEmail("email@trucho.com");
-		per.setNombre("nombre");
+		per.setNombre("nombreIntegrante");
 		per.setNroDoc("nroDoc");
 		per.setSexo("M");
 		List<Direccion> listDir = new ArrayList<Direccion>();
@@ -93,7 +106,19 @@ public class InstructorsManagerTest extends AbstractTransactionalJUnit4SpringCon
 		
 		ins.setPersona(per);
 		
-		instructorManager.save(ins);
+		integratorManager.save(ins);
+		
+    }	
+
+	@Test
+	@Rollback(false)
+	public void edit() {
+		System.out.println("Prueba: Crear un nuevo instructor");
+		
+		
+		dto.getPersona().setNombre("Pepe");
+
+		integratorManager.update(dto);
 		
     }	
 

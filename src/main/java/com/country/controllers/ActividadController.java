@@ -51,7 +51,7 @@ public class ActividadController {
 			return "registration";
 		} else {
 //			actividadForm.setId(10);
-			activityManager.update(ActividadMapper.getActividad(actividadForm,
+			activityManager.save(ActividadMapper.getActividad(actividadForm,
 					instructorManager));
 			return "success";
 		}

@@ -1,6 +1,7 @@
 package com.country.test.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -14,7 +15,17 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.country.hibernate.model.Actividad;
+import com.country.hibernate.model.Asignacion;
+import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.Cronograma;
+import com.country.hibernate.model.Direccion;
+import com.country.hibernate.model.Instructor;
+import com.country.hibernate.model.Localidad;
+import com.country.hibernate.model.Persona;
+import com.country.hibernate.model.Tarifa;
+import com.country.hibernate.model.Telefono;
+import com.country.hibernate.model.TipoDocumento;
+import com.country.hibernate.model.TipoTelefono;
 import com.country.services.ActivityManager;
 
 /**
@@ -43,21 +54,18 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
         dto = activityManager.findById(33);
     }
 
-	
-	
+    
 	@Test
 	@Rollback(false)
-	public void update() {
+	public void create() {
 		System.out.println("Prueba de tomar lista de actividades");
 
-		//Actividad dto = activityManager.findById(10);
+		Actividad dto = new Actividad();
 		
-		dto.setNombre("Broncha");
-		
-//		dto.setCronogramas(new ArrayList<Cronograma>());
-		
-		Actividad dto1 = new Actividad();
-		dto1.setId(10);
+		dto.setNombre("TestAle");
+		dto.setFechaComienzo(new Date(20122121));
+		dto.setFechaFin(new Date(20122121));
+		dto.setDescripcion("descripcion");
 		
 		List<Cronograma> list = new ArrayList<Cronograma>();
 		Cronograma cron = new Cronograma();
@@ -65,7 +73,6 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 		cron.setDiaSemana(5);
 		cron.setDuracion(4);
 		cron.setHoraInicio(12);
-		cron.setId(233);
 
 		Cronograma cron2 = new Cronograma();
 		cron2.setActividad(dto);
@@ -77,14 +84,111 @@ public class ActivityManagerTest extends AbstractTransactionalJUnit4SpringContex
 		list.add(cron2);
 		dto.setCronogramas(list);
 		
-		activityManager.update(dto);
+		Concepto cpto = new Concepto();
+		cpto.setNombre("nombre");
+		cpto.setDescripcion("descripcion");
+		cpto.setFechaComienzo(new Date(20122121));
+		cpto.setFechaFin(new Date(20122121));
+		Tarifa tarifa = new Tarifa();
+		tarifa.setImporte(21.5);
+		tarifa.setConcepto(cpto);
+		tarifa.setFechaComienzo(new Date(20122121));
+		tarifa.setFechaFin(new Date(20122121));
+		List<Tarifa> listaT= new ArrayList<Tarifa>();
+		listaT.add(tarifa);
+		cpto.setTarifas(listaT);
+		dto.setConcepto(cpto);
+		Asignacion asignacion = new Asignacion();
+		asignacion.setActividad(dto);
+		asignacion.setFechaComienzo(new Date(20122121));
+		asignacion.setFechaFin(new Date(20122121));
+		Instructor instructor = new Instructor();
+//		instructor.setFechaComienzo(new Date(20122121));
+//		instructor.setFechaFin(new Date(20122121));
+//		Persona persona = new Persona();
+//		persona.setApellido("apellido");
+//		persona.setNombre("nombre");
+//		persona.setDtNacimiento(new Date(20122121));
+//		persona.setEmail("email");
+//		persona.setNroDoc("nroDoc");
+//		persona.setSexo("M");
+//		Telefono tel = new Telefono();
+//		tel.setNumero(1234);
+//		tel.setPersona(persona);
+//		TipoTelefono tTel = new TipoTelefono();
+//		tTel.setId(1);
+//		tel.setTipoTelefono(tTel);
+//		List<Telefono> telefonos = new ArrayList<Telefono>();
+//		telefonos.add(tel);
+//		persona.setTelefonos(telefonos);
+//		TipoDocumento tDoc = new TipoDocumento();
+//		tDoc.setId(1);
+//		persona.setTipoDoc(tDoc);
+//		Direccion dire = new Direccion();
+//		dire.setPerson(persona);
+//		dire.setBlock("block");
+//		dire.setStreetName("streetName");
+//		Localidad town = new Localidad();
+//		town.setId(1);
+//		dire.setTown(town);
+//		List<Direccion> direcciones = new ArrayList<Direccion>();
+//		direcciones.add(dire);
+//		persona.setDirections(direcciones);
+//		instructor.setPersona(persona);
+		instructor.setId(2);
+		asignacion.setInstructor(instructor);
+		List<Asignacion> asigns = new ArrayList<Asignacion>();
+		asigns.add(asignacion);
+		dto.setAsignaciones(asigns);
 		
-//		Actividad dto2 = activityManager.findById(10);
-//		
-//		dto2.getConcepto().getTarifas();
+		activityManager.save(dto);
+		
 		
 		Assert.assertEquals(dto.getConcepto().getTarifas().size(),1);
     }	
+
+	
+	
+//	@Test
+//	@Rollback(false)
+//	public void update() {
+//		System.out.println("Prueba de tomar lista de actividades");
+//
+//		//Actividad dto = activityManager.findById(10);
+//		
+//		dto.setNombre("Broncha");
+//		
+////		dto.setCronogramas(new ArrayList<Cronograma>());
+//		
+//		Actividad dto1 = new Actividad();
+//		dto1.setId(10);
+//		
+//		List<Cronograma> list = new ArrayList<Cronograma>();
+//		Cronograma cron = new Cronograma();
+//		cron.setActividad(dto);
+//		cron.setDiaSemana(5);
+//		cron.setDuracion(4);
+//		cron.setHoraInicio(12);
+//		cron.setId(233);
+//
+//		Cronograma cron2 = new Cronograma();
+//		cron2.setActividad(dto);
+//		cron2.setDiaSemana(3);
+//		cron2.setDuracion(11);
+//		cron2.setHoraInicio(3);
+//		
+//		list.add(cron);
+//		list.add(cron2);
+//		dto.setCronogramas(list);
+//		
+//		activityManager.update(dto);
+//		
+////		Actividad dto2 = activityManager.findById(10);
+////		
+////		dto2.getConcepto().getTarifas();
+//		
+//		Assert.assertEquals(dto.getConcepto().getTarifas().size(),1);
+//    }	
 	
 	
 	

@@ -60,7 +60,7 @@ public class Persona implements Serializable {
 	private  List <Telefono> telefonos ;
 
     @OneToMany
-    @Cascade(CascadeType.ALL)
+    @Cascade({CascadeType.ALL})
 	@BatchSize(size = 10)
     @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
 	private List <Direccion> directions;

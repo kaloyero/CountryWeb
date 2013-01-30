@@ -7,6 +7,7 @@ import java.util.Date;
 import com.country.form.Form;
 import com.country.form.PersonaForm;
 import com.country.hibernate.model.Persona;
+import com.country.hibernate.model.TipoDocumento;
 
 public class PersonaMapper {
 
@@ -19,7 +20,13 @@ public class PersonaMapper {
 		persona.setNombre(((PersonaForm) form).getNombre());
 		persona.setNroDoc(((PersonaForm) form).getNroDoc());
 		persona.setSexo(((PersonaForm) form).getSexo());
-//		persona.setId(((PersonaForm) form).getId());
+//REEMPLAZAR 		persona.setDirections(new ArrayList<Direccion>());
+//REEMPLAZAR 		persona.setTelefonos(new ArrayList<Telefono>());
+//REEMPLAZAR por el tipo de documento
+		TipoDocumento tDoc = new TipoDocumento();
+		tDoc.setId(1);
+		persona.setTipoDoc(tDoc);
+		persona.setId(((PersonaForm) form).getId());
 		return persona;
 
 	}
