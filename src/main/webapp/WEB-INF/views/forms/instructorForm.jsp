@@ -31,7 +31,7 @@
 		</ul>
 		<ul class="actions-right">
 			<li><input type="button" class="button" value="Crear!"
-				onClick="submitInstructor()"></li>
+				onClick="translator.onSubmit('instructor');"></li>
 		</ul>
 	</div>
 </form:form>

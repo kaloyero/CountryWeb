@@ -41,7 +41,7 @@
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>
   <script src="resources/js/Uiclasses/InstructorRender.js"></script>
  <script src="resources/js/Uiclasses/IntegranteRender.js"></script>
-  
+   <script src="resources/js/Uiclasses/ConceptoRender.js"></script>
   <script src="resources/js/Uiclasses/UnidadRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
@@ -127,6 +127,7 @@
 	    			<a href="javascript:void(0);" class="option current" id="instructor"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Instructor<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="unidad"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Unidades<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="integrante"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Integrante<span class="badge red"></span></a>
+					<a href="javascript:void(0);" class="option current" id="concepto"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Concepto<span class="badge red"></span></a>
 					
 	    		</li>
 	    	</ul>

@@ -42,6 +42,7 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.Localidad</value>
 		<value>com.country.hibernate.model.Persona</value>
 		<value>com.country.hibernate.model.Provincia</value>
+		<value>com.country.hibernate.model.Recurso</value>
 		<value>com.country.hibernate.model.Tarifa</value>
 		<value>com.country.hibernate.model.Telefono</value>
 		<value>com.country.hibernate.model.TipoDocumento</value>

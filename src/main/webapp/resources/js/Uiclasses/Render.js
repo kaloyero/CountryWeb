@@ -4,7 +4,7 @@ var Render = new Class({
     },
     
     /*
-     * Si los hijos,no sobrescriben este metodo,significa que al formulario antes de enviarlo,no hay que hacerle nada como por ejemplo en ActRender
+     * Si los hijos,no sobrescriben este metodo,significa que al formulario antes de enviarlo,no hay que hacerle nada como por ejemplo en InstrRender
      */
     onSubmit: function(id){
     	var activeTab= $(".active").children().attr("href");

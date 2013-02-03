@@ -30,7 +30,7 @@
 		<ul class="actions-right">
 			<c:if test="${ empty INTEGRANTE.id }">
 				<li><input type="button" class="button" value="Crear!"
-				onClick="submitIntegrante()"></li>									
+				onClick="translator.onSubmit('integrante');"></li>									
 								</c:if>
 			<c:if test="${ not empty INTEGRANTE.id }">
 				<li><input type="button" class="button" value="Crear!"

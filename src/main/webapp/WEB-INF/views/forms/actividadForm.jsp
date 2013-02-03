@@ -107,7 +107,7 @@
 		</ul>
 		<ul class="actions-right">
 			<li><input type="button" class="button" value="Crear!"
-				onClick="submitActividad()"></li>
+				onClick="translator.onSubmit('actividad')"></li>
 		</ul>
 	</div>
 </form:form>

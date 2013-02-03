@@ -6,6 +6,7 @@ var ServerManager = new Class({
         this.services['instructor']={};
         this.services['unidad']={};
         this.services['integrante']={};
+        this.services['concepto']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
         this.services['instructor']["load"]="/CountryWeb/instructor/load/";
@@ -14,6 +15,8 @@ var ServerManager = new Class({
         this.services['unidad']["save"]="/CountryWeb/unidad/create/";
         this.services['integrante']["load"]="/CountryWeb/integrante/load/";
         this.services['integrante']["save"]="/CountryWeb/integrante/create/"
+        this.services['concepto']["load"]="/CountryWeb/concepto/load/";
+        this.services['concepto']["save"]="/CountryWeb/concepto/create/"
     },
  
 
