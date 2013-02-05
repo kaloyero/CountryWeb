@@ -3,7 +3,7 @@ package com.country.form;
 
 public class IntegranteForm extends Form  {
 
-	private Integer id;
+	private Integer id =0;
 	private Integer unidad;
 	private PersonaForm persona ;
 	public Integer getId() {

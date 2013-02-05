@@ -29,7 +29,7 @@ public class Integrante implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdIntegrante", unique = true, nullable = false)	
-	private Integer id;
+	private int id;
 	
 	@Column(name = "Tipo")
 	private String tipo;
@@ -42,10 +42,10 @@ public class Integrante implements Serializable {
     @JoinColumn(name="IdUnidad",updatable = true, insertable = true)	
 	private Unidad unidad;
     
-    @ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @ManyToMany(fetch=FetchType.LAZY)
     @BatchSize(size = 10)
-    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = true) }, 
-			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = true) })
+    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = false,insertable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = false,insertable = false) })
 	private  List <Actividad> activities ;
     
     
@@ -65,11 +65,11 @@ public class Integrante implements Serializable {
 		this.activities = activities;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

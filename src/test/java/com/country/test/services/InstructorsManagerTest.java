@@ -20,7 +20,6 @@ import com.country.hibernate.model.Telefono;
 import com.country.hibernate.model.TipoDocumento;
 import com.country.hibernate.model.TipoTelefono;
 import com.country.services.InstructorManager;
-import com.country.services.TownManager;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests
@@ -40,9 +39,6 @@ public class InstructorsManagerTest extends AbstractTransactionalJUnit4SpringCon
 
 	@Autowired
     private InstructorManager instructorManager;
-	@Autowired
-    private TownManager townManager;
-	
 
 //	@Test
 //	public void findAll() {
@@ -77,7 +73,8 @@ public class InstructorsManagerTest extends AbstractTransactionalJUnit4SpringCon
 		dir.setStreetName("streetName");
 		dir.setStreetNumber("Number");
 		dir.setPerson(per);
-		Localidad loc = townManager.findById(1);
+		Localidad loc = new Localidad();
+		loc.setId(1);
 		dir.setTown(loc);
 		listDir.add(dir);
 		per.setDirections(listDir);
@@ -87,20 +84,16 @@ public class InstructorsManagerTest extends AbstractTransactionalJUnit4SpringCon
 		tel.setPersona(per);
 		TipoTelefono tipotel = new TipoTelefono();
 		tipotel.setId(1);
-		tipotel.setNombre("HOGAR");
 		tel.setTipoTelefono(tipotel);
 		listTel.add(tel);
 		per.setTelefonos(listTel);
 		TipoDocumento tipodoc = new TipoDocumento();
 		tipodoc.setId(1);
-		tipodoc.setNombre("DNI");
 		per.setTipoDoc(tipodoc);
 		
 		ins.setPersona(per);
 		
 		instructorManager.save(ins);
-		
-		
 		
     }	
 

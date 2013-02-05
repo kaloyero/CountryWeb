@@ -38,7 +38,7 @@ import com.country.services.ActivityManager;
 import com.country.services.ConceptManager;
 import com.country.services.InstructorManager;
 import com.country.services.IntegratorManager;
-import com.country.services.RecursoManager;
+import com.country.services.ResourceManager;
 import com.country.services.UnitManager;
 
 /**
@@ -52,7 +52,7 @@ public class ConceptoController {
 	private ConceptManager conceptoManager;
 	
 	@Autowired
-	private RecursoManager recursoManager;
+	private ResourceManager recursoManager;
 	
 
 

@@ -34,13 +34,13 @@
 			</p>
 		</div>
 
-		<div class="_100">
+		<div class="_25">
 			<p>
-<!-- 				<label for="select">Tipo Documento</label> -->
-<%-- 				<form:select path="tipoDocumento" multiple="false"> --%>
-<%-- 					<form:options items="${tipoDocumento}" itemValue="id" --%>
-<%-- 						itemLabel="tipoDocumento.nombre" /> --%>
-<%-- 				</form:select> --%>
+				<label for="select">Tipo Documento</label>
+				<form:select path="persona.tipoDocumento" multiple="false"> 
+					<form:options items="${tipoDocumento}" itemValue="id"
+						itemLabel="nombre" /> 
+				</form:select> 				
 			</p>
 		</div>
 		

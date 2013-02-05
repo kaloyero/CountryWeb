@@ -28,15 +28,14 @@
 				href="javascript:void(0);">Reset</a></li>
 		</ul>
 		<ul class="actions-right">
-			<c:if test="${ empty INTEGRANTE.id }">
+			<c:if test="${INTEGRANTE.id == 0}">
 				<li><input type="button" class="button" value="Crear!"
 				onClick="translator.onSubmit('integrante');"></li>									
 								</c:if>
-			<c:if test="${ not empty INTEGRANTE.id }">
+			<c:if test="${INTEGRANTE.id != 0}">
 				<li><input type="button" class="button" value="Crear!"
 				onClick="updateIntegrante(${INTEGRANTE.id})"></li>									
 								</c:if>
 		</ul>
-		
 	</div>
 </form:form>

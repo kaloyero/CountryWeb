@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class InstructorForm extends Form  {
 
-	private Integer id;
+	private Integer id =0;
 	
 	private Date fechaComienzo;
 	private Date fechaFin;

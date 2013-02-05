@@ -32,21 +32,43 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 	<list>
 		<value>com.country.hibernate.model.Actividad</value>
 		<value>com.country.hibernate.model.Asignacion</value>
+		<value>com.country.hibernate.model.Autorizado</value>
 		<value>com.country.hibernate.model.Ciudad</value>
 		<value>com.country.hibernate.model.Concepto</value>
 		<value>com.country.hibernate.model.Cronograma</value>
 		<value>com.country.hibernate.model.Direccion</value>
 		<value>com.country.hibernate.model.Emprendimiento</value>
+		<value>com.country.hibernate.model.Especie</value>
+		<value>com.country.hibernate.model.Infraccion</value>
 		<value>com.country.hibernate.model.Instructor</value>
 		<value>com.country.hibernate.model.Integrante</value>
+		<value>com.country.hibernate.model.Liquidacion</value>
+		<value>com.country.hibernate.model.LiquidacionCargo</value>
 		<value>com.country.hibernate.model.Localidad</value>
+		<value>com.country.hibernate.model.Mascota</value>
+		<value>com.country.hibernate.model.Pago</value>
+		<value>com.country.hibernate.model.Periodo</value>
 		<value>com.country.hibernate.model.Persona</value>
 		<value>com.country.hibernate.model.Provincia</value>
+		<value>com.country.hibernate.model.Raza</value>
+		<value>com.country.hibernate.model.Recurso</value>
+		<value>com.country.hibernate.model.RecursoDisponibilidad</value>
+		<value>com.country.hibernate.model.RecursoExcepcion</value>
+		<value>com.country.hibernate.model.Reserva</value>
 		<value>com.country.hibernate.model.Tarifa</value>
 		<value>com.country.hibernate.model.Telefono</value>
+		<value>com.country.hibernate.model.TipoAutorizacion</value>
 		<value>com.country.hibernate.model.TipoDocumento</value>
+		<value>com.country.hibernate.model.TipoInfraccion</value>
+		<value>com.country.hibernate.model.TipoPagos</value>
+		<value>com.country.hibernate.model.TipoRecurso</value>
 		<value>com.country.hibernate.model.TipoTelefono</value>
+		<value>com.country.hibernate.model.TipoVacuna</value>
+		<value>com.country.hibernate.model.TipoVehiculo</value>
 		<value>com.country.hibernate.model.Unidad</value>
+		<value>com.country.hibernate.model.UnidadConcepto</value>
+		<value>com.country.hibernate.model.Vacuna</value>
+		<value>com.country.hibernate.model.Vehiculo</value>		
 	</list>
     </property>
 </bean>

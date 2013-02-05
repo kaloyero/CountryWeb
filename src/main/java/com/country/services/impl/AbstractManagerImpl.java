@@ -19,9 +19,10 @@ public abstract class AbstractManagerImpl<E> implements AbstractManager<E> {
 
 	@Transactional
 	public void update(E dto) {
-		getDao().saveOrUpdate(dto);
+		getDao().update(dto);
 	}	
-    
+
+	
 	@Transactional
 	public void delete(E persistentObject) {
 		getDao().delete(persistentObject);

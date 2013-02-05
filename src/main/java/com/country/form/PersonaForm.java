@@ -1,10 +1,9 @@
 package com.country.form;
 
-import java.util.Date;
 
 public class PersonaForm extends Form  {
 
-	private Integer id;
+	private Integer id=0;
 	private String nombre;
 	private String apellido;
 	private String nacimiento;

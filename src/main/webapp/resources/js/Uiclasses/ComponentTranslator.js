@@ -23,6 +23,9 @@ var ComponentTranslator = new Class({
 			case "concepto":
 				formToSend =conceptoRender.onSubmit();
 				break;
+			case "recurso":
+				formToSend =conceptoRender.onSubmit();
+				break
 			default:
 				alert("ERROR")
 		}

@@ -30,6 +30,7 @@ import com.country.mappers.IntegranteMapper;
 import com.country.services.ActivityManager;
 import com.country.services.InstructorManager;
 import com.country.services.IntegratorManager;
+import com.country.services.TypeDocumentManager;
 import com.country.services.UnitManager;
 
 /**
@@ -44,6 +45,9 @@ public class IntegranteController {
 	
 	@Autowired
 	private UnitManager unidadManager;
+	
+	@Autowired
+	private TypeDocumentManager tipoDocumentoManager;
 
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
@@ -51,6 +55,7 @@ public class IntegranteController {
 		IntegranteForm integrante = new IntegranteForm();
 		model.addAttribute("INTEGRANTE", integrante);
 		model.addAttribute("unidades", unidadManager.listAll());
+		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		
 		return "integrante";
 	}
@@ -72,6 +77,8 @@ public class IntegranteController {
 		IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante);
 		model.addAttribute("INTEGRANTE", form);
 		model.addAttribute("unidades", unidadManager.listAll());
+		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
+
 		return "forms/integranteForm";
 
 	}

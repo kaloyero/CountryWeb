@@ -3,7 +3,6 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +35,7 @@ public class Tarifa implements Serializable{
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch= FetchType.LAZY)
+	@OneToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private  Concepto concepto ;
 	

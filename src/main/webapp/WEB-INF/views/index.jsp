@@ -46,6 +46,9 @@
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
    <script src="resources/js/core/ServerManager.js"></script>
+   
+   <link rel='stylesheet' type='text/css' href='resources/js/libs/fullcalendar/fullcalendar.css' />
+<script type='text/javascript' src='resources/js/libs/fullcalendar/fullcalendar.js'></script>
   
 
   <!-- end CSS-->
@@ -128,6 +131,7 @@
 					<a href="javascript:void(0);" class="option current" id="unidad"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Unidades<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="integrante"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Integrante<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="concepto"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Concepto<span class="badge red"></span></a>
+					<a href="javascript:void(0);" class="option current" id="recurso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Recurso<span class="badge red"></span></a>
 					
 	    		</li>
 	    	</ul>

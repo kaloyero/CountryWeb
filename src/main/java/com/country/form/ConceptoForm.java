@@ -1,6 +1,5 @@
 package com.country.form;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class ConceptoForm extends Form  {
 
-private  int id ;
+	private  int id =0;
 	
 	private  String descripcion ;
 	private  String fechaComienzo ;
