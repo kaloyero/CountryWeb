@@ -1,3 +1,5 @@
+
+
 package com.country.test.services;
 
 import org.junit.Test;
@@ -8,10 +10,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.country.hibernate.model.Emprendimiento;
-import com.country.hibernate.model.Unidad;
-import com.country.services.TownManager;
-import com.country.services.UnitManager;
+import com.country.hibernate.model.Concepto;
+import com.country.hibernate.model.Recurso;
+import com.country.hibernate.model.TipoRecurso;
+import com.country.services.ResourceManager;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests
@@ -27,25 +29,32 @@ import com.country.services.UnitManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/appServlet/servlet-context-test.xml"})
-public class UnitManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class ResourcesManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
-    private UnitManager unitManager;
-	@Autowired
-    private TownManager townManager;
+    private ResourceManager resourceManager;
 	
 	@Test
 	@Rollback(false)
 	public void create() {
-		System.out.println("Prueba: Crear una nueva unidad");
+		System.out.println("Prueba: Crear un nuevo Recurso");
 			
-		Unidad dto = new Unidad();
-		dto.setDescription("description");
-		dto.setCode("code");
-		Emprendimiento emp = new Emprendimiento();
-		emp.setId(1);
-		dto.setBusiness(emp);
-		unitManager.save(dto);
+		Recurso dto = new Recurso();
+		
+		dto.setDescripcion("zaraza");
+		dto.setMaxTiempoReserv(11);
+		dto.setNombre("nombre");
+		
+		TipoRecurso tipoRec = new TipoRecurso(); 
+		tipoRec.setId(1);
+		dto.setTipoRecurso(tipoRec);
+
+		Concepto concepto = new Concepto();
+		concepto.setId(2);
+		dto.setConcepto(concepto);
+
+		
+		resourceManager.save(dto);
 		
     }	
 

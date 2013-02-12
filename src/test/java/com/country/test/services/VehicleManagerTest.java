@@ -1,3 +1,5 @@
+
+
 package com.country.test.services;
 
 import org.junit.Test;
@@ -8,10 +10,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.country.hibernate.model.Emprendimiento;
+import com.country.hibernate.model.TipoVehiculo;
 import com.country.hibernate.model.Unidad;
-import com.country.services.TownManager;
-import com.country.services.UnitManager;
+import com.country.hibernate.model.Vehiculo;
+import com.country.services.VehicleManager;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests
@@ -27,25 +29,32 @@ import com.country.services.UnitManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/appServlet/servlet-context-test.xml"})
-public class UnitManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class VehicleManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
-    private UnitManager unitManager;
-	@Autowired
-    private TownManager townManager;
+    private VehicleManager vehicleManager;
 	
 	@Test
 	@Rollback(false)
 	public void create() {
-		System.out.println("Prueba: Crear una nueva unidad");
+		System.out.println("Prueba: Crear un nuev vehivulo ");
 			
-		Unidad dto = new Unidad();
-		dto.setDescription("description");
-		dto.setCode("code");
-		Emprendimiento emp = new Emprendimiento();
-		emp.setId(1);
-		dto.setBusiness(emp);
-		unitManager.save(dto);
+		Vehiculo dto = new Vehiculo();
+		
+		dto.setCilindrada("250");
+		dto.setCodigo("120");
+		dto.setDescripcion("zaraza");
+		
+	
+		Unidad unidad = new Unidad();
+		unidad.setId(1);
+		dto.setUnidad(unidad);
+		TipoVehiculo tipeVeh = new TipoVehiculo();
+		tipeVeh.setId(1);
+		dto.setTipoVehiculo(tipeVeh);
+		
+
+		vehicleManager.save(dto);
 		
     }	
 

@@ -45,5 +45,62 @@ public class Autorizado implements Serializable {
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdTipoAutorizado")		
 	private  TipoAutorizacion tipoAutorizacion;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getFechaIni() {
+		return fechaIni;
+	}
+
+	public void setFechaIni(Date fechaIni) {
+		this.fechaIni = fechaIni;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
+
+	public TipoAutorizacion getTipoAutorizacion() {
+		return tipoAutorizacion;
+	}
+
+	public void setTipoAutorizacion(TipoAutorizacion tipoAutorizacion) {
+		this.tipoAutorizacion = tipoAutorizacion;
+	}
+
 	
 }

@@ -44,4 +44,53 @@ public class RecursoDisponibilidad implements Serializable {
     @JoinColumn(name="IdRecurso",updatable = true, insertable = true)	
 	private  Recurso recurso ;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getDiaSemana() {
+		return diaSemana;
+	}
+
+	public void setDiaSemana(int diaSemana) {
+		this.diaSemana = diaSemana;
+	}
+
+	public int getHoraIni() {
+		return horaIni;
+	}
+
+	public void setHoraIni(int horaIni) {
+		this.horaIni = horaIni;
+	}
+
+	public int getHoraFin() {
+		return horaFin;
+	}
+
+	public void setHoraFin(int horaFin) {
+		this.horaFin = horaFin;
+	}
+
+	public Recurso getRecurso() {
+		return recurso;
+	}
+
+	public void setRecurso(Recurso recurso) {
+		this.recurso = recurso;
+	}
+
+    
 }
