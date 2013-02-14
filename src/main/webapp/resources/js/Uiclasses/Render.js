@@ -31,7 +31,31 @@ var Render = new Class({
     	//Escondo la primer columna ID
     	activeTable.fnSetColumnVis( 0, false );
     },
+    getActiveTab: function(){
+    	 return  $(".active").children().attr("href");
+    },
+    
+    getAddTab: function(){
+   	 return  $("#new");
+   },
    
+   	getAddForm: function(){
+	   	 return  $(this.getAddTab()).find("form");
+	},
+    
+    getActiveForm: function(){
+   	 return $(this.getActiveTab()).find("form")
+   },
+    
+    
+   
+    
+    
+   
+    
+    
+    
+    
 });
 
 render=new Render();

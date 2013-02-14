@@ -5,8 +5,9 @@ var CanvasController = new Class({
 
     },
     createTabs: function(){
-    	this.getTabContainer().find('.tab-content').hide();
-    	this.getTabContainer().find("ul.tabs li:first").addClass("active").show();
+
+        this.getTabContainer().find('.tab-content').hide();
+        this.getTabContainer().find("ul.tabs li:first").addClass("active").show();
     	this.getTabContainer().find(".tab-content:first").show();
     },
    
@@ -44,14 +45,30 @@ var CanvasController = new Class({
     	});
     },
     
-    onLoaded: function(rowSelectedName,id,object,data){
-    	this.addTab(rowSelectedName,id+object,data);
+    onLoaded: function(rowSelectedName,id,objectType,data){
+    	this.addTab(rowSelectedName,id+objectType,data);
+    	
+       	switch (objectType) {
+		 case "recurso":
+			recursoRender.onNewTab();
+			break;
+       	}
     },
     
     onShowOption: function(objectType,data){
-     	$("#main-content").empty();
+    	$("#main-content").empty();
 		$("#main-content").append(data);
-	 	this.createTabs();
+
+		
+		
+	   	switch (objectType) {
+		 case "recurso":
+			recursoRender.draw();
+			break;
+
+	}
+	    this.createTabs();
+
 	 	this.populateGrid(objectType);
     },
     

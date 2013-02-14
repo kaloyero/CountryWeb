@@ -37,6 +37,13 @@
 				<form:input path="fechaInicio" class="required" />
 			</p>
 		</div>
+		
+		<div class="_25">
+			<p>
+				<label for="datepicker">TEST</label>
+				<form:input path="dias" class="required" />
+			</p>
+		</div>
 
 		<div class="_100">
 			<p>

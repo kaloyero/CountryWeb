@@ -24,7 +24,7 @@ var ComponentTranslator = new Class({
 				formToSend =conceptoRender.onSubmit();
 				break;
 			case "recurso":
-				formToSend =conceptoRender.onSubmit();
+				formToSend =recursoRender.onSubmit();
 				break
 			default:
 				alert("ERROR")

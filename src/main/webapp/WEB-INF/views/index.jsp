@@ -43,6 +43,7 @@
  <script src="resources/js/Uiclasses/IntegranteRender.js"></script>
    <script src="resources/js/Uiclasses/ConceptoRender.js"></script>
   <script src="resources/js/Uiclasses/UnidadRender.js"></script>
+  <script src="resources/js/Uiclasses/RecursoRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
    <script src="resources/js/core/ServerManager.js"></script>

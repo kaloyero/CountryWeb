@@ -1,5 +1,9 @@
 package com.country.form;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 public class RecursoForm extends Form  {
 
@@ -9,6 +13,8 @@ public class RecursoForm extends Form  {
 	private String nombre;
 	private double importe;
 	private int maxTiempoReserva;
+	private List< Map<Integer, Integer>> reservas = new ArrayList();
+	private String disponibilidades;
 	
 	private int tipoRecurso ;
 	public int getId() {
@@ -47,6 +53,19 @@ public class RecursoForm extends Form  {
 	public void setTipoRecurso(int tipoRecurso) {
 		this.tipoRecurso = tipoRecurso;
 	}
+	public List<Map<Integer, Integer>> getReservas() {
+		return reservas;
+	}
+	public void setReservas(List<Map<Integer, Integer>> reservas) {
+		this.reservas = reservas;
+	}
+	public String getDisponibilidades() {
+		return disponibilidades;
+	}
+	public void setDisponibilidades(String disponibilidades) {
+		this.disponibilidades = disponibilidades;
+	}
+	
 
 
 	

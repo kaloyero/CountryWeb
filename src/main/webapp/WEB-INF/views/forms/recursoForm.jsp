@@ -1,8 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<script type="text/javascript">
+	$().ready(function() {
 
+	    
+	    
+	  
+	})
+
+	  </script>
 <p></p>
 <form:form commandName="RECURSO" class="block-content form">
+<form:input  path="disponibilidades" class="required" />
 
 	<fieldset>
 		<legend>General</legend>
@@ -36,7 +45,7 @@
 		</div>
 	
 	</fieldset>
-	
+	<div id='calendar'></div>
 
 	<div class="clear"></div>
 	<div class="block-actions">

@@ -56,7 +56,7 @@ public class Recurso implements Serializable {
     @JoinColumn(name="IdExcepcion",updatable = true, insertable = true , nullable = true)
 	private List <RecursoExcepcion> excepciones;
 
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
     @JoinColumn(name="IdDisponibilidad",updatable = true, insertable = true , nullable = true)
 	private List <RecursoDisponibilidad> disponibilidad;
 
