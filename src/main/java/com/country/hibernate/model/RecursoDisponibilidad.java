@@ -1,7 +1,6 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "recursoDisponibilidad", catalog = "country")
+@Table(name = "recursoDisponibilidades", catalog = "country")
 public class RecursoDisponibilidad implements Serializable {
 
 	/** Serial Version UID */
@@ -27,9 +26,6 @@ public class RecursoDisponibilidad implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdDisponibilidad", unique = true, nullable = false)
 	private  int id ;
-	
-	@Column(name = "Fecha")
-	private  Date fecha ;
 	
 	@Column(name = "DiaSemana")
 	private  int diaSemana ;
@@ -50,14 +46,6 @@ public class RecursoDisponibilidad implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 
 	public int getDiaSemana() {
@@ -92,5 +80,8 @@ public class RecursoDisponibilidad implements Serializable {
 		this.recurso = recurso;
 	}
 
-    
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+ 
 }

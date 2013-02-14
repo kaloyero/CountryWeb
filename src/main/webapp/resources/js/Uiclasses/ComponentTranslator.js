@@ -20,6 +20,12 @@ var ComponentTranslator = new Class({
 			case "integrante":
 				formToSend =integranteRender.onSubmit();
 				break;
+			case "concepto":
+				formToSend =conceptoRender.onSubmit();
+				break;
+			case "recurso":
+				formToSend =recursoRender.onSubmit();
+				break
 			default:
 				alert("ERROR")
 		}

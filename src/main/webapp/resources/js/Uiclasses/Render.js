@@ -4,7 +4,7 @@ var Render = new Class({
     },
     
     /*
-     * Si los hijos,no sobrescriben este metodo,significa que al formulario antes de enviarlo,no hay que hacerle nada como por ejemplo en ActRender
+     * Si los hijos,no sobrescriben este metodo,significa que al formulario antes de enviarlo,no hay que hacerle nada como por ejemplo en InstrRender
      */
     onSubmit: function(id){
     	var activeTab= $(".active").children().attr("href");
@@ -31,7 +31,31 @@ var Render = new Class({
     	//Escondo la primer columna ID
     	activeTable.fnSetColumnVis( 0, false );
     },
+    getActiveTab: function(){
+    	 return  $(".active").children().attr("href");
+    },
+    
+    getAddTab: function(){
+   	 return  $("#new");
+   },
    
+   	getAddForm: function(){
+	   	 return  $(this.getAddTab()).find("form");
+	},
+    
+    getActiveForm: function(){
+   	 return $(this.getActiveTab()).find("form")
+   },
+    
+    
+   
+    
+    
+   
+    
+    
+    
+    
 });
 
 render=new Render();

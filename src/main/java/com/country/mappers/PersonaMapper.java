@@ -20,12 +20,14 @@ public class PersonaMapper {
 		persona.setNombre(((PersonaForm) form).getNombre());
 		persona.setNroDoc(((PersonaForm) form).getNroDoc());
 		persona.setSexo(((PersonaForm) form).getSexo());
+		//TODO
 //REEMPLAZAR 		persona.setDirections(new ArrayList<Direccion>());
 //REEMPLAZAR 		persona.setTelefonos(new ArrayList<Telefono>());
-//REEMPLAZAR por el tipo de documento
-		TipoDocumento tDoc = new TipoDocumento();
-		tDoc.setId(1);
-		persona.setTipoDoc(tDoc);
+		TipoDocumento tipoDoc = new TipoDocumento();
+		tipoDoc.setId(1);
+		persona.setTipoDoc(tipoDoc);
+		
+		System.out.println("IDDDDDDDD??" + ((PersonaForm) form).getTipoDocumento() );
 		persona.setId(((PersonaForm) form).getId());
 		return persona;
 
@@ -41,6 +43,7 @@ public class PersonaMapper {
 		form.setNroDoc(persona.getNroDoc());
 		form.setSexo(persona.getSexo());
 		form.setId(persona.getId());
+		form.setTipoDocumento(persona.getTipoDoc().getId());
 		
 		return form;
 	}

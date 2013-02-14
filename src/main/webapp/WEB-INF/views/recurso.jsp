@@ -6,8 +6,8 @@
 <div class="container_12">
 
 	<div class="grid_12">
-		<h1>Instructores</h1>
-		<p>Desde aqui controle los instructores</p>
+		<h1>Recurso</h1>
+		<p>Desde aqui controle los conceptos</p>
 	</div>
 	<div class="grid_12">
 		<div class="block-border" id="tab-panel-1">
@@ -22,12 +22,11 @@
 			<div class="block-content tab-container">
 				<div id="tab-1" class="tab-content">
 
-					<table id="instructor" class="table active-table">
+					<table id="recurso" class="table active-table">
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Instrucor</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Recurso</th>
 							
 						</tr>
 				</thead>
@@ -37,7 +36,7 @@
 				</div>
 				<div id="new" class="tab-content">
 					
-					 <%@include file="forms/instructorForm.jsp" %>
+				<%@include file="forms/recursoForm.jsp" %>
 
 				</div>
 			</div>

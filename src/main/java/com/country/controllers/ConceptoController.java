@@ -16,77 +16,84 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.ActividadForm;
+import com.country.form.ConceptoForm;
 import com.country.form.InstructorForm;
 import com.country.form.IntegranteForm;
+import com.country.form.UnidadForm;
 import com.country.hibernate.model.Actividad;
+import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Persona;
+import com.country.hibernate.model.Recurso;
+import com.country.hibernate.model.Unidad;
 
 import com.country.mappers.ActividadMapper;
+import com.country.mappers.ConceptoMapper;
 import com.country.mappers.InstructorMapper;
 import com.country.mappers.IntegranteMapper;
+import com.country.mappers.UnidadMapper;
 import com.country.services.ActivityManager;
+import com.country.services.ConceptManager;
 import com.country.services.InstructorManager;
 import com.country.services.IntegratorManager;
-import com.country.services.TypeDocumentManager;
+import com.country.services.ResourceManager;
 import com.country.services.UnitManager;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/integrante")
-public class IntegranteController {
+@RequestMapping(value = "/concepto")
+public class ConceptoController {
 
 	@Autowired
-	private IntegratorManager integranteManager;
+	private ConceptManager conceptoManager;
 	
 	@Autowired
-	private UnitManager unidadManager;
+	private ResourceManager recursoManager;
 	
-	@Autowired
-	private TypeDocumentManager tipoDocumentoManager;
 
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		IntegranteForm integrante = new IntegranteForm();
-		model.addAttribute("INTEGRANTE", integrante);
-		model.addAttribute("unidades", unidadManager.listAll());
-		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
-		
-		return "integrante";
+		ConceptoForm form = new ConceptoForm();
+		model.addAttribute("CONCEPTO", form);
+		for (Recurso recurso : recursoManager.listAll()) {
+			System.out.println("Prueba");
+		}
+		return "concepto";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,
+			@ModelAttribute(value = "CONCEPTO") ConceptoForm form,
 			BindingResult result) throws ParseException {
 		
-		integranteManager.save(IntegranteMapper.getIntegrante(integranteForm));
-				return "success";
-		
+		if (result.hasErrors()) {
+			return "registration";
+		} else {
+			conceptoManager.save(ConceptoMapper.getConcepto(form));
+			return "success";
+		}
+			
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
-		Integrante integrante =integranteManager.findById(id);
-		IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante);
-		model.addAttribute("INTEGRANTE", form);
-		model.addAttribute("unidades", unidadManager.listAll());
-		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
-
-		return "forms/integranteForm";
+		Concepto concepto =conceptoManager.findById(id);
+		
+		ConceptoForm form = (ConceptoForm) ConceptoMapper.getForm(concepto);
+		model.addAttribute("CONCEPTO", form);
+		
+		return "forms/conceptoForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "INTEGRANTE") ConceptoForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		integranteManager.update(IntegranteMapper.getIntegrante(integranteForm));
 		return "success";
 		
 
@@ -96,11 +103,10 @@ public class IntegranteController {
            
            DataTable dataTable=new DataTable();
 
-			for (Integrante integrante : integranteManager.listAll()) {
+			for (Concepto concepto : conceptoManager.listAll()) {
 				List <String> row =new ArrayList<String>();
-				row.add(String.valueOf(integrante.getId()));
-				row.add(integrante.getPersona().getApellido());
-				row.add(integrante.getUnidad().getCode());
+				row.add(String.valueOf(concepto.getId()));
+				row.add(concepto.getNombre());
 				dataTable.getAaData().add(row);
 			}
 

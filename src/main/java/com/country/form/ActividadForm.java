@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ActividadForm extends Form {
-	private Integer id;
+	private Integer id = 0;
 	private String nombre = null;
 	private String descripcion = null;
 	private String fechaInicio = null;

@@ -50,6 +50,11 @@ public class Concepto implements Serializable {
 	private  List <Tarifa> tarifas ;
 
 	
+    
+	public int getId() {
+		return id;
+	}
+
 	public List<Tarifa> getTarifas() {
 		return tarifas;
 	}

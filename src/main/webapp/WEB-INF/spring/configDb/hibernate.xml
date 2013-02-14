@@ -48,6 +48,7 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.Periodo</value>
 		<value>com.country.hibernate.model.Persona</value>
 		<value>com.country.hibernate.model.Provincia</value>
+
 		<value>com.country.hibernate.model.Raza</value>
 		<value>com.country.hibernate.model.Recurso</value>
 		<value>com.country.hibernate.model.RecursoDisponibilidad</value>

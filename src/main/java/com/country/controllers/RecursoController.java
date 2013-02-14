@@ -3,8 +3,13 @@ package com.country.controllers;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,77 +21,82 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.ActividadForm;
+import com.country.form.ConceptoForm;
 import com.country.form.InstructorForm;
 import com.country.form.IntegranteForm;
+import com.country.form.RecursoForm;
+import com.country.form.UnidadForm;
 import com.country.hibernate.model.Actividad;
+import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Persona;
+import com.country.hibernate.model.Recurso;
+import com.country.hibernate.model.Unidad;
 
 import com.country.mappers.ActividadMapper;
+import com.country.mappers.ConceptoMapper;
 import com.country.mappers.InstructorMapper;
 import com.country.mappers.IntegranteMapper;
+import com.country.mappers.RecursoMapper;
+import com.country.mappers.UnidadMapper;
 import com.country.services.ActivityManager;
+import com.country.services.ConceptManager;
 import com.country.services.InstructorManager;
 import com.country.services.IntegratorManager;
-import com.country.services.TypeDocumentManager;
+import com.country.services.ResourceManager;
 import com.country.services.UnitManager;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/integrante")
-public class IntegranteController {
+@RequestMapping(value = "/recurso")
+public class RecursoController {
 
 	@Autowired
-	private IntegratorManager integranteManager;
+	private ResourceManager recursoManager;
 	
-	@Autowired
-	private UnitManager unidadManager;
-	
-	@Autowired
-	private TypeDocumentManager tipoDocumentoManager;
 
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		IntegranteForm integrante = new IntegranteForm();
-		model.addAttribute("INTEGRANTE", integrante);
-		model.addAttribute("unidades", unidadManager.listAll());
-		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
-		
-		return "integrante";
+		RecursoForm form = new RecursoForm();
+		model.addAttribute("RECURSO", form);
+
+		return "recurso";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,
+			@ModelAttribute(value = "RECURSO") RecursoForm form,
 			BindingResult result) throws ParseException {
 		
-		integranteManager.save(IntegranteMapper.getIntegrante(integranteForm));
-				return "success";
-		
+		if (result.hasErrors()) {
+			return "registration";
+		} else {
+			
+	   recursoManager.save(RecursoMapper.getRecurso(form));
+			return "success";
+		}
+			
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
-		Integrante integrante =integranteManager.findById(id);
-		IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante);
-		model.addAttribute("INTEGRANTE", form);
-		model.addAttribute("unidades", unidadManager.listAll());
-		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
-
-		return "forms/integranteForm";
+		Recurso recurso =recursoManager.findById(id);
+		
+		RecursoForm form = (RecursoForm) RecursoMapper.getForm(recurso);
+		model.addAttribute("RECURSO", form);
+		
+		return "forms/recursoForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "RECURSO") RecursoForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		integranteManager.update(IntegranteMapper.getIntegrante(integranteForm));
 		return "success";
 		
 
@@ -96,11 +106,10 @@ public class IntegranteController {
            
            DataTable dataTable=new DataTable();
 
-			for (Integrante integrante : integranteManager.listAll()) {
+			for (Recurso recurso : recursoManager.listAll()) {
 				List <String> row =new ArrayList<String>();
-				row.add(String.valueOf(integrante.getId()));
-				row.add(integrante.getPersona().getApellido());
-				row.add(integrante.getUnidad().getCode());
+				row.add(String.valueOf(recurso.getId()));
+				row.add(recurso.getNombre());
 				dataTable.getAaData().add(row);
 			}
 

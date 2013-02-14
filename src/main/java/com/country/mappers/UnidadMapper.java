@@ -18,5 +18,15 @@ public class UnidadMapper {
 		return unidad;
 
 	}
+	
+	public static UnidadForm getForm(Unidad unidad) throws ParseException {
+
+		UnidadForm form = new UnidadForm();
+		form.setCode(unidad.getCode());
+		form.setDescripcion(unidad.getDescription());
+		
+		return form;
+
+	}
 
 }

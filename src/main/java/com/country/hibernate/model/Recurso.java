@@ -3,6 +3,7 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,13 +37,15 @@ public class Recurso implements Serializable {
 	private  String descripcion ;
 	
 	@Column(name = "MaxTiempoReserva")
+
 	private  Integer maxTiempoReserv ;
+
 	
     @OneToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="IdTipoRecurso",updatable = true, insertable = true)	
 	private  TipoRecurso tipoRecurso ;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private Concepto concepto;
 
@@ -54,7 +57,7 @@ public class Recurso implements Serializable {
     @JoinColumn(name="IdExcepcion",updatable = true, insertable = true , nullable = true)
 	private List <RecursoExcepcion> excepciones;
 
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
     @JoinColumn(name="IdDisponibilidad",updatable = true, insertable = true , nullable = true)
 	private List <RecursoDisponibilidad> disponibilidad;
 
@@ -106,7 +109,6 @@ public class Recurso implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 
 	public Integer getMaxTiempoReserv() {
 		return maxTiempoReserv;

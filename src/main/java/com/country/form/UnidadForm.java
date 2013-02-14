@@ -2,7 +2,7 @@ package com.country.form;
 
 public class UnidadForm extends Form  {
 
-	private Integer id;
+	private Integer id=0;
 	
 	private String code;
 	private String descripcion;
