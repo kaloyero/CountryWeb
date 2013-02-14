@@ -1,7 +1,6 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -132,6 +131,5 @@ public class Recurso implements Serializable {
 	public void setConcepto(Concepto concepto) {
 		this.concepto = concepto;
 	}
-	
-	
+
 }
