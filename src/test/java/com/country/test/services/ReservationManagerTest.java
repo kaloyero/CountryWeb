@@ -1,4 +1,8 @@
+
+
 package com.country.test.services;
+
+import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,10 +12,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.country.hibernate.model.Emprendimiento;
+import com.country.hibernate.model.Recurso;
+import com.country.hibernate.model.Reserva;
 import com.country.hibernate.model.Unidad;
-import com.country.services.TownManager;
-import com.country.services.UnitManager;
+import com.country.services.ReserveManager;
 
 /**
  * TODO AbstractTransactionalJUnit4SpringContextTests
@@ -27,27 +31,33 @@ import com.country.services.UnitManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/appServlet/servlet-context-test.xml"})
-public class UnitManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class ReservationManagerTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Autowired
-    private UnitManager unitManager;
-	@Autowired
-    private TownManager townManager;
+    private ReserveManager reserveManager;
 	
 	@Test
 	@Rollback(false)
 	public void create() {
-		System.out.println("Prueba: Crear una nueva unidad");
+		System.out.println("Prueba: Crear una nueva Reserva");
 			
-		Unidad dto = new Unidad();
-		dto.setDescription("description");
-		dto.setCode("code");
-		Emprendimiento emp = new Emprendimiento();
-		emp.setId(1);
-		dto.setBusiness(emp);
-		unitManager.save(dto);
+		Reserva dto = new Reserva();
 		
-    }	
+		dto.setDescripcion("descripcion");
+		dto.setDuracion(15);
+		dto.setFecha(new Date(2222));
+		dto.setHoraIni(22);
 
+		Recurso recurso = new Recurso();
+		recurso.setId(1);
+		dto.setRecurso(recurso);
+
+		Unidad unidad = new Unidad();
+		unidad.setId(1);
+		dto.setUnidad(unidad);
+				
+		reserveManager.save(dto);
+		
+    }
 	
 }

@@ -18,14 +18,8 @@ import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Asignacion;
 import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.Cronograma;
-import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Instructor;
-import com.country.hibernate.model.Localidad;
-import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Tarifa;
-import com.country.hibernate.model.Telefono;
-import com.country.hibernate.model.TipoDocumento;
-import com.country.hibernate.model.TipoTelefono;
 import com.country.services.ActivityManager;
 
 /**

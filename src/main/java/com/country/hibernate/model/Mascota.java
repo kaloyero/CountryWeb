@@ -32,6 +32,9 @@ public class Mascota implements Serializable {
 	@Column(name = "codigo")
 	private  String codigo ;
 
+	@Column(name = "color")
+	private  String color;
+	
 	@Column(name = "nombre")
 	private  String nombre ;
 
@@ -151,6 +154,14 @@ public class Mascota implements Serializable {
 
 	public void setRaza(Raza raza) {
 		this.raza = raza;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}	
 
 }
