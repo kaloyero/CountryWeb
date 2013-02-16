@@ -39,7 +39,7 @@ public class Recurso implements Serializable {
 	
 	@Column(name = "MaxTiempoReserva")
 
-	private  Integer maxTiempoReserv ;
+	private  Integer maxTiempoReserva ;
 
 	
     @OneToOne(fetch= FetchType.EAGER)
@@ -111,12 +111,12 @@ public class Recurso implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getMaxTiempoReserv() {
-		return maxTiempoReserv;
+	public Integer getMaxTiempoReserva() {
+		return maxTiempoReserva;
 	}
 
-	public void setMaxTiempoReserv(Integer maxTiempoReserv) {
-		this.maxTiempoReserv = maxTiempoReserv;
+	public void setMaxTiempoReserva(Integer maxTiempoReserva) {
+		this.maxTiempoReserva = maxTiempoReserva;
 	}
 
 	public TipoRecurso getTipoRecurso() {

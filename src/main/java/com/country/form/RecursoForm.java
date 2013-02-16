@@ -12,7 +12,7 @@ public class RecursoForm extends Form  {
 	private  String descripcion ;
 	private String nombre;
 	private double importe;
-	private int maxTiempoReserva;
+	private Integer maxTiempoReserva;
 	private List< Map<Integer, Integer>> reservas = new ArrayList();
 	private String disponibilidades;
 	
@@ -41,10 +41,10 @@ public class RecursoForm extends Form  {
 	public void setImporte(double importe) {
 		this.importe = importe;
 	}
-	public int getMaxTiempoReserva() {
+	public Integer getMaxTiempoReserva() {
 		return maxTiempoReserva;
 	}
-	public void setMaxTiempoReserva(int maxTiempoReserva) {
+	public void setMaxTiempoReserva(Integer maxTiempoReserva) {
 		this.maxTiempoReserva = maxTiempoReserva;
 	}
 	public int getTipoRecurso() {

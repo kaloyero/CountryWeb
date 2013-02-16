@@ -29,7 +29,7 @@ public class RecursoMapper {
 		recurso.setId(((RecursoForm) form).getId());
 		recurso.setDescripcion(((RecursoForm) form).getDescripcion());
 		recurso.setNombre(((RecursoForm) form).getNombre());
-		recurso.setMaxTiempoReserv(((RecursoForm) form).getMaxTiempoReserva());
+		recurso.setMaxTiempoReserva(((RecursoForm) form).getMaxTiempoReserva());
 		TipoRecurso tipoRecurso =new TipoRecurso();
 		tipoRecurso.setId(1);
 		recurso.setTipoRecurso(tipoRecurso);
