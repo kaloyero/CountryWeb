@@ -43,7 +43,7 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
       }
 
       public void update(E transientObject) {
-//    	  getSession().merge(transientObject);
+    	  getSession().merge(transientObject);
     	  getSession().update(transientObject);
       }
 

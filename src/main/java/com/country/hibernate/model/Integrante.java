@@ -3,7 +3,8 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cascade;
 
 
 @Entity
@@ -34,7 +36,8 @@ public class Integrante implements Serializable {
 	@Column(name = "Tipo")
 	private String tipo;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
 
@@ -44,6 +47,7 @@ public class Integrante implements Serializable {
     
     @ManyToMany(fetch=FetchType.LAZY)
     @BatchSize(size = 10)
+	@Cascade(CascadeType.MERGE)
     @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = false,insertable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = false,insertable = false) })
 	private  List <Actividad> activities ;

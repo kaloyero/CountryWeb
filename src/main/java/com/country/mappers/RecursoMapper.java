@@ -11,8 +11,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.country.form.ActividadForm;
-import com.country.form.ConceptoForm;
 import com.country.form.Form;
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.Concepto;
@@ -65,7 +63,7 @@ public class RecursoMapper {
 		RecursoForm form=new RecursoForm();
 		form.setNombre(recurso.getNombre());
 		form.setDescripcion(recurso.getDescripcion());
-		form.setMaxTiempoReserva(recurso.getMaxTiempoReserva());
+		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
 		System.out.println("ES  " + recurso.getDisponibilidad());
 
 		form.setDisponibilidades(getDisponibilidades(recurso.getDisponibilidad()));
