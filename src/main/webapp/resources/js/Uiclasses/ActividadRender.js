@@ -46,7 +46,6 @@ var ActividadRender = new Class({
 					alert("ERROR Actividad.jsp")
 				}
 		});
-
 		html.push("<input type=hidden id=testa  name='dias[0]' value="+domingo+">");
 		html.push("<input type=hidden id=testa name='dias[1]'value="+lunes+">");
 		html.push("<input type=hidden id=testa name='dias[2]'value="+martes+">");

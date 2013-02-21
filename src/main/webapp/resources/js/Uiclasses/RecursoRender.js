@@ -23,6 +23,7 @@ var RecursoRender = new Class({
     	
     	var date = new Date();
 		var d = date.getDate();
+		console.log("DDD ",d)
 		var m = date.getMonth();
 		var y = date.getFullYear();
     	var self=this;
@@ -121,13 +122,22 @@ var RecursoRender = new Class({
 	     	if (!(today > start && today < end)){
 	     	
 	     	$(eventList).each(function(index) {
-	     		console.log("CORA",this)
 
 	    		//var nextWeekStart = new Date(this.start.getTime() + 7 * 24 * 60 * 60 * 1000);
-	     		var nextWeekStart=this.start;
-	     		nextWeekStart.
+	     		console.log("START ",start)
+	     		
+	     		var nextWeekStart= new Date(start.getTime());
+	     		var dia=this.start.getDay();
+	     		console.log("DIA ",dia)
+	     		console.log("DATE ",start)
+	     		console.log("GetDate",this.start.getDate())
+	     		console.log("TOTAL ",this.start.getDate() + dia)
+	     		console.log("ANTES",nextWeekStart)
+	     		nextWeekStart.setDate(start.getDate()+dia)
 	     		nextWeekStart.setHours(this.start.getHours())
-	     		//var nextWeekEnd = new Date(this.end.getTime() + 7 * 24 * 60 * 60 * 1000);
+	     		var nextWeekEnd = new Date(start.getTime());
+	     		
+	     		nextWeekEnd.setDate(start.getDate()+dia)
 	     		nextWeekEnd.setHours(this.end.getHours())
 	    		var nuevoEvento=new Object();
 	     		nuevoEvento.title="PPUT";
@@ -135,6 +145,9 @@ var RecursoRender = new Class({
 	     		
 	     		nuevoEvento.start=nextWeekStart;
 	     		nuevoEvento.end=nextWeekEnd;
+	     		
+	     		console.log("DATENE",nextWeekStart)
+	     	    console.log("DATEEND",nextWeekEnd)
 	    		events.push(nuevoEvento);
 	    	})
 	     	}
