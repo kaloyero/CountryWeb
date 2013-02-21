@@ -2,6 +2,7 @@ package com.country.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.hibernate.dao.IntegratorDao;
@@ -17,7 +18,8 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	protected GenericDao<Integrante, Integer> getDao() {
 		return integratorDao;
 	}
-	
+
+	@Transactional
 	public Integrante findById(Integer id) {
 		Integrante dto = integratorDao.findById(id);
 		return dto;

@@ -33,7 +33,8 @@ public abstract class AbstractManagerImpl<E> implements AbstractManager<E> {
 //		E dto = getDao().findById(id);
 //		return dto;
 //	}
-
+	
+	@Transactional
 	public List<E> listAll() {
 		List<E> list = new ArrayList<E>();
 		list = getDao().findAll();
