@@ -29,7 +29,7 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	 */
 	public Integrante getActivitiesById(Integer id) {
 		Integrante dto = integratorDao.findById(id);
-		dto.getActivities();
+//		dto.getActivities();
 		return dto;
 	}
 	
