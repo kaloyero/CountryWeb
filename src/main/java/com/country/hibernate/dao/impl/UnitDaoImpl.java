@@ -14,4 +14,8 @@ public class UnitDaoImpl extends GenericDaoImpl<Unidad, Integer> implements Unit
 		return Unidad.class;
 	}
 
+    public void update(Unidad unidad) {
+  	  getSession().update(unidad);
+    }
+
 }

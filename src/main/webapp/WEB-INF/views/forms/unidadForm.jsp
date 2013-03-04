@@ -33,8 +33,18 @@
 				href="javascript:void(0);">Reset</a></li>
 		</ul>
 		<ul class="actions-right">
+		</ul>
+		<ul class="actions-right">
+			<c:if test="${UNIDAD.id == 0}">
 			<li><input type="button" class="button" value="Crear!"
 				onClick="translator.onSubmit('unidad')"></li>
+								</c:if>
+			<c:if test="${UNIDAD.id != 0}">
+				<li><input type="button" class="button" value="Crear!"
+				onClick="updateUnidad(${UNIDAD.id})"></li>									
+								</c:if>
 		</ul>
+		
+		
 	</div>
 </form:form>

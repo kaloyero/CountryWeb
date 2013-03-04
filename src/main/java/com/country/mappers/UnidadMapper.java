@@ -15,6 +15,7 @@ public class UnidadMapper {
 		Emprendimiento emp =new Emprendimiento();
 		emp.setId(1);
 		unidad.setBusiness(emp);
+		unidad.setId(unidadForm.getId());
 		return unidad;
 
 	}
@@ -24,7 +25,7 @@ public class UnidadMapper {
 		UnidadForm form = new UnidadForm();
 		form.setCode(unidad.getCode());
 		form.setDescripcion(unidad.getDescription());
-		
+		form.setId(unidad.getId());
 		return form;
 
 	}

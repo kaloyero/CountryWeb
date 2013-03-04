@@ -6,7 +6,6 @@
 
 <%@include file="personaForm.jsp" %>
 
-
 <fieldset>
 		<legend>Instructor</legend>
 		<div class="_50">
@@ -27,11 +26,18 @@
 	<div class="block-actions">
 		<ul class="actions-left">
 			<li><a class="button red" id="reset-validate-form"
-				href="javascript:void(0);">Reset</a></li>
+				href="javascript:void(0);">Limpiar</a></li>
 		</ul>
 		<ul class="actions-right">
-			<li><input type="button" class="button" value="Crear!"
+			<c:if test="${INSTRUCTOR.id == 0}">
+				<li><input type="button" class="button" value="Crear!"
 				onClick="translator.onSubmit('instructor');"></li>
+								</c:if>
+			<c:if test="${INSTRUCTOR.id != 0}">
+				<li><input type="button" class="button" value="Guardar!"
+				onClick="updateInstructor(${INSTRUCTOR.id})"></li>									
+			</c:if>
 		</ul>
+		
 	</div>
 </form:form>

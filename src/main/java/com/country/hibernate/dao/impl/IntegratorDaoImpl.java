@@ -13,5 +13,10 @@ public class IntegratorDaoImpl extends GenericDaoImpl<Integrante, Integer> imple
 	protected Class<Integrante> getEntityClass() {
 		return Integrante.class;
 	}
+	
+    public void update(Integrante integrante) {
+  	  getSession().update(integrante);
+    }
+
 
 }

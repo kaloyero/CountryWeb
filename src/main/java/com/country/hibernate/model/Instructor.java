@@ -24,14 +24,14 @@ public class Instructor implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdInstructor", unique = true, nullable = false)
-	private Integer id;
+	private int id;
 	
 	@Column(name = "FechaIni")
 	private  Date fechaComienzo ;
 	
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
-	
+
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
@@ -55,11 +55,11 @@ public class Instructor implements Serializable {
 		this.fechaFin = fechaFin;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -70,6 +70,5 @@ public class Instructor implements Serializable {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-	
 	
 }

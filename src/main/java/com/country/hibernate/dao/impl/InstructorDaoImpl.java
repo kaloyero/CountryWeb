@@ -14,4 +14,8 @@ public class InstructorDaoImpl extends GenericDaoImpl<Instructor, Integer> imple
 		return Instructor.class;
 	}
 
+    public void update(Instructor instructor) {
+    	  getSession().update(instructor);
+      }
+
 }

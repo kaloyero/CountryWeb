@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.ActividadForm;
 import com.country.form.InstructorForm;
-import com.country.hibernate.model.Actividad;
+import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
-import com.country.mappers.ActividadMapper;
 import com.country.mappers.InstructorMapper;
+import com.country.mappers.IntegranteMapper;
 import com.country.services.InstructorManager;
 
 /**
@@ -62,12 +62,13 @@ public class InstructorController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "ACTIVIDAD") ActividadForm actividadForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "INSTRUCTOR") InstructorForm instructorForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-				return null;
-		
+		instructorManager.update(InstructorMapper.getInstructor(instructorForm));
+		return "success";
 
 	}
+	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public  @ResponseBody DataTable getUserInJSON()  {
            
