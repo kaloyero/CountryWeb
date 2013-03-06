@@ -37,16 +37,18 @@
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
   <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
-   <script src="resources/js/Uiclasses/Render.js"></script>
+  <script src="resources/js/Uiclasses/Render.js"></script>
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>
   <script src="resources/js/Uiclasses/InstructorRender.js"></script>
- <script src="resources/js/Uiclasses/IntegranteRender.js"></script>
-   <script src="resources/js/Uiclasses/ConceptoRender.js"></script>
+  <script src="resources/js/Uiclasses/IntegranteRender.js"></script>
+  <script src="resources/js/Uiclasses/ConceptoRender.js"></script>
   <script src="resources/js/Uiclasses/UnidadRender.js"></script>
   <script src="resources/js/Uiclasses/RecursoRender.js"></script>
+  <script src="resources/js/Uiclasses/VehiculoRender.js"></script>
+  <script src="resources/js/Uiclasses/MascotaRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
-   <script src="resources/js/core/ServerManager.js"></script>
+  <script src="resources/js/core/ServerManager.js"></script>
    
    <link rel='stylesheet' type='text/css' href='resources/js/libs/fullcalendar/fullcalendar.css' />
 <script type='text/javascript' src='resources/js/libs/fullcalendar/fullcalendar.js'></script>
@@ -133,7 +135,8 @@
 					<a href="javascript:void(0);" class="option current" id="integrante"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Integrante<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="concepto"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Concepto<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="recurso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Recurso<span class="badge red"></span></a>
-					
+					<a href="javascript:void(0);" class="option current" id="vehiculo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Vehiculo<span class="badge red"></span></a>					
+					<a href="javascript:void(0);" class="option current" id="mascota"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mascota<span class="badge red"></span></a>
 	    		</li>
 	    	</ul>
     	</nav> <!--! end of #nav -->

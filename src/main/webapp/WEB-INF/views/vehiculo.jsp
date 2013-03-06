@@ -3,9 +3,9 @@
 <%@ page import="java.util.*" %>
  <script type="text/javascript">
 		
-		function updateIntegrante(id){
+		function updateVehiculo(id){
 			
-			translator.onUpdate('integrante',id);
+			translator.onUpdate('vehiculo',id);
 		}
 
 </script> 
@@ -13,8 +13,8 @@
 <div class="container_12">
 
 	<div class="grid_12">
-		<h1>Integrantes</h1>
-		<p>Desde aqui controle los integrantes</p>
+		<h1>Vehiculo</h1>
+		<p>Desde aqui controle los Vehiculos</p>
 	</div>
 	<div class="grid_12">
 		<div class="block-border" id="tab-panel-1">
@@ -29,12 +29,12 @@
 			<div class="block-content tab-container">
 				<div id="tab-1" class="tab-content">
 
-					<table id="integrante" class="table active-table">
+					<table id="vehiculo" class="table active-table">
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Apellido</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Unidad</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Codigo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">descripcion</th>
 							
 						</tr>
 				</thead>
@@ -44,7 +44,7 @@
 				</div>
 				<div id="new" class="tab-content">
 					
-					 <%@include file="forms/integranteForm.jsp" %>
+					 <%@include file="forms/vehiculoForm.jsp" %>
 
 				</div>
 			</div>

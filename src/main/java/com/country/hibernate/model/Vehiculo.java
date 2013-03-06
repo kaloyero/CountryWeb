@@ -25,7 +25,7 @@ public class Vehiculo implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "IdVehiculos", unique = true, nullable = false)
+	@Column(name = "IdVehiculo", unique = true, nullable = false)
 	private Integer id;
 	
 	@Column(name = "codigo")

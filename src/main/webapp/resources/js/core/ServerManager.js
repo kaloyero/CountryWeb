@@ -8,6 +8,8 @@ var ServerManager = new Class({
         this.services['integrante']={};
         this.services['concepto']={};
         this.services['recurso']={};
+        this.services['vehiculo']={};
+        this.services['mascota']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
         this.services['instructor']["load"]="/CountryWeb/instructor/load/";
@@ -20,6 +22,11 @@ var ServerManager = new Class({
         this.services['concepto']["save"]="/CountryWeb/concepto/create/"
         this.services['recurso']["load"]="/CountryWeb/recurso/load/";
         this.services['recurso']["save"]="/CountryWeb/recurso/create/"
+        this.services['vehiculo']["load"]="/CountryWeb/vehiculo/load/";
+        this.services['vehiculo']["save"]="/CountryWeb/vehiculo/create/"
+        this.services['mascota']["load"]="/CountryWeb/mascota/load/";
+        this.services['mascota']["save"]="/CountryWeb/mascota/create/"
+
     },
  
 

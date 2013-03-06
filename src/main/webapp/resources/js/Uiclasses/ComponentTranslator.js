@@ -25,7 +25,14 @@ var ComponentTranslator = new Class({
 				break;
 			case "recurso":
 				formToSend =recursoRender.onSubmit();
-				break
+				break;
+			case "vehiculo":
+				formToSend =vehiculoRender.onSubmit();
+				break;
+			case "mascota":
+				formToSend =mascotaRender.onSubmit();
+				break;
+				
 			default:
 				alert("ERROR")
 		}
@@ -57,6 +64,12 @@ var ComponentTranslator = new Class({
 			case "integrante":
 				formToSend =integranteRender.onSubmit();
 				break;
+			case "vehiculo":
+				formToSend =vehiculoRender.onSubmit();
+				break;
+			case "mascota":
+				formToSend =mascotaRender.onSubmit();
+				break;				
 			default:
 				alert("ERROR")
 		}
