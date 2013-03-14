@@ -4,9 +4,58 @@
 <p></p>
 <form:form commandName="MASCOTA" class="block-content form">
 
-
 <fieldset>
 		<legend>Mascota</legend>
+		<div class="_50">
+			<p>
+				<label for="textfield">Codigo</label>
+				<form:input path="codigo" class="required" />
+				<form:hidden path="id" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Nombre</label>
+				<form:input path="nombre" class="required" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Sexo</label>
+				<form:input path="sexo" class="required" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Fecha Nacimiento</label>
+				<form:input path="fNac" class="required" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Tamaño</label>
+				<form:input path="tamanio" class="required" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Color</label>
+				<form:input path="color" class="required" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textarea">Marcas Distintivas</label>
+				<form:textarea path="marcasDist" class="required" rows="5"
+					cols="40" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Raza</label>
+				<form:input path="raza" class="required" />
+			</p>
+		</div>
 
 		<div class="_50">
 				<p>

@@ -12,6 +12,7 @@ public class MascotaForm extends Form  {
 	private String marcasDist;
 	private Integer raza;
 	private Integer unidad;
+	
 	public Integer getId() {
 		return id;
 	}

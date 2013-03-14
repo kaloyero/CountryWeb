@@ -14,4 +14,9 @@ public class VehicleDaoImpl extends GenericDaoImpl<Vehiculo, Integer> implements
 		return Vehiculo.class;
 	}
 
+    public void update(Vehiculo obj) {
+  	  getSession().update(obj);
+  }
+
+	
 }
