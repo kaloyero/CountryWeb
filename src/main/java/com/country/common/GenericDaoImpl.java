@@ -43,7 +43,7 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
       }
 
       public void update(E transientObject) {
-//    	  getSession().merge(transientObject);
+    	  getSession().merge(transientObject);
     	  getSession().update(transientObject);
       }
 
@@ -64,8 +64,11 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
       
       @SuppressWarnings("unchecked")
       public List<E> findAll() {
-          DetachedCriteria criteria = createDetachedCriteria();
-          return (List<E>) criteria.getExecutableCriteria(getSession()).list();
+//          DetachedCriteria criteria = createDetachedCriteria();
+//          return (List<E>) criteria.getExecutableCriteria(getSession()).list();
+    	  
+    	  Criteria criteria = getSession().createCriteria(getEntityClass());
+    	  return (List<E>) criteria.list();
       }
       
       /**

@@ -1,7 +1,6 @@
 package com.country.form;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,10 @@ public class ActividadForm extends Form {
 	private String nombre = null;
 	private String descripcion = null;
 	private String fechaInicio = null;
+	private int idConcepto = 0;
+
 	private double importe = 0;
+	private int idAsignacion;
 	List<Integer> instructores = new ArrayList();
 
 	private Map<Integer, List<String>> dias = new HashMap<Integer, List<String>>();
@@ -162,4 +164,21 @@ public class ActividadForm extends Form {
 		this.id = id;
 	}
 
+	public int getIdConcepto() {
+		return idConcepto;
+	}
+
+	public void setIdConcepto(int idConcepto) {
+		this.idConcepto = idConcepto;
+	}
+
+	public int getIdAsignacion() {
+		return idAsignacion;
+	}
+
+	public void setIdAsignacion(int idAsignacion) {
+		this.idAsignacion = idAsignacion;
+	}
+
+	
 }

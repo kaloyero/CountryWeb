@@ -35,9 +35,13 @@ public class Tarifa implements Serializable{
 	@Column(name = "FechaFin")
 	private  Date fechaFin ;
 	
-	@OneToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
-	private  Concepto concepto ;
+//	@OneToOne(fetch= FetchType.EAGER)
+//	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
+//	private  Concepto concepto ;
+	
+	@Column(name = "idConcepto")
+	private  int concepto ;
+
 	
 	public int getId() {
 		return id;
@@ -70,14 +74,22 @@ public class Tarifa implements Serializable{
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	
-	public Concepto getConcepto() {
+
+	public int getConcepto() {
 		return concepto;
 	}
-	
-	public void setConcepto(Concepto concepto) {
+
+	public void setConcepto(int concepto) {
 		this.concepto = concepto;
 	}
+	
+//	public Concepto getConcepto() {
+//		return concepto;
+//	}
+//	
+//	public void setConcepto(Concepto concepto) {
+//		this.concepto = concepto;
+//	}
 
 
 }

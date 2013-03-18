@@ -122,7 +122,7 @@ public class RecursoMapper {
 		Concepto concepto = new Concepto();
 		concepto.setNombre(form.getNombre());
 		concepto.setFechaComienzo(new Date(2012, 12, 12));
-		concepto.setTarifas(getTarifa(form,concepto));
+//		concepto.setTarifas(getTarifa(form,concepto));
 		return concepto;
 		
 	}
@@ -133,7 +133,7 @@ public class RecursoMapper {
 		Tarifa tarifa = new Tarifa();
 		tarifa.setImporte(form.getImporte());
 		tarifa.setFechaComienzo(new Date(2012, 12, 12));
-		tarifa.setConcepto(concepto);
+		tarifa.setConcepto(concepto.getId());
 		tarifas.add(tarifa);
 		return tarifas;
 		

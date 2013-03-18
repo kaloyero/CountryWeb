@@ -13,6 +13,7 @@
 			<p>
 				<label for="textfield">Nombre</label>
 				<form:input path="nombre" class="required" />
+				<form:hidden path="idConcepto"/>
 			</p>
 		</div>
 
@@ -42,6 +43,7 @@
 		<div class="_100">
 			<p>
 				<label for="select">Profesor</label>
+				<form:hidden path="idAsignacion"/>
 				<form:select path="instructores" multiple="false">
 					<form:options items="${instructores}" itemValue="id"
 						itemLabel="persona.nombre" />
@@ -107,8 +109,14 @@
 				href="javascript:void(0);">Reset</a></li>
 		</ul>
 		<ul class="actions-right">
+			<c:if test="${ACTIVIDAD.id == 0}">
 			<li><input type="button" class="button" value="Crear!"
 				onClick="translator.onSubmit('actividad')"></li>
+			</c:if>
+			<c:if test="${ACTIVIDAD.id != 0}">
+				<li><input type="button" class="button" value="Guardar!"
+				onClick="updateActividad(${ACTIVIDAD.id})"></li>									
+			</c:if>
 		</ul>
 	</div>
 </form:form>

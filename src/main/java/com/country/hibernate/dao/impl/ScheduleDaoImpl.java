@@ -1,5 +1,7 @@
 package com.country.hibernate.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.country.common.GenericDaoImpl;
@@ -14,4 +16,10 @@ public class ScheduleDaoImpl extends GenericDaoImpl<Cronograma, Integer> impleme
 		return Cronograma.class;
 	}
 
+	public void saveList(List<Cronograma> list) {
+		for (Cronograma cronograma : list) {
+			save(cronograma);
+		}
+	}
+	
 }

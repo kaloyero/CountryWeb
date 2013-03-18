@@ -18,20 +18,17 @@ public class ConceptoMapper {
 		concepto.setDescripcion(((ConceptoForm) form).getDescripcion());
 		concepto.setNombre(((ConceptoForm) form).getNombre());
 		concepto.setFechaComienzo(new Date(2012, 12, 12));
-        concepto.setTarifas(getTarifa(form,concepto));
+  //      concepto.setTarifas(getTarifa(form,concepto));
 		return concepto;
 
 	}
 
-	public static ConceptoForm getForm(Concepto concepto) {
+	public static ConceptoForm getForm(Concepto concepto,Tarifa tarifa) {
 		ConceptoForm form=new ConceptoForm();
+		form.setId(concepto.getId());
 		form.setNombre(concepto.getNombre());
 		form.setDescripcion(concepto.getDescripcion());
-		
-		//TODO se deberia tomar solo el importe reciente
-		   for (Tarifa tarifa :concepto.getTarifas()) {
-			   form.setImporte(tarifa.getImporte());
-			}
+		form.setImporte(tarifa.getImporte());
 	
 		return form;
 	}
@@ -42,7 +39,7 @@ public class ConceptoMapper {
 		Tarifa tarifa = new Tarifa();
 		tarifa.setImporte(((ConceptoForm) form).getImporte());
 		tarifa.setFechaComienzo(new Date(2012, 12, 12));
-		tarifa.setConcepto(concepto);
+		tarifa.setConcepto(concepto.getId());
 		tarifas.add(tarifa);
 		return tarifas;
 		

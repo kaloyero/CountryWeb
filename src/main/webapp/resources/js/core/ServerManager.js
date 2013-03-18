@@ -17,15 +17,15 @@ var ServerManager = new Class({
         this.services['unidad']["load"]="/CountryWeb/unidad/load/";
         this.services['unidad']["save"]="/CountryWeb/unidad/create/";
         this.services['integrante']["load"]="/CountryWeb/integrante/load/";
-        this.services['integrante']["save"]="/CountryWeb/integrante/create/"
+        this.services['integrante']["save"]="/CountryWeb/integrante/create/";
         this.services['concepto']["load"]="/CountryWeb/concepto/load/";
-        this.services['concepto']["save"]="/CountryWeb/concepto/create/"
+        this.services['concepto']["save"]="/CountryWeb/concepto/create/";
         this.services['recurso']["load"]="/CountryWeb/recurso/load/";
         this.services['recurso']["save"]="/CountryWeb/recurso/create/"
         this.services['vehiculo']["load"]="/CountryWeb/vehiculo/load/";
-        this.services['vehiculo']["save"]="/CountryWeb/vehiculo/create/"
+        this.services['vehiculo']["save"]="/CountryWeb/vehiculo/create/";
         this.services['mascota']["load"]="/CountryWeb/mascota/load/";
-        this.services['mascota']["save"]="/CountryWeb/mascota/create/"
+        this.services['mascota']["save"]="/CountryWeb/mascota/create/";
 
     },
  
