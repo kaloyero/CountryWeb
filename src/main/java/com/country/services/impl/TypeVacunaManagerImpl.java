@@ -18,4 +18,9 @@ public class TypeVacunaManagerImpl extends AbstractManagerImpl<TipoVacuna> imple
 		return typeVacunaDao;
 	}
 	
+	public TipoVacuna findById(Integer id) {
+		TipoVacuna dto = typeVacunaDao.findById(id);
+		return dto;
+	}
+
 }

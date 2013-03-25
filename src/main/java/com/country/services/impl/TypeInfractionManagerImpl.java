@@ -17,5 +17,10 @@ public class TypeInfractionManagerImpl extends AbstractManagerImpl<TipoInfraccio
 	protected GenericDao<TipoInfraccion, Integer> getDao() {
 		return typeInfractionDao;
 	}
-	
+
+	public TipoInfraccion findById(Integer id) {
+		TipoInfraccion dto = typeInfractionDao.findById(id);
+		return dto;
+	}
+
 }

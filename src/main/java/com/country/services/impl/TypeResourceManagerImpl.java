@@ -18,5 +18,9 @@ public class TypeResourceManagerImpl extends AbstractManagerImpl<TipoRecurso> im
 		return typeResourceDao;
 	}
 
+	public TipoRecurso findById(Integer id) {
+		TipoRecurso dto = typeResourceDao.findById(id);
+		return dto;
+	}
 	
 }

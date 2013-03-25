@@ -4,5 +4,5 @@ import com.country.hibernate.model.TipoRecurso;
 
 public interface TypeResourceManager extends AbstractManager<TipoRecurso>{
 
-	
+	TipoRecurso findById(Integer id);
 }

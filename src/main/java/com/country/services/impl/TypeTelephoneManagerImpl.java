@@ -17,5 +17,10 @@ public class TypeTelephoneManagerImpl extends AbstractManagerImpl<TipoTelefono> 
 	protected GenericDao<TipoTelefono, Integer> getDao() {
 		return typeTelephoneDao;
 	}
-	
+
+	public TipoTelefono findById(Integer id) {
+		TipoTelefono dto = typeTelephoneDao.findById(id);
+		return dto;
+	}
+
 }
