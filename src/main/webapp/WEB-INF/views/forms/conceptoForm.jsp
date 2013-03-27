@@ -45,8 +45,17 @@
 				href="javascript:void(0);">Reset</a></li>
 		</ul>
 		<ul class="actions-right">
-			<li><input type="button" class="button" value="Crear!"
-				onClick="translator.onSubmit('concepto');"></li>
 		</ul>
+		<ul class="actions-right">
+			<c:if test="${CONCEPTO.id == 0}">
+			<li><input type="button" class="button" value="Crear Po"
+				onClick="translator.onSubmit('concepto');"></li>
+			</c:if>
+			<c:if test="${CONCEPTO.id != 0}">
+				<li><input type="button" class="button" value="Guardar!"
+				onClick="updateConcepto(${CONCEPTO.id})"></li>									
+			</c:if>
+		</ul>
+		
 	</div>
 </form:form>

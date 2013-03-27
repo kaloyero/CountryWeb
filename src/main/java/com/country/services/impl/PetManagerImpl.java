@@ -22,5 +22,5 @@ public class PetManagerImpl extends AbstractManagerImpl<Mascota> implements PetM
 		Mascota dto = petDao.findById(id);
 		return dto;
 	}
-	
+
 }

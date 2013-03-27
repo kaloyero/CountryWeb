@@ -1,10 +1,8 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,15 +36,13 @@ public class Recurso implements Serializable {
 	private  String descripcion ;
 	
 	@Column(name = "MaxTiempoReserva")
-
 	private  Integer maxTiempoReserva ;
-
 	
     @OneToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="IdTipoRecurso",updatable = true, insertable = true)	
 	private  TipoRecurso tipoRecurso ;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private Concepto concepto;
 
@@ -58,7 +54,7 @@ public class Recurso implements Serializable {
     @JoinColumn(name="IdExcepcion",updatable = true, insertable = true , nullable = true)
 	private List <RecursoExcepcion> excepciones;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="IdDisponibilidad",updatable = true, insertable = true , nullable = true)
 	private List <RecursoDisponibilidad> disponibilidad;
 
@@ -111,12 +107,12 @@ public class Recurso implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getMaxTiempoReserva() {
+	public Integer getMaxTiempoReserv() {
 		return maxTiempoReserva;
 	}
 
-	public void setMaxTiempoReserva(Integer maxTiempoReserva) {
-		this.maxTiempoReserva = maxTiempoReserva;
+	public void setMaxTiempoReserv(Integer maxTiempoReserv) {
+		this.maxTiempoReserva = maxTiempoReserv;
 	}
 
 	public TipoRecurso getTipoRecurso() {
@@ -134,6 +130,5 @@ public class Recurso implements Serializable {
 	public void setConcepto(Concepto concepto) {
 		this.concepto = concepto;
 	}
-	
-	
+
 }

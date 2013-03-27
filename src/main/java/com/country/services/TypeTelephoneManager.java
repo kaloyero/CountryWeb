@@ -4,5 +4,5 @@ import com.country.hibernate.model.TipoTelefono;
 
 public interface TypeTelephoneManager extends AbstractManager<TipoTelefono>{
 
-	
+	TipoTelefono findById(Integer id);
 }

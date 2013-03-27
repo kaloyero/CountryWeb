@@ -2,6 +2,14 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.util.*" %>
 
+ <script type="text/javascript">
+		
+		function updateConcepto(id){
+			translator.onUpdate('concepto',id);
+		}
+
+</script> 
+
 
 <div class="container_12">
 

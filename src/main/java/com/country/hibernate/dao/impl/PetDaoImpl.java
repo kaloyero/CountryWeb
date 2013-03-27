@@ -14,4 +14,8 @@ public class PetDaoImpl extends GenericDaoImpl<Mascota, Integer> implements PetD
 		return Mascota.class;
 	}
 
+    public void update(Mascota obj) {
+    	  getSession().update(obj);
+    }
+
 }

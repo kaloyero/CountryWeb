@@ -44,10 +44,9 @@ public class Concepto implements Serializable {
 	@Column(name = "Nombre")
 	private String nombre;
 	
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
-	@BatchSize(size = 10)
-    @JoinColumn(name="IdConcepto",updatable = true, insertable = true , nullable = true)
-	private  List <Tarifa> tarifas ;
+//    @OneToMany(fetch=FetchType.EAGER)
+//    @JoinColumn(name="IdConcepto",updatable = false, insertable = false , nullable = true)
+//	private  List <Tarifa> tarifas ;
 
 	
     
@@ -55,13 +54,13 @@ public class Concepto implements Serializable {
 		return id;
 	}
 
-	public List<Tarifa> getTarifas() {
-		return tarifas;
-	}
+//	public List<Tarifa> getTarifas() {
+//		return tarifas;
+//	}
 
-	public void setTarifas(List<Tarifa> tarifas) {
-		this.tarifas = tarifas;
-	}
+//	public void setTarifas(List<Tarifa> tarifas) {
+//		this.tarifas = tarifas;
+//	}
 
 	public String getNombre() {
 		return nombre;

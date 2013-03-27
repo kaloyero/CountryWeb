@@ -2,7 +2,6 @@ package com.country.controllers;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ActividadForm;
-import com.country.form.InstructorForm;
 import com.country.form.IntegranteForm;
-import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Instructor;
 import com.country.hibernate.model.Integrante;
-import com.country.hibernate.model.Persona;
-
-import com.country.mappers.ActividadMapper;
-import com.country.mappers.InstructorMapper;
 import com.country.mappers.IntegranteMapper;
-import com.country.services.ActivityManager;
-import com.country.services.InstructorManager;
 import com.country.services.IntegratorManager;
 import com.country.services.TypeDocumentManager;
 import com.country.services.UnitManager;

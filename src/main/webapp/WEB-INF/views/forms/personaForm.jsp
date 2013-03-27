@@ -9,6 +9,7 @@
 			<p>
 				<label for="textfield">Nombre</label>
 				<form:input path="persona.nombre" class="required" />
+				<form:hidden path="persona.id" />
 			</p>
 		</div>
 

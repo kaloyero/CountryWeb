@@ -14,4 +14,8 @@ public class ConceptDaoImpl extends GenericDaoImpl<Concepto, Integer> implements
 		return Concepto.class;
 	}
 
+    public void update(Concepto obj) {
+//  	  getSession().merge(obj);
+      	getSession().update(obj);
+      }
 }

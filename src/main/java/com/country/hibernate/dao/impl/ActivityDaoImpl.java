@@ -13,5 +13,12 @@ public class ActivityDaoImpl extends GenericDaoImpl<Actividad, Integer> implemen
 	protected Class<Actividad> getEntityClass() {
 		return Actividad.class;
 	}
+	
+    public void update(Actividad obj) {
+//  	  getSession().merge(obj);
+//    	getSession().update(obj.getConcepto());
+    	getSession().update(obj);
+    }
+	
 
 }

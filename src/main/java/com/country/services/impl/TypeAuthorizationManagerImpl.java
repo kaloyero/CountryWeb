@@ -16,5 +16,11 @@ public class TypeAuthorizationManagerImpl extends AbstractManagerImpl<TipoAutori
 
 	protected GenericDao<TipoAutorizacion, Integer> getDao() {
 		return typeAuthoriationDao;
-	}	
+	}
+	
+	public TipoAutorizacion findById(Integer id) {
+		TipoAutorizacion dto = typeAuthoriationDao.findById(id);
+		return dto;
+	}
+
 }

@@ -54,5 +54,3 @@
 	<div class="clear height-fix"></div>
 
 </div>
-
-

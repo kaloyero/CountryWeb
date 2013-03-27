@@ -4,5 +4,6 @@ import com.country.hibernate.model.TipoAutorizacion;
 
 public interface TypeAuthorizationManager extends AbstractManager<TipoAutorizacion>{
 
+	TipoAutorizacion findById(Integer id);
 	
 }

@@ -17,5 +17,10 @@ public class RazaManagerImpl extends AbstractManagerImpl<Raza> implements RazaMa
 	protected GenericDao<Raza, Integer> getDao() {
 		return razaDao;
 	}
-	
+
+	public Raza findById(Integer id) {
+		Raza dto = razaDao.findById(id);
+		return dto;
+	}
+
 }

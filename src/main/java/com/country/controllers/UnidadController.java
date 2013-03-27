@@ -2,7 +2,6 @@ package com.country.controllers;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.ActividadForm;
-import com.country.form.InstructorForm;
-import com.country.form.IntegranteForm;
 import com.country.form.UnidadForm;
-import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Instructor;
-import com.country.hibernate.model.Integrante;
-import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Unidad;
-
-import com.country.mappers.ActividadMapper;
-import com.country.mappers.InstructorMapper;
 import com.country.mappers.IntegranteMapper;
 import com.country.mappers.UnidadMapper;
-import com.country.services.ActivityManager;
-import com.country.services.InstructorManager;
 import com.country.services.UnitManager;
 
 /**
@@ -74,9 +62,11 @@ public class UnidadController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "ACTIVIDAD") ActividadForm actividadForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "UNIDAD") UnidadForm unidadForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-				return null;
+
+		unidadManager.update(UnidadMapper.getUnidad(unidadForm));
+		return "success";
 		
 
 	}

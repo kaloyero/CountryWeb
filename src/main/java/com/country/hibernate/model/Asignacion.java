@@ -34,7 +34,7 @@ public class Asignacion implements Serializable {
 	private  Instructor instructor;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="IdActividad")	
+	@JoinColumn(name="IdActividad",updatable = true, insertable = true)	
 	private  Actividad actividad;
 	
 	@Column(name = "FechaIni")

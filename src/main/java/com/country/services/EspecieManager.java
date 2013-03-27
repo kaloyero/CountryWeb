@@ -4,5 +4,6 @@ import com.country.hibernate.model.Especie;
 
 public interface EspecieManager extends AbstractManager<Especie>{
 
+	public Especie findById(Integer id);
 	
 }

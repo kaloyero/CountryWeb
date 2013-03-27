@@ -27,7 +27,7 @@ public class PersonaMapper {
 		tipoDoc.setId(1);
 		persona.setTipoDoc(tipoDoc);
 		
-		System.out.println("IDDDDDDDD??" + ((PersonaForm) form).getTipoDocumento() );
+		System.out.println("IDDDDDDDD??" + ((PersonaForm) form).getId() );
 		persona.setId(((PersonaForm) form).getId());
 		return persona;
 

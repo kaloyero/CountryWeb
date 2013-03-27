@@ -25,7 +25,40 @@ var ComponentTranslator = new Class({
 				break;
 			case "recurso":
 				formToSend =recursoRender.onSubmit();
-				break
+				break;
+			case "vehiculo":
+				formToSend =vehiculoRender.onSubmit();
+				break;
+			case "mascota":
+				formToSend =mascotaRender.onSubmit();
+				break;
+			case "tipoAutorizacion":
+				formToSend = tipoAutorizacionRender.onSubmit();
+				break;
+			case "tipoDocumento":
+				formToSend = tipoDocumentoRender.onSubmit();
+				break;
+			case "tipoEspecie":
+				formToSend = tipoEspecieRender.onSubmit();
+				break;
+			case "tipoInfraccion":
+				formToSend =tipoInfraccionRender.onSubmit();
+				break;
+			case "tipoPago":
+				formToSend =tipoPagoRender.onSubmit();
+				break;
+			case "tipoRaza":
+				formToSend =tipoRazaRender.onSubmit();
+				break;
+			case "tipoRecurso":
+				formToSend = tipoRecursoRender.onSubmit();
+				break;
+			case "tipoVacuna":
+				formToSend = tipoVacunaRender.onSubmit();
+				break;
+			case "tipoVehiculo":
+				formToSend = tipoVehiculoRender.onSubmit();
+				break;
 			default:
 				alert("ERROR")
 		}
@@ -57,6 +90,39 @@ var ComponentTranslator = new Class({
 			case "integrante":
 				formToSend =integranteRender.onSubmit();
 				break;
+			case "vehiculo":
+				formToSend =vehiculoRender.onSubmit();
+				break;
+			case "mascota":
+				formToSend =mascotaRender.onSubmit();
+				break;				
+			case "tipoAutorizacion":
+				formToSend = tipoAutorizacionRender.onSubmit();
+				break;
+			case "tipoDocumento":
+				formToSend = tipoDocumentoRender.onSubmit();
+				break;
+			case "tipoEspecie":
+				formToSend = tipoEspecieRender.onSubmit();
+				break;
+			case "tipoInfraccion":
+				formToSend =tipoInfraccionRender.onSubmit();
+				break;
+			case "tipoPago":
+				formToSend =tipoPagoRender.onSubmit();
+				break;
+			case "tipoRaza":
+				formToSend =tipoRazaRender.onSubmit();
+				break;
+			case "tipoRecurso":
+				formToSend = tipoRecursoRender.onSubmit();
+				break;
+			case "tipoVacuna":
+				formToSend = tipoVacunaRender.onSubmit();
+				break;
+			case "tipoVehiculo":
+				formToSend = tipoVehiculoRender.onSubmit();
+
 			default:
 				alert("ERROR")
 		}

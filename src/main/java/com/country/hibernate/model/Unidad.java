@@ -3,7 +3,6 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +26,7 @@ public class Unidad implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdUnidad", unique = true, nullable = false)	
-	private Integer id;
+	private int id;
 	
 	@Column(name = "Codigo")
 	private String code;
@@ -43,50 +42,57 @@ public class Unidad implements Serializable {
 
     @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdUnidad",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Integrante> integrantes;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdVehiculo",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Vehiculo> vehiculos;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdPago",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Pago> pagos;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdCargo",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <LiquidacionCargo> cargos;
     
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdReserva",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Reserva> reservas;
     
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdInfraccion",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Infraccion> infracciones;
     
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdMascota",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Mascota> mascotas;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    //@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
-    @JoinColumn(name="IdAutorizado",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdUnidad",updatable = false, insertable = false, nullable = true)
 	private List <Autorizado> autorizados;
 
     
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

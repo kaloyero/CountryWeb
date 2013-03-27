@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.form.ActividadForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Tarifa;
 import com.country.mappers.ActividadMapper;
 import com.country.services.ActivityManager;
 import com.country.services.InstructorManager;
+import com.country.services.PriceManager;
 
 /**
  * Handles requests for the application home page.
@@ -32,7 +34,10 @@ public class ActividadController {
 	private ActivityManager activityManager;
 	@Autowired
 	private InstructorManager instructorManager;
+	@Autowired
+    private PriceManager priceManager;
 
+	
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
@@ -51,8 +56,8 @@ public class ActividadController {
 			return "registration";
 		} else {
 //			actividadForm.setId(10);
-			activityManager.save(ActividadMapper.getActividad(actividadForm,
-					instructorManager));
+			int idAct = activityManager.save(ActividadMapper.getActividad(actividadForm,instructorManager),actividadForm.getImporte());
+			activityManager.saveAsignation(ActividadMapper.getListAsignacion(actividadForm,instructorManager), idAct);
 			return "success";
 		}
 	}
@@ -60,7 +65,10 @@ public class ActividadController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 		Actividad actividad =activityManager.findById(id);
-		ActividadForm form = (ActividadForm) ActividadMapper.getForm(actividad);
+		Tarifa tarifa = priceManager.getLastPriceByConcept(actividad.getConcepto().getId());
+		
+		
+		ActividadForm form = (ActividadForm) ActividadMapper.getForm(actividad,tarifa);
 		model.addAttribute("ACTIVIDAD", form);
 		model.addAttribute("instructores", instructorManager.listAll());
 		return "forms/actividadForm";
@@ -74,7 +82,7 @@ public class ActividadController {
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
-			activityManager.update(ActividadMapper.getActividad(actividadForm,instructorManager));
+			activityManager.update(ActividadMapper.getActividad(actividadForm,instructorManager),ActividadMapper.getListAsignacion(actividadForm,instructorManager),actividadForm.getImporte());
 			return "success";
 		}
 

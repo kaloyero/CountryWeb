@@ -18,5 +18,9 @@ public class TypeDocumentManagerImpl extends AbstractManagerImpl<TipoDocumento> 
 		return typeDocumentDao;
 	}
 
+	public TipoDocumento findById(Integer id) {
+		TipoDocumento dto = typeDocumentDao.findById(id);
+		return dto;
+	}
 	
 }

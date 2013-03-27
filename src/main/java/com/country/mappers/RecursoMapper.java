@@ -11,8 +11,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.country.form.ActividadForm;
-import com.country.form.ConceptoForm;
 import com.country.form.Form;
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.Concepto;
@@ -29,7 +27,7 @@ public class RecursoMapper {
 		recurso.setId(((RecursoForm) form).getId());
 		recurso.setDescripcion(((RecursoForm) form).getDescripcion());
 		recurso.setNombre(((RecursoForm) form).getNombre());
-		recurso.setMaxTiempoReserva(((RecursoForm) form).getMaxTiempoReserva());
+		recurso.setMaxTiempoReserv(((RecursoForm) form).getMaxTiempoReserva());
 		TipoRecurso tipoRecurso =new TipoRecurso();
 		tipoRecurso.setId(1);
 		recurso.setTipoRecurso(tipoRecurso);
@@ -66,6 +64,7 @@ public class RecursoMapper {
 		form.setNombre(recurso.getNombre());
 		form.setDescripcion(recurso.getDescripcion());
 		//form.setMaxTiempoReserva(recurso.getMaxTiempoReserva());
+		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
 		System.out.println("ES  " + recurso.getDisponibilidad());
 
 		form.setDisponibilidades(getDisponibilidades(recurso.getDisponibilidad()));
@@ -124,7 +123,7 @@ public class RecursoMapper {
 		Concepto concepto = new Concepto();
 		concepto.setNombre(form.getNombre());
 		concepto.setFechaComienzo(new Date(2012, 12, 12));
-		concepto.setTarifas(getTarifa(form,concepto));
+//		concepto.setTarifas(getTarifa(form,concepto));
 		return concepto;
 		
 	}
@@ -135,7 +134,7 @@ public class RecursoMapper {
 		Tarifa tarifa = new Tarifa();
 		tarifa.setImporte(form.getImporte());
 		tarifa.setFechaComienzo(new Date(2012, 12, 12));
-		tarifa.setConcepto(concepto);
+		tarifa.setConcepto(concepto.getId());
 		tarifas.add(tarifa);
 		return tarifas;
 		

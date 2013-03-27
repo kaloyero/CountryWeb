@@ -17,5 +17,10 @@ public class EspecieManagerImpl extends AbstractManagerImpl<Especie> implements 
 	protected GenericDao<Especie, Integer> getDao() {
 		return especieDao;
 	}
-	
+
+	public Especie findById(Integer id) {
+		Especie dto = especieDao.findById(id);
+		return dto;
+	}
+
 }

@@ -2,14 +2,8 @@ package com.country.controllers;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,33 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ActividadForm;
-import com.country.form.ConceptoForm;
-import com.country.form.InstructorForm;
-import com.country.form.IntegranteForm;
-import com.country.form.RecursoForm;
-import com.country.form.UnidadForm;
-import com.country.hibernate.model.Actividad;
-import com.country.hibernate.model.Concepto;
-import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Instructor;
-import com.country.hibernate.model.Integrante;
-import com.country.hibernate.model.Persona;
-import com.country.hibernate.model.Recurso;
-import com.country.hibernate.model.Unidad;
-
-import com.country.mappers.ActividadMapper;
-import com.country.mappers.ConceptoMapper;
-import com.country.mappers.InstructorMapper;
-import com.country.mappers.IntegranteMapper;
 import com.country.mappers.RecursoMapper;
-import com.country.mappers.UnidadMapper;
-import com.country.services.ActivityManager;
-import com.country.services.ConceptManager;
-import com.country.services.InstructorManager;
-import com.country.services.IntegratorManager;
+import com.country.form.RecursoForm;
+import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Recurso;
 import com.country.services.ResourceManager;
-import com.country.services.UnitManager;
 
 /**
  * Handles requests for the application home page.

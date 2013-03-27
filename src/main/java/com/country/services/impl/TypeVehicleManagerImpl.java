@@ -18,4 +18,9 @@ public class TypeVehicleManagerImpl extends AbstractManagerImpl<TipoVehiculo> im
 		return typeVehicleDao;
 	}
 	
+	public TipoVehiculo findById(Integer id) {
+		TipoVehiculo dto = typeVehicleDao.findById(id);
+		return dto;
+	}
+
 }
