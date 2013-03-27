@@ -65,7 +65,7 @@ public class RecursoMapper {
 		RecursoForm form=new RecursoForm();
 		form.setNombre(recurso.getNombre());
 		form.setDescripcion(recurso.getDescripcion());
-		form.setMaxTiempoReserva(recurso.getMaxTiempoReserva());
+		//form.setMaxTiempoReserva(recurso.getMaxTiempoReserva());
 		System.out.println("ES  " + recurso.getDisponibilidad());
 
 		form.setDisponibilidades(getDisponibilidades(recurso.getDisponibilidad()));

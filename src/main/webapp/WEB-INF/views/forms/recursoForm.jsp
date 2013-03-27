@@ -29,6 +29,15 @@
 					cols="40" />
 			</p>
 		</div>
+		
+		<div class="_50">
+			<p>
+				<label for="select">TipoRecruso</label>
+
+				<select id="instructores" name="instructores"></select>
+			</p>
+		</div>
+		
 		<div class="_25">
 			<p>
 				<label for="textfield">Costo</label>
@@ -36,12 +45,30 @@
 				<form:input path="importe" class="required" />
 			</p>
 		</div>
-
+		
 		<div class="_25">
 			<p>
-				<label for="datepicker">Max tiempo Reserva (minutos)</label>
+				<label for="datepicker">Max tiempo Reserva</label>
 				<form:input path="maxTiempoReserva" class="required" />
 			</p>
+		</div>
+		
+		
+		
+			<div class="_25">
+			<p>
+				<label for="datepicker">Disponibilidad</label>
+				<input id ="dis" type="checkbox" name="checkbox" checked=true >			
+			</p>
+	
+		</div>
+		
+			<div class="_25">
+			<p>
+				<label for="datepicker">Excepciones</label>
+				<input id="exc" type="checkbox" name="checkbox" >			
+			</p>
+	
 		</div>
 	
 	</fieldset>

@@ -6,6 +6,8 @@ var RecursoRender = new Class({
     draw: function(){
     	var form=this.getAddForm();
     	this.createCalendarComponent(form);
+    	this.bindEvents();
+    	this.hideCalendarHeader();
     },
     onNewTab: function(){
     	var form=this.getActiveForm();
@@ -18,18 +20,65 @@ var RecursoRender = new Class({
     	//var obj="{Dia: this.start.getDay(), horaIni: this.start.getHours(),horaFin: this.end.getHours()} "
     	console.log("OBBJ",obj);
     },
+   
+    bindEvents: function(){
+    	var self=this
+    	$("#dis").bind('click', function() {
 
+    			self.toogleSelection("dis");
+    			$("#calendar").fullCalendar( 'rerenderEvents' )
+	      });
+    	
+    	$("#exc").bind('click', function() {
+			self.toogleSelection("exc");
+			$("#calendar").fullCalendar( 'rerenderEvents' )
+      });
+    },
+    
+    toogleSelection:function(selection){
+    	if (selection =="dis"){
+    		this.uncheckException();
+    		this.hideCalendarHeader();
+
+    	}else{
+    		this.uncheckDisponibilidad();
+    		this.showCalendarHeader();
+    	}
+
+    },
+    
+    uncheckException:function(){
+    	$("#exc").attr('checked', false)
+    },
+    
+    uncheckDisponibilidad:function(){
+    	$("#dis").attr('checked', false)
+    },
+    
+    
+    hideCalendarHeader:function(){
+    	$(".fc-header").hide()
+    },
+    
+    showCalendarHeader:function(){
+    	$(".fc-header").show()
+    },
+    
     createCalendarComponent: function(form){
     	
     	var date = new Date();
 		var d = date.getDate();
-		console.log("DDD ",d)
 		var m = date.getMonth();
 		var y = date.getFullYear();
     	var self=this;
 		$(form).find("#calendar").fullCalendar({
 			eventRender: function(event, element) {
-				console.log("ENTRA")
+				console.log("ENTRA" ,event)
+				if ($("#exc").attr('checked')){
+					console.log("CHECHCE")
+					return false
+
+				}
 			      element.bind('dblclick', function() {
 			    	  event.backgroundColor = 'red';
 			    	    //$('#calendar').fullCalendar( 'rerenderEvents' );
