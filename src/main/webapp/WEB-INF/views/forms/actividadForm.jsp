@@ -13,7 +13,7 @@
 			<p>
 				<label for="textfield">Nombre</label>
 				<form:input path="nombre" class="required" />
-				<form:hidden path="idConcepto"/>
+				<%--<form:hidden path="idConcepto"/> TODO porque esta esto?--%>
 			</p>
 		</div>
 
@@ -43,7 +43,7 @@
 		<div class="_100">
 			<p>
 				<label for="select">Profesor</label>
-				<form:hidden path="idAsignacion"/>
+				<%-- <form:hidden path="idAsignacion"/>TODO porque esta esto?--%>
 				<form:select path="instructores" multiple="false">
 					<form:options items="${instructores}" itemValue="id"
 						itemLabel="persona.nombre" />

@@ -57,6 +57,7 @@
   <script src="resources/js/Uiclasses/TipoVehiculoRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
+  <script src="resources/js/Uiclasses/CalendarController.js"></script>
   <script src="resources/js/core/ServerManager.js"></script>
    
    <link rel='stylesheet' type='text/css' href='resources/js/libs/fullcalendar/fullcalendar.css' />

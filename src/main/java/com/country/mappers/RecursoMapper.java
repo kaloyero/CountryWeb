@@ -36,9 +36,9 @@ public class RecursoMapper {
 	   List <RecursoDisponibilidad> disponibilidades = new ArrayList<RecursoDisponibilidad>();
 		
 		try {
+
 			JSONArray json = (JSONArray)new JSONParser().parse(((RecursoForm) form).getDisponibilidades());
 			Iterator it = 	json.iterator();
-			
 		        while( it.hasNext() ){
 		        	JSONObject nodo = (JSONObject)it.next();
 		        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();

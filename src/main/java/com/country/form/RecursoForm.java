@@ -14,7 +14,7 @@ public class RecursoForm extends Form  {
 	private double importe;
 	private Integer maxTiempoReserva;
 	private List< Map<Integer, Integer>> reservas = new ArrayList();
-	private String disponibilidades;
+	private String disponibilidades="";
 	
 	private int tipoRecurso ;
 	public int getId() {
@@ -60,9 +60,13 @@ public class RecursoForm extends Form  {
 		this.reservas = reservas;
 	}
 	public String getDisponibilidades() {
+   		System.out.println("GET"+ disponibilidades);
+
 		return disponibilidades;
 	}
 	public void setDisponibilidades(String disponibilidades) {
+   		System.out.println("SET"+ disponibilidades);
+
 		this.disponibilidades = disponibilidades;
 	}
 	
