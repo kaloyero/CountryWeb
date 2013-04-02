@@ -15,17 +15,16 @@ var Calendarcontroller = new Class({
 		
 			selectable: true,
 			select: function(start, end, allDay) {
-			    	
+			    	/*
 			    	$('#calendar').fullCalendar("columnFormat",{
 		                month: 'dddd',    // Monday, Wednesday, etc
 		                week: 'dddd, MMM dS', // Monday 9/7
 		                day: 'dddd, MMM dS'  // Monday 9/7
-		            })
+		            })*/
 
 			    	 end.setHours(end.getHours()+1);
 			    	 end.setMinutes(0);
-	
-						$('#calendar').fullCalendar('renderEvent',
+						this.calendar.renderEvent(
 							{
 								title: "",
 								start: start,

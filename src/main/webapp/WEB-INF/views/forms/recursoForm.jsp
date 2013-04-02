@@ -62,6 +62,7 @@
 			</p>
 	
 		</div>
+					<form:hidden id ="recursoDis" path="disponibilidades"/>
 	
 	</fieldset>
 	<div id='calendar'></div>

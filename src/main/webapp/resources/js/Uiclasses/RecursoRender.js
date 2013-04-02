@@ -12,8 +12,8 @@ var RecursoRender = new Class({
     onNewTab: function(){
     	var form=this.getActiveForm();
     	this.createCalendarComponent(form);
-    	var obj = JSON.parse($(form).find("#disponibilidades").attr("value"));
-    	console.log("OBBJ",obj);
+    	//var obj = JSON.parse($(form).find("#disponibilidades").attr("value"));
+    	//console.log("OBBJ",obj);
     },
    
     bindEvents: function(){
@@ -60,7 +60,10 @@ var RecursoRender = new Class({
     
     createCalendarComponent: function(form){
     	var me=this;
-    	calendarController.createCalendar(form,function(start, end, callback){me.populateExistingEvents(start, end, callback);});
+    	//var eventList =self.getListEvents(form);
+    	//var events = JSON.parse(eventList);
+    	var events=null
+    	calendarController.createCalendar(form,function(start, end, callback){me.populateExistingEvents(start, end, callback);},events);
     },
     
     /*Cargar eventos del recurso antes de mostrar*/
@@ -72,9 +75,38 @@ var RecursoRender = new Class({
      	var eventList =self.getListEvents(form);
      	
      	console.log("ADDEVENTSOURCE",eventList);
-     
-     	$(eventList).each(function(index) {
+     	
+     	if (eventList) {
+     		var obj = JSON.parse(eventList);
+     		var fechaDesde= new Date(start.getTime());
+     		var fechaHasta= new Date(start.getTime());
+         	console.log("Obje",obj);
+         	console.log("StartGetTime",start.getDate());
+         	fechaDesde.setDate(start.getDate() +obj[0].dia)
+         	fechaDesde.setHours(obj[0].horaIni);
+         	fechaHasta.setDate(start.getDate() +obj[0].dia)
+         	fechaHasta.setHours(obj[0].horaFin);
+         	console.log("Des",fechaDesde);
+         	console.log("Hasta",fechaHasta);
 
+         	
+    		var nuevoEvento=new Object();
+     		nuevoEvento.title="PPUT";
+     		nuevoEvento.allDay=false;
+     		
+     		nuevoEvento.start=fechaDesde;
+     		nuevoEvento.end=fechaHasta;
+     	
+    		events.push(nuevoEvento);
+     	}
+     	/*if (eventList) {
+     		var obj = JSON.parse(eventList);
+         	console.log("Obje",obj);
+     	
+     	
+     	$(obj[0]).each(function(index) {
+
+     		console.log("THIS ",this)
      		console.log("START ",start)
      		
      		var nextWeekStart= new Date(start.getTime());
@@ -100,30 +132,44 @@ var RecursoRender = new Class({
      		console.log("DATENE",nextWeekStart)
      	    console.log("DATEEND",nextWeekEnd)
     		events.push(nuevoEvento);
-    	})
- 
+    	})}*/
+    	console.log("PASA")
     	callback( events,[true] );
     	
     },
     
     getListEvents: function(form){
+    	//return $(form).find("#calendar").fullCalendar( 'clientEvents')
+    	
+    	return this.getForm().find("#recursoDis").attr("value")
+    },
+    
+    getCreatedEvents: function(form){
     	return $(form).find("#calendar").fullCalendar( 'clientEvents')
+    		
+    },
+    
+    getForm: function(){
+    	var activeTab= $(".active").children().attr("href");
+    	var form=$(activeTab).find("form")
+    	return form;
+    	
     },
     
     onSubmit: function(){
     	var disponibilidades = [];
     	var html = [];
     	var form=this.getActiveForm();
-    	var eventList =this.getListEvents(form);
-    	
+    	var eventList =this.getCreatedEvents(form);
+    	console.log("EVENTLIUST",eventList)
     	
     	$(eventList).each(function(index) {
     		disponibilidades.push({"Dia": this.start.getDay(), "horaIni": this.start.getHours(),"horaFin": this.end.getHours()});
     	})
     	
     	var disponibilidadesText = JSON.stringify(disponibilidades);
-    	var disponibilidadesText="OLA"
-    	html.push("<input type=hidden id=puto  name='disponibilidades' value='ola'>")
+    	$('[name="disponibilidades"]').remove()
+    	html.push("<input type=hidden id=testa  name='disponibilidades' value="+disponibilidadesText+">")
     	form.append(html.join(''));
     	console.log("EVENTOS ",disponibilidadesText)
     	return form;

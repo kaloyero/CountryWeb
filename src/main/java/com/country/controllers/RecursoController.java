@@ -49,7 +49,7 @@ public class RecursoController {
 			return "registration";
 		} else {
 			
-	   recursoManager.save(RecursoMapper.getRecurso(form));
+	   recursoManager.save(RecursoMapper.getRecurso(form),null);
 			return "success";
 		}
 			

@@ -3,6 +3,7 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +43,7 @@ public class Recurso implements Serializable {
     @JoinColumn(name="IdTipoRecurso",updatable = true, insertable = true)	
 	private  TipoRecurso tipoRecurso ;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+    @OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private Concepto concepto;
 
@@ -54,9 +55,11 @@ public class Recurso implements Serializable {
     @JoinColumn(name="IdExcepcion",updatable = true, insertable = true , nullable = true)
 	private List <RecursoExcepcion> excepciones;
 
-    @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdDisponibilidad",updatable = true, insertable = true , nullable = true)
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+  	@JoinColumn(name="IdDisponibilidad",updatable = true, insertable = true)
 	private List <RecursoDisponibilidad> disponibilidad;
+    
+  	
 
     
 	public List<Reserva> getReservas() {
