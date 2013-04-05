@@ -98,12 +98,14 @@ public class ActividadController {
 				row.add(String.valueOf(actividad.getId()));
 				row.add(actividad.getNombre());
 				row.add(actividad.getDescripcion());
+				row.add(String.valueOf(actividad.getFechaComienzo()));
+				row.add(actividad.getDescripcion());
 				dataTable.getAaData().add(row);
 			};
 			dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("2");
-           dataTable.setiTotalRecords("1");
-           return dataTable;
+			dataTable.setiTotalDisplayRecords("3");
+			dataTable.setiTotalRecords("1");
+			return dataTable;
 	}
 
 	

@@ -53,9 +53,9 @@ public class Persona implements Serializable {
 	@JoinColumn(name="IdTipoDocumento",updatable = true, insertable = true)	
 	private TipoDocumento tipoDoc;
 	
-    @OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
     @Cascade(CascadeType.ALL)
-    @BatchSize(size = 10)
+	@BatchSize(size = 10)
     @JoinColumn(name="IdPersona", updatable = true, insertable = true , nullable = true)
 	private  List <Telefono> telefonos ;
 

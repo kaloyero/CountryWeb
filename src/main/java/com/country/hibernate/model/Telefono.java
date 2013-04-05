@@ -30,16 +30,15 @@ public class Telefono implements Serializable {
 	@Column(name = "Prefijo")
 	private int prefijo;
 	
-    @OneToOne(fetch= FetchType.LAZY)
+    @OneToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="IdTipoTelefono",updatable = true, insertable = true)	
 	private TipoTelefono tipoTelefono;
 	
 	@Column(name = "Numero")
 	private int numero;
 	
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="IdPersona",updatable = true, insertable = true)	
-	private Persona persona;
+    @Column(name = "IdPersona")
+	private int persona;
 	
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
@@ -92,14 +91,12 @@ public class Telefono implements Serializable {
 		this.numero = numero;
 	}
 
-	public Persona getPersona() {
+	public int getPersona() {
 		return persona;
 	}
 
-	public void setPersona(Persona persona) {
+	public void setPersona(int persona) {
 		this.persona = persona;
 	}
-  
-  
   
 }

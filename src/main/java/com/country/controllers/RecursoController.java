@@ -18,6 +18,7 @@ import com.country.mappers.RecursoMapper;
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Recurso;
+import com.country.hibernate.model.Telefono;
 import com.country.services.ResourceManager;
 
 /**
@@ -82,6 +83,9 @@ public class RecursoController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(recurso.getId()));
 				row.add(recurso.getNombre());
+				row.add(recurso.getConcepto().getNombre());
+				row.add(recurso.getTipoRecurso().getNombre());
+				
 				dataTable.getAaData().add(row);
 			}
 

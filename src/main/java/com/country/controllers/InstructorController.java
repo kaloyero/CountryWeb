@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ActividadForm;
 import com.country.form.InstructorForm;
-import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
+import com.country.hibernate.model.Telefono;
 import com.country.mappers.InstructorMapper;
-import com.country.mappers.IntegranteMapper;
 import com.country.services.InstructorManager;
 
 /**
@@ -74,16 +72,22 @@ public class InstructorController {
            
            DataTable dataTable=new DataTable();
 
-			for (Instructor actividad : instructorManager.listAll()) {
+			for (Instructor instructor : instructorManager.listAll()) {
 				List <String> row =new ArrayList<String>();
-				row.add(String.valueOf(actividad.getId()));
-				row.add(actividad.getPersona().getApellido());
-				row.add(actividad.getPersona().getNombre());
+				row.add(String.valueOf(instructor.getId()));
+				row.add(instructor.getPersona().getNombre() + " " + instructor.getPersona().getApellido());
+				row.add(instructor.getPersona().getTipoDoc().getNombre() + " " +  instructor.getPersona().getNroDoc());
+				row.add(instructor.getPersona().getEmail());
+				String tel = "";
+				for (Telefono telefono : instructor.getPersona().getTelefonos()) {
+					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
+				}
+				row.add(tel);
 				dataTable.getAaData().add(row);
 			}
  ;
            dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("2");
+           dataTable.setiTotalDisplayRecords("5");
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}

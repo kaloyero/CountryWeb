@@ -89,12 +89,13 @@ public class VehiculoController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(vehiculo.getId()));
 				row.add(vehiculo.getCodigo());
+				row.add(vehiculo.getTipoVehiculo().getNombre());
 				row.add(vehiculo.getDescripcion());
 				dataTable.getAaData().add(row);
 			}
 
            dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("2");
+           dataTable.setiTotalDisplayRecords("4");
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}

@@ -36,6 +36,7 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Codigo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
 							
 						</tr>
 				</thead>

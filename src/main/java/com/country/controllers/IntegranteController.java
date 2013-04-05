@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Integrante;
+import com.country.hibernate.model.Telefono;
 import com.country.mappers.IntegranteMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.TypeDocumentManager;
@@ -88,13 +89,19 @@ public class IntegranteController {
 			for (Integrante integrante : integranteManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(integrante.getId()));
-				row.add(integrante.getPersona().getApellido());
+				row.add(integrante.getPersona().getApellido() + " " + integrante.getPersona().getApellido());
+				row.add(integrante.getPersona().getTipoDoc().getNombre() + " " + integrante.getPersona().getNroDoc());
 				row.add(integrante.getUnidad().getCode());
+				String tel = "";
+				for (Telefono telefono : integrante.getPersona().getTelefonos()) {
+					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
+				}
+				row.add(tel);
 				dataTable.getAaData().add(row);
 			}
 
            dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("2");
+           dataTable.setiTotalDisplayRecords("5");
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}
