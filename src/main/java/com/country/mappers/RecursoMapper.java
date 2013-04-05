@@ -36,9 +36,9 @@ public class RecursoMapper {
 	   List <RecursoDisponibilidad> disponibilidades = new ArrayList<RecursoDisponibilidad>();
 		
 		try {
+
 			JSONArray json = (JSONArray)new JSONParser().parse(((RecursoForm) form).getDisponibilidades());
 			Iterator it = 	json.iterator();
-			
 		        while( it.hasNext() ){
 		        	JSONObject nodo = (JSONObject)it.next();
 		        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();
@@ -63,6 +63,7 @@ public class RecursoMapper {
 		RecursoForm form=new RecursoForm();
 		form.setNombre(recurso.getNombre());
 		form.setDescripcion(recurso.getDescripcion());
+		//form.setMaxTiempoReserva(recurso.getMaxTiempoReserva());
 		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
 		System.out.println("ES  " + recurso.getDisponibilidad());
 

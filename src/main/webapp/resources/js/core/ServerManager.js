@@ -72,6 +72,8 @@ var ServerManager = new Class({
    
     save: function(config){
     	var self=this;
+    	console.log("SAVSERI",config.form.serialize())
+    	    	console.log("SAVESINSER",config.form)
 
     	$.ajax( {
 		      type: "POST",

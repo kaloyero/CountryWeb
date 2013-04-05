@@ -50,7 +50,7 @@ public class RecursoController {
 			return "registration";
 		} else {
 			
-	   recursoManager.save(RecursoMapper.getRecurso(form));
+	   recursoManager.save(RecursoMapper.getRecurso(form),null);
 			return "success";
 		}
 			
@@ -78,6 +78,7 @@ public class RecursoController {
 	public  @ResponseBody DataTable getUserInJSON()  {
            
            DataTable dataTable=new DataTable();
+   		System.out.println("Entrandoo!!  ");
 
 			for (Recurso recurso : recursoManager.listAll()) {
 				List <String> row =new ArrayList<String>();

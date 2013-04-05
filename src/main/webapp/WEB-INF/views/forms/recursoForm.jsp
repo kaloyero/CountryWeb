@@ -1,17 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<script type="text/javascript">
-	$().ready(function() {
 
-	    
-	    
-	  
-	})
-
-	  </script>
 <p></p>
 <form:form commandName="RECURSO" class="block-content form">
-<form:input  path="disponibilidades" class="required" />
+
 
 	<fieldset>
 		<legend>General</legend>
@@ -29,6 +21,15 @@
 					cols="40" />
 			</p>
 		</div>
+		
+		<div class="_50">
+			<p>
+				<label for="select">TipoRecruso</label>
+
+				<select id="instructores" name="instructores"></select>
+			</p>
+		</div>
+		
 		<div class="_25">
 			<p>
 				<label for="textfield">Costo</label>
@@ -36,13 +37,32 @@
 				<form:input path="importe" class="required" />
 			</p>
 		</div>
-
+		
 		<div class="_25">
 			<p>
-				<label for="datepicker">Max tiempo Reserva (minutos)</label>
+				<label for="datepicker">Max tiempo Reserva</label>
 				<form:input path="maxTiempoReserva" class="required" />
 			</p>
 		</div>
+		
+		
+		
+			<div class="_25">
+			<p>
+				<label for="datepicker">Disponibilidad</label>
+				<input id ="dis" type="checkbox" name="checkbox" checked=true >			
+			</p>
+	
+		</div>
+		
+			<div class="_25">
+			<p>
+				<label for="datepicker">Excepciones</label>
+				<input id="exc" type="checkbox" name="checkbox" >			
+			</p>
+	
+		</div>
+					<form:hidden id ="recursoDis" path="disponibilidades"/>
 	
 	</fieldset>
 	<div id='calendar'></div>

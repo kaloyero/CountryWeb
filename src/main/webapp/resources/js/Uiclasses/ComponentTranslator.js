@@ -127,7 +127,7 @@ var ComponentTranslator = new Class({
 				alert("ERROR")
 		}
 		serverManager.update({object:objectType,objectId:objectId,form:formToSend,onSuccess : function(data) {
-				self.onUpated();
+				self.onUpdated();
 		}});
 	},
 	

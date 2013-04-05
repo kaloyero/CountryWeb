@@ -46,14 +46,7 @@ var Render = new Class({
     getActiveForm: function(){
    	 return $(this.getActiveTab()).find("form")
    },
-    
-    
-   
-    
-    
-   
-    
-    
+      
     
     
 });
