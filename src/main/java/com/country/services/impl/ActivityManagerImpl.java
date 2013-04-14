@@ -50,7 +50,6 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		return act;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Asignacion> findAsignacionByIdAct(Integer id) {
 		List<Asignacion> list = (List<Asignacion>) asignationDao.findAllByProperty("actividad.id",id);
 		return list;
@@ -58,11 +57,14 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 	
 
 	@Transactional
-	public int save(Actividad dto, Double tarifa) {
+	//public int save(Actividad dto, Double tarifa, List<Asignacion> asignaciones) {
+	public int save(Actividad dto, Double tarifa) {		
 // 		TODO 	Agregar Asignacion
 		
 		int id = 0;		
 		id = activityDao.save(dto);
+		
+		
 		for (Asignacion asignacion : dto.getAsignaciones()) {
 			asignacion.getActividad().setId(id);
 			asignationDao.save(asignacion);
@@ -77,21 +79,9 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 
 		return id;
 	}
-
-	@Transactional
-	public void saveAsignation(List<Asignacion> asignaciones,int id) {
-// 		TODO 	Agregar Asignacion
-		
-//		for (Asignacion asignacion : asignaciones) {
-//			Actividad act = new Actividad(); 
-////			act.setId(id);
-//			asignacion.getActividad().setId(id);
-//			asignationDao.save(asignacion);
-//		} 
-
-	}
 	
 	@Transactional	
+	//public void update(Actividad dto, List<Asignacion> asignaciones, Double tarifa) {
 	public void update(Actividad dto, List<Asignacion> asignaciones, Double tarifa) {
 		List<Cronograma> listCrono = scheduleDao.findAllByProperty("actividad.id", dto.getId());
 
@@ -128,7 +118,8 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 
 		//si es igual a la ultima no la actualizo, sino la agrego a la lista
 		Tarifa tarifaUltima = priceDao.getLastPriceByConcept(dto.getConcepto().getId());
-		if (price.getImporte() != tarifaUltima.getImporte()){
+		
+		if (tarifaUltima == null || price.getImporte() != tarifaUltima.getImporte()){
 			priceDao.save(price);	
 		}
 		
@@ -145,5 +136,6 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		list = activityDao.findAllByProperty("nombre", name);
 		return list;
 	}
+
 
 }

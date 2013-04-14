@@ -57,7 +57,7 @@ public class ActividadController {
 		} else {
 //			actividadForm.setId(10);
 			int idAct = activityManager.save(ActividadMapper.getActividad(actividadForm,instructorManager),actividadForm.getImporte());
-			activityManager.saveAsignation(ActividadMapper.getListAsignacion(actividadForm,instructorManager), idAct);
+//			activityManager.saveAsignation(ActividadMapper.getListAsignacion(actividadForm,instructorManager), idAct);
 			return "success";
 		}
 	}
@@ -124,6 +124,5 @@ public class ActividadController {
 	public void setActivityManager(ActivityManager activityManager) {
 		this.activityManager = activityManager;
 	}
-	
 	
 }

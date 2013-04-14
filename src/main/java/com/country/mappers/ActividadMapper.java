@@ -26,20 +26,19 @@ public class ActividadMapper {
 		form.setIdConcepto(object.getConcepto().getId());
 		form.setNombre(object.getNombre());
 		//System.out.println("AFUERA ENRTA"+actividad.getAsignaciones());
-
+		form.setFechaInicio(String.valueOf(object.getFechaComienzo()));
+		
+		
 		for (Asignacion asignacion : object.getAsignaciones()) {
 			form.getInstructores().add(asignacion.getInstructor().getId());
 			form.setIdAsignacion(asignacion.getId());
 		}
-		//TODO se deberia tomar solo el importe reciente
-	   form.setImporte(tarifa.getImporte());
-//	   for (Tarifa tarifa :actividad.getConcepto().getTarifas()) {
-//		   form.setImporte(tarifa.getImporte());
-//		}
+		
+		form.setImporte(tarifa.getImporte());
 	   
-	   for (Cronograma cronograma :object.getCronogramas()) {
+		for (Cronograma cronograma :object.getCronogramas()) {
 		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
-	   }
+		}
 		
 		return form;
 		

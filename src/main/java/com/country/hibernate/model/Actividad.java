@@ -56,7 +56,7 @@ public class Actividad implements Serializable {
 	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = false, insertable = false, nullable = true)
 	private List <Asignacion> asignaciones;
-//
+
 //    @ManyToMany(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY)
 //    @BatchSize(size = 10)
 //    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdActividad", nullable = false, updatable = true) }, 
