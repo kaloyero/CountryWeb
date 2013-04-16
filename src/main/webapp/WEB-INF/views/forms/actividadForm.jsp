@@ -35,7 +35,7 @@
 		<div class="_25">
 			<p>
 				<label for="datepicker">Comienzo</label>
-				<form:input path="fechaInicio" class="required" />
+				<form:input path="fechaInicio" class="required datepicker" />
 			</p>
 		</div>
 		

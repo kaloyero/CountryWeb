@@ -31,7 +31,7 @@
 		<div class="_25">
 			<p>
 				<label for="datepicker">Nacimiento</label>
-				<form:input path="persona.nacimiento" class="required" />
+				<form:input path="persona.nacimiento" class="required datepicker" />
 			</p>
 		</div>
 
