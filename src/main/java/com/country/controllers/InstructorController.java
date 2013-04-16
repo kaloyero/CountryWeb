@@ -20,6 +20,7 @@ import com.country.hibernate.model.Instructor;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.InstructorMapper;
 import com.country.services.InstructorManager;
+import com.country.services.TypeDocumentManager;
 
 /**
  * Handles requests for the application home page.
@@ -30,6 +31,9 @@ public class InstructorController {
 
 	@Autowired
 	private InstructorManager instructorManager;
+
+	@Autowired
+	private TypeDocumentManager tipoDocumentoManager;
 
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
@@ -55,6 +59,7 @@ public class InstructorController {
 		Instructor instructor =instructorManager.findById(id);
 		InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor);
 		model.addAttribute("INSTRUCTOR", form);
+		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		return "forms/instructorForm";
 
 	}
