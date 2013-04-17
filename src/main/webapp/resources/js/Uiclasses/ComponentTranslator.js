@@ -60,7 +60,7 @@ var ComponentTranslator = new Class({
 				formToSend = tipoVehiculoRender.onSubmit();
 				break;
 			default:
-				alert("ERROR")
+				alert("ERROR 1");
 		}
 		serverManager.save({object:objectType,form:formToSend,onSuccess : function(data) {
 				self.onSaved();
@@ -89,6 +89,9 @@ var ComponentTranslator = new Class({
 				break;
 			case "integrante":
 				formToSend =integranteRender.onSubmit();
+				break;
+			case "concepto":
+				formToSend =conceptoRender.onSubmit();
 				break;
 			case "vehiculo":
 				formToSend =vehiculoRender.onSubmit();
@@ -124,7 +127,7 @@ var ComponentTranslator = new Class({
 				formToSend = tipoVehiculoRender.onSubmit();
 
 			default:
-				alert("ERROR")
+				alert("ERROR 2");
 		}
 		serverManager.update({object:objectType,objectId:objectId,form:formToSend,onSuccess : function(data) {
 				self.onUpdated();

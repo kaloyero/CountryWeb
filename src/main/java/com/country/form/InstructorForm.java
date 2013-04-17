@@ -1,13 +1,12 @@
 package com.country.form;
 
-import java.util.Date;
 
 public class InstructorForm extends Form  {
 
 	private Integer id =0;
 	
-	private Date fechaComienzo;
-	private Date fechaFin;
+	private String fechaComienzo;
+	private String fechaFin;
 	private PersonaForm persona ;
 	
 	public InstructorForm() {
@@ -20,16 +19,16 @@ public class InstructorForm extends Form  {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Date getFechaComienzo() {
+	public String getFechaComienzo() {
 		return fechaComienzo;
 	}
-	public void setFechaComienzo(Date fechaComienzo) {
+	public void setFechaComienzo(String fechaComienzo) {
 		this.fechaComienzo = fechaComienzo;
 	}
-	public Date getFechaFin() {
+	public String getFechaFin() {
 		return fechaFin;
 	}
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 	public PersonaForm getPersona() {
