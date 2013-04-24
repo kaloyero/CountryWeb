@@ -28,8 +28,11 @@ var Render = new Class({
     							return nRow;
     						},
     	} );
+    	
     	//Escondo la primer columna ID
     	activeTable.fnSetColumnVis( 0, false );
+    	
+    	 $('.datepicker').datepicker();
     },
     getActiveTab: function(){
     	 return  $(".active").children().attr("href");
@@ -44,7 +47,7 @@ var Render = new Class({
 	},
     
     getActiveForm: function(){
-   	 return $(this.getActiveTab()).find("form")
+   	 return $(this.getActiveTab()).find("form");
    },
       
     

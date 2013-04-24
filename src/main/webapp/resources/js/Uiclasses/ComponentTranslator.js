@@ -70,7 +70,7 @@ var ComponentTranslator = new Class({
 	
 	onSaved : function() {
 		//TODO actualizar el id del form
-		alert("YES")
+		alert("YES");
 	},
 	
 	
@@ -89,6 +89,9 @@ var ComponentTranslator = new Class({
 				break;
 			case "integrante":
 				formToSend =integranteRender.onSubmit();
+				break;
+			case "concepto":
+				formToSend =conceptoRender.onSubmit();
 				break;
 			case "vehiculo":
 				formToSend =vehiculoRender.onSubmit();
@@ -124,7 +127,7 @@ var ComponentTranslator = new Class({
 				formToSend = tipoVehiculoRender.onSubmit();
 
 			default:
-				alert("ERROR")
+				alert("ERROR");
 		}
 		serverManager.update({object:objectType,objectId:objectId,form:formToSend,onSuccess : function(data) {
 				self.onUpdated();
