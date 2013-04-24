@@ -34,5 +34,5 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 //		dto.getActivities();
 		return dto;
 	}
-	
+
 }

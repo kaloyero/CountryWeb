@@ -89,7 +89,7 @@ public class IntegranteController {
 			for (Integrante integrante : integranteManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(integrante.getId()));
-				row.add(integrante.getPersona().getApellido() + " " + integrante.getPersona().getApellido());
+				row.add(integrante.getPersona().getNombre() + " " + integrante.getPersona().getApellido());
 				row.add(integrante.getPersona().getTipoDoc().getNombre() + " " + integrante.getPersona().getNroDoc());
 				row.add(integrante.getUnidad().getCode());
 				String tel = "";

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.UnidadForm;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Unidad;
 import com.country.mappers.UnidadMapper;
 import com.country.services.UnitManager;
@@ -52,9 +53,10 @@ public class UnidadController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 		Unidad unidad =unidadManager.findById(id);
-		//List <Integrante> row =unidad.getIntegrantes()
+		List <Integrante> integrators = unidadManager.getIntegrators(id);
 		UnidadForm form = (UnidadForm) UnidadMapper.getForm(unidad);
 		model.addAttribute("UNIDAD", form);
+		model.addAttribute("integrantes", integrators);
 		return "forms/unidadForm";
 
 	}

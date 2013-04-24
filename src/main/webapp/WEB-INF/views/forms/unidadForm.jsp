@@ -22,6 +22,29 @@
 					cols="40" />
 			</p>
 		</div>
+		<div class="_100">
+			<table id="integrantesUnidad" class="table active-table">
+				<thead>
+					<tr>
+						<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
+						<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Documento</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="integrante" items="${integrantes}">
+						<tr>
+							<td>
+									${integrante.persona.nombre} ${integrante.persona.apellido}
+							</td>
+							<td>
+									${integrante.persona.tipoDoc.nombre} ${integrante.persona.nroDoc}
+							</td>
+							
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 		
 </fieldset>
 

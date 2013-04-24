@@ -43,7 +43,7 @@ var ActividadRender = new Class({
 				sabado.push($(this).parent().attr("id"));
 				break;
 			default:
-					alert("ERROR Actividad.jsp");
+					alert("ERROR Actividad.jsp")
 				}
 		});
 		html.push("<input type=hidden id=testa  name='dias[0]' value="+domingo+">");
