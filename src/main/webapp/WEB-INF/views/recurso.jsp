@@ -2,12 +2,21 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.util.*" %>
 
+<script type="text/javascript">
+		
+		function updateRecurso(id){
+			
+			translator.onUpdate('recurso',id);
+		}
+
+</script> 
+
 
 <div class="container_12">
 
 	<div class="grid_12">
 		<h1>Recurso</h1>
-		<p>Desde aqui controle los conceptos</p>
+		<p>Desde aqui controle los recursos</p>
 	</div>
 	<div class="grid_12">
 		<div class="block-border" id="tab-panel-1">

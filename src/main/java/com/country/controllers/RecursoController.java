@@ -19,6 +19,7 @@ import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Recurso;
 import com.country.mappers.RecursoMapper;
 import com.country.services.ResourceManager;
+import com.country.services.TypeResourceManager;
 
 /**
  * Handles requests for the application home page.
@@ -29,12 +30,16 @@ public class RecursoController {
 
 	@Autowired
 	private ResourceManager recursoManager;
-	
+
+	@Autowired
+	private TypeResourceManager tipoResourceManager;
+
 
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		RecursoForm form = new RecursoForm();
+		model.addAttribute("tipoRecurso", tipoResourceManager.listAll());
 		model.addAttribute("RECURSO", form);
 
 		return "recurso";
@@ -49,7 +54,7 @@ public class RecursoController {
 			return "registration";
 		} else {
 			
-	   recursoManager.save(RecursoMapper.getRecurso(form),null);
+	    recursoManager.save(RecursoMapper.getRecurso(form),form.getImporte());
 			return "success";
 		}
 			
@@ -57,9 +62,9 @@ public class RecursoController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-		Recurso recurso =recursoManager.findById(id);
-		
-		RecursoForm form = (RecursoForm) RecursoMapper.getForm(recurso);
+		RecursoForm form = recursoManager.getResourceForm(id);
+
+		model.addAttribute("tipoRecurso", tipoResourceManager.listAll());
 		model.addAttribute("RECURSO", form);
 		
 		return "forms/recursoForm";
@@ -69,15 +74,19 @@ public class RecursoController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "RECURSO") RecursoForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		return "success";
-		
-
+		if (result.hasErrors()) {
+			return "registration";
+		} else {
+			recursoManager.update(form);
+			return "success";
+		}
 	}
+	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public  @ResponseBody DataTable getUserInJSON()  {
            
-           DataTable dataTable=new DataTable();
-   		System.out.println("Entrandoo!!  ");
+            DataTable dataTable=new DataTable();
+   		    System.out.println("Entrandoo!!  ");
 
 			for (Recurso recurso : recursoManager.listAll()) {
 				List <String> row =new ArrayList<String>();

@@ -57,10 +57,7 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 	
 
 	@Transactional
-	//public int save(Actividad dto, Double tarifa, List<Asignacion> asignaciones) {
 	public int save(Actividad dto, Double tarifa) {		
-// 		TODO 	Agregar Asignacion
-		
 		int id = 0;		
 		id = activityDao.save(dto);
 		

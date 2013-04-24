@@ -48,15 +48,15 @@ public class Recurso implements Serializable {
 	private Concepto concepto;
 
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdReserva",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdRecurso",updatable = false, insertable = false , nullable = true)
 	private List <Reserva> reservas;
 
     @OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdExcepcion",updatable = true, insertable = true , nullable = true)
+    @JoinColumn(name="IdRecurso",updatable = false, insertable = false , nullable = true)
 	private List <RecursoExcepcion> excepciones;
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
-  	@JoinColumn(name="IdDisponibilidad",updatable = true, insertable = true)
+    @OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
+  	@JoinColumn(name="IdRecurso",updatable = false, insertable = false)
 	private List <RecursoDisponibilidad> disponibilidad;
     
   	

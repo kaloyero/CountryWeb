@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.util.*" %>
 
- <script type="text/javascript">
+<script type="text/javascript">
 		
 		function updateActividad(id){
 			

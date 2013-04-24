@@ -93,6 +93,9 @@ var ComponentTranslator = new Class({
 			case "concepto":
 				formToSend =conceptoRender.onSubmit();
 				break;
+			case "recurso":
+				formToSend =recursoRender.onSubmit();
+				break;
 			case "vehiculo":
 				formToSend =vehiculoRender.onSubmit();
 				break;

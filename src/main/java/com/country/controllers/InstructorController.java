@@ -39,6 +39,7 @@ public class InstructorController {
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		InstructorForm instructor = new InstructorForm();
+		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		model.addAttribute("INSTRUCTOR", instructor);
 		
 		return "instructor";
