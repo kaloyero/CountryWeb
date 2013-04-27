@@ -33,33 +33,39 @@ public class RecursoMapper {
 		recurso.setTipoRecurso(tipoRecurso);
 		
 		recurso.setConcepto(getConcepto((RecursoForm)form));
-	   List <RecursoDisponibilidad> disponibilidades = new ArrayList<RecursoDisponibilidad>();
-		
-		try {
-
-			JSONArray json = (JSONArray)new JSONParser().parse(((RecursoForm) form).getDisponibilidades());
-			Iterator it = 	json.iterator();
-		        while( it.hasNext() ){
-		        	JSONObject nodo = (JSONObject)it.next();
-		        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();
-		        	disponibilidad.setDiaSemana(((Long) nodo.get("Dia")).intValue());
-		        	disponibilidad.setHoraIni(((Long) nodo.get("horaIni")).intValue());
-		        	disponibilidad.setHoraFin(((Long) nodo.get("horaFin")).intValue());
-		        	disponibilidad.setRecurso(recurso.getId());
-		        	disponibilidades.add(disponibilidad);
-		         
-		        }		
-		  recurso.setDisponibilidad(disponibilidades);
-		} catch (org.json.simple.parser.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		return recurso;
 
 	}
+	
+	public static List <RecursoDisponibilidad> getRecursoDisponibilidad(Form form) {
 
-	public static RecursoForm getForm(Recurso recurso, double tarifa) {
+		   List <RecursoDisponibilidad> disponibilidades = new ArrayList<RecursoDisponibilidad>();
+			
+			try {
+
+				JSONArray json = (JSONArray)new JSONParser().parse(((RecursoForm) form).getDisponibilidades());
+				Iterator it = 	json.iterator();
+			        while( it.hasNext() ){
+			        	JSONObject nodo = (JSONObject)it.next();
+			        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();
+			        	disponibilidad.setDiaSemana(((Long) nodo.get("Dia")).intValue());
+			        	disponibilidad.setHoraIni(((Long) nodo.get("horaIni")).intValue());
+			        	disponibilidad.setHoraFin(((Long) nodo.get("horaFin")).intValue());
+			        	disponibilidad.setRecurso(((RecursoForm) form).getId());
+			        	disponibilidades.add(disponibilidad);
+			         
+			        }		
+
+			} catch (org.json.simple.parser.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return disponibilidades;
+
+	}
+
+	public static RecursoForm getForm(Recurso recurso, double tarifa,List<RecursoDisponibilidad> listDispoRec) {
 		RecursoForm form=new RecursoForm();
 		form.setId(recurso.getId());
 		form.setNombre(recurso.getNombre());
@@ -68,9 +74,8 @@ public class RecursoMapper {
 		form.setImporte(tarifa);
 		form.setTipoRecurso(recurso.getTipoRecurso().getId());
 		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
-		System.out.println("ES  " + recurso.getDisponibilidad());
 
-		form.setDisponibilidades(getDisponibilidades(recurso.getDisponibilidad()));
+		form.setDisponibilidades(getDisponibilidades(listDispoRec));
 	
 	
 		return form;

@@ -55,9 +55,9 @@ public class Recurso implements Serializable {
     @JoinColumn(name="IdRecurso",updatable = false, insertable = false , nullable = true)
 	private List <RecursoExcepcion> excepciones;
 
-    @OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
-  	@JoinColumn(name="IdRecurso",updatable = false, insertable = false)
-	private List <RecursoDisponibilidad> disponibilidad;
+//    @OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
+//  	@JoinColumn(name="IdRecurso",updatable = false, insertable = false)
+//	private List <RecursoDisponibilidad> disponibilidad;
     
   	
 
@@ -78,13 +78,13 @@ public class Recurso implements Serializable {
 		this.excepciones = excepciones;
 	}
 
-	public List<RecursoDisponibilidad> getDisponibilidad() {
-		return disponibilidad;
-	}
-
-	public void setDisponibilidad(List<RecursoDisponibilidad> disponibilidad) {
-		this.disponibilidad = disponibilidad;
-	}
+//	public List<RecursoDisponibilidad> getDisponibilidad() {
+//		return disponibilidad;
+//	}
+//
+//	public void setDisponibilidad(List<RecursoDisponibilidad> disponibilidad) {
+//		this.disponibilidad = disponibilidad;
+//	}
 
 	public int getId() {
 		return id;

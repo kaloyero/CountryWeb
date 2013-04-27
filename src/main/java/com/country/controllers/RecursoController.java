@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Recurso;
-import com.country.mappers.RecursoMapper;
 import com.country.services.ResourceManager;
 import com.country.services.TypeResourceManager;
 
@@ -54,7 +53,7 @@ public class RecursoController {
 			return "registration";
 		} else {
 			
-	    recursoManager.save(RecursoMapper.getRecurso(form),form.getImporte());
+	    recursoManager.save(form);
 			return "success";
 		}
 			

@@ -53,7 +53,7 @@
 			<div class="_25">
 			<p>
 				<label for="datepicker">Disponibilidad</label>
-				<input id ="dis" type="checkbox" name="checkbox" checked=true >			
+				<input id ="dis" type="checkbox" name="checkbox" checked="true" >			
 			</p>
 	
 		</div>

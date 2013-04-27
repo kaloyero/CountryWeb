@@ -17,6 +17,7 @@ import com.country.hibernate.model.RecursoDisponibilidad;
 import com.country.hibernate.model.Tarifa;
 import com.country.mappers.RecursoMapper;
 import com.country.services.PriceManager;
+import com.country.services.ResourceAvaiableManager;
 import com.country.services.ResourceManager;
 
 @Service("resourceManager")
@@ -24,6 +25,9 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 
 	@Autowired
     private PriceManager priceManager;
+	
+	@Autowired
+    private ResourceAvaiableManager resourceAvaiableManager;
 	
 	@Autowired
     private ResourceDao resourceDao;
@@ -44,8 +48,10 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 	}
 	
 	@Transactional
-	public int save(Recurso dto, double tarifa) {
+	public int save(RecursoForm form) {
 // 		TODO 	Agregar Asignacion
+		
+		Recurso dto = RecursoMapper.getRecurso(form);
 		
 		int id = 0;		
 		id = resourceDao.save(dto);
@@ -53,12 +59,12 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		//Guarda el importe
 		Tarifa price = new Tarifa();
 		price.setConcepto(dto.getConcepto().getId());
-		price.setImporte(tarifa);
+		price.setImporte(form.getImporte());
 		price.setFechaComienzo(dto.getConcepto().getFechaComienzo());
 		priceDao.save(price);		
 
 		//Agrego la disponibilidad
-		for (RecursoDisponibilidad recDispo : dto.getDisponibilidad()) {
+		for (RecursoDisponibilidad recDispo : RecursoMapper.getRecursoDisponibilidad(form)) {
 			recDispo.setRecurso(id);
 			resourceAvaiableDao.save(recDispo);
 		}
@@ -70,11 +76,14 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 	public void update(RecursoForm form) {
 		
 		Recurso dto = RecursoMapper.getRecurso(form);
+		//La lista de recursos q viene del form
+		List<RecursoDisponibilidad> recursoDispoList =  RecursoMapper.getRecursoDisponibilidad(form);
 		
 		/* Actualizo los horarios disponible */
 		List<RecursoDisponibilidad> listRecDispo = resourceAvaiableDao.findAllByProperty("recurso", form.getId());
 
-		for (RecursoDisponibilidad recDispo : dto.getDisponibilidad()) {
+		
+		for (RecursoDisponibilidad recDispo : recursoDispoList) {
 			boolean insert = true;
 			for (RecursoDisponibilidad recDispoOld : listRecDispo) {
 					
@@ -90,7 +99,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		//Borro los dias q ya no estan
 		for (RecursoDisponibilidad recDispo : listRecDispo) {
 			boolean delete = true;
-			for (RecursoDisponibilidad recDispoOut : dto.getDisponibilidad()) {
+			for (RecursoDisponibilidad recDispoOut : recursoDispoList) {
 				if (recDispo.getDiaSemana() == recDispoOut.getDiaSemana() && recDispo.getHoraIni() == recDispoOut.getHoraIni() ){
 					delete = false;
 				}
@@ -108,7 +117,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		price.setFechaComienzo(new Date(2012, 12, 12));
 		
 		//si es igual a la ultima no la actualizo, sino la agrego a la lista
-		Tarifa tarifaUltima = priceDao.getLastPriceByConcept(dto.getConcepto().getId());
+		Tarifa tarifaUltima = priceManager.getLastPriceByConcept(dto.getConcepto().getId());
 		
 		if (tarifaUltima == null || price.getImporte() != tarifaUltima.getImporte()){
 			priceDao.save(price);	
@@ -122,8 +131,9 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 	public RecursoForm getResourceForm(Integer id){
 		Recurso dto = resourceDao.findById(id);
 		Tarifa tarifa = priceManager.getLastPriceByConcept(dto.getConcepto().getId());
+		List<RecursoDisponibilidad> listDispoRec = resourceAvaiableManager.findResourcesAvaiableById(id); 
 		
-		RecursoForm form = (RecursoForm) RecursoMapper.getForm(dto,tarifa.getImporte());
+		RecursoForm form = (RecursoForm) RecursoMapper.getForm(dto,tarifa.getImporte(),listDispoRec);
 		
 		return form;
 	}

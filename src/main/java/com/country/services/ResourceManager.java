@@ -6,7 +6,7 @@ import com.country.hibernate.model.Recurso;
 public interface ResourceManager extends AbstractManager<Recurso>{
 
 	Recurso findById(Integer id);
-	int save(Recurso dto,double tarifa);
+	int save(RecursoForm form);
 	
 	RecursoForm getResourceForm(Integer id);
 	
