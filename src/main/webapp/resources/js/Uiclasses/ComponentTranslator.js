@@ -60,7 +60,7 @@ var ComponentTranslator = new Class({
 				formToSend = tipoVehiculoRender.onSubmit();
 				break;
 			default:
-				alert("ERROR")
+				alert("ERROR");
 		}
 		serverManager.save({object:objectType,form:formToSend,onSuccess : function(data) {
 				self.onSaved();
@@ -69,8 +69,7 @@ var ComponentTranslator = new Class({
 	
 	
 	onSaved : function() {
-		//TODO actualizar el id del form
-		alert("YES");
+		alert("Agregado");
 	},
 	
 	
@@ -138,7 +137,7 @@ var ComponentTranslator = new Class({
 	},
 	
 	onUpdated : function() {
-		alert("YES UP")
+		alert("Guardado");
 	},
 	
 	onLoad : function(objectType,objectId,rowSelectedName) {

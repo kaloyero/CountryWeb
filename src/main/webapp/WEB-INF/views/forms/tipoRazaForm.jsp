@@ -11,11 +11,22 @@
 			<p>
 				<label for="textfield">Valor</label>
 				<form:input path="nombre" class="required" />
-				
-				
 				<form:hidden path="id" />
 			</p>
 		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Especie</label>
+				<form:select path="especie" multiple="false">
+					<form:options items="${especies}" itemValue="id" itemLabel="nombre" />
+				</form:select>
+			</p>
+		</div>
+
+<div class="alert success"><span class="hide">x</span><strong>Success</strong> Lorem ipsum dolor sit amet.</div>
+
+
+		
 	</fieldset>
 	<div class="clear"></div>
 	<div class="block-actions">
@@ -31,7 +42,7 @@
 			<c:if test="${TIPO.id != 0}">
 				<li><input type="button" class="button" value="Guardar!"
 				onClick="updateTipo(${TIPO.id})"></li>									
-								</c:if>
+			</c:if>
 		</ul>
 	</div>
 

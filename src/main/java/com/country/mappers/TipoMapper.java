@@ -1,7 +1,9 @@
 package com.country.mappers;
 
 
+import com.country.form.Form;
 import com.country.form.TipoForm;
+import com.country.form.TipoRazaForm;
 import com.country.hibernate.model.Especie;
 import com.country.hibernate.model.Raza;
 import com.country.hibernate.model.TipoAutorizacion;
@@ -36,12 +38,16 @@ public class TipoMapper {
 //	
 //	}
 
-	public static Raza getTipoRaza(TipoForm form)
+	public static Raza getTipoRaza(Form form)
 			throws ParseException {
 		
 		Raza type = new Raza();
-		type.setId(form.getId());
-		type.setNombre(form.getNombre());
+		type.setId(((TipoRazaForm) form).getId());
+		type.setNombre(((TipoRazaForm) form).getNombre());
+		Especie especie = new Especie();
+		especie.setId(((TipoRazaForm) form).getEspecie());
+		type.setEspecie(especie);
+		
 		return type;
 	
 	}
@@ -166,12 +172,13 @@ public class TipoMapper {
 	
 	}
 
-	public static TipoForm getForm(Raza tipo)
+	public static TipoRazaForm getForm(Raza tipo)
 			throws ParseException {
 		
-		TipoForm form = new TipoForm();
+		TipoRazaForm form = new TipoRazaForm();
 		form.setId(tipo.getId());
 		form.setNombre(tipo.getNombre());
+		form.setEspecie(tipo.getEspecie().getId());
 		return form;
 	
 	}
