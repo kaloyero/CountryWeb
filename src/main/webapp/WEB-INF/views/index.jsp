@@ -36,6 +36,7 @@
    
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
+  <script src="resources/js/mylibs/jquery.notifications.js"></script>
   <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
   <script src="resources/js/Uiclasses/Render.js"></script>
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>

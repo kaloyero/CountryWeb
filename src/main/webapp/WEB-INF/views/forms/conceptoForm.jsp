@@ -12,7 +12,7 @@
 		<div class="_100">
 			<p>
 				<label for="textfield">Nombre</label>
-				<form:input path="nombre" class="required" />
+				<form:input path="nombre" class="required" /><span class="ui-icon ui-icon-close" role="presentation" onclick="alert('ale');" >Remove Tab</span>
 			</p>
 		</div>
 

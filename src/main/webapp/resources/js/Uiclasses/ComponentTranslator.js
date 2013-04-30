@@ -60,7 +60,7 @@ var ComponentTranslator = new Class({
 				formToSend = tipoVehiculoRender.onSubmit();
 				break;
 			default:
-				alert("ERROR");
+				$.jGrowl("Se ha producido un error. No se ha creado satisfactoriamente.", { theme: 'error' });
 		}
 		serverManager.save({object:objectType,form:formToSend,onSuccess : function(data) {
 				self.onSaved();
@@ -69,7 +69,7 @@ var ComponentTranslator = new Class({
 	
 	
 	onSaved : function() {
-		alert("Agregado");
+		$.jGrowl("Creado con exito.", { theme: 'success' });
 	},
 	
 	
@@ -129,29 +129,37 @@ var ComponentTranslator = new Class({
 				formToSend = tipoVehiculoRender.onSubmit();
 
 			default:
-				alert("ERROR");
-		}
+				$.jGrowl("Se ha producido un error. Los cambios no han sido guardados.", { theme: 'error' });
+			}
 		serverManager.update({object:objectType,objectId:objectId,form:formToSend,onSuccess : function(data) {
 				self.onUpdated();
 		}});
 	},
 	
 	onUpdated : function() {
-		alert("Guardado");
+		$.jGrowl("Guardado con exito.", { theme: 'success' });
+		canvasController.getClose();
 	},
 	
 	onLoad : function(objectType,objectId,rowSelectedName) {
+		alert("aca ale");
 		var self=this;
 			serverManager.get({object:objectType,objectId:objectId,onSuccess : function(data) {
+				alert("rowSelectedName " + rowSelectedName);
+				alert("objectId " + objectId);
+				alert("objectType " + objectType);
+				alert("data " + data);
 				self.onLoaded(rowSelectedName,objectId,objectType,data);
 			}});
 	},
 	
 	onLoaded : function(rowSelectedName,objectId,objectType,data) {
+		
 		canvasController.onLoaded(rowSelectedName,objectId,objectType,data);
 	},
 	
 	onShow : function(objectType) {
+		
 		var self=this;
 		serverManager.show({object:objectType,onSuccess : function(data) {
 			self.onShowed(objectType,data);
@@ -160,6 +168,7 @@ var ComponentTranslator = new Class({
 	},
 	
 	onShowed : function(objectType,data) {
+		
 		canvasController.onShowOption(objectType,data);
 	},
 	

@@ -17,7 +17,7 @@ public class DateFormater {
 			returnDate = sdf1.parse(d);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("(DateFormater.java) Error en el parseo de formato ");
+			System.out.println("ERROR (DateFormater.java) Error en el parseo de formato ");
 		}
 
 		return returnDate;

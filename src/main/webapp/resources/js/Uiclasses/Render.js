@@ -31,8 +31,8 @@ var Render = new Class({
     	
     	//Escondo la primer columna ID
     	activeTable.fnSetColumnVis( 0, false );
-    	
-    	 $('.datepicker').datepicker();
+    	//Inicializo calendario 
+    	$('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
     },
     getActiveTab: function(){
     	 return  $(".active").children().attr("href");
