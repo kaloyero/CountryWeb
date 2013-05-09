@@ -2,7 +2,6 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,13 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "Personas", catalog = "country")
@@ -52,34 +46,6 @@ public class Persona implements Serializable {
 	@OneToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name="IdTipoDocumento",updatable = true, insertable = true)	
 	private TipoDocumento tipoDoc;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-    @Cascade(CascadeType.ALL)
-	@BatchSize(size = 10)
-    @JoinColumn(name="IdPersona", updatable = true, insertable = true , nullable = true)
-	private  List <Telefono> telefonos ;
-
-    @OneToMany
-    @Cascade({CascadeType.ALL})
-	@BatchSize(size = 10)
-    @JoinColumn(name="IdPersona",updatable = true, insertable = true , nullable = true)
-	private List <Direccion> directions;
-
-    public List<Telefono> getTelefonos() {
-		return telefonos;
-	}
-
-	public void setTelefonos(List<Telefono> telefonos) {
-		this.telefonos = telefonos;
-	}
-
-	public List<Direccion> getDirections() {
-		return directions;
-	}
-
-	public void setDirections(List<Direccion> directions) {
-		this.directions = directions;
-	}
 
 	public Date getDtNacimiento() {
 		return dtNacimiento;

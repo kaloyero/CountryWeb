@@ -25,13 +25,10 @@ public class InstructorMapper {
 		
 		InstructorForm instructorForm=new InstructorForm();
 		instructorForm.setId(instructor.getId());
-		instructorForm.setPersona(PersonaMapper.getForm(instructor.getPersona()));
+		instructorForm.setPersona(PersonaMapper.getForm(instructor.getPersona(), null, null));
 		instructorForm.setFechaComienzo(DateFormater.convertDateToString(instructor.getFechaComienzo()));
 		instructorForm.setFechaFin(DateFormater.convertDateToString(instructor.getFechaFin()));
 		return instructorForm;
 	
 	}
-
-
-
 }

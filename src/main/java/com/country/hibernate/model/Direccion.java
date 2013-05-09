@@ -25,7 +25,7 @@ public class Direccion implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdDireccion", unique = true, nullable = false)	
-	private Integer id;
+	private int id;
 	
 	@Column(name = "CalleNombre", nullable = false)
 	private String streetName;
@@ -53,11 +53,12 @@ public class Direccion implements Serializable {
 	@Column(name = "IdPersona")
 	private int person;
 
-	public Integer getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

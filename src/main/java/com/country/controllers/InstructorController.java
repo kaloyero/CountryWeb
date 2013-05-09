@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.form.InstructorForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
-import com.country.hibernate.model.Telefono;
 import com.country.mappers.InstructorMapper;
 import com.country.services.InstructorManager;
 import com.country.services.TypeDocumentManager;
+import com.country.services.TypeTelephoneManager;
 
 /**
  * Handles requests for the application home page.
@@ -35,11 +35,15 @@ public class InstructorController {
 	@Autowired
 	private TypeDocumentManager tipoDocumentoManager;
 
+	@Autowired
+	private TypeTelephoneManager typeTelephoneManager;
+
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		InstructorForm instructor = new InstructorForm();
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
+		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());
 		model.addAttribute("INSTRUCTOR", instructor);
 		
 		return "instructor";
@@ -61,6 +65,7 @@ public class InstructorController {
 		InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor);
 		model.addAttribute("INSTRUCTOR", form);
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
+		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());
 		return "forms/instructorForm";
 
 	}
@@ -85,9 +90,9 @@ public class InstructorController {
 				row.add(instructor.getPersona().getTipoDoc().getNombre() + " " +  instructor.getPersona().getNroDoc());
 				row.add(instructor.getPersona().getEmail());
 				String tel = "";
-				for (Telefono telefono : instructor.getPersona().getTelefonos()) {
-					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
-				}
+//				for (Telefono telefono : instructor.getPersona().getTelefonos()) {
+//					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
+//				}
 				row.add(tel);
 				dataTable.getAaData().add(row);
 			}

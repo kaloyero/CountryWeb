@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Integrante;
-import com.country.hibernate.model.Telefono;
-import com.country.mappers.IntegranteMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.TypeDocumentManager;
+import com.country.services.TypeTelephoneManager;
 import com.country.services.UnitManager;
 
 /**
@@ -39,13 +38,18 @@ public class IntegranteController {
 	@Autowired
 	private TypeDocumentManager tipoDocumentoManager;
 
+	@Autowired
+	private TypeTelephoneManager tipoTelephoneManager;
+
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		IntegranteForm integrante = new IntegranteForm();
+
 		model.addAttribute("INTEGRANTE", integrante);
 		model.addAttribute("unidades", unidadManager.listAll());
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
+		model.addAttribute("tipoTelefono", tipoTelephoneManager.listAll());
 		
 		return "integrante";
 	}
@@ -55,7 +59,7 @@ public class IntegranteController {
 			@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,
 			BindingResult result) throws ParseException {
 		
-		integranteManager.save(IntegranteMapper.getIntegrante(integranteForm));
+		integranteManager.save(integranteForm);
 				return "success";
 		
 	}
@@ -63,12 +67,13 @@ public class IntegranteController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		Integrante integrante =integranteManager.findById(id);
-		IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante);
+		IntegranteForm form = integranteManager.findById(id);
+		
 		model.addAttribute("INTEGRANTE", form);
 		model.addAttribute("unidades", unidadManager.listAll());
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
-
+		model.addAttribute("tipoTelefono", tipoTelephoneManager.listAll());
+		
 		return "forms/integranteForm";
 
 	}
@@ -76,7 +81,7 @@ public class IntegranteController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "INTEGRANTE") IntegranteForm integranteForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		integranteManager.update(IntegranteMapper.getIntegrante(integranteForm));
+		integranteManager.update(integranteForm);
 		return "success";
 		
 
@@ -93,9 +98,9 @@ public class IntegranteController {
 				row.add(integrante.getPersona().getTipoDoc().getNombre() + " " + integrante.getPersona().getNroDoc());
 				row.add(integrante.getUnidad().getCode());
 				String tel = "";
-				for (Telefono telefono : integrante.getPersona().getTelefonos()) {
-					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
-				}
+//				for (Telefono telefono : integrante.getPersona().getTelefonos()) {
+//					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
+//				}
 				row.add(tel);
 				dataTable.getAaData().add(row);
 			}

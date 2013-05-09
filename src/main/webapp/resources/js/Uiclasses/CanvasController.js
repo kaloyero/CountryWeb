@@ -83,14 +83,15 @@ var CanvasController = new Class({
     },
     
     getTabContainer: function(){
-    	alert("ale aca se toca cnd aparece el tab");
+    	//alert("ale aca se toca cnd aparece el tab");
     	return $("#tab-panel-1");
     },
     getClose: function(){
-    	alert("se cierra pos");
-    	$("#tab-panel-1").remove();
-    	//tabs.tabs( "refresh" );
-    	alert("termino se ");
+    	alert("se cieRRA pos");
+    	
+    	this.getTabContainer().find(".tab-content").remove();
+
+    	alert("termino ");
     },
     
     getTableRows: function(){
@@ -103,29 +104,3 @@ var CanvasController = new Class({
     
 });
 var canvasController=new CanvasController();
-
-//tabs.delegate( "span.ui-icon-close", "click", function() {
-//	alert("aca alegrieas");
-//	var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
-//    $( "#" + panelId ).remove();
-//    tabs.tabs( "refresh" );
-//  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

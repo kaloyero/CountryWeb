@@ -21,7 +21,6 @@ public class PriceDaoImpl extends GenericDaoImpl<Tarifa, Integer> implements Pri
     	getSession().update(obj);
     }
 	
-    @SuppressWarnings("unchecked")
     public Tarifa getLastPriceByConcept(int concept) {
   	  Criteria criteria = getSession().createCriteria(getEntityClass());
   	  criteria.add(Restrictions.like("concepto", concept));
