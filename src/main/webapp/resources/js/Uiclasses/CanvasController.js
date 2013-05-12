@@ -63,6 +63,10 @@ var CanvasController = new Class({
 			break;
        	}
     },
+    onSaved: function(){
+    	this.removeActiveTab();
+    	this.activeFirstTab();
+    },
     
     onShowOption: function(objectType,data){
     	$("#main-content").empty();
@@ -105,6 +109,17 @@ var CanvasController = new Class({
     getTableId: function(table){
     	return $(table).parent().parent().attr("id");
     },
+    removeActiveTab:function(){
+    	var activeTab=$(".active")
+    	var activeTabContent = $(activeTab).find("a").attr("href");
+		$(activeTabContent).remove();
+		$(activeTab).remove();
+    },
+    activeFirstTab:function(){
+    	this.getTabContainer().find("ul.tabs li")[0].addClass("active");
+    	var activeTab = $(".active").find("a").attr("href");
+		$(activeTab).fadeIn();
+    }
     
 });
 var canvasController=new CanvasController();
