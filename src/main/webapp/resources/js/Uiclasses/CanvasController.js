@@ -10,6 +10,10 @@ var CanvasController = new Class({
         this.getTabContainer().find("ul.tabs li:first").addClass("active").show();
     	this.getTabContainer().find(".tab-content:first").show();
     },
+    createDashboard:function(){
+    	$('#graph-data').visualize({type: 'line', height: 250}).appendTo('#tab-line').trigger('visualizeRefresh');
+    	
+    },
    
     addTab: function(nameRow, id, content){
     	this.getTabContainer().find("ul.tabs li").removeClass("active");
