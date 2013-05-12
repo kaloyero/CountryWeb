@@ -76,6 +76,7 @@ var ComponentTranslator = new Class({
 	
 	
 	onSaved : function() {
+		canvasController.onSaved();
 		$.jGrowl("Creado con exito.", { theme: 'success' });
 	},
 	
