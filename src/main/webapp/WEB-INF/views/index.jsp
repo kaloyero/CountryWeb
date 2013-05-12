@@ -56,6 +56,8 @@
   <script src="resources/js/Uiclasses/TipoRecursoRender.js"></script>
   <script src="resources/js/Uiclasses/TipoVacunaRender.js"></script>
   <script src="resources/js/Uiclasses/TipoVehiculoRender.js"></script>
+  <script src="resources/js/Uiclasses/MensajeCategoriaRender.js"></script>
+  <script src="resources/js/Uiclasses/NoticiaCategoriaRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
   <script src="resources/js/Uiclasses/CalendarController.js"></script>
@@ -162,6 +164,8 @@
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoRecurso">Tipo de Recursos</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoVacuna">Tipo de Vacunas</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoVehiculo">Tipo de Vehiculos</a></li>
+	    				<li><a href="javascript:void(0);" class="option current" id="mensajeCategoria">Categorias de Mensajes</a></li>
+	    				<li><a href="javascript:void(0);" class="option current" id="noticiaCategoria">Categorias de Noticias</a></li>
 	    			</ul>
 	    		</li>
 	    		

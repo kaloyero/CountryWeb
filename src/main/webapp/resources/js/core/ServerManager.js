@@ -19,6 +19,8 @@ var ServerManager = new Class({
         this.services['tipoRecurso']={};
         this.services['tipoVacuna']={};
         this.services['tipoVehiculo']={};
+        this.services['mensajeCategoria']={};
+        this.services['noticiaCategoria']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
         this.services['instructor']["load"]="/CountryWeb/instructor/load/";
@@ -53,6 +55,10 @@ var ServerManager = new Class({
         this.services['tipoVacuna']["save"]="/CountryWeb/tipoVacuna/create/";
         this.services['tipoVehiculo']["load"]="/CountryWeb/tipoVehiculo/load/";
         this.services['tipoVehiculo']["save"]="/CountryWeb/tipoVehiculo/create/";
+        this.services['mensajeCategoria']["load"]="/CountryWeb/mensajeCategoria/load/";
+        this.services['mensajeCategoria']["save"]="/CountryWeb/mensajeCategoria/create/";
+        this.services['noticiaCategoria']["load"]="/CountryWeb/noticiaCategoria/load/";
+        this.services['noticiaCategoria']["save"]="/CountryWeb/noticiaCategoria/create/";
 
     },
  

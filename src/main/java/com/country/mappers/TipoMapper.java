@@ -5,6 +5,8 @@ import com.country.form.Form;
 import com.country.form.TipoForm;
 import com.country.form.TipoRazaForm;
 import com.country.hibernate.model.Especie;
+import com.country.hibernate.model.MensajeCategorias;
+import com.country.hibernate.model.NoticiaCategorias;
 import com.country.hibernate.model.Raza;
 import com.country.hibernate.model.TipoAutorizacion;
 import com.country.hibernate.model.TipoDocumento;
@@ -62,6 +64,29 @@ public class TipoMapper {
 	
 	}
 
+	public static MensajeCategorias getMensajeCategoria(TipoForm form)
+			throws ParseException {
+		
+			MensajeCategorias type = new MensajeCategorias();
+			type.setId(form.getId());
+			type.setNombre(form.getNombre());
+			
+			return type;
+		
+	}
+
+	public static NoticiaCategorias getNoticiaCategoria(TipoForm form)
+			throws ParseException {
+		
+			NoticiaCategorias type = new NoticiaCategorias();
+			type.setId(form.getId());
+			type.setNombre(form.getNombre());
+			
+			return type;
+		
+	}
+
+	
 	public static TipoPagos getTipoPagos(TipoForm form)
 			throws ParseException {
 		
@@ -142,6 +167,26 @@ public class TipoMapper {
 	
 	}
 
+	public static TipoForm getForm(MensajeCategorias tipo)
+			throws ParseException {
+		
+			TipoForm form = new TipoForm();
+			form.setId(tipo.getId());
+			form.setNombre(tipo.getNombre());
+			return form;
+		
+		}
+
+	public static TipoForm getForm(NoticiaCategorias tipo)
+			throws ParseException {
+		
+			TipoForm form = new TipoForm();
+			form.setId(tipo.getId());
+			form.setNombre(tipo.getNombre());
+			return form;
+		
+		}
+	
 	public static TipoForm getForm(TipoDocumento tipo)
 			throws ParseException {
 		

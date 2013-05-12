@@ -44,11 +44,18 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.LiquidacionCargo</value>
 		<value>com.country.hibernate.model.Localidad</value>
 		<value>com.country.hibernate.model.Mascota</value>
+		<value>com.country.hibernate.model.Mensaje</value>
+		<value>com.country.hibernate.model.MensajeCategorias</value>
+		<value>com.country.hibernate.model.MensajeDetalles</value>
+		<value>com.country.hibernate.model.NoticiaAdjunto</value>
+		<value>com.country.hibernate.model.NoticiaCategorias</value>
+		<value>com.country.hibernate.model.NoticiaSuscripciones</value>
+		<value>com.country.hibernate.model.NoticiaValoraciones</value>
+		<value>com.country.hibernate.model.Noticia</value>
 		<value>com.country.hibernate.model.Pago</value>
 		<value>com.country.hibernate.model.Periodo</value>
 		<value>com.country.hibernate.model.Persona</value>
 		<value>com.country.hibernate.model.Provincia</value>
-
 		<value>com.country.hibernate.model.Raza</value>
 		<value>com.country.hibernate.model.Recurso</value>
 		<value>com.country.hibernate.model.RecursoDisponibilidad</value>

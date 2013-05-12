@@ -59,6 +59,13 @@ var ComponentTranslator = new Class({
 			case "tipoVehiculo":
 				formToSend = tipoVehiculoRender.onSubmit();
 				break;
+			case "mensajeCategoria":
+				formToSend =mensajeCategoriaRender.onSubmit();
+				break;
+			case "noticiaCategoria":
+				formToSend =noticiaCategoriaRender.onSubmit();
+				break;
+				
 			default:
 				$.jGrowl("Se ha producido un error. No se ha creado satisfactoriamente.", { theme: 'error' });
 		}
@@ -127,6 +134,13 @@ var ComponentTranslator = new Class({
 				break;
 			case "tipoVehiculo":
 				formToSend = tipoVehiculoRender.onSubmit();
+				break;
+			case "noticiaCategoria":
+				formToSend =noticiaCategoriaRender.onSubmit();
+				break;
+			case "mensajeCategoria":
+				formToSend =mensajeCategoriaRender.onSubmit();
+				break;
 
 			default:
 				$.jGrowl("Se ha producido un error. Los cambios no han sido guardados.", { theme: 'error' });
