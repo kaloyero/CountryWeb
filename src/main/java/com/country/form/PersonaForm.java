@@ -1,5 +1,8 @@
 package com.country.form;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class PersonaForm extends Form  {
 
@@ -11,6 +14,26 @@ public class PersonaForm extends Form  {
 	private String nroDoc;
 	private String email;
 	private int tipoDocumento;
+	
+	private Map<Integer, String> direcciones = new HashMap<Integer, String>();
+	private Map<Integer, String> telefonos = new HashMap<Integer, String>();
+	
+
+	public Map<Integer, String> getDirecciones() {
+		return direcciones;
+	}
+
+	public void setDirecciones(Map<Integer, String> direcciones) {
+		this.direcciones = direcciones;
+	}
+
+	public Map<Integer, String> getTelefonos() {
+		return telefonos;
+	}
+
+	public void setTelefonos(Map<Integer, String> telefonos) {
+		this.telefonos = telefonos;
+	}
 
 	public Integer getId() {
 		return id;

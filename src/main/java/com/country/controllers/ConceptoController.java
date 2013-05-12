@@ -89,16 +89,24 @@ public class ConceptoController {
 	public  @ResponseBody DataTable getUserInJSON()  {
            
            DataTable dataTable=new DataTable();
-
+           
 			for (Concepto concepto : conceptManager.listAll()) {
 				List <String> row =new ArrayList<String>();
+				Tarifa tarifa = priceManager.getLastPriceByConcept(concepto.getId());
 				row.add(String.valueOf(concepto.getId()));
+				row.add(String.valueOf(concepto.getNombre()));
+				row.add(String.valueOf(concepto.getFechaComienzo()));
+				if (tarifa != null){
+					row.add(String.valueOf(tarifa.getImporte()));	
+				} else {
+					row.add("0.00");
+				}
 				row.add(concepto.getNombre());
 				dataTable.getAaData().add(row);
 			}
 
            dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("2");
+           dataTable.setiTotalDisplayRecords("4");
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}

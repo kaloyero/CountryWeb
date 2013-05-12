@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.country.common.DateFormater;
 import com.country.form.ActividadForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Asignacion;
@@ -26,20 +27,19 @@ public class ActividadMapper {
 		form.setIdConcepto(object.getConcepto().getId());
 		form.setNombre(object.getNombre());
 		//System.out.println("AFUERA ENRTA"+actividad.getAsignaciones());
-
+		form.setFechaInicio(DateFormater.convertDateToString(object.getFechaComienzo()));
+		
+		
 		for (Asignacion asignacion : object.getAsignaciones()) {
 			form.getInstructores().add(asignacion.getInstructor().getId());
 			form.setIdAsignacion(asignacion.getId());
 		}
-		//TODO se deberia tomar solo el importe reciente
-	   form.setImporte(tarifa.getImporte());
-//	   for (Tarifa tarifa :actividad.getConcepto().getTarifas()) {
-//		   form.setImporte(tarifa.getImporte());
-//		}
+		
+		form.setImporte(tarifa.getImporte());
 	   
-	   for (Cronograma cronograma :object.getCronogramas()) {
+		for (Cronograma cronograma :object.getCronogramas()) {
 		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
-	   }
+		}
 		
 		return form;
 		
@@ -58,7 +58,7 @@ public class ActividadMapper {
 		actividad.setDescripcion(actividadForm.getDescripcion());
 		actividad.setNombre(actividadForm.getNombre());
 		actividad.setFechaFin(convertedDate);
-		actividad.setFechaComienzo(new Date(2012, 12, 12));
+		actividad.setFechaComienzo(DateFormater.convertStringToDate(actividadForm.getFechaInicio()));
 
 		//Listas
 		actividad.setConcepto(getConcepto(actividadForm));
@@ -86,7 +86,7 @@ public class ActividadMapper {
 				for (Integer instructor : actividadForm.getInstructores()) {
 					Asignacion asignacion = new Asignacion();
 					asignacion.setId(actividadForm.getIdAsignacion());
-					asignacion.setFechaComienzo(new Date(2012, 12, 12));
+					asignacion.setFechaComienzo(DateFormater.convertStringToDate(actividadForm.getFechaInicio()));
 					asignacion.setInstructor(instructorManager
 							.findById((Integer) instructor));
 					asignacion.setActividad(actividad);
@@ -125,7 +125,7 @@ public class ActividadMapper {
 		Concepto concepto = new Concepto();
 		concepto.setId(actividadForm.getIdConcepto());
 		concepto.setNombre(actividadForm.getNombre());
-		concepto.setFechaComienzo(new Date(2012, 12, 12));
+		concepto.setFechaComienzo(DateFormater.convertStringToDate(actividadForm.getFechaInicio()));
 		return concepto;
 		
 	}
@@ -135,7 +135,7 @@ public class ActividadMapper {
 
 		Tarifa tarifa = new Tarifa();
 		tarifa.setImporte(actividadForm.getImporte());
-		tarifa.setFechaComienzo(new Date(2012, 12, 12));
+		tarifa.setFechaComienzo(DateFormater.convertStringToDate(actividadForm.getFechaInicio()));
 		tarifa.setConcepto(concepto.getId());
 		tarifas.add(tarifa);
 		return tarifas;

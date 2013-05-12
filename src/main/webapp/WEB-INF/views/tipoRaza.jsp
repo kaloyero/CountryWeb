@@ -35,7 +35,7 @@
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Clave</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
-							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Especie</th>
 						</tr>
 				</thead>
 						<tbody>
@@ -43,7 +43,7 @@
 					</table>
 				</div>
 				<div id="new" class="tab-content">
-					<%@include file="forms/tipoForm.jsp" %>
+					<%@include file="forms/tipoRazaForm.jsp" %>
 
 				</div>
 			</div>

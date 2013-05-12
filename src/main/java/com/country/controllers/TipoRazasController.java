@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.TipoForm;
+import com.country.form.TipoRazaForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Raza;
 import com.country.mappers.TipoMapper;
+import com.country.services.EspecieManager;
 import com.country.services.RazaManager;
 
 /**
@@ -29,18 +30,24 @@ public class TipoRazasController {
 
 	@Autowired
 	private RazaManager razaManager;
+
+	@Autowired
+	private EspecieManager especieManager;
+	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		TipoForm tipo = new TipoForm();
+		TipoRazaForm tipo = new TipoRazaForm();
 		model.addAttribute("TIPO", tipo);
 		model.addAttribute("accion", "tipoRaza");
+		model.addAttribute("especies", especieManager.listAll());
+
 		return "tipoRaza";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "TIPO") TipoForm tipoForm,
+			@ModelAttribute(value = "TIPO") TipoRazaForm tipoForm,
 			BindingResult result) throws ParseException {
 		
 		razaManager.save(TipoMapper.getTipoRaza(tipoForm));
@@ -52,15 +59,16 @@ public class TipoRazasController {
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
 		Raza type =razaManager.findById(id);
-		TipoForm form = (TipoForm) TipoMapper.getForm(type);
+		TipoRazaForm form = (TipoRazaForm) TipoMapper.getForm(type);
 		model.addAttribute("TIPO", form);
-
-		return "forms/tipoForm";
+		model.addAttribute("especies", especieManager.listAll());
+		
+		return "forms/tipoRazaForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "TIPO") TipoForm tipoForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "TIPO") TipoRazaForm tipoForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
 		razaManager.update(TipoMapper.getTipoRaza(tipoForm));
 		return "success";
@@ -77,6 +85,7 @@ public class TipoRazasController {
 				row.add(String.valueOf(tipo.getId()));
 				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getNombre());
+				row.add(tipo.getEspecie().getNombre());
 				dataTable.getAaData().add(row);
 			}
 

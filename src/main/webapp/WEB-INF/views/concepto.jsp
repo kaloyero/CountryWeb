@@ -35,7 +35,8 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Concepto</th>
-							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Fecha Comienzo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Importe</th>
 						</tr>
 				</thead>
 						<tbody>

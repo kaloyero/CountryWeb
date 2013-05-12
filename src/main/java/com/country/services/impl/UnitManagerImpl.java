@@ -1,10 +1,14 @@
 package com.country.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.country.common.GenericDao;
+import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.dao.UnitDao;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Unidad;
 import com.country.services.UnitManager;
 
@@ -14,6 +18,10 @@ public class UnitManagerImpl extends AbstractManagerImpl<Unidad> implements Unit
 	@Autowired
     private UnitDao unitDao;
 	
+	@Autowired
+    private IntegratorDao integratorDao;
+
+	
 	protected GenericDao<Unidad, Integer> getDao() {
 		return unitDao;
 	}
@@ -22,5 +30,11 @@ public class UnitManagerImpl extends AbstractManagerImpl<Unidad> implements Unit
 		Unidad dto = unitDao.findById(id);
 		return dto;
 	}
+
+	public List<Integrante> getIntegrators(Integer id) {
+		List <Integrante> integrators = integratorDao.findAllByProperty("unidad.id", id);
+		return integrators;
+	}
+
 	
 }

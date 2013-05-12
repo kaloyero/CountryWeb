@@ -34,10 +34,10 @@
   <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
   <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
   <script src="resources/js/libs/jquery.visualize.js"></script>
-  
-   
+
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>
+  <script src="resources/js/mylibs/jquery.notifications.js"></script>
   <script src="resources/js/Uiclasses/ComponentTranslator.js"></script>
   <script src="resources/js/Uiclasses/Render.js"></script>
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>
@@ -64,6 +64,9 @@
    
    <link rel='stylesheet' type='text/css' href='resources/js/libs/fullcalendar/fullcalendar.css' />
 <script type='text/javascript' src='resources/js/libs/fullcalendar/fullcalendar.js'></script>
+
+
+
   
 
   <!-- end CSS-->

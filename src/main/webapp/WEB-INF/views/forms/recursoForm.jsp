@@ -25,16 +25,19 @@
 		<div class="_50">
 			<p>
 				<label for="select">TipoRecruso</label>
-
-				<select id="instructores" name="instructores"></select>
+				<form:select path="tipoRecurso" multiple="false"> 
+					<form:options items="${tipoRecurso}" itemValue="id"
+						itemLabel="nombre" /> 
+				</form:select> 				
+				
 			</p>
 		</div>
 		
 		<div class="_25">
 			<p>
 				<label for="textfield">Costo</label>
-
 				<form:input path="importe" class="required" />
+				<form:hidden path="idConcepto"/>
 			</p>
 		</div>
 		
@@ -50,7 +53,7 @@
 			<div class="_25">
 			<p>
 				<label for="datepicker">Disponibilidad</label>
-				<input id ="dis" type="checkbox" name="checkbox" checked=true >			
+				<input id ="dis" type="checkbox" name="checkbox" checked="true" >			
 			</p>
 	
 		</div>
@@ -74,8 +77,16 @@
 				href="javascript:void(0);">Reset</a></li>
 		</ul>
 		<ul class="actions-right">
-			<li><input type="button" class="button" value="Crear!"
-				onClick="translator.onSubmit('recurso');"></li>
+			<li>
+				<c:if test="${RECURSO.id == 0}">
+					<input type="button" class="button" value="Crear!"
+					onClick="translator.onSubmit('recurso');">
+				</c:if>
+				<c:if test="${RECURSO.id != 0}">
+					<input type="button" class="button" value="Guardar!"
+					onClick="updateRecurso(${RECURSO.id})">								
+				</c:if>
+			</li>
 		</ul>
 	</div>
 </form:form>

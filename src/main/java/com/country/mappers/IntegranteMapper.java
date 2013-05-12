@@ -1,7 +1,11 @@
 package com.country.mappers;
 
+import java.util.List;
+
 import com.country.form.IntegranteForm;
+import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Integrante;
+import com.country.hibernate.model.Telefono;
 import com.country.hibernate.model.Unidad;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -21,12 +25,12 @@ public class IntegranteMapper {
 
 	}
 	
-	public static IntegranteForm getForm(Integrante integrante)
+	public static IntegranteForm getForm(Integrante integrante,List<Direccion> dires,List<Telefono> tels)
 			throws ParseException {
 
 		IntegranteForm integranteForm=new IntegranteForm();
 		integranteForm.setId(integrante.getId());
-		integranteForm.setPersona(PersonaMapper.getForm(integrante.getPersona()));
+		integranteForm.setPersona(PersonaMapper.getForm(integrante.getPersona(), dires, tels));
 		integranteForm.setUnidad(integrante.getUnidad().getId());
 		return integranteForm;
 

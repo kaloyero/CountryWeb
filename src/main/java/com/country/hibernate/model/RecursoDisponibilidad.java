@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,9 +33,8 @@ public class RecursoDisponibilidad implements Serializable {
 	@Column(name = "HoraFin")
 	private  int horaFin ;
 
-    @OneToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="IdRecurso",updatable = true, insertable = true)	
-	private  Recurso recurso ;
+	@Column(name = "IdRecurso")
+	private int recurso ;
 
 	public int getId() {
 		return id;
@@ -72,11 +68,11 @@ public class RecursoDisponibilidad implements Serializable {
 		this.horaFin = horaFin;
 	}
 
-	public Recurso getRecurso() {
+	public int getRecurso() {
 		return recurso;
 	}
 
-	public void setRecurso(Recurso recurso) {
+	public void setRecurso(int recurso) {
 		this.recurso = recurso;
 	}
 

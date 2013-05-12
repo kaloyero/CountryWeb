@@ -5,7 +5,6 @@ var CanvasController = new Class({
 
     },
     createTabs: function(){
-
         this.getTabContainer().find('.tab-content').hide();
         this.getTabContainer().find("ul.tabs li:first").addClass("active").show();
     	this.getTabContainer().find(".tab-content:first").show();
@@ -16,14 +15,19 @@ var CanvasController = new Class({
     },
    
     addTab: function(nameRow, id, content){
+    	alert("canva ");
     	this.getTabContainer().find("ul.tabs li").removeClass("active");
     	this.getTabContainer().find('.tab-content').hide();
-    	$(".tabs").append('<li><a href=#' + id + '>' + nameRow + '</a></li>');
+        
+    	$(".tabs").append('<li><a href=#' + id + '>' + nameRow + '</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span> </li>');
     	$(".tab-container").append('<div id=' + id + ' class="tab-content">' + content + '</div>');
 
     	this.getTabContainer().find("ul.tabs li:last").addClass("active").show();
     },
-   
+
+	
+
+    
     bindTabEvents: function(){
     	var self=this;
     	this.getTabContainer().find("ul.tabs li").live("click", function() {
@@ -50,6 +54,7 @@ var CanvasController = new Class({
     },
     
     onLoaded: function(rowSelectedName,id,objectType,data){
+    	
     	this.addTab(rowSelectedName,id+objectType,data);
     	
        	switch (objectType) {
@@ -82,8 +87,17 @@ var CanvasController = new Class({
     },
     
     getTabContainer: function(){
+    	//alert("ale aca se toca cnd aparece el tab");
     	return $("#tab-panel-1");
     },
+    getClose: function(){
+    	alert("se cieRRA pos");
+    	
+    	this.getTabContainer().find(".tab-content").remove();
+
+    	alert("termino ");
+    },
+    
     getTableRows: function(){
     	return $('.active-table tbody tr');
     },
@@ -94,23 +108,3 @@ var CanvasController = new Class({
     
 });
 var canvasController=new CanvasController();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

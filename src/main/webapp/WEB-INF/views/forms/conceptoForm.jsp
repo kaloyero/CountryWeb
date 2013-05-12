@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<script>
+</script>
+
 <p></p>
 <form:form commandName="CONCEPTO" class="block-content form">
 
@@ -9,7 +12,7 @@
 		<div class="_100">
 			<p>
 				<label for="textfield">Nombre</label>
-				<form:input path="nombre" class="required" />
+				<form:input path="nombre" class="required" /><span class="ui-icon ui-icon-close" role="presentation" onclick="alert('ale');" >Remove Tab</span>
 			</p>
 		</div>
 
@@ -31,7 +34,7 @@
 		<div class="_25">
 			<p>
 				<label for="datepicker">Comienzo</label>
-				<form:input path="fechaComienzo" class="required" />
+				<form:input path="fechaComienzo"  class="required datepicker"/>
 			</p>
 		</div>
 	

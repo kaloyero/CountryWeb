@@ -11,6 +11,7 @@ public class RecursoForm extends Form  {
 	
 	private  String descripcion ;
 	private String nombre;
+	private int idConcepto;
 	private double importe;
 	private Integer maxTiempoReserva;
 	private List< Map<Integer, Integer>> reservas = new ArrayList();
@@ -70,8 +71,11 @@ public class RecursoForm extends Form  {
 		this.disponibilidades = disponibilidades;
 	}
 	
-
-
-	
+	public int getIdConcepto() {
+		return idConcepto;
+	}
+	public void setIdConcepto(int idConcepto) {
+		this.idConcepto = idConcepto;
+	}
 
 }

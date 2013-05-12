@@ -29,45 +29,53 @@ public class RecursoMapper {
 		recurso.setNombre(((RecursoForm) form).getNombre());
 		recurso.setMaxTiempoReserv(((RecursoForm) form).getMaxTiempoReserva());
 		TipoRecurso tipoRecurso =new TipoRecurso();
-		tipoRecurso.setId(1);
+		tipoRecurso.setId(((RecursoForm) form).getTipoRecurso());
 		recurso.setTipoRecurso(tipoRecurso);
 		
 		recurso.setConcepto(getConcepto((RecursoForm)form));
-	   List <RecursoDisponibilidad> disponibilidades = new ArrayList<RecursoDisponibilidad>();
-		
-		try {
-
-			JSONArray json = (JSONArray)new JSONParser().parse(((RecursoForm) form).getDisponibilidades());
-			Iterator it = 	json.iterator();
-		        while( it.hasNext() ){
-		        	JSONObject nodo = (JSONObject)it.next();
-		        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();
-		        	disponibilidad.setDiaSemana(((Long) nodo.get("Dia")).intValue());
-		        	disponibilidad.setHoraIni(((Long) nodo.get("horaIni")).intValue());
-		        	disponibilidad.setHoraFin(((Long) nodo.get("horaFin")).intValue());
-		        	disponibilidad.setRecurso(recurso);
-		        	disponibilidades.add(disponibilidad);
-		         
-		        }		
-		  recurso.setDisponibilidad(disponibilidades);
-		} catch (org.json.simple.parser.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		return recurso;
 
 	}
+	
+	public static List <RecursoDisponibilidad> getRecursoDisponibilidad(Form form) {
 
-	public static RecursoForm getForm(Recurso recurso) {
+		   List <RecursoDisponibilidad> disponibilidades = new ArrayList<RecursoDisponibilidad>();
+			
+			try {
+
+				JSONArray json = (JSONArray)new JSONParser().parse(((RecursoForm) form).getDisponibilidades());
+				Iterator it = 	json.iterator();
+			        while( it.hasNext() ){
+			        	JSONObject nodo = (JSONObject)it.next();
+			        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();
+			        	disponibilidad.setDiaSemana(((Long) nodo.get("Dia")).intValue());
+			        	disponibilidad.setHoraIni(((Long) nodo.get("horaIni")).intValue());
+			        	disponibilidad.setHoraFin(((Long) nodo.get("horaFin")).intValue());
+			        	disponibilidad.setRecurso(((RecursoForm) form).getId());
+			        	disponibilidades.add(disponibilidad);
+			         
+			        }		
+
+			} catch (org.json.simple.parser.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return disponibilidades;
+
+	}
+
+	public static RecursoForm getForm(Recurso recurso, double tarifa,List<RecursoDisponibilidad> listDispoRec) {
 		RecursoForm form=new RecursoForm();
+		form.setId(recurso.getId());
 		form.setNombre(recurso.getNombre());
 		form.setDescripcion(recurso.getDescripcion());
-		//form.setMaxTiempoReserva(recurso.getMaxTiempoReserva());
+		form.setIdConcepto(recurso.getConcepto().getId());
+		form.setImporte(tarifa);
+		form.setTipoRecurso(recurso.getTipoRecurso().getId());
 		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
-		System.out.println("ES  " + recurso.getDisponibilidad());
 
-		form.setDisponibilidades(getDisponibilidades(recurso.getDisponibilidad()));
+		form.setDisponibilidades(getDisponibilidades(listDispoRec));
 	
 	
 		return form;
@@ -121,9 +129,9 @@ public class RecursoMapper {
 
 	public static Concepto getConcepto (RecursoForm form){
 		Concepto concepto = new Concepto();
+		concepto.setId(form.getIdConcepto());
 		concepto.setNombre(form.getNombre());
 		concepto.setFechaComienzo(new Date(2012, 12, 12));
-//		concepto.setTarifas(getTarifa(form,concepto));
 		return concepto;
 		
 	}
@@ -139,7 +147,5 @@ public class RecursoMapper {
 		return tarifas;
 		
 	}
-
-
 
 }

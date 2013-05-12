@@ -6,7 +6,7 @@ var ActividadRender = new Class({
     onSubmit: function(id){
     	
     	var activeTab= $(".active").children().attr("href");
-    	var form=$(activeTab).find("form")
+    	var form=$(activeTab).find("form");
 		var html = [];
 		var domingo=new Array();
 		var lunes=new Array();
@@ -18,7 +18,7 @@ var ActividadRender = new Class({
 
 		$('.selected').each(function(index) {
 		
-			var dia =$(this).attr("id")
+			var dia =$(this).attr("id");
 			switch(parseInt(dia))
 			{
 			case 0:
@@ -43,7 +43,7 @@ var ActividadRender = new Class({
 				sabado.push($(this).parent().attr("id"));
 				break;
 			default:
-					alert("ERROR Actividad.jsp")
+					alert("ERROR Actividad.jsp");
 				}
 		});
 		html.push("<input type=hidden id=testa  name='dias[0]' value="+domingo+">");

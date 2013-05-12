@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ActividadForm;
 import com.country.form.UnidadForm;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Unidad;
-import com.country.mappers.IntegranteMapper;
 import com.country.mappers.UnidadMapper;
 import com.country.services.UnitManager;
 
@@ -54,9 +53,10 @@ public class UnidadController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 		Unidad unidad =unidadManager.findById(id);
-		//List <Integrante> row =unidad.getIntegrantes()
+		List <Integrante> integrators = unidadManager.getIntegrators(id);
 		UnidadForm form = (UnidadForm) UnidadMapper.getForm(unidad);
 		model.addAttribute("UNIDAD", form);
+		model.addAttribute("integrantes", integrators);
 		return "forms/unidadForm";
 
 	}
@@ -79,11 +79,12 @@ public class UnidadController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(unidad.getId()));
 				row.add(unidad.getCode());
+				row.add(unidad.getDescription());
 				dataTable.getAaData().add(row);
 			}
  ;
            dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("2");
+           dataTable.setiTotalDisplayRecords("3");
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}

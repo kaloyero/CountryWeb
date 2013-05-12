@@ -33,9 +33,10 @@
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Apellido</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Unidad</th>
-							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Documento</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Unidad</th>							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">telefono</th>							
 						</tr>
 				</thead>
 						<tbody>

@@ -25,7 +25,7 @@ public class Direccion implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdDireccion", unique = true, nullable = false)	
-	private Integer id;
+	private int id;
 	
 	@Column(name = "CalleNombre", nullable = false)
 	private String streetName;
@@ -50,15 +50,15 @@ public class Direccion implements Serializable {
 	@JoinColumn(name="IdLocalidad",updatable = true, insertable = true)	
 	private Localidad town;
 
-	@OneToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
-	private Persona person;
+	@Column(name = "IdPersona")
+	private int person;
 
-	public Integer getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -118,11 +118,11 @@ public class Direccion implements Serializable {
 		this.town = town;
 	}
 
-	public Persona getPerson() {
+	public int getPerson() {
 		return person;
 	}
 
-	public void setPerson(Persona person) {
+	public void setPerson(int person) {
 		this.person = person;
 	}
 

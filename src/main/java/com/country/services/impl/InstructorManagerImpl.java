@@ -2,6 +2,7 @@ package com.country.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.hibernate.dao.InstructorDao;
@@ -16,11 +17,12 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 	
 	protected GenericDao<Instructor, Integer> getDao() {
 		return instructorDao;
-	}
+	}	
 	
+	@Transactional
 	public Instructor findById(Integer id) {
 		Instructor dto = instructorDao.findById(id);
 		return dto;
 	}
-	
+
 }

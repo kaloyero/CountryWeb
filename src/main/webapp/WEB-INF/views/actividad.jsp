@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.util.*" %>
 
- <script type="text/javascript">
+<script type="text/javascript">
 		
 		function updateActividad(id){
 			
@@ -38,7 +38,7 @@
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Actividad</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
-							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 100px;">Fecha Comienzo</th>
 						</tr>
 				</thead>
 						<tbody>
