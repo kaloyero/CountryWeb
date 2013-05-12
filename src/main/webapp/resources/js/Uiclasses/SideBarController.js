@@ -27,7 +27,7 @@ var SideBarController = new Class({
 
      $('.sub', container).hide();
      $('li.expand > .sub', container).show();
-     $('li.expand > .sub', container).prev().addClass('active');
+     $('li.expand > .sub', container).prev().addClass('activeOption');
      $('li a', container).click(
          function(e) {
              e.stopImmediatePropagation();
@@ -46,10 +46,10 @@ var SideBarController = new Class({
                  }
                  $(theElement).slideToggle('normal', function() {
                      if ($(this).is(':visible')) {
-                         $(this).prev().addClass('active');
+                         $(this).prev().addClass('activeOption');
                      }
                      else {
-                         $(this).prev().removeClass('active');
+                         $(this).prev().removeClass('activeOption');
                          $(this).prev().removeClass('active-icon');
                      }
                  });
@@ -60,7 +60,7 @@ var SideBarController = new Class({
                      if($(parent).hasClass('collapsible')) {
                          $('.sub:visible', parent).first().slideUp('normal',
                          function() {
-                             $(this).prev().removeClass('active');
+                             $(this).prev().removeClass('activeOption');
                              $(this).prev().removeClass('active-icon');
                          }
                      );
@@ -70,11 +70,11 @@ var SideBarController = new Class({
              }
              if(theElement.hasClass('sub') && !theElement.is(':visible')) {
                  $('.sub:visible', parent).first().slideUp('normal', function() {
-                     $(this).prev().removeClass('active');
+                     $(this).prev().removeClass('activeOption');
                      $(this).prev().removeClass('active-icon');
                  });
                  theElement.slideDown('normal', function() {
-                     $(this).prev().addClass('active');
+                     $(this).prev().addClass('activeOption');
                  });
                  return false;
              }
