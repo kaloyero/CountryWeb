@@ -50,7 +50,7 @@ public class MensajeController {
 			@ModelAttribute(value = "MENSAJE") TipoForm tipoForm,
 			BindingResult result) throws ParseException {
 		
-		messageManager.save(TipoMapper.getMensajeCategoria(tipoForm));
+		//messageManager.save(TipoMapper.getMensajeCategoria(tipoForm));
 				return "success";
 		
 	}
