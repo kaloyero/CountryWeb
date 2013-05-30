@@ -57,8 +57,8 @@
   <script src="resources/js/Uiclasses/TipoRecursoRender.js"></script>
   <script src="resources/js/Uiclasses/TipoVacunaRender.js"></script>
   <script src="resources/js/Uiclasses/TipoVehiculoRender.js"></script>
-  <script src="resources/js/Uiclasses/MensajeCategoriaRender.js"></script>
-  <script src="resources/js/Uiclasses/NoticiaCategoriaRender.js"></script>
+  <script src="resources/js/Uiclasses/mensajeCategoriaRender.js"></script>
+  <script src="resources/js/Uiclasses/noticiaCategoriaRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
   <script src="resources/js/Uiclasses/CalendarController.js"></script>
