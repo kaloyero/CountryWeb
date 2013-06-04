@@ -1,5 +1,8 @@
 package com.country.form;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MensajeForm extends Form  {
 
 	private int id =0;
@@ -12,7 +15,16 @@ public class MensajeForm extends Form  {
 	private int categoria;
 	private int integrante;
 	private String integranteNombre;
+	private Map<Integer, String> detalles = new HashMap<Integer, String>();
 	
+	
+	
+	public Map<Integer, String> getDetalles() {
+		return detalles;
+	}
+	public void setDetalles(Map<Integer, String> detalles) {
+		this.detalles = detalles;
+	}
 	public String getIntegranteNombre() {
 		return integranteNombre;
 	}

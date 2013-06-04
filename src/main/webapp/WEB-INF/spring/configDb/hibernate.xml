@@ -29,6 +29,7 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
     <property name="annotatedClasses">
 	<list>
 		<value>com.country.hibernate.model.Actividad</value>
+		<value>com.country.hibernate.model.IntegranteActividades</value>
 		<value>com.country.hibernate.model.Asignacion</value>
 		<value>com.country.hibernate.model.Autorizado</value>
 		<value>com.country.hibernate.model.Ciudad</value>

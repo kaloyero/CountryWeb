@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.MensajeForm;
-import com.country.form.TipoForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.MensajeCategorias;
-import com.country.mappers.TipoMapper;
+import com.country.hibernate.model.Mensaje;
+import com.country.mappers.MensajeMapper;
+import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageManager;
 
@@ -35,19 +35,22 @@ public class MensajeController {
 	@Autowired
 	private MessageCategoryManager messageCategoryManager;
 	
+	@Autowired
+	private IntegratorManager integratorManager;
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		MensajeForm mensaje = new MensajeForm();
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
+		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		
-		return "mensajeCategoria";
+		return "mensaje";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "MENSAJE") TipoForm tipoForm,
+			@ModelAttribute(value = "MENSAJE") MensajeForm tipoForm,
 			BindingResult result) throws ParseException {
 		
 		//messageManager.save(TipoMapper.getMensajeCategoria(tipoForm));
@@ -58,18 +61,19 @@ public class MensajeController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		MensajeCategorias type = messageCategoryManager.findById(id);
-		TipoForm form = (TipoForm) TipoMapper.getForm(type);
+		MensajeForm form = messageManager.getFormByIdMessage(id);
 		model.addAttribute("MENSAJE", form);
+		model.addAttribute("categorias", messageCategoryManager.listAll());
+		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 
-		return "forms/tipoForm";
+		return "forms/mensajeForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "MENSAJE") TipoForm tipoForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm tipoForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		messageCategoryManager.update(TipoMapper.getMensajeCategoria(tipoForm));
+		messageManager.update(MensajeMapper.getMensaje(tipoForm));
 		return "success";
 	}
 
@@ -78,11 +82,10 @@ public class MensajeController {
            
            DataTable dataTable=new DataTable();
 
-			for (MensajeCategorias tipo : messageCategoryManager.listAll()) {
+			for (Mensaje tipo : messageManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
-				row.add(String.valueOf(tipo.getId()));
-				row.add(tipo.getNombre());
+				row.add(tipo.getAsunto());
 				dataTable.getAaData().add(row);
 			}
 

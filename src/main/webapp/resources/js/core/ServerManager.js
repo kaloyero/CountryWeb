@@ -21,6 +21,8 @@ var ServerManager = new Class({
         this.services['tipoVehiculo']={};
         this.services['mensajeCategoria']={};
         this.services['noticiaCategoria']={};
+        this.services['mensaje']={};
+        this.services['noticia']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
         this.services['instructor']["load"]="/CountryWeb/instructor/load/";
@@ -59,6 +61,10 @@ var ServerManager = new Class({
         this.services['mensajeCategoria']["save"]="/CountryWeb/mensajeCategoria/create/";
         this.services['noticiaCategoria']["load"]="/CountryWeb/noticiaCategoria/load/";
         this.services['noticiaCategoria']["save"]="/CountryWeb/noticiaCategoria/create/";
+        this.services['mensaje']["load"]="/CountryWeb/mensaje/load/";
+        this.services['mensaje']["save"]="/CountryWeb/mensaje/create/";
+        this.services['noticia']["load"]="/CountryWeb/noticia/load/";
+        this.services['noticia']["save"]="/CountryWeb/noticia/create/";
 
     },
  
