@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
+import com.country.form.ActividadForm;
 import com.country.hibernate.dao.ActivityDao;
 import com.country.hibernate.dao.AsignationDao;
 import com.country.hibernate.dao.ConceptDao;
@@ -17,7 +18,9 @@ import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Asignacion;
 import com.country.hibernate.model.Cronograma;
 import com.country.hibernate.model.Tarifa;
+import com.country.mappers.ActividadMapper;
 import com.country.services.ActivityManager;
+import com.country.services.PriceManager;
 
 @Service("activityManager")
 public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implements ActivityManager{
@@ -36,18 +39,35 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 
 	@Autowired
     private AsignationDao asignationDao;
+
+	@Autowired
+    private PriceManager priceManager;
+
 	
 	protected GenericDao<Actividad, Integer> getDao() {
 		return activityDao;
 	}
 	
 	@Transactional
-	public Actividad findById(Integer id) {
+	private Actividad findById(Integer id) {
 		Actividad act = activityDao.findById(id);
 		act.getCronogramas().size();
 		act.getAsignaciones().size();
 //		act.getIntegrants().size();
 		return act;
+	}
+
+	@Transactional
+	public ActividadForm findFormById(Integer id) {
+		ActividadForm form = new ActividadForm();
+		
+		Actividad dto = findById(id);
+		Tarifa tarifa = priceManager.getLastPriceByConcept(dto.getConcepto().getId());
+		
+		form = (ActividadForm) ActividadMapper.getForm(dto,tarifa);
+		
+		return form;
+	
 	}
 	
 	public List<Asignacion> findAsignacionByIdAct(Integer id) {

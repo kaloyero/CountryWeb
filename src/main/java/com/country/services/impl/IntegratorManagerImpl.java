@@ -36,7 +36,7 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	}
 
 	@Transactional
-	public IntegranteForm findById(Integer id) {
+	public IntegranteForm findFormById(Integer id) {
 		IntegranteForm form = new IntegranteForm();
 		
 		Integrante dto = integratorDao.findById(id);

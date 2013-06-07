@@ -2,15 +2,21 @@ package com.country.services;
 
 import java.util.List;
 
+import com.country.form.ActividadForm;
 import com.country.form.IntegranteActividadForm;
+import com.country.form.IntegranteForm;
 import com.country.hibernate.model.IntegranteActividades;
 
 public interface IntegratorActivityManager extends AbstractManager<IntegranteActividades>{
 	
-	public IntegranteActividadForm findById(Integer id);
+	IntegranteActividadForm findFormById(Integer id);
 	
-	public void save(IntegranteActividadForm form);
+	void save(IntegranteActividadForm form); 
 	
-	public List<IntegranteActividades> findAllByActivityIntegrator(String name);
+	void update(IntegranteActividadForm form);
+	
+	public List<IntegranteForm> findAllIntegrantorFormByActivityId(Integer id);
+	
+	public List<ActividadForm> findAllActivitiesByIntegratorId(Integer id);
 	
 }

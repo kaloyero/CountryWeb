@@ -67,7 +67,7 @@ public class IntegranteController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		IntegranteForm form = integranteManager.findById(id);
+		IntegranteForm form = integranteManager.findFormById(id);
 		
 		model.addAttribute("INTEGRANTE", form);
 		model.addAttribute("unidades", unidadManager.listAll());

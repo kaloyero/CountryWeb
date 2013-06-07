@@ -7,7 +7,7 @@ import com.country.hibernate.model.Integrante;
 
 public interface IntegratorManager extends AbstractManager<Integrante>{
 	
-	IntegranteForm findById(Integer id);
+	IntegranteForm findFormById(Integer id);
 	
 	void save(IntegranteForm form);
 	

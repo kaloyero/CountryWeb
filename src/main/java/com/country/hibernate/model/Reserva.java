@@ -35,11 +35,11 @@ public class Reserva implements Serializable {
 	private  String descripcion ;
 	
     @OneToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="IdRecurso",updatable = true, insertable = true)	
+    @JoinColumn(name="IdRecurso",updatable = false, insertable = false)	
 	private  Recurso recurso ;
 	
     @OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdUnidad")		
+	@JoinColumn(name="IdUnidad",updatable = false, insertable = false)		
 	private  Unidad unidad;
 
 	@Column(name = "HoraIni")
