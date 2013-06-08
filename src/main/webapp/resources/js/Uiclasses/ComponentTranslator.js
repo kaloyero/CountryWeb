@@ -179,16 +179,12 @@ var ComponentTranslator = new Class(
 			},
 
 			onLoad : function(objectType, objectId, rowSelectedName) {
-				alert("aca ale");
 				var self = this;
 				serverManager.get({
 					object : objectType,
 					objectId : objectId,
 					onSuccess : function(data) {
-						alert("rowSelectedName " + rowSelectedName);
-						alert("objectId " + objectId);
-						alert("objectType " + objectType);
-						alert("data " + data);
+
 						self.onLoaded(rowSelectedName, objectId, objectType,
 								data);
 					}

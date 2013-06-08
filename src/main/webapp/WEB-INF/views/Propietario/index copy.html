@@ -1,0 +1,1942 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr" slick-uniqueid="3" class=" js csstransitions js csstransitions"><head>
+	<script id="facebook-jssdk" src="//connect.facebook.net/en_US/all.js#xfbml=1"></script><script type="text/javascript">
+	/* <![CDATA[ */
+		var JADef = {
+			siteurl: '/wall/',
+			tplurl: '/wall/templates/ja_wall/',
+			fmsg: 'No more pages to load.',
+			ltext: '<em>Loading the next set of posts...</em>'
+		};
+	/* ]]> */
+	</script>
+	  <base href="http://localhost/wall/index.php/">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="keywords" content="Responsive Joomla 2.5 template, Pinterest Joomla template, photo gallery Joomla template, Social Feed Joomla Template,Porfolio Joomla Template, Business Joomla Template, Recipe Joomla Template">
+  <meta name="description" content="A flawless responsive Joomla template that is inpsired from Pinterest which enables you to build your site fill with valuable content in just seconds.">
+  <meta name="generator" content="Joomla! - Open Source Content Management">
+  <title>Home</title>
+  <link href="/wall/index.php?format=feed&amp;type=rss" rel="alternate" type="application/rss+xml" title="RSS 2.0">
+  <link href="/wall/index.php?format=feed&amp;type=atom" rel="alternate" type="application/atom+xml" title="Atom 1.0">
+  <link href="/wall/templates/ja_wall/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="/wall/media/system/css/modal.css" type="text/css">
+  <link rel="stylesheet" href="/wall/templates/ja_wall/css/k2.css" type="text/css">
+  <script src="/wall/media/system/js/mootools-core.js" type="text/javascript"></script>
+  <script src="/wall/media/system/js/core.js" type="text/javascript"></script>
+  <script src="/wall/media/system/js/modal.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+  <script src="/wall/media/k2/assets/js/k2.noconflict.js" type="text/javascript"></script>
+  <script src="/wall/components/com_k2/js/k2.js" type="text/javascript"></script>
+  <script src="/wall/media/system/js/caption.js" type="text/javascript"></script>
+  <script src="/wall/media/system/js/mootools-more.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+		window.addEvent('domready', function() {
+
+			SqueezeBox.initialize({});
+			SqueezeBox.assign($$('a.modal'), {
+				parse: 'rel'
+			});
+		});
+var K2SitePath = '/wall/';
+window.addEvent('load', function() {
+				new JCaption('img.caption');
+			});
+window.addEvent('domready', function() {
+			$$('.hasTip').each(function(el) {
+				var title = el.get('title');
+				if (title) {
+					var parts = title.split('::', 2);
+					el.store('tip:title', parts[0]);
+					el.store('tip:text', parts[1]);
+				}
+			});
+			var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false});
+		});
+  </script>
+
+	<!-- META FOR IOS & HANDHELD -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="apple-touch-fullscreen" content="YES">
+	<!-- //META FOR IOS & HANDHELD -->
+	<!-- TEMPLATE STYLESHEETS -->
+	<link rel="stylesheet" href="/wall/templates/system/css/system.css">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/reset.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/core.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/navigation.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/joomla.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/modules.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/template.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/k2.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/print.css" media="print">
+	<!-- //TEMPLATE STYLESHEETS -->
+	<!-- MEDIA QUERIES -->
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-mobile.css" media="only screen and (max-width:719px)">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-mobile-portrait.css" media="only screen and (max-width:479px)">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-tablet.css" media="only screen and (min-width:720px) and (max-width: 985px)">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-normal.css" media="only screen and (min-width:986px) and (max-width: 1235px)">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-wide.css" media="only screen and (min-width:1236px) and (max-width: 1585px)">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-wide-extra.css" media="only screen and (min-width:1586px) and (max-width: 1890px)">
+	<link rel="stylesheet" type="text/css" href="/wall/templates/ja_wall/css/layout-hd.css" media="only screen and (min-width:1891px)">
+	<!-- //MEDIA QUERIES -->
+	<!-- CUSTOM THEMES -->
+	<link rel="stylesheet" href="/wall/templates/ja_wall/themes/default/css/theme.css" type="text/css" media="all">
+	<!-- //CUSTOM THEMES -->
+	<!-- TEMPLATE PLUGINS -->
+	<script type="text/javascript" src="/wall/templates/ja_wall/js/caption.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/js/jquery.jbk.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/jquery-cookie.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/jquery.masonry.min.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/jquery.infinitescroll.min.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/modernizr-transitions.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/jquery.mousewheel.js"></script>
+	<!-- //TEMPLATE PLUGINS -->
+	<!-- TEMPLATE SCRIPTS -->
+	<script type="text/javascript" src="/wall/templates/ja_wall/js/script.js"></script>
+	<!-- //TEMPLATE SCRIPTS -->
+		<!--[if lt IE 9]>
+	<script type="text/javascript" src="/wall/templates/ja_wall/plugins/jquery.mediaqueries.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="/wall/templates/ja_wall/js/jquery.noconflict.js"></script>
+<meta property="og:image" content="http://localhost/wall/images/stories/demo/sam-40.jpg">
+<meta property="og:image" content="http://localhost/wall/images/stories/demo/hi-tech/gre-1.jpg">
+<meta property="og:image" content="http://localhost/wall/images/stories/demo/sport/tennis-3.jpg">
+<meta property="og:image" content="http://localhost/wall/images/stories/demo/hi-tech/tech-8.jpg">
+<meta property="og:image" content="http://localhost/wall/images/stories/demo/travel/traveltips-5.jpg">
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+/* @noflip */
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+/* @noflip */
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify;vertical-align:text-bottom}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/r/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size:24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size:13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size:11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size:10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size:10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size:22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yU/r/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yX/r/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size:10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size:11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size:13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}</style></head>
+<body id="bd" class="bd-home gridview hoverable has-sidebar  display-null display-fullview basegrid-m" style="min-height: 612px;">
+<!-- WRAPPER -->
+<div id="wrapper">
+	<!-- HEADER -->
+	<div id="header" class="wrap">
+	<div class="wrap-inner">
+		<div class="main header-main clearfix">
+			<!-- LOGO -->
+			<div id="logo" class="logo-image">
+								<h1 class="logo">
+					<a href="/wall/" title="Propietario"><span>Propietario</span></a>
+				</h1>
+
+			</div>
+			<!-- //LOGO -->
+
+			<!-- MAINNAV -->
+			<div id="mainnav" class="has-toggle">
+				<div class="btn-toggle menu-toggle">
+					<span>&nbsp;</span><strong>Menu</strong>
+				</div>
+				<div class="inner menu-inner clearfix">
+
+				</div>
+			</div>
+			<!-- //MAINNAV -->
+
+			<!-- SEARCH -->
+			<div id="search" class="has-toggle">
+				<div class="btn-toggle search-toggle">
+					<span>&nbsp;</span><strong>Search</strong>
+				</div>
+				<div class="inner search-inner">
+
+				</div>
+			</div>
+			<!-- //SEARCH -->
+
+						<!-- TOOLBAR -->
+			<div id="toolbar" class="has-toggle">
+				<div class="btn-toggle toolbar-toggle">
+					<span>&nbsp;</span><strong>Toolbar</strong>
+				</div>
+				<div class="inner toolbar-inner clearfix">
+					<ul>
+						<li id="toolbar-display">
+							<dl>
+								<dt>Display</dt>
+								<dd id="toolbar-display-imageview" class="first last"><span>Image View</span></dd>
+							</dl>
+						</li>
+						<li id="toolbar-basegrid">
+							<dl>
+								<dt>Grid</dt>
+								<dd id="toolbar-basegrid-s" class="first"><span>S</span></dd>
+								<dd id="toolbar-basegrid-m"><span>M</span></dd>
+								<dd id="toolbar-basegrid-l"><span>L</span></dd>
+								<dd id="toolbar-basegrid-xl" class="last"><span>XL</span></dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+			/* <![CDATA[ */
+				$wall(document).ready(function($){
+					$('#toolbar-basegrid dd').toolbar({ group: 'basegrid', type: 'single', val: 'm'});
+					$('#toolbar-display dd').toolbar({ group: 'display', type: 'toggle', val: 'fullview'});
+				});
+			/* ]]> */
+			</script>
+			<!-- //TOOLBAR -->
+
+		</div>
+	</div>
+	</div>
+	<!-- // HEADER -->
+
+	<!-- CONTAINER -->
+	<div id="container" class="wrap">
+		<div class="main container-main clearfix">
+
+			<div id="mainbody" class="clearfix">
+
+				<div id="ja-message">
+
+<div id="system-message-container">
+</div>
+				</div>
+
+				<!-- MAIN CONTENT -->
+				<div id="content">
+					<div class="inner content-inner clearfix">
+						<div id="masonry-container" class="clearfix masonry" style="position: relative; height: 2353px;">
+<div class="corner-stamp" style="width: 227px;"><div class="corner-inner">	<div class="moduletable moduletable blank" id="Mod101">
+		<div class="inner moduletable-inner clearfix">
+									<div class="box-ct clearfix">
+
+
+<div class="custom blank">
+	<img style="margin-bottom: 10px; display: block;" align="left" class="" src="http://localhost/wall/images/stories/demo/sam-40.jpg" alt="Sample image" data-original="http://localhost/wall/images/stories/demo/sam-40.jpg">
+<div>Expensas del Mes 600$ , <a href="/wall/index.php/en/how-to-add-advertisement" title="Sample link"><strong>no te olvides de consultar el detalle</strong> </a></div>
+<p><strong>Tambien aprovecha lo siguiente:</strong></p>
+
+<ul>
+<li><strong>Actividades: </strong>Mira el calendario y <a href="/wall/index.php/en/how-to-add-advertisement" title="Sample link">Anotate!! </a></li>
+<li><strong>Recursos : </strong><a href="/wall/index.php/en/how-to-add-advertisement" title="Sample link">Reserva </a>cuanto antes</li>
+<li><strong>Eventos</strong> <a href="/wall/index.php/en/how-to-add-advertisement" title="Sample link">Crea </a>un evento para que los demas se unan</li>
+</ul></div>
+			</div>
+		</div>
+    </div>
+	</div></div><div class="item hi-tech hilite item-hot masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/105-melody-civilization-inclined-vincent" title="iPad 3 Preview – All Rumors In One Article" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/gre-1.jpg" title="Thoughts attending innocence arthur version" alt="Thoughts attending innocence arthur version" data-original="http://localhost/wall/images/stories/demo/hi-tech/gre-1.jpg" style="display: inline;"><p class="img_caption">Thoughts attending innocence arthur version</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/105-melody-civilization-inclined-vincent" title="iPad 3 Preview – All Rumors In One Article" class="item-link">
+					iPad 3 Preview – All Rumors In One Article</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 06 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Surplus variable situations verse improvement strictly pointing harris supported. Feature paint handsome lands hans. Sink you'd occasions anniversary reporter extraordinary.		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 505				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/105-melody-civilization-inclined-vincent" title="iPad 3 Preview – All Rumors In One Article" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech item-hot no-image masonry-brick" style="position: absolute; top: 0px; left: 228px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/116-exploration-wheels-soap-sufficiently-steele" title="Exploration wheels soap sufficiently steele" class="item-link">
+					Exploration wheels soap sufficiently steele</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 08 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Mississippi tail profits transferred supreme warren tend warning poured greg. Surely requirement consciousness diffusion luck testament hopes critic accurate opposed. Knees probable		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 500				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/116-exploration-wheels-soap-sufficiently-steele" title="Exploration wheels soap sufficiently steele" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item sport  grid-double dark no-color item-hot masonry-brick" style="position: absolute; top: 0px; left: 456px; width: 456px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/91-sport/318-golf-woods-ends-victory-drought" title="Golf: Woods ends victory drought" class="item-link">
+							<div class="img_caption none" style="float: none; width: 370px;"><img class="caption" src="http://localhost/wall/images/stories/demo/sport/tennis-3.jpg" title="Figured strip stresses peter lungs" alt="Figured strip stresses peter lungs" data-original="http://localhost/wall/images/stories/demo/sport/tennis-3.jpg" style="display: inline;"><p class="img_caption">Figured strip stresses peter lungs</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/91-sport/318-golf-woods-ends-victory-drought" title="Golf: Woods ends victory drought" class="item-link">
+					Golf: Woods ends victory drought</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Sport									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 25 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Illustrated underground productive anti-trust chandler. Merchants president's damn surprising angeles. Entry emotion wars you'd essentially release. Feels driving rolled kate utopia		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 392				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/91-sport/318-golf-woods-ends-victory-drought" title="Golf: Woods ends victory drought" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech item-hot masonry-brick" style="position: absolute; top: 285px; left: 228px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/153-loop-anybody-represent-ranging" title="Loop anybody represent ranging" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/tech-8.jpg" title="Converted sale practices readily" alt="Converted sale practices readily" data-original="http://localhost/wall/images/stories/demo/hi-tech/tech-8.jpg" style="display: inline;"><p class="img_caption">Converted sale practices readily</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/153-loop-anybody-represent-ranging" title="Loop anybody represent ranging" class="item-link">
+					Loop anybody represent ranging</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 08 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Madison volumes permanent effectively unexpected worried subsequent. Autumn cady meaningful pike brick offices dilemma. Pipe yelled exclusive sentence pond year's players		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 187				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/153-loop-anybody-represent-ranging" title="Loop anybody represent ranging" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item travel featured 3cols violet  item-hot masonry-brick" style="position: absolute; top: 405px; left: 0px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/93-travel/215-automatically-mother-s-cycle-connected-lover" title="Automatically mother's cycle connected lover" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/travel/traveltips-5.jpg" title="Darkness lighted stretch mickey" alt="Darkness lighted stretch mickey" data-original="http://localhost/wall/images/stories/demo/travel/traveltips-5.jpg" style="display: inline;"><p class="img_caption">Darkness lighted stretch mickey</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/93-travel/215-automatically-mother-s-cycle-connected-lover" title="Automatically mother's cycle connected lover" class="item-link">
+					Automatically mother's cycle connected lover</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Travel									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 12 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Regime yelled graduate atlanta jackson fed cancer conferences proud tool. Lumber fill bureau newer aren't maude explicit teach testimony detergent. Hurry commissioner instruments		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 112				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/93-travel/215-automatically-mother-s-cycle-connected-lover" title="Automatically mother's cycle connected lover" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech item-hot masonry-brick" style="position: absolute; top: 418px; left: 912px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/118-report-facebook-bought-750-patents-from-ibm" title="Report: Facebook bought 750 patents from IBM" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/sec-1.jpg" title="Seriously writes storage alike" alt="Seriously writes storage alike" data-original="http://localhost/wall/images/stories/demo/hi-tech/sec-1.jpg" style="display: inline;"><p class="img_caption">Seriously writes storage alike</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/118-report-facebook-bought-750-patents-from-ibm" title="Report: Facebook bought 750 patents from IBM" class="item-link">
+					Report: Facebook bought 750 patents from IBM</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 25 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Pride reform johnny wire merger leaned dressing practices. Identification festival worn improve component accepting invited. Eighth sake canada pointing sampling plug. Aren't dealers		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 107				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/118-report-facebook-bought-750-patents-from-ibm" title="Report: Facebook bought 750 patents from IBM" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech grid-double item-hot masonry-brick" style="position: absolute; top: 447px; left: 456px; width: 456px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/135-porch-knowing-concrete-poem-tendency-selection" title="Porch knowing concrete poem tendency selection" class="item-link">
+							<div class="img_caption none" style="float: none; width: 370px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/space-1.jpg" title="Cup sister morality" alt="Cup sister morality" data-original="http://localhost/wall/images/stories/demo/hi-tech/space-1.jpg" style="display: inline;"><p class="img_caption">Cup sister morality</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/135-porch-knowing-concrete-poem-tendency-selection" title="Porch knowing concrete poem tendency selection" class="item-link">
+					Porch knowing concrete poem tendency selection</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 10 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Subtle year-old bills thereby suburban movies asia. Solely rev belt hans pitch discharge regularly regularly jess mount. Expenses nick vehicle mexico compete. Slave meat puerto		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 68				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/135-porch-knowing-concrete-poem-tendency-selection" title="Porch knowing concrete poem tendency selection" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech grid-double item-hot masonry-brick" style="position: absolute; top: 891px; left: 0px; width: 456px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/121-sell-drinks-flower-twenty-five-wished-altered" title="Sell drinks flower twenty-five wished altered" class="item-link">
+							<div class="img_caption none" style="float: none; width: 370px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/sec-4.jpg" title="Finger creatures nowhere cancer" alt="Finger creatures nowhere cancer" data-original="http://localhost/wall/images/stories/demo/hi-tech/sec-4.jpg" style="display: inline;"><p class="img_caption">Finger creatures nowhere cancer</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/121-sell-drinks-flower-twenty-five-wished-altered" title="Sell drinks flower twenty-five wished altered" class="item-link">
+					Sell drinks flower twenty-five wished altered</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 09 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Mixed divorce strongest traditions fog academy. Gentleman watson assembly child's doctors volunteers jet sheets forever. Fred extra guns fortunately musicians authors. Trips emergency		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 55				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/121-sell-drinks-flower-twenty-five-wished-altered" title="Sell drinks flower twenty-five wished altered" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item travel orange  masonry-brick" style="position: absolute; top: 862px; left: 912px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/93-travel/214-load-tables-samuel-surfaces-concentration" title="Load tables samuel surfaces concentration" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/travel/traveltips-4.jpg" title="Stake hired excess traders" alt="Stake hired excess traders" data-original="http://localhost/wall/images/stories/demo/travel/traveltips-4.jpg" style="display: inline;"><p class="img_caption">Stake hired excess traders</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/93-travel/214-load-tables-samuel-surfaces-concentration" title="Load tables samuel surfaces concentration" class="item-link">
+					Load tables samuel surfaces concentration</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Travel									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 01 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Appointed accused comparison freddy clinical architect terror municipal gains. Renaissance promising lifted fist hoping path questioned planets. Coating whereby camera track condemned		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 39				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/93-travel/214-load-tables-samuel-surfaces-concentration" title="Load tables samuel surfaces concentration" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item travel masonry-brick" style="position: absolute; top: 987px; left: 456px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/93-travel/202-hudson-witness-stanley-laugh" title="Hudson witness stanley laugh" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/travel/getaways-5.jpg" title="Heights specialists nodded howard symbolic" alt="Heights specialists nodded howard symbolic" data-original="http://localhost/wall/images/stories/demo/travel/getaways-5.jpg" style="display: inline;"><p class="img_caption">Heights specialists nodded howard symbolic</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/93-travel/202-hudson-witness-stanley-laugh" title="Hudson witness stanley laugh" class="item-link">
+					Hudson witness stanley laugh</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Travel									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 12 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		President's missed flight medicine ice visiting. Surplus textile checked recovery henrietta prestige toes. Pencil physically external dc stupid medicine handle		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 26				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/93-travel/202-hudson-witness-stanley-laugh" title="Hudson witness stanley laugh" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech two-cols purple   masonry-brick" style="position: absolute; top: 987px; left: 684px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/127-destructive-isolated-summary-investment-reducing-traveled" title="Destructive isolated summary investment reducing traveled" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/security-2.jpg" title="B'dikkat hanging petitioner knowing lighted" alt="B'dikkat hanging petitioner knowing lighted" data-original="http://localhost/wall/images/stories/demo/hi-tech/security-2.jpg" style="display: inline;"><p class="img_caption">B'dikkat hanging petitioner knowing lighted</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/127-destructive-isolated-summary-investment-reducing-traveled" title="Destructive isolated summary investment reducing traveled" class="item-link">
+					Destructive isolated summary investment reducing traveled</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 24 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Tight paused outer brave racing crown positions reactions turns excess. Dreams posts qualities impressed beings chances harbor. Minority stiff racial putting dozen. Walking accident		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 24				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/127-destructive-isolated-summary-investment-reducing-traveled" title="Destructive isolated summary investment reducing traveled" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech red  masonry-brick" style="position: absolute; top: 1359px; left: 0px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/111-reflected-meanings-instructions-victim-albert" title="Reflected meanings instructions victim albert" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/gt-4.jpg" title="Farmer steadily passengers merger" alt="Farmer steadily passengers merger" data-original="http://localhost/wall/images/stories/demo/hi-tech/gt-4.jpg" style="display: inline;"><p class="img_caption">Farmer steadily passengers merger</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/111-reflected-meanings-instructions-victim-albert" title="Reflected meanings instructions victim albert" class="item-link">
+					Reflected meanings instructions victim albert</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 12 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Frequent orderly sequence desegregation nationalism hardy collective scheduled. Prize assessors widespread curt optimal parade francisco widely jumped. Trained torn smith stupid		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 18				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/111-reflected-meanings-instructions-victim-albert" title="Reflected meanings instructions victim albert" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech masonry-brick" style="position: absolute; top: 1359px; left: 228px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/150-laughed-prairie-whip-sports" title="Laughed prairie whip sports" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/tech-4.jpg" title="Preferred possessed russ managed hal" alt="Preferred possessed russ managed hal" data-original="http://localhost/wall/images/stories/demo/hi-tech/tech-4.jpg" style="display: inline;"><p class="img_caption">Preferred possessed russ managed hal</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/150-laughed-prairie-whip-sports" title="Laughed prairie whip sports" class="item-link">
+					Laughed prairie whip sports</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 12 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Chin survive adult trust planets corresponding dedicated allotment. Throat seldom stuff southerners subjected smooth core examine honey joy. Element vincent em logical crack. Handling		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 17				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/150-laughed-prairie-whip-sports" title="Laughed prairie whip sports" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item art masonry-brick" style="position: absolute; top: 1366px; left: 912px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/90-art/398-achieve-physically-aimed" title="Achieve physically aimed" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/art/photography-3.jpg" title="Realization reporter passage communications negative" alt="Realization reporter passage communications negative" data-original="http://localhost/wall/images/stories/demo/art/photography-3.jpg" style="display: inline;"><p class="img_caption">Realization reporter passage communications negative</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/90-art/398-achieve-physically-aimed" title="Achieve physically aimed" class="item-link">
+					Achieve physically aimed</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Art									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 23 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Hen divorce insects asleep patterns twenty-five tossed landing personality. Craft adult absolute dilemma warfare slid. Symbols meat staining amounts guidance seconds scholarship		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 14				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/90-art/398-achieve-physically-aimed" title="Achieve physically aimed" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech masonry-brick" style="position: absolute; top: 1390px; left: 456px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/152-faulkner-brick-knee" title="Faulkner brick knee" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/tech-7.jpg" title="Barrel rush disturbed recognition" alt="Barrel rush disturbed recognition" data-original="http://localhost/wall/images/stories/demo/hi-tech/tech-7.jpg" style="display: inline;"><p class="img_caption">Barrel rush disturbed recognition</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/152-faulkner-brick-knee" title="Faulkner brick knee" class="item-link">
+					Faulkner brick knee</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 18 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Pulling commodities tie sick fog. Roosevelt moscow errors comments cycle. Degrees nights casey experimental loyalty subjected bullet precisely chapel. Noticed arlene kay crack assumption		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 13				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/152-faulkner-brick-knee" title="Faulkner brick knee" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech masonry-brick" style="position: absolute; top: 1411px; left: 684px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/124-nixon-fail-ugly-climate-decades" title="Nixon fail ugly climate decades" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/sec-7.jpg" title="Disposal christ's meets lodge" alt="Disposal christ's meets lodge" data-original="http://localhost/wall/images/stories/demo/hi-tech/sec-7.jpg" style="display: inline;"><p class="img_caption">Disposal christ's meets lodge</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/124-nixon-fail-ugly-climate-decades" title="Nixon fail ugly climate decades" class="item-link">
+					Nixon fail ugly climate decades</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 12 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Binding determining creating variations lights reflected questionnaire encountered. Reputation identical possibilities convinced proceeded grown. Applying worker mm regarding		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 12				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/124-nixon-fail-ugly-climate-decades" title="Nixon fail ugly climate decades" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item fashion masonry-brick" style="position: absolute; top: 1823px; left: 684px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/80-fashion/467-residential-mental-lodge-anniversary" title="Residential mental lodge anniversary" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/fashion/sam-2.jpg" title="Yellow contribution indication" alt="Yellow contribution indication" data-original="http://localhost/wall/images/stories/demo/fashion/sam-2.jpg" style="display: inline;"><p class="img_caption">Yellow contribution indication</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/80-fashion/467-residential-mental-lodge-anniversary" title="Residential mental lodge anniversary" class="item-link">
+					Residential mental lodge anniversary</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Fashion									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 22 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Hen divorce insects asleep patterns twenty-five tossed landing personality. Craft adult absolute dilemma warfare slid. Symbols meat staining amounts guidance seconds scholarship		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 11				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/80-fashion/467-residential-mental-lodge-anniversary" title="Residential mental lodge anniversary" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech masonry-brick" style="position: absolute; top: 1824px; left: 228px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/108-racial-spencer-desperate" title="Racial spencer desperate" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/gt-1.jpg" title="Lucy underlying shouted" alt="Lucy underlying shouted" data-original="http://localhost/wall/images/stories/demo/hi-tech/gt-1.jpg" style="display: inline;"><p class="img_caption">Lucy underlying shouted</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/108-racial-spencer-desperate" title="Racial spencer desperate" class="item-link">
+					Racial spencer desperate</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 17 February 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Pile acceptance farther dave palm moments freight nearest. Oral sailing largest dances courts addressed. Perform observations historic delaware finish altogether racial. Guard pete		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 10				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/108-racial-spencer-desperate" title="Racial spencer desperate" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item art  dark masonry-brick" style="position: absolute; top: 1831px; left: 912px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/90-art/394-anticipation-replacement-ratio-islands-invariably" title="Anticipation replacement ratio islands invariably" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/art/gra-7.jpg" title="Quarrel flying refund represent pull" alt="Quarrel flying refund represent pull" data-original="http://localhost/wall/images/stories/demo/art/gra-7.jpg" style="display: inline;"><p class="img_caption">Quarrel flying refund represent pull</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/90-art/394-anticipation-replacement-ratio-islands-invariably" title="Anticipation replacement ratio islands invariably" class="item-link">
+					Anticipation replacement ratio islands invariably</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Art									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 20 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Television prospects slave meat puerto. Stern holder cleared desegregation articles contributed catch pride fruit discussions. Persuaded sheets broadway marine eddie eventually		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 10				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/90-art/394-anticipation-replacement-ratio-islands-invariably" title="Anticipation replacement ratio islands invariably" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div class="item hi-tech masonry-brick" style="position: absolute; top: 1852px; left: 456px; width: 228px;">
+<div class="inner item-inner clearfix">
+
+
+	<!-- Item Img -->
+	<div class="item-image">
+					<div class="img-intro-left">
+						<a href="/wall/index.php/78-hi-tech/120-mention-ninth-fly-considerably-handed" title="Mention ninth fly considerably handed" class="item-link">
+							<div class="img_caption none" style="float: none; width: 164px;"><img class="caption" src="http://localhost/wall/images/stories/demo/hi-tech/sec-3.jpg" title="Combined hurry resulted benefits net" alt="Combined hurry resulted benefits net" data-original="http://localhost/wall/images/stories/demo/hi-tech/sec-3.jpg" style="display: inline;"><p class="img_caption">Combined hurry resulted benefits net</p></div>
+							<span>&nbsp;</span>
+				<span class="item-pin">&nbsp;</span>
+			</a>
+					</div>
+		</div>
+	<!-- //Item Img -->
+
+	<div class="item-main clearfix">
+		<!-- Item header -->
+		<div class="header item-header clearfix">
+					<h2>
+									<a href="/wall/index.php/78-hi-tech/120-mention-ninth-fly-considerably-handed" title="Mention ninth fly considerably handed" class="item-link">
+					Mention ninth fly considerably handed</a>
+
+						</h2>
+
+					<dl class="article-info">
+				<dt class="article-info-term">Details</dt>
+
+
+						<dd class="category-name">
+																<strong>Category:</strong> Hi-Tech									</dd>
+
+						<dd class="create">
+				<strong>Created:</strong> 09 March 2012				</dd>
+
+
+
+
+					</dl>
+
+		</div>
+		<!-- //Item header -->
+
+		<!-- Item content -->
+		<div class="content item-content">
+		Lovely assigned ambiguous till heritage paul totally possibilities mighty slave. Drivers prayer empire servants visiting. Hydrogen ruling situations august engine harbor suspicion		</div>
+		<!-- //Item content -->
+
+		<!-- Item footer -->
+		<div class="footer item-footer clearfix">
+
+
+
+
+					<dl class="article-hit">
+				<dd class="hits">
+				<strong>Hits:</strong> 9				</dd>
+			</dl>
+
+					<p class="readmore">
+				<a href="/wall/index.php/78-hi-tech/120-mention-ninth-fly-considerably-handed" title="Mention ninth fly considerably handed" class="item-link">
+					More				</a>
+			</p>
+
+
+		</div>
+		<!-- //Item footer -->
+	</div>
+
+	<div class="item-separator">&nbsp;</div>
+	</div>
+</div><div id="base-blank-item" class="item masonry-brick" style="height: 0px; visibility: hidden; position: absolute; top: 1891px; left: 0px; width: 228px;"></div><div id="infscr-loading" style="display: none;"><img alt="Loading..." src="/wall/templates/ja_wall/images/loader.gif" style="display: none;"><div style="opacity: 1;">No more pages to load.</div></div></div>
+<div id="page-nav" style="display: none;">
+	<a id="page-next-link" href="/wall/index.php?page=2"></a>
+</div>
+
+					</div>
+				</div>
+				<!-- // MAIN CONTENT -->
+
+							</div>
+
+						<!-- SIDE BAR -->
+			<div id="sidebar" class="has-toggle" style="height: 307px;">
+				<div class="btn-toggle sidebar-toggle">
+					<span>&nbsp;</span><strong>Sidebar</strong>
+				</div>
+				<div class="inner sidebar-inner clearfix" style="height: 307px; overflow: hidden;">
+					<div class="sidebar-inner-scrollblock" style="transition: 0ms; -webkit-transition: 0ms; -webkit-transform-origin: 0px 0px; position: absolute; top: 0px; left: 0px;">
+							<div class="moduletable moduletable" id="Mod61">
+		<div class="inner moduletable-inner clearfix">
+									<h3><span>Categories</span></h3>
+						<div class="box-ct clearfix">
+			<ul class="categories-module">
+	<li>   <h4>
+		<a href="/wall/index.php/78-hi-tech">
+		Hi-Tech</a>
+   </h4>
+
+		 </li>
+	<li>   <h4>
+		<a href="/wall/index.php/80-fashion">
+		Fashion</a>
+   </h4>
+
+		 </li>
+	<li>   <h4>
+		<a href="/wall/index.php/90-art">
+		Art</a>
+   </h4>
+
+		 </li>
+	<li>   <h4>
+		<a href="/wall/index.php/91-sport">
+		Sport</a>
+   </h4>
+
+		 </li>
+	<li>   <h4>
+		<a href="/wall/index.php/93-travel">
+		Travel</a>
+   </h4>
+
+		 </li>
+	<li>   <h4>
+		<a href="/wall/index.php/96-social-feed">
+		Social Feed</a>
+   </h4>
+
+		 </li>
+</ul>
+			</div>
+		</div>
+    </div>
+		<div class="moduletable moduletable_menu" id="Mod96">
+		<div class="inner moduletable-inner clearfix">
+									<h3><span>Social Feed</span></h3>
+						<div class="box-ct clearfix">
+
+<ul class="menu">
+<li class="item-502"><a href="/wall/index.php/facebook">Facebook</a></li><li class="item-503"><a href="/wall/index.php/twitter">Twitter</a></li><li class="item-506"><a href="/wall/index.php/video">Video</a></li><li class="item-579"><a href="/wall/index.php/instagram">Instagram</a></li><li class="item-598"><a href="/wall/index.php/vimeo">Vimeo</a></li><li class="item-599"><a href="/wall/index.php/flickr">Flickr</a></li></ul>
+			</div>
+		</div>
+    </div>
+		<div class="moduletable moduletable" id="Mod98">
+		<div class="inner moduletable-inner clearfix">
+									<h3><span>Joomla! social</span></h3>
+						<div class="box-ct clearfix">
+
+<ul class="menu">
+<li class="item-523"><a href="/wall/index.php/all">All</a></li><li class="item-534"><a href="/wall/index.php/joomla">Joomla.org</a></li><li class="item-524"><a href="/wall/index.php/joomlart">JoomlArt</a></li><li class="item-525"><a href="/wall/index.php/rockettheme">Rockettheme</a></li><li class="item-526"><a href="/wall/index.php/gavick">Gavick</a></li><li class="item-527"><a href="/wall/index.php/yootheme">Yootheme</a></li><li class="item-559"><a href="/wall/index.php/joomlastory">Joomlastory</a></li><li class="item-560"><a href="/wall/index.php/fast-code-design">Fast Codesign</a></li></ul>
+			</div>
+		</div>
+    </div>
+
+					</div>
+				<div class="sidebarTrackerV" style="overflow: hidden; opacity: 1; -webkit-transition: 0ms; transition: 0ms;"><div style="-webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1); transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1); height: 145px; top: 0px;"></div></div><div class="sidebarTrackerV" style="overflow: hidden; opacity: 1; -webkit-transition: 0ms; transition: 0ms;"><div style="-webkit-transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1); transition: -webkit-transform 0ms cubic-bezier(0.33, 0.66, 0.66, 1); height: 183px; top: 0px;"></div></div></div>
+			</div>
+			<!-- // SIDE BAR -->
+
+		</div>
+	</div>
+	<!-- // CONTAINER -->
+
+</div>
+<!-- // WRAPPER -->
+<!-- POPUP View -->
+<div id="popup-view">
+	<div id="popup-content">
+		<div class="popup-head">
+			<a id="popup-close" href="javascript:;" class="btn-close">Close</a>
+		</div>
+	</div>
+</div>
+<!-- // POPUP View -->
+<script type="text/javascript" src="/wall/templates/ja_wall/js/wall.js"></script>
+<!-- // FACEBOOK SCRIPT -->
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border: none;" src="http://static.ak.facebook.com/connect/xd_arbiter.php?version=21#channel=f127a2935&amp;origin=http%3A%2F%2Flocalhost&amp;channel_path=%2Fwall%2Findex.php%2F%3Ffb_xd_fragment%23xd_sig%3Df3e0108f3%26"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border: none;" src="https://s-static.ak.facebook.com/connect/xd_arbiter.php?version=21#channel=f127a2935&amp;origin=http%3A%2F%2Flocalhost&amp;channel_path=%2Fwall%2Findex.php%2F%3Ffb_xd_fragment%23xd_sig%3Df3e0108f3%26"></iframe></div></div></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wall/plugins/system/jalazyload/assets/lazyload/jquery.lazyload.min.js"></script>
+<script type="text/javascript">
+			function lazyloadinit() {
+				jQuery("img.lazyload").lazyload({
+					failure_limit : 10,
+					threshold : 0,
+					effect : "show",
+					skip_invisible : false,
+					load: function(){
+						jQuery(this).removeClass("lazyload");
+					},
+					appear: function(){
+						jQuery(this).attr("data-original", jQuery(this).attr("longdesc") || "").removeAttr("longdesc");
+					}
+				});
+			};
+			lazyloadinit();
+			</script>
+
+
+
+<div id="sbox-overlay" aria-hidden="true" style="z-index: 65555; opacity: 0;" tabindex="-1"></div><div id="sbox-window" role="dialog" aria-hidden="true" style="z-index: 65557;" class="shadow"><div id="sbox-content" style="opacity: 0;"></div><a id="sbox-btn-close" href="#" role="button" aria-controls="sbox-window"></a></div><div id="sbox-overlay" aria-hidden="true" style="z-index: 65555; opacity: 0;" tabindex="-1"></div><div id="sbox-window" role="dialog" aria-hidden="true" style="z-index: 65557;" class="shadow"><div id="sbox-content" style="opacity: 0;"></div><a id="sbox-btn-close" href="#" role="button" aria-controls="sbox-window"></a></div></body></html>

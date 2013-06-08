@@ -83,13 +83,13 @@ public class RecursoMapper {
 	
 	public static String getDisponibilidades (List<RecursoDisponibilidad> disponibilidades){
 		JSONArray raizDisponibilidades = new JSONArray();
-		
-		for (RecursoDisponibilidad disponibilidad :disponibilidades) {
-			JSONObject nodoDisp=new JSONObject();
-			nodoDisp.put("dia",disponibilidad.getDiaSemana());
-			nodoDisp.put("horaIni",disponibilidad.getHoraIni());
-			nodoDisp.put("horaFin",disponibilidad.getHoraFin());
-			raizDisponibilidades.add(nodoDisp);
+		if (disponibilidades!=null)
+			for (RecursoDisponibilidad disponibilidad :disponibilidades) {
+				JSONObject nodoDisp=new JSONObject();
+				nodoDisp.put("dia",disponibilidad.getDiaSemana());
+				nodoDisp.put("horaIni",disponibilidad.getHoraIni());
+				nodoDisp.put("horaFin",disponibilidad.getHoraFin());
+				raizDisponibilidades.add(nodoDisp);
 			}
 		
 		

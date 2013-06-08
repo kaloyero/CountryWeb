@@ -63,7 +63,8 @@ var RecursoRender = new Class({
     	//var eventList =self.getListEvents(form);
     	//var events = JSON.parse(eventList);
     	var events=null
-    	calendarController.createCalendar(form,function(start, end, callback){me.populateExistingEvents(start, end, callback);},events);
+    	var configCalendar=this.getCalendarConfig();
+    	calendarController.createCalendar(form,function(start, end, callback){me.populateExistingEvents(start, end, callback);},configCalendar);
     },
     
     /*Cargar eventos del recurso antes de mostrar*/
@@ -173,6 +174,49 @@ var RecursoRender = new Class({
     	form.append(html.join(''));
     	console.log("EVENTOS ",disponibilidadesText)
     	return form;
+    },
+    getCalendarConfig:function(){
+    	
+    	var calendarConfig ={
+    			selectable: true,
+    			select: function(start, end, allDay) {
+    			    	/*
+    			    	$('#calendar').fullCalendar("columnFormat",{
+    		                month: 'dddd',    // Monday, Wednesday, etc
+    		                week: 'dddd, MMM dS', // Monday 9/7
+    		                day: 'dddd, MMM dS'  // Monday 9/7
+    		            })*/
+
+    			    	 end.setHours(end.getHours()+1);
+    			    	 end.setMinutes(0);
+    						this.calendar.renderEvent(
+    							{
+    								title: "",
+    								start: start,
+    								end: end,
+    								allDay: allDay
+    							},
+    							true // make the event "stick"
+    						);
+
+    				},
+    				viewDisplay: function(view) {
+    					console.log("CAMBIA")
+    				},
+    		   defaultView: 'agendaWeek',
+    				 columnFormat: {
+    					 month: 'dddd',    // Monday, Wednesday, etc
+    		             week: 'dddd', // Monday 9/7
+    		               // day: 'dddd, MMM dS'  // Monday 9/7
+    					},
+    					minTime: 7,
+    					maxTime: 21,
+    			        color: 'yellow',  
+    			        textColor: 'black' 
+    			    
+    	    };
+    	
+    	return calendarConfig;
     }
     
 });

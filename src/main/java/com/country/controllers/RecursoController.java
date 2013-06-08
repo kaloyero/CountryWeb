@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.form.ActividadReservaForm;
 import com.country.form.RecursoForm;
+import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Recurso;
+import com.country.mappers.ActividadReservaMapper;
+import com.country.mappers.RecursoMapper;
 import com.country.services.ResourceManager;
 import com.country.services.TypeResourceManager;
 
@@ -70,6 +74,16 @@ public class RecursoController {
 
 	}
 	
+	@RequestMapping(value = "recursosParaReservar/load/{id}", method = RequestMethod.GET)
+	public @ResponseBody String loadDisponibilidadByRecurso(ModelMap model,@PathVariable int id) throws ParseException {
+		RecursoForm form = recursoManager.getResourceForm(id);
+
+		model.addAttribute("RECURSO", form);
+		
+		return form.getDisponibilidades();
+
+	}
+	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "RECURSO") RecursoForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
@@ -80,6 +94,26 @@ public class RecursoController {
 			return "success";
 		}
 	}
+	
+	
+	@RequestMapping(value = "/recursosParaReservar",method = RequestMethod.GET)
+	public String showActivitiesForBook(ModelMap model) {
+		
+		List<RecursoForm> listaRecursosForm = new ArrayList();
+
+		for (Recurso recurso : recursoManager.listAll()) {
+			listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));
+		}
+		
+		
+		model.addAttribute("recursos", listaRecursosForm);
+		
+	
+		return "Propietario/recursosReserva";
+		
+	}
+	
+
 	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public  @ResponseBody DataTable getUserInJSON()  {
