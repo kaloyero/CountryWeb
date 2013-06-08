@@ -3,9 +3,9 @@
 <%@ page import="java.util.*" %>
  <script type="text/javascript">
 		
-		function updateTipo(id){
+		function updateMensaje(id){
 			
-			translator.onUpdate('mensajeCategoria',id);
+			translator.onUpdate('mensaje',id);
 		}
 
 </script> 
@@ -13,8 +13,8 @@
 <div class="container_12">
 
 	<div class="grid_12">
-		<h1>Categorias de Mensajes</h1>
-		<p>Desde aqui controle las categorias de los mensajes</p>
+		<h1>Mensajes</h1>
+		<p>Desde aqui controle los Mensajes</p>
 	</div>
 	<div class="grid_12">
 		<div class="block-border" id="tab-panel-1">
@@ -29,21 +29,20 @@
 			<div class="block-content tab-container">
 				<div id="tab-1" class="tab-content">
 
-					<table id="mensajeCategoria" class="table active-table">
+					<table id="mensaje" class="table active-table">
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Clave</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
-							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
 						</tr>
-				</thead>
+					</thead>
 						<tbody>
 						</tbody>
 					</table>
 				</div>
 				<div id="new" class="tab-content">
-					<%@include file="forms/tipoForm.jsp" %>
+					
+					 <%@include file="forms/mensajeForm.jsp" %>
 
 				</div>
 			</div>

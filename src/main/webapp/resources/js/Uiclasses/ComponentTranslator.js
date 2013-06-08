@@ -67,6 +67,13 @@ var ComponentTranslator = new Class(
 				case "noticiaCategoria":
 					formToSend =noticiaCategoriaRender.onSubmit();
 					break;
+				case "mensaje":
+					formToSend =mensajeRender.onSubmit();
+					break;
+				case "noticia":
+					formToSend =noticiaRender.onSubmit();
+					break;
+					
 				default:
 					$
 							.jGrowl(
@@ -151,6 +158,12 @@ var ComponentTranslator = new Class(
 					break;
 				case "mensajeCategoria":
 					formToSend =mensajeCategoriaRender.onSubmit();
+					break;
+				case "noticia":
+					formToSend =noticiaRender.onSubmit();
+					break;
+				case "mensaje":
+					formToSend =mensajeRender.onSubmit();
 					break;
 
 				default:

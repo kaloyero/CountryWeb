@@ -52,9 +52,8 @@ public class UnidadController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-		Unidad unidad =unidadManager.findById(id);
 		List <Integrante> integrators = unidadManager.getIntegrators(id);
-		UnidadForm form = (UnidadForm) UnidadMapper.getForm(unidad);
+		UnidadForm form = unidadManager.findFormById(id);
 		model.addAttribute("UNIDAD", form);
 		model.addAttribute("integrantes", integrators);
 		return "forms/unidadForm";
