@@ -1,5 +1,8 @@
 package com.country.hibernate.dao.impl;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.country.common.GenericDaoImpl;
@@ -14,4 +17,14 @@ public class MessageDetailDaoImpl extends GenericDaoImpl<MensajeDetalles, Intege
 		return MensajeDetalles.class;
 	}
 
+    public MensajeDetalles getLastDetailByIdMessage(int message) {
+    	  Criteria criteria = getSession().createCriteria(getEntityClass());
+    	  criteria.add(Restrictions.like("mensaje", message));
+    	  criteria.addOrder(Order.desc("id"));
+    	  criteria.setMaxResults(1);
+   
+        return (MensajeDetalles) criteria.uniqueResult();
+      }
+
+	
 }
