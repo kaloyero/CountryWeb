@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.form.MensajeForm;
@@ -28,18 +29,21 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		return messageDao;
 	}
 
-	public Mensaje findById(Integer id) {
+	@Transactional
+	private Mensaje findById(Integer id) {
 		Mensaje dto = messageDao.findById(id);
-	
 		return dto;
 	}
 
-	public MensajeForm getFormByIdMessage(Integer id){
-		Mensaje mensaje = messageDao.findById(id);
-		List<MensajeDetalles> detalles = messageDetailDao.findAllByProperty("mensaje", id);		
+	public MensajeForm findFormById(Integer id) {
+		MensajeForm form = new MensajeForm();
 		
-		MensajeForm form = MensajeMapper.getForm(mensaje,detalles);
+		Mensaje dto = findById(id);
+		List<MensajeDetalles> detalles = messageDetailDao.findAllByProperty("mensaje", id);
 		
-		return  form;
+		form = (MensajeForm) MensajeMapper.getForm(dto,detalles);
+		
+		return form;
 	}
+
 }

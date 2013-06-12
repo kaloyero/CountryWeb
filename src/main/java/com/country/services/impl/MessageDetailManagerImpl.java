@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.hibernate.dao.MessageDetailDao;
@@ -29,5 +30,11 @@ public class MessageDetailManagerImpl extends AbstractManagerImpl<MensajeDetalle
 		List<MensajeDetalles> list = messageDetailDao.findAllByProperty("mensaje", id);
 		return list;
 	}
-	
+
+	@Transactional
+	public MensajeDetalles getLastPriceByConcept(int idMessage){
+		MensajeDetalles obj = messageDetailDao.getLastDetailByIdMessage(idMessage);
+		return obj;
+	}
+
 }

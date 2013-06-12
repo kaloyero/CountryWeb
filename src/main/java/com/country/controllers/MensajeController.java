@@ -102,7 +102,7 @@ public class MensajeController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		MensajeForm form = messageManager.getFormByIdMessage(id);
+		MensajeForm form = messageManager.findFormById(id);
 		model.addAttribute("MENSAJE", form);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
