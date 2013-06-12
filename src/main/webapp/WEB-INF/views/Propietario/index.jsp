@@ -35,7 +35,7 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-wide-extra.css" media="only screen and (min-width:1586px) and (max-width: 1890px)">
 <link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-hd.css" media="only screen and (min-width:1891px)">
 
-<script src="../resources/js/libs/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../resources/js/mylibs/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="../resources/js/Uiclasses/Propietario/wall.js"></script>
 
@@ -93,7 +93,7 @@
 
 <!-- //TOOLBAR -->
 <body id="bd"
-	class="bd-home gridview hoverable has-sidebar  basegrid-m"
+	class="bd-home gridview hoverable has-sidebar basegrid-m display-fullview"
 	style="min-height: 656px;">
 	<!-- WRAPPER -->
 	<div id="wrapper">
