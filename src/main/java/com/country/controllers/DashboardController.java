@@ -21,11 +21,13 @@ import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
+import com.country.hibernate.model.MensajeDetalles;
 import com.country.hibernate.model.Noticia;
 import com.country.hibernate.model.Recurso;
 import com.country.hibernate.model.Tarifa;
 import com.country.mappers.ConceptoMapper;
 import com.country.services.ConceptManager;
+import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
 import com.country.services.NewsManager;
 import com.country.services.PriceManager;
@@ -52,6 +54,9 @@ public class DashboardController {
 
 	@Autowired
 	private MessageManager mensajeManager;
+	
+	@Autowired
+	private MessageDetailManager messageDetailManager;
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
@@ -91,7 +96,8 @@ public class DashboardController {
 		for ( Mensaje mensaje : mensajes) {
 			JSONObject mensajeJson=new JSONObject();
 			mensajeJson.put("titulo",mensaje.getAsunto());
-			mensajeJson.put("descripcion",mensaje.getEstado());
+			MensajeDetalles mensa=messageDetailManager.getLasDetailMessage(mensaje.getId());
+			mensajeJson.put("descripcion",mensa.getMensajeDetalle());
 			mensajeJson.put("categoria",mensaje.getCategoria().getNombre());
 			mensajeJson.put("autor",mensaje.getIntegrante().getPersona().getApellido() + " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
 

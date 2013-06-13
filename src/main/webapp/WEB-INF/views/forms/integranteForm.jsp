@@ -30,13 +30,14 @@
 							</li>
 						</ul>
 					</div>
+					<input type="button" id="addPhone" value="+" />
 				</p>
 				<div class="block-border">
 					<div class="block-header">
 						<h1>Telefonos</h1><span></span>
 					</div>
 					<div class="block-content">
-						<ul class="block-list">
+						<ul class="block-list" id ="listaTelefonos">
 							<c:forEach var="tel" items="${INTEGRANTE.persona.telefonos}">
 								<li id="${dir.key}">
 									${tel.value}

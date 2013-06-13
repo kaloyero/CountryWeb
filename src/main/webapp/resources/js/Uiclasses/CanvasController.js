@@ -54,7 +54,7 @@ var CanvasController = new Class({
     },
     
     onLoaded: function(rowSelectedName,id,objectType,data){
-    	
+    	console.log("ASDsa",objectType)
     	this.addTab(rowSelectedName,id+objectType,data);
     	
        	switch (objectType) {
@@ -77,6 +77,9 @@ var CanvasController = new Class({
 	   	switch (objectType) {
 		 case "recurso":
 			recursoRender.draw();
+			break;
+		 case "integrante":
+				integranteRender.onLoaded();
 			break;
 
 	}

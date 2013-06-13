@@ -223,7 +223,6 @@ var ComponentTranslator = new Class(
 			},
 
 			onShowed : function(objectType, data) {
-
 				canvasController.onShowOption(objectType, data);
 			},
 

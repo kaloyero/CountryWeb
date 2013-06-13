@@ -57,8 +57,7 @@ var ActividadRender = new Class({
 
 		form.append(html.join(''));
 		return form;
-    },
-   
+    }
 });
 
 actividadRender=new ActividadRender();

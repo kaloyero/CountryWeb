@@ -10,4 +10,7 @@ public interface MessageDetailManager extends AbstractManager<MensajeDetalles>{
 	
 	public List<MensajeDetalles> getDetailsByMessajeId(Integer id);
 	
+	public MensajeDetalles getLasDetailMessage(int idMessage);
+
+	
 }

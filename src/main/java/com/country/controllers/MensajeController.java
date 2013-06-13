@@ -31,6 +31,7 @@ import com.country.hibernate.model.Mensaje;
 import com.country.mappers.MensajeMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
+import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
 
 /**
@@ -49,6 +50,11 @@ public class MensajeController {
 	@Autowired
 	private IntegratorManager integratorManager;
 	
+	
+	@Autowired
+	private MessageDetailManager messageDetailManager;
+	
+	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public @ResponseBody  JSONObject showMessageList(ModelMap model) {
 
@@ -59,7 +65,7 @@ public class MensajeController {
 		for ( Mensaje mensaje : mensajes) {
 			JSONObject mensajeJson=new JSONObject();
 			mensajeJson.put("titulo",mensaje.getAsunto());
-			mensajeJson.put("descripcion",mensaje.getEstado());
+			mensajeJson.put("descripcion",messageDetailManager.getLasDetailMessage(mensaje.getId()).getMensajeDetalle());
 			mensajeJson.put("categoria",mensaje.getCategoria().getNombre());
 			mensajeJson.put("autor",mensaje.getIntegrante().getPersona().getApellido() + " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
 
