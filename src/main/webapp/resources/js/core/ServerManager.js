@@ -21,6 +21,11 @@ var ServerManager = new Class({
         this.services['tipoVehiculo']={};
         this.services['mensajeCategoria']={};
         this.services['noticiaCategoria']={};
+        this.services['dashboard']={};
+        this.services['meReclamos']={}
+        this.services['mensajesPropietario']={};
+        this.services['actividadesReserva']={};
+        this.services['recursosReserva']={};
         this.services['mensaje']={};
         this.services['noticia']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
@@ -61,6 +66,13 @@ var ServerManager = new Class({
         this.services['mensajeCategoria']["save"]="/CountryWeb/mensajeCategoria/create/";
         this.services['noticiaCategoria']["load"]="/CountryWeb/noticiaCategoria/load/";
         this.services['noticiaCategoria']["save"]="/CountryWeb/noticiaCategoria/create/";
+        this.services['dashboard']["lista"]="/CountryWeb/dashboard/lista/";
+        this.services['mensajesPropietario']["lista"]="/CountryWeb/mensaje/listaPropietario";
+        this.services['meReclamos']["lista"]="/CountryWeb/mensaje/listaMisMensajes";
+        this.services['actividadesReserva']["lista"]="/CountryWeb/actividad/actividadesParaReservar";
+        this.services['recursosReserva']["lista"]="/CountryWeb/recurso/recursosParaReservar";
+        this.services['recursosReserva']["load"]="/CountryWeb/recurso/recursosParaReservar/load/";
+        
         this.services['mensaje']["load"]="/CountryWeb/mensaje/load/";
         this.services['mensaje']["save"]="/CountryWeb/mensaje/create/";
         this.services['noticia']["load"]="/CountryWeb/noticia/load/";
@@ -75,6 +87,18 @@ var ServerManager = new Class({
     	$.ajax({
 			type: 'GET',
 			url: self.services[config.object]["load"]+config.objectId,
+			success: function(data) {
+				
+				config.onSuccess(data);
+			}
+		});
+    },
+    getAll: function(config){
+
+    	var self=this;
+    	$.ajax({
+			type: 'GET',
+			url: self.services[config.object]["lista"],
 			success: function(data) {
 				
 				config.onSuccess(data);

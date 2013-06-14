@@ -197,6 +197,7 @@ var ComponentTranslator = new Class(
 					object : objectType,
 					objectId : objectId,
 					onSuccess : function(data) {
+
 						self.onLoaded(rowSelectedName, objectId, objectType,
 								data);
 					}
@@ -222,7 +223,6 @@ var ComponentTranslator = new Class(
 			},
 
 			onShowed : function(objectType, data) {
-
 				canvasController.onShowOption(objectType, data);
 			},
 

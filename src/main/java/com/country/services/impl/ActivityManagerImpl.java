@@ -153,6 +153,16 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		list = activityDao.findAllByProperty("nombre", name);
 		return list;
 	}
+	
+	@Transactional
+	public List<Actividad> listAllForBook() {
+		List<Actividad> actividades = new ArrayList<Actividad>();
+		actividades = activityDao.findAll();
+		for (Actividad actividad : actividades) {
+			actividad.getCronogramas().size();
+		}
+		return actividades;
+	}
 
 
 }

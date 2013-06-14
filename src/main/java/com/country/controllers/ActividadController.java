@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.ActividadForm;
+import com.country.form.ActividadReservaForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Mensaje;
+import com.country.hibernate.model.Tarifa;
+
 import com.country.mappers.ActividadMapper;
+import com.country.mappers.ActividadReservaMapper;
 import com.country.services.ActivityManager;
 import com.country.services.InstructorManager;
 
@@ -76,6 +83,23 @@ public class ActividadController {
 			return "success";
 		}
 
+	}
+	
+	@RequestMapping(value = "/actividadesParaReservar",method = RequestMethod.GET)
+	public String showActivitiesForBook(ModelMap model) {
+		
+		List<ActividadReservaForm> listaActividadesForm = new ArrayList();
+
+		for (Actividad actividad : activityManager.listAllForBook()) {
+			listaActividadesForm.add(ActividadReservaMapper.getForm(actividad));
+		}
+		
+		
+		model.addAttribute("actividades", listaActividadesForm);
+		
+	
+		return "Propietario/actividadesReserva";
+		
 	}
 	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)

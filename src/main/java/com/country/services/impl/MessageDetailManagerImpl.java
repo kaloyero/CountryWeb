@@ -32,7 +32,7 @@ public class MessageDetailManagerImpl extends AbstractManagerImpl<MensajeDetalle
 	}
 
 	@Transactional
-	public MensajeDetalles getLastPriceByConcept(int idMessage){
+	public MensajeDetalles getLasDetailMessage(int idMessage){
 		MensajeDetalles obj = messageDetailDao.getLastDetailByIdMessage(idMessage);
 		return obj;
 	}
