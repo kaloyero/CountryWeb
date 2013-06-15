@@ -52,10 +52,4 @@
 			</p>
 		</div>
 	
-	<div class="_25">
-			<p>
-				<label for="datepicker">Email</label>
-				<form:input path="persona.email" class="required" />
-			</p>
-		</div>
 </fieldset>

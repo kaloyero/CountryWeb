@@ -1,12 +1,13 @@
 package com.country.mappers;
 
 import com.country.common.DateFormater;
+import com.country.form.EventoForm;
+import com.country.form.IntegranteForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
-import com.country.form.UnidadForm;
+import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Recurso;
 import com.country.hibernate.model.Reserva;
-import com.country.hibernate.model.Unidad;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class ReserveMapper {
@@ -25,15 +26,17 @@ public class ReserveMapper {
 		recurso.setId(form.getRecurso().getId());
 		dto.setRecurso(recurso);
 
-		Unidad unidad = new Unidad();
-		unidad.setId(form.getUnidad().getId());
-		dto.setUnidad(unidad);
+		dto.setIntegrante(form.getIntegrante().getId());
+
+		Evento evento= new Evento();
+		evento.setId(form.getEvento().getId());
+		dto.setEvento(evento);
 
 		return dto;
 	
 	}
 	
-	public static ReservaForm getForm(Reserva reserva,RecursoForm recurso,UnidadForm unidad)
+	public static ReservaForm getForm(Reserva reserva,RecursoForm recurso,IntegranteForm integrante,EventoForm evento)
 			throws ParseException {
 		
 		ReservaForm form=new ReservaForm();
@@ -43,7 +46,8 @@ public class ReserveMapper {
 		form.setDuracion(reserva.getDuracion());
 		form.setHoraIni(reserva.getHoraIni());
 		form.setRecurso(recurso);
-		form.setUnidad(unidad);
+		form.setIntegrante(integrante);
+		form.setEvento(evento);
 		
 		return form;
 	

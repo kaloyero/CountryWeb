@@ -4,22 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.country.common.GenericDao;
-import com.country.hibernate.dao.NewsDao;
-import com.country.hibernate.model.Noticia;
-import com.country.services.NewsManager;
+import com.country.hibernate.dao.NewsCategoryDao;
+import com.country.hibernate.model.NoticiaCategorias;
+import com.country.services.NewsCategoryManager;
 
-@Service("newsManager")
-public class NewsCategoryManagerImpl extends AbstractManagerImpl<Noticia> implements NewsManager{
+@Service("newsCategoryManager")
+public class NewsCategoryManagerImpl extends AbstractManagerImpl<NoticiaCategorias> implements NewsCategoryManager{
 
 	@Autowired
-    private NewsDao newsDao;
+    private NewsCategoryDao newsCategoryDao;
 	
-	protected GenericDao<Noticia, Integer> getDao() {
-		return newsDao;
+	protected GenericDao<NoticiaCategorias, Integer> getDao() {
+		return newsCategoryDao;
 	}
 
-	public Noticia findById(Integer id) {
-		Noticia dto = newsDao.findById(id);
+	public NoticiaCategorias findById(Integer id) {
+		NoticiaCategorias dto = newsCategoryDao.findById(id);
 		return dto;
 	}
 

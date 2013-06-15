@@ -15,7 +15,6 @@ var CanvasController = new Class({
     },
    
     addTab: function(nameRow, id, content){
-    	alert("canva ");
     	this.getTabContainer().find("ul.tabs li").removeClass("active");
     	this.getTabContainer().find('.tab-content').hide();
         

@@ -29,18 +29,24 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
     <property name="annotatedClasses">
 	<list>
 		<value>com.country.hibernate.model.Actividad</value>
-		<value>com.country.hibernate.model.IntegranteActividades</value>
 		<value>com.country.hibernate.model.Asignacion</value>
 		<value>com.country.hibernate.model.Autorizado</value>
+		<value>com.country.hibernate.model.Aviso</value>
+		<value>com.country.hibernate.model.AvisoCategoria</value>
+		<value>com.country.hibernate.model.AvisoSuscripcion</value>
 		<value>com.country.hibernate.model.Ciudad</value>
 		<value>com.country.hibernate.model.Concepto</value>
 		<value>com.country.hibernate.model.Cronograma</value>
+		<value>com.country.hibernate.model.DataTable</value>
 		<value>com.country.hibernate.model.Direccion</value>
 		<value>com.country.hibernate.model.Emprendimiento</value>
 		<value>com.country.hibernate.model.Especie</value>
+		<value>com.country.hibernate.model.Evento</value>
+		<value>com.country.hibernate.model.EventoIntegrante</value>
 		<value>com.country.hibernate.model.Infraccion</value>
 		<value>com.country.hibernate.model.Instructor</value>
 		<value>com.country.hibernate.model.Integrante</value>
+		<value>com.country.hibernate.model.IntegranteActividades</value>
 		<value>com.country.hibernate.model.Liquidacion</value>
 		<value>com.country.hibernate.model.LiquidacionCargo</value>
 		<value>com.country.hibernate.model.Localidad</value>
@@ -48,11 +54,11 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.Mensaje</value>
 		<value>com.country.hibernate.model.MensajeCategorias</value>
 		<value>com.country.hibernate.model.MensajeDetalles</value>
+		<value>com.country.hibernate.model.Noticia</value>
 		<value>com.country.hibernate.model.NoticiaAdjunto</value>
 		<value>com.country.hibernate.model.NoticiaCategorias</value>
 		<value>com.country.hibernate.model.NoticiaSuscripciones</value>
 		<value>com.country.hibernate.model.NoticiaValoraciones</value>
-		<value>com.country.hibernate.model.Noticia</value>
 		<value>com.country.hibernate.model.Pago</value>
 		<value>com.country.hibernate.model.Periodo</value>
 		<value>com.country.hibernate.model.Persona</value>
@@ -74,7 +80,9 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.TipoVehiculo</value>
 		<value>com.country.hibernate.model.Unidad</value>
 		<value>com.country.hibernate.model.UnidadConcepto</value>
+		<value>com.country.hibernate.model.User</value>
 		<value>com.country.hibernate.model.Vacuna</value>
+		<value>com.country.hibernate.model.Vehiculo</value>
 		<value>com.country.hibernate.model.Vehiculo</value>		
 	</list>
     </property>

@@ -1,17 +1,12 @@
 package com.country.controllers;
 
 
-import java.util.List;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.hibernate.model.Mensaje;
-import com.country.services.MessageManager;
-import com.country.services.NewsManager;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
@@ -65,7 +57,7 @@ public class MensajeController {
 		for ( Mensaje mensaje : mensajes) {
 			JSONObject mensajeJson=new JSONObject();
 			mensajeJson.put("titulo",mensaje.getAsunto());
-			mensajeJson.put("descripcion",messageDetailManager.getLasDetailMessage(mensaje.getId()).getMensajeDetalle());
+			mensajeJson.put("descripcion",messageDetailManager.getLastDetailMessage(mensaje.getId()).getMensajeDetalle());
 			mensajeJson.put("categoria",mensaje.getCategoria().getNombre());
 			mensajeJson.put("autor",mensaje.getIntegrante().getPersona().getApellido() + " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
 

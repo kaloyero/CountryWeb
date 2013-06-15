@@ -1,7 +1,5 @@
 package com.country.controllers;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -9,23 +7,13 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ConceptoForm;
-import com.country.hibernate.model.Actividad;
-import com.country.hibernate.model.Concepto;
-import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.hibernate.model.Noticia;
-import com.country.hibernate.model.Recurso;
-import com.country.hibernate.model.Tarifa;
-import com.country.mappers.ConceptoMapper;
 import com.country.services.ConceptManager;
 import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
@@ -96,7 +84,7 @@ public class DashboardController {
 		for ( Mensaje mensaje : mensajes) {
 			JSONObject mensajeJson=new JSONObject();
 			mensajeJson.put("titulo",mensaje.getAsunto());
-			MensajeDetalles mensa=messageDetailManager.getLasDetailMessage(mensaje.getId());
+			MensajeDetalles mensa=messageDetailManager.getLastDetailMessage(mensaje.getId());
 			mensajeJson.put("descripcion",mensa.getMensajeDetalle());
 			mensajeJson.put("categoria",mensaje.getCategoria().getNombre());
 			mensajeJson.put("autor",mensaje.getIntegrante().getPersona().getApellido() + " Unidad " + mensaje.getIntegrante().getUnidad().getCode());

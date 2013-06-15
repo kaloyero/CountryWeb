@@ -11,11 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.country.common.GenericDao;
 import com.country.form.IntegranteForm;
 import com.country.hibernate.dao.IntegratorDao;
-import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.IntegranteMapper;
-import com.country.services.AddressManager;
 import com.country.services.IntegratorManager;
 import com.country.services.TelephoneManager;
 
@@ -24,9 +22,6 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 
 	@Autowired
     private IntegratorDao integratorDao;
-	
-	@Autowired
-	private AddressManager addressManager;
 	
 	@Autowired
 	private TelephoneManager telephoneManager;
@@ -40,10 +35,9 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		IntegranteForm form = new IntegranteForm();
 		
 		Integrante dto = integratorDao.findById(id);
-		List<Direccion> direcciones = addressManager.findListByIdPerson(dto.getPersona().getId());
 		List<Telefono> telefonos = telephoneManager.findListByIdPerson(dto.getPersona().getId());
 		
-		form = (IntegranteForm) IntegranteMapper.getForm(dto, direcciones,telefonos);
+		form = (IntegranteForm) IntegranteMapper.getForm(dto,telefonos);
 		
 		return form;
 	}
@@ -66,8 +60,9 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		Integrante dto = IntegranteMapper.getIntegrante(form);
 		
 		integratorDao.save(dto);
-//		addressManagerImpl.save(form.getPersona().getDirecciones());
-//		telephoneManagerImpl.save(form.getPersona().getDirecciones());
+		if (form.getPersona().getListaTelefonos() != null){
+			telephoneManager.saveFormList(form.getPersona().getListaTelefonos(),dto.getPersona().getId());
+		}
 		
 	}
 
@@ -76,19 +71,8 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		Integrante dto = IntegranteMapper.getIntegrante(form);
 		
 		integratorDao.update(dto);
-//		addressManagerImpl.save(form.getPersona().getDirecciones());
-//		telephoneManagerImpl.save(form.getPersona().getDirecciones());
+		telephoneManager.updateFormList(form.getPersona().getListaTelefonos(),form.getPersona().getId());
 		
-	}
-	
-	/**
-	 * Retorna el Integrante con la lista de Actividades 
-	 * a las cuales esta asociado
-	 */
-	public Integrante getActivitiesById(Integer id) {
-		Integrante dto = integratorDao.findById(id);
-//		dto.getActivities();
-		return dto;
 	}
 
 }

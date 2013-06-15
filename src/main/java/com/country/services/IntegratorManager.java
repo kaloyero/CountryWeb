@@ -13,8 +13,6 @@ public interface IntegratorManager extends AbstractManager<Integrante>{
 	
 	void update(IntegranteForm form);
 	
-	Integrante getActivitiesById(Integer id);
-	
 	Map<Integer, String> getIntegratorNames();
 	
 }

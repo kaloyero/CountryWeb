@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,9 +24,8 @@ public class EventoIntegrante implements Serializable {
 	@Column(name = "IdEvento")
 	private int evento;
 	
-    @OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante")	
-	private Integrante integrante;
+	@Column(name = "IdIntegrante")
+	private int integrante;
 
 	public int getId() {
 		return id;
@@ -47,12 +43,13 @@ public class EventoIntegrante implements Serializable {
 		this.evento = evento;
 	}
 
-	public Integrante getIntegrante() {
+	public int getIntegrante() {
 		return integrante;
 	}
 
-	public void setIntegrante(Integrante integrante) {
+	public void setIntegrante(int integrante) {
 		this.integrante = integrante;
 	}
+
 	
 }

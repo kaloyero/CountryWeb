@@ -4,8 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,9 +18,6 @@ import com.country.form.ActividadForm;
 import com.country.form.ActividadReservaForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Mensaje;
-import com.country.hibernate.model.Tarifa;
-
 import com.country.mappers.ActividadMapper;
 import com.country.mappers.ActividadReservaMapper;
 import com.country.services.ActivityManager;

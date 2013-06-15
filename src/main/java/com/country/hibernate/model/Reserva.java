@@ -37,16 +37,41 @@ public class Reserva implements Serializable {
     @OneToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="IdRecurso",updatable = false, insertable = false)	
 	private  Recurso recurso ;
-	
-    @OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdUnidad",updatable = false, insertable = false)		
-	private  Unidad unidad;
 
 	@Column(name = "HoraIni")
 	private  int horaIni ;
 
 	@Column(name = "Duracion")
 	private  int duracion ;
+
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdEvento",nullable=true)		
+	private  Evento evento;
+	
+//	@OneToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="IdIntegrante",updatable = false, insertable = false)	
+//	private  Integrante integrante;
+
+	@Column(name = "IdIntegrante")
+	private  int integrante ;
+
+	
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+
+	
+	public int getIntegrante() {
+		return integrante;
+	}
+
+	public void setIntegrante(int integrante) {
+		this.integrante = integrante;
+	}
 
 	public int getId() {
 		return id;
@@ -78,14 +103,6 @@ public class Reserva implements Serializable {
 
 	public void setRecurso(Recurso recurso) {
 		this.recurso = recurso;
-	}
-
-	public Unidad getUnidad() {
-		return unidad;
-	}
-
-	public void setUnidad(Unidad unidad) {
-		this.unidad = unidad;
 	}
 
 	public int getHoraIni() {

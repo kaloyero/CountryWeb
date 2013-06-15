@@ -7,16 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.country.common.GenericDao;
+import com.country.form.EventoForm;
+import com.country.form.IntegranteForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
-import com.country.form.UnidadForm;
 import com.country.hibernate.dao.ReserveDao;
 import com.country.hibernate.model.RecursoDisponibilidad;
 import com.country.hibernate.model.Reserva;
 import com.country.hibernate.model.Tarifa;
+import com.country.mappers.EventoMapper;
 import com.country.mappers.RecursoMapper;
 import com.country.mappers.ReserveMapper;
-import com.country.mappers.UnidadMapper;
+import com.country.services.IntegratorManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
 
@@ -28,6 +30,9 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 
 	@Autowired
     private PriceManager priceManager;
+
+	@Autowired
+	private IntegratorManager integratorManager;
 	
 	protected GenericDao<Reserva, Integer> getDao() {
 		return reserveDao;
@@ -46,9 +51,10 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		//TODO no esta trayendo las disponibiledades. Es necesario?
 		Tarifa tarifa = priceManager.getLastPriceByConcept(dto.getRecurso().getConcepto().getId());
 		RecursoForm recForm = RecursoMapper.getForm(dto.getRecurso(),tarifa.getImporte(), new ArrayList<RecursoDisponibilidad>());
-		UnidadForm uniForm = UnidadMapper.getForm(dto.getUnidad());
+		IntegranteForm integranteForm = integratorManager.findFormById(dto.getIntegrante());
+		EventoForm eventoForm = (EventoForm) EventoMapper.getForm(dto.getEvento());
 				
-		form = (ReservaForm) ReserveMapper.getForm(dto,recForm , uniForm );
+		form = (ReservaForm) ReserveMapper.getForm(dto,recForm , integranteForm,eventoForm );
 		
 		return form;
 	}

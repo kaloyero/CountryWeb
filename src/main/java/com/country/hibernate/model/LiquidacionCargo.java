@@ -66,6 +66,10 @@ public class LiquidacionCargo implements Serializable {
 	@JoinColumn(name="IdReserva")		
 	private  Reserva reserva;
 
+    @OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdEventoParticipante")		
+	private  EventoIntegrante eventoParticipante;
+    
 	public Integer getId() {
 		return id;
 	}
@@ -153,5 +157,14 @@ public class LiquidacionCargo implements Serializable {
 	public void setReserva(Reserva reserva) {
 		this.reserva = reserva;
 	}
+
+	public EventoIntegrante getEventoParticipante() {
+		return eventoParticipante;
+	}
+
+	public void setEventoParticipante(EventoIntegrante eventoParticipante) {
+		this.eventoParticipante = eventoParticipante;
+	}
+
 	
 }
