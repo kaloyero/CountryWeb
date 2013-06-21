@@ -1,16 +1,10 @@
 package com.country.mappers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.country.common.DateFormater;
 import com.country.form.Form;
-import com.country.form.MensajeForm;
 import com.country.form.NoticiaForm;
-import com.country.hibernate.model.Mensaje;
-import com.country.hibernate.model.MensajeDetalles;
 import com.country.hibernate.model.Noticia;
+import com.country.hibernate.model.NoticiaCategorias;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class NoticiaMapper {
@@ -19,10 +13,12 @@ public class NoticiaMapper {
 			throws ParseException {
 		
 		Noticia	dto = new Noticia();
-		dto.setId(form.getId());
+		dto.setId(((NoticiaForm) form).getId());
 		dto.setEstado(((NoticiaForm) form).getEstado());
 		dto.setFecha(DateFormater.convertStringToDate(((NoticiaForm) form).getFecha()));
-		//TODO AGREGAR NOTICIAS CATEGORIAS.
+		NoticiaCategorias notCat = new NoticiaCategorias();
+		notCat.setId(((NoticiaForm) form).getCategoria());
+		dto.setCategoria(notCat);
 		dto.setFechaDesde(DateFormater.convertStringToDate(((NoticiaForm) form).getFechaDesde()));
 		dto.setFechaHasta(DateFormater.convertStringToDate(((NoticiaForm) form).getFechaHasta()));
 		dto.setTexto(((NoticiaForm) form).getTexto());
@@ -32,25 +28,18 @@ public class NoticiaMapper {
 	
 	}
 	
-	public static MensajeForm getForm(Mensaje mensaje)
+	public static NoticiaForm getForm(Noticia dto)
 			throws ParseException {
 		
-		MensajeForm form=new MensajeForm();
-		form.setId(mensaje.getId());
-		form.setAsunto(mensaje.getAsunto());
-		form.setCategoria(mensaje.getCategoria().getId());
-		form.setEstado(mensaje.getEstado());
-		form.setFecha(DateFormater.convertDateToString(mensaje.getFecha()));
-		form.setFechaCierre(DateFormater.convertDateToString(mensaje.getFechaCierre()));
-		form.setIntegrante(mensaje.getIntegrante().getId());
-		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
-								mensaje.getIntegrante().getPersona().getNombre() + " " +
-								mensaje.getIntegrante().getPersona().getApellido() + " " +
-								mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
-								mensaje.getIntegrante().getPersona().getNroDoc() );
-		form.setResolucion(mensaje.getResolucion());
-		form.setTipo(mensaje.getTipo());
-		form.setDetalles(getDetalles(detalles));
+		NoticiaForm form=new NoticiaForm();
+		form.setId(dto.getId());
+		form.setCategoria(dto.getCategoria().getId());
+		form.setEstado(dto.getEstado());
+		form.setFecha(DateFormater.convertDateToString(dto.getFecha()));
+		form.setFechaDesde(DateFormater.convertDateToString(dto.getFechaDesde()));
+		form.setFechaHasta(DateFormater.convertDateToString(dto.getFechaHasta()));
+		form.setTexto(dto.getTexto());
+		form.setTitulo(dto.getTitulo());
 		
 		return form;
 	

@@ -7,6 +7,6 @@ public interface NewsManager extends AbstractManager<Noticia>{
 
 	NoticiaForm findFormById(Integer id);
 	
-	public void save(NoticiaForm dto);
+	public void save(NoticiaForm form);
 	
 }

@@ -18,6 +18,7 @@ import com.country.form.IntegranteForm;
 import com.country.form.NoticiaForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Noticia;
+import com.country.services.NewsCategoryManager;
 import com.country.services.NewsManager;
 
 /**
@@ -30,11 +31,15 @@ public class NoticiaController {
 	@Autowired
 	private NewsManager newsManager;
 	
+	@Autowired
+	private NewsCategoryManager newsCategoryManager;
+	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		NoticiaForm noticia = new NoticiaForm();
-
+		
 		model.addAttribute("NOTICIA", noticia);
+		model.addAttribute("categorias", newsCategoryManager.listAll());
 		
 		return "noticia";
 	}
@@ -45,7 +50,7 @@ public class NoticiaController {
 			BindingResult result) throws ParseException {
 		
 		newsManager.save(form);
-				return "success";
+		return "success";
 		
 	}
 	
@@ -54,6 +59,7 @@ public class NoticiaController {
 	
 		NoticiaForm form = newsManager.findFormById(id);
 		
+		model.addAttribute("categorias", newsCategoryManager.listAll());
 		model.addAttribute("NOTICIA", form);
 		
 		return "forms/noticiaForm";

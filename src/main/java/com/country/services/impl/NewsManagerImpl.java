@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.country.common.GenericDao;
 import com.country.form.NoticiaForm;
 import com.country.hibernate.dao.NewsDao;
-import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.Noticia;
 import com.country.mappers.NoticiaMapper;
 import com.country.services.NewsManager;
@@ -35,9 +34,8 @@ public class NewsManagerImpl extends AbstractManagerImpl<Noticia> implements New
 	}
 	
 	@Transactional
-	public void save(NoticiaForm dto) {
-		Noticia dto = NoticiaMapper.();
-		
+	public void save(NoticiaForm form) {
+		Noticia dto = NoticiaMapper.getNoticia(form);		
 		
 		getDao().save(dto);
 	}
