@@ -89,10 +89,10 @@ public class MensajeController {
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "MENSAJE") MensajeForm tipoForm,
+			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
 		
-		//messageManager.save(TipoMapper.getMensajeCategoria(tipoForm));
+		messageManager.save(MensajeMapper.getMensaje(form));
 				return "success";
 		
 	}
