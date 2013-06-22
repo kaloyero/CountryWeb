@@ -5,7 +5,7 @@
 <div class="inner sidebar-inner clearfix"
 	style="height: 468px; overflow: hidden;">
 	<div class="sidebar-inner-scrollblock"
-		style="transition: 0ms; -webkit-transition: 0ms; -webkit-transform-origin: 0px 0px; position: absolute; top: 0px; left: 0px; font-size: 14px;">
+		style="transition: 0ms; -webkit-transition: 0ms; -webkit-transform-origin: 0px 0px; position: absolute; top: 0px; left: 0px; font-size: 12px;">
 		<div class="moduletable moduletable" id="Mod61">
 			<div class="inner moduletable-inner clearfix">
 				<h3>
@@ -59,8 +59,8 @@
 						<li class="item-502"><a class="option" id="actividadesReserva">Actividades/Reserva</a></li>
 						<li class="item-502"><a class="option" id="recursosReserva">Recursos/Reserva</a></li>
 						<li class="item-502"><a class="option" id="ideas"href="#">Ideas</a></li>
-						<li class="item-503"><a class="option" id="eventos" href="eventos.html">Eventos</a></li>
-						<li class="item-579"><a class="option" id="clasificados" href="#">Clasificados</a></li>
+						<li class="item-503"><a class="option" id="eventos">Eventos</a></li>
+						<li class="item-579"><a class="option" id="avisos">Clasificados</a></li>
 						<li class="item-598"><a class="option" id="recomendaciones" href="#">Recomendaciones</a></li>
 						<li class="item-560"><a class="option" id="mensajesPropietario" >Reclamos</a></li>
 					</ul>

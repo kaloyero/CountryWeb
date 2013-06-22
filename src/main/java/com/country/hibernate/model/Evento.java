@@ -1,6 +1,7 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -58,7 +59,14 @@ public class Evento implements Serializable {
 	}
 
 	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(fecha);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date truncatedDate = calendar.getTime();
+		this.fecha = truncatedDate;
 	}
 
 	public Integer getHourIni() {

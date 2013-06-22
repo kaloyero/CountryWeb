@@ -1,4 +1,4 @@
-var EventoRender = new Class({
+var AvisoRender = new Class({
 	Extends: Render,
     initialize: function(name){
         this.name = name;
@@ -11,11 +11,11 @@ var EventoRender = new Class({
 onFinishLoading : function(dataToAppend){
 	this.cleanCanvas();
 	$("#masonry-container").append(dataToAppend);
-	//$("body").addClass("display-imageview");
+	$("body").addClass("display-imageview");
     createEffect();
 	//templateManager.add("actividadesReserva",dataToAppend);
 	
 }
 });
 
-eventoRender=new EventoRender();
+aviso=new AvisoRender();

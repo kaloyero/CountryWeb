@@ -14,7 +14,6 @@ var ActividadReservaRender = new Class({
     	$("#masonry-container").append(dataToAppend);
     	$("body").addClass("display-imageview");
         createEffect();
-    	//templateManager.add("actividadesReserva",dataToAppend);
     	
     }
 });
