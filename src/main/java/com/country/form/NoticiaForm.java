@@ -1,5 +1,8 @@
 package com.country.form;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class NoticiaForm extends Form  {
 
@@ -11,6 +14,7 @@ public class NoticiaForm extends Form  {
 	private String fecha;
 	private String fechaDesde;
 	private String fechaHasta;
+	private Map<Integer, String> adjuntos = new HashMap<Integer, String>();
 
 	public int getId() {
 		return id;
@@ -60,6 +64,13 @@ public class NoticiaForm extends Form  {
 	public void setFechaHasta(String fechaHasta) {
 		this.fechaHasta = fechaHasta;
 	}
+	public Map<Integer, String> getAdjuntos() {
+		return adjuntos;
+	}
+	public void setAdjuntos(Map<Integer, String> adjuntos) {
+		this.adjuntos = adjuntos;
+	}
 
+	
 	
 }

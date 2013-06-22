@@ -1,5 +1,6 @@
 package com.country.controllers;
 
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,82 +15,77 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.IntegranteForm;
-import com.country.form.NoticiaForm;
+import com.country.form.EventoForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Noticia;
-import com.country.services.NewsCategoryManager;
-import com.country.services.NewsManager;
+import com.country.hibernate.model.Evento;
+import com.country.mappers.EventoMapper;
+import com.country.services.EventManager;
+import com.country.services.IntegratorManager;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/noticia")
-public class NoticiaController {
+@RequestMapping(value = "/evento")
+public class EventoController {
 
 	@Autowired
-	private NewsManager newsManager;
+	private EventManager eventManager;
 	
 	@Autowired
-	private NewsCategoryManager newsCategoryManager;
+	private IntegratorManager integratorManager;
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		NoticiaForm noticia = new NoticiaForm();
+		EventoForm evento = new EventoForm();
+		model.addAttribute("EVENTO", evento);
+		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		
-		model.addAttribute("NOTICIA", noticia);
-		model.addAttribute("categorias", newsCategoryManager.listAll());
-		
-		return "noticia";
+		return "evento";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "NOTICIA") NoticiaForm form,
+			@ModelAttribute(value = "EVENTO") EventoForm form,
 			BindingResult result) throws ParseException {
 		
-		
-		
-		newsManager.save(form);
-		return "success";
+		eventManager.save(EventoMapper.getEvento(form));
+				return "success";
 		
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		NoticiaForm form = newsManager.findFormById(id);
-		
-		model.addAttribute("categorias", newsCategoryManager.listAll());
-		model.addAttribute("NOTICIA", form);
-		
-		return "forms/noticiaForm";
+		EventoForm form = eventManager.findFormById(id);
+		model.addAttribute("EVENTO", form);
+		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+
+		return "forms/eventoForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "NOTICIA") IntegranteForm integranteForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "EVENTO") EventoForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		//newsManager.update(integranteForm);
+		eventManager.update(EventoMapper.getEvento(form));
 		return "success";
-		
-
 	}
+
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public  @ResponseBody DataTable getUserInJSON()  {
            
            DataTable dataTable=new DataTable();
 
-			for (Noticia noticia : newsManager.listAll()) {
+			for (Evento tipo : eventManager.listAll()) {
 				List <String> row =new ArrayList<String>();
-				row.add(String.valueOf(noticia.getId()));
-				row.add(noticia.getTitulo());
+				row.add(String.valueOf(tipo.getId()));
+				row.add(tipo.getDescription());
 				dataTable.getAaData().add(row);
 			}
 
            dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("5");
+           dataTable.setiTotalDisplayRecords("2");
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}

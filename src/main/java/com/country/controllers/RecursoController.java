@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ActividadReservaForm;
 import com.country.form.RecursoForm;
-import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Recurso;
-import com.country.mappers.ActividadReservaMapper;
 import com.country.mappers.RecursoMapper;
 import com.country.services.ResourceManager;
 import com.country.services.TypeResourceManager;
@@ -99,7 +96,7 @@ public class RecursoController {
 	@RequestMapping(value = "/recursosParaReservar",method = RequestMethod.GET)
 	public String showActivitiesForBook(ModelMap model) {
 		
-		List<RecursoForm> listaRecursosForm = new ArrayList();
+		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();
 
 		for (Recurso recurso : recursoManager.listAll()) {
 			listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));
