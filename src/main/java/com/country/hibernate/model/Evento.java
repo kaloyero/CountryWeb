@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Eventos", catalog = "country")
+@Table(name = "Eventos")
 public class Evento implements Serializable {
 
 	/** Serial Version UID */
@@ -30,13 +30,16 @@ public class Evento implements Serializable {
 	private Date fecha;
 	
 	@Column(name = "HoraIni")
-	private Integer HourIni;
+	private Integer hourIni;
 
 	@Column(name = "Descripcion")
 	private String description;
 
 	@Column(name = "Cupo")
 	private Integer cupo;
+	
+	@Column(name = "Nombre")
+	private String nombre;
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = false, insertable = false)	
@@ -69,12 +72,13 @@ public class Evento implements Serializable {
 		this.fecha = truncatedDate;
 	}
 
+
 	public Integer getHourIni() {
-		return HourIni;
+		return hourIni;
 	}
 
 	public void setHourIni(Integer hourIni) {
-		HourIni = hourIni;
+		this.hourIni = hourIni;
 	}
 
 	public String getDescription() {
@@ -107,6 +111,14 @@ public class Evento implements Serializable {
 
 	public void setIntegrante(Integrante integrante) {
 		this.integrante = integrante;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }

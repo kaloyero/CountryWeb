@@ -1,9 +1,12 @@
 package com.country.services;
 
+import com.country.form.NoticiaForm;
 import com.country.hibernate.model.Noticia;
 
 public interface NewsManager extends AbstractManager<Noticia>{
 
-	Noticia findById(Integer id);
+	NoticiaForm findFormById(Integer id);
+	
+	public int save(NoticiaForm form);
 	
 }

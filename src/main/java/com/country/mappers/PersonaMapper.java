@@ -56,19 +56,23 @@ public class PersonaMapper {
 	private static Map<Integer, String> getTelefonos(List<Telefono> telefonos) {
 		
 		Map<Integer, String> lista = new HashMap<Integer, String>();
-		for (Telefono telefono : telefonos) {
-			lista.put(telefono.getId(), FormaterObject.getFormatPhone(telefono));
+		if (telefonos!=null){
+			for (Telefono telefono : telefonos) {
+				lista.put(telefono.getId(), FormaterObject.getFormatPhone(telefono));
+			}
 		}
-		
 		return lista;
 		
 	}
 
 	private static Map<Integer, String> getDirecciones(List<Direccion> dires) {
 		Map<Integer, String> lista = new HashMap<Integer, String>();
-		for (Direccion direccion : dires) {
-			lista.put(direccion.getId(), FormaterObject.getFormatDirection(direccion));
+		if (dires!=null){
+			for (Direccion direccion : dires) {
+				lista.put(direccion.getId(), FormaterObject.getFormatDirection(direccion));
+			}
 		}
+			
 		
 		return lista;
 	}

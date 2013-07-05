@@ -2,7 +2,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-
+<div class="inner content-inner clearfix">
+							<div id="masonry-container" class="clearfix masonry"
+								style="position: relative; height: 1592px;">
+								
 <c:forEach items="${eventos}" var="evento">
 
 	
@@ -26,7 +29,7 @@
 		<!-- Item header -->
 		<div class="header item-header clearfix">
 					<h2>
-									<a href="#" class="item-link"><font color="#09c">${evento.fecha}</font>
+									<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
 					</a>
 						</h2>
 		
@@ -55,7 +58,7 @@
 		<div class="footer item-footer clearfix">
 					<dl class="article-hit">
 						<dd class="hits">
-							<strong>Unidos:</strong> 0 <strong>
+							<strong>Unidos:</strong> 0 
 						</dd>
 						<dd class="hits">
 							<strong>Finaliza con al
@@ -76,4 +79,11 @@
 	</div>
 </div>
 </c:forEach>
+<div class="corner-stamp" style="width: 227px;">
+									
+								</div>
+								
+								
+							</div>
+								</div>
 

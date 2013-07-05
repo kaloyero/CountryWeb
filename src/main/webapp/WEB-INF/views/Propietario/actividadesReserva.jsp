@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-
+<div class="inner content-inner clearfix">
+							<div id="masonry-container" class="clearfix masonry"
+								style="position: relative; height: 1592px;">
 <c:forEach items="${actividades}" var="actividad">
 
 <div class="tileContent item instagram item-hot masonry-brick" style="width: 228px; position: absolute; top: 0px; left: 0px;">
@@ -85,4 +87,11 @@
 									</div>
 								</div>
 					</c:forEach>
+					<div class="corner-stamp" style="width: 227px;">
+									
+								</div>
+								
+								
+							</div>
+								</div>
 								

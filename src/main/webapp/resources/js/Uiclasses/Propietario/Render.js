@@ -16,6 +16,7 @@ var Render = new Class({
     onFinishLoading : function(coleccion){
     	var me=this;
     	me.cleanCanvas();
+    	
     	for (tipo in coleccion){
     		templateManager.add(tipo,coleccion[tipo])
     		//console.log("Tipo",tipo)

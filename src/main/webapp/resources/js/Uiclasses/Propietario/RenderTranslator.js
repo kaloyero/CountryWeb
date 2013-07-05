@@ -14,18 +14,18 @@ var RenderTranslator = new Class({
 		case "meEventos":
 			return eventoRender;
 			break;
-		case "mensajesPropietario":
+		case "mensaje":
 			return reclamoRender;
 			break;
-		case "actividadesReserva":
+		case "actividad":
 			return actividadReservaRender;
 			break;
 			
-		case "recursosReserva":	
+		case "recurso":	
 			return recursoReservaRender;
 			break;
-			
-    	case "eventos":
+
+    	case "evento":
 			return eventoRender;
 			break;
 		}

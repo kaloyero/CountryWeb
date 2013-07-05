@@ -6,16 +6,29 @@ var EventoRender = new Class({
 
     populateData: function(dataToAppend){
 		this.onFinishLoading(dataToAppend);
-},
+    },
+    load: function(dataToAppend){
+    	this.cleanCanvas();
+    	$("body").removeClass();
+    	$("body").addClass("has-sidebar has-aside");
+    	//$(".corner-stamp").remove()
+    	$("#mainbody").prepend(dataToAppend);
+    	//$("#mainbody").html(dataToAppend);
+
+    },
 
 onFinishLoading : function(dataToAppend){
 	this.cleanCanvas();
-	$("#masonry-container").append(dataToAppend);
-	//$("body").addClass("display-imageview");
+	$("#content").append(dataToAppend);
+	jQuery(".corner-stamp").load('../resources/static/corner.html');
+	$("body").removeClass();
+
+	$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
     createEffect();
-	//templateManager.add("actividadesReserva",dataToAppend);
 	
 }
 });
+
+
 
 eventoRender=new EventoRender();

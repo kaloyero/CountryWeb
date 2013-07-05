@@ -25,6 +25,8 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/propietario/template.css" media="all">
 <link rel="stylesheet" type="text/css" href="../resources/css/propietario/k2.css" media="all">
 <link rel="stylesheet" type="text/css" href="../resources/css/propietario/print.css" media="print">
+  <link rel="stylesheet" href="../resources/css/notifications.css"> <!-- Notifications, optional -->
+
 <!-- //TEMPLATE STYLESHEETS -->
 <!-- MEDIA QUERIES -->
 <link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-mobile.css" media="only screen and (max-width:719px)">
@@ -44,6 +46,7 @@
 <!-- //CUSTOM THEMES -->
 <!-- //NUESTROS JS -->
   <script src="../resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
+  <script src="../resources/js/mylibs/jquery.notifications.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/Render.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/RenderTranslator.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/TemplateManager.js"></script>
@@ -61,11 +64,13 @@
  <script src="../resources/js/Uiclasses/CalendarController.js"></script>
 
 <script src="../resources/js/Uiclasses/Propietario/SideBarController.js"></script>
-<script src="../resources/js/core/ServerManager.js"></script>
+<script src="../resources/js/core/TestServerManager.js"></script>
 <script src="../resources/js/libs/jquery.tmpl.js"></script>
 
 <link rel='stylesheet' type='text/css' href='../resources/js/libs/fullcalendar/fullcalendar.css' />
 <script type='text/javascript' src='../resources/js/libs/fullcalendar/fullcalendar.js'></script>
+<link rel="stylesheet" href="../resources/css/propietario/ui.css" >
+
   
 
 
@@ -77,6 +82,7 @@
 </style>
 
 <script type="text/javascript">
+
 	jQuery(document).ready(function($) {
 		jQuery("#sidebar").load('../dashboard/sideBar',function(){
 			sideBarController.bindMenuEvents();
@@ -135,12 +141,13 @@
 					</div>
 
 					<!-- SIDE BAR -->
-					<div id="sidebar" class="has-toggle" style="height: 468px;">
 					
-					</div>
 					<!-- // SIDE BAR -->
 
 				</div>
+				<div id="sidebar" class="has-toggle" style="height: 468px;">
+					
+					</div>
 			</div>
 			<!-- // CONTAINER -->
 

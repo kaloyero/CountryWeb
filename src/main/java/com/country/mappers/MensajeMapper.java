@@ -1,5 +1,6 @@
 package com.country.mappers;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,14 +24,25 @@ public class MensajeMapper {
 		MensajeCategorias cat = new MensajeCategorias();
 		cat.setId(form.getCategoria());
 		mensaje.setCategoria(cat);
-		mensaje.setEstado(form.getEstado());
-		mensaje.setFecha(DateFormater.convertStringToDate((form.getFecha())));
-		mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
+		//Si el estado esta vacio,es un nuevo Mensaje(Reclamo)
+		 if (form.getEstado()!=null){
+			 mensaje.setEstado(form.getEstado());
+
+		 }else{
+			 mensaje.setEstado("A");
+
+		 }
+		
+		mensaje.setFecha(new Date());
+		if (form.getFechaCierre()!=null)
+			mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
-		mensaje.setResolucion(form.getResolucion());
-		mensaje.setTipo(form.getTipo());
+		mensaje.setResolucion("X");
+		//Si es Reclamo va Ro,sino M
+		mensaje.setTipo("R");
+		//mensaje.setTipo(form.getTipo());
 		
 		return mensaje;
 	

@@ -10,6 +10,7 @@ import com.country.common.GenericDao;
 import com.country.form.MensajeForm;
 import com.country.hibernate.dao.MessageDao;
 import com.country.hibernate.dao.MessageDetailDao;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.mappers.MensajeMapper;
@@ -34,6 +35,20 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		Mensaje dto = messageDao.findById(id);
 		return dto;
 	}
+	
+	@Transactional
+	public void save(Mensaje dto) {
+		//TODO definir estado inicial
+		dto.setResolucion("");
+		//TODO hacer que tome el integrante real
+		Integrante integrante = new Integrante();
+		integrante.setId(1);
+		dto.setIntegrante(integrante);
+		
+		//guarda el mensaje
+		getDao().save(dto);
+	}
+
 
 	public MensajeForm findFormById(Integer id) {
 		MensajeForm form = new MensajeForm();

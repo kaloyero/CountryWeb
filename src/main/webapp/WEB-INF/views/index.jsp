@@ -60,6 +60,7 @@
   <script src="resources/js/Uiclasses/mensajeCategoriaRender.js"></script>
   <script src="resources/js/Uiclasses/noticiaCategoriaRender.js"></script>
   <script src="resources/js/Uiclasses/MensajeRender.js"></script>
+  <script src="resources/js/Uiclasses/EventoRender.js"></script>
   <script src="resources/js/Uiclasses/NoticiaRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
@@ -154,8 +155,9 @@
 					<a href="javascript:void(0);" class="option current" id="recurso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Recurso<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="vehiculo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Vehiculo<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="mascota"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mascota<span class="badge red"></span></a>
-					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no anda)<span class="badge red"></span></a>
-					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia (no anda)<span class="badge red"></span></a>					
+					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no modifica)<span class="badge red"></span></a>
+					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia (no modifica)<span class="badge red"></span></a>					
+					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento (falta alta y modif)<span class="badge red"></span></a>					
 					<a href="javascript:void(0);"><img src="src/main/webapp/resources/img/icons/packs/fugue/16x16/clipboard-list.png">Configuracion<span class="badge grey">9</span></a>
 	    			<ul class="sub">
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoAutorizacion">Tipo de Autorizaciones</a></li>

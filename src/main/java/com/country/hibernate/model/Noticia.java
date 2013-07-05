@@ -2,6 +2,7 @@ package com.country.hibernate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 @Entity
-@Table(name = "noticias", catalog = "country")
+@Table(name = "Noticias")
 public class Noticia implements Serializable {
 
 	/** Serial Version UID */
@@ -47,6 +51,12 @@ public class Noticia implements Serializable {
 	@Column(name = "PublicaHasta")
 	private Date fechaHasta;
 
+	@OneToMany(fetch=FetchType.LAZY)
+	@BatchSize(size = 10)
+    @JoinColumn(name="IdNoticia",updatable = false, insertable = false , nullable = true)
+	private  List <NoticiaAdjunto> adjuntos ;
+
+	
 	public int getId() {
 		return id;
 	}
@@ -110,5 +120,14 @@ public class Noticia implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
+	public List<NoticiaAdjunto> getAdjuntos() {
+		return adjuntos;
+	}
+
+	public void setAdjuntos(List<NoticiaAdjunto> adjuntos) {
+		this.adjuntos = adjuntos;
+	}
+
 	
 }
