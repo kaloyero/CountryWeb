@@ -67,8 +67,10 @@ public class MensajeReclamoController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		//TODO update mensaje
-		//newsManager.update(integranteForm);
+		//Seteo el TIPO de mensaje como RECLAMO
+		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
+		messageManager.update(form);
+		
 		return "success";
 		
 

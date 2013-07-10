@@ -15,6 +15,7 @@ import com.country.hibernate.dao.MessageDetailDao;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
+import com.country.mappers.MensajeDetalleMapper;
 import com.country.mappers.MensajeMapper;
 import com.country.services.MessageManager;
 
@@ -64,12 +65,14 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		dto.setIntegrante(integrante);
 
 		// Guardo los Detalles
-		if (dto.getDetalles() != null){
-			for (MensajeDetalles detalle : dto.getDetalles()) {
-				detalle.setMensaje(dto.getId());
-				messageDetailDao.save(detalle);
-			}
-		}
+//		if (dto.getDetalles() != null){
+//			for (MensajeDetalles detalle : dto.getDetalles()) {
+//				detalle.setMensaje(dto.getId());
+//				messageDetailDao.save(detalle);
+//			}
+//		}
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo());
+		messageDetailDao.save(detalle);
 		
 		//guarda el mensaje
 		getDao().save(dto);
@@ -78,28 +81,32 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	@Transactional
 	public void update(MensajeForm form) {
 		
-		Mensaje dto = MensajeMapper.getMensaje(form);
-		
-		//Seteo el estado inicial del mensaje
-		getNextStatus(dto.getTipo(), dto.getEstado(), "");
-		//Seteo la resolucion en blanco
-		dto.setResolucion("");
-		
-		//TODO hacer que tome el integrante real. Crear combo
-		Integrante integrante = new Integrante();
-		integrante.setId(1);
-		dto.setIntegrante(integrante);
+		// Guardo el o los Detalles
+//		if (dto.getDetalles() != null){
+//			for (MensajeDetalles detalle : dto.getDetalles()) {
+//				detalle.setMensaje(dto.getId());
+//				messageDetailDao.save(detalle);
+//			}
+//		}
 
-		// Guardo los Detalles
-		if (dto.getDetalles() != null){
-			for (MensajeDetalles detalle : dto.getDetalles()) {
-				detalle.setMensaje(dto.getId());
-				messageDetailDao.save(detalle);
-			}
-		}
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo());
+		messageDetailDao.save(detalle);
 		
-		//guarda el mensaje
-		getDao().save(dto);
+		//TODO falta hacer servicio que actualice el estado del mensaje
+		//Toma el nuevo estado
+		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), "");
+		//actualiza el estado
+		messageDao.updateStatus(form.getId(),newStatus);
+		
+	}
+
+	@Transactional
+	public void closeMessage(MensajeForm form) {
+		
+		//actualiza el estado
+		messageDao.closeMessage(form.getId(),form.getRespuesta());
+		
+		
 	}
 	
 	public List<Mensaje> getMessajesCategoryType(String type) {

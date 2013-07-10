@@ -12,4 +12,10 @@ public interface MessageManager extends AbstractManager<Mensaje>{
 	List<Mensaje> getMessajesCategoryType(String type);
 
 	void save(MensajeForm form);
+	
+	void closeMessage(MensajeForm form);
+	
+	void update(MensajeForm form);
+	
+	
 }
