@@ -3,22 +3,30 @@ var ReclamoRender = new Class({
     initialize: function(name){
         this.name = name;
     },
-    getHtml: function(data){
+    populateData: function(dataToAppend){
+		this.onFinishLoading(dataToAppend);
+    },
+   
+    load: function(dataToAppend){
+    	this.cleanCanvas();
+    	$("body").removeClass();
+    	$("body").addClass("has-sidebar has-aside");
+    	//$(".corner-stamp").remove()
+    	$("#mainbody").prepend(dataToAppend);
+    	//$("#mainbody").html(dataToAppend);
+
     },
     
-    populateData: function(dataToAppend){
-    	var me=this;
-    	/*var reclamo = [{firstName: "John",lastName: "Doe"},{firstName: "topu",lastName: "Doe"},{firstName: "jaja",lastName: "Doe"
-    	              		},{firstName: "jaja",lastName: "Doe"},{firstName: "jaja",lastName: "Doe"}];
 
-    	$.get("../resources/static/templateDashboard.html", function (data) {
-    		$('body').append(data);
-    		me.onFinishLoading(dataToAppend)
-    	      
-    	});*/
-    	$("body").removeClass("display-imageview");
-    	me.onFinishLoading(dataToAppend);
- 
+    onFinishLoading : function(dataToAppend){
+    	this.cleanCanvas();
+    	$("#content").append(dataToAppend);
+    	jQuery(".corner-stamp").load('../resources/static/corner.html');
+    	$("body").removeClass();
+    	$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
+	
+    	createEffect();
+	
     }
 });
 

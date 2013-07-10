@@ -1,5 +1,6 @@
 package com.country.mappers;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +26,12 @@ public class MensajeMapper {
 		mensaje.setCategoria(cat);
 		mensaje.setEstado(form.getEstado());
 		mensaje.setFecha(DateFormater.convertStringToDate((form.getFecha())));
-		mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
+		if (form.getFechaCierre()!=null)
+			mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
-		mensaje.setResolucion(form.getResolucion());
+		mensaje.setResolucion("");
 		mensaje.setTipo(form.getTipo());
 		
 		return mensaje;

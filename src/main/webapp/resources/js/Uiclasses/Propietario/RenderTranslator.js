@@ -7,24 +7,29 @@ var RenderTranslator = new Class({
     	switch (type) {
 		case "dashboard":
 			return dashboardRender;
-			break
+			break;
 		case "meReclamos":
 			return reclamoRender;
+			break;
 		case "meEventos":
 			return eventoRender;
-		case "mensajesPropietario":
+			break;
+		case "mensaje":
 			return reclamoRender;
-		case "actividadesReserva":
+			break;
+		case "actividad":
 			return actividadReservaRender;
+			break;
 			
-		case "recursosReserva":	
+		case "recurso":	
 			return recursoReservaRender;
+			break;
+
+    	case "evento":
+			return eventoRender;
+			break;
 		}
     	
-    	
-    	
-    	
-    	recursosReserva
     }
     
 });

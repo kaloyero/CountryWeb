@@ -2,91 +2,55 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <p></p>
-<%-- <form:form commandName="EVENTO" class="block-content form">
 
-<fieldset>
-		<legend>Evento</legend>
-
-		
-</fieldset>
-
-<div class="clear"></div>
-	<div class="block-actions">
-		<ul class="actions-left">
-			<li><a class="button red" id="reset-validate-form"
-				href="javascript:void(0);">Reset</a></li>
-		</ul>
-		<ul class="actions-right">
-			<c:if test="${EVENTO.id == 0}">
-				<li><input type="button" class="button" value="Crear!"
-				onClick="translator.onSubmit('evento');"></li>									
-								</c:if>
-			<c:if test="${EVENTO.id != 0}">
-				<li><input type="button" class="button" value="Guardar!"
-				onClick="updateEvento(${EVENTO.id})"></li>									
-								</c:if>
-		</ul>
-	</div>
-</form:form> --%>
-<div id="evento_nuevo" class="formulario">
-					<div id="ja-message">
+<div id="reclamo_nuevo" class="formulario">
+									<div id="ja-message">
 						<div id="system-message-container"></div>
 					</div>
 					<!-- MAIN CONTENT -->
 					<div id="content">
 						<div class="inner content-inner clearfix">
 							<!-- K2 user register form -->
-							<form:form commandName="EVENTO" class="formulario form-validate">
+							<form:form commandName="MENSAJE" class="formulario form-validate">
 							
-								<div class="componentheading">Nuevo Evento</div>
+								<div class="componentheading">Nuevo Reclamo</div>
 								<div id="k2Container" class="k2AccountPage">
 									<div class="wheader k2ProfileHeading">Detalles</div>
 									<div class="wcgroup">
 										<label class="wlabel" id="namemsg" for="name">Titulo</label>
 										<div class="wcontrols">
-										<form:input path="nombre" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
+										<form:input path="asunto" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
 										</div>
 									</div>
-									<div class="wcgroup">
-										<label class="wlabel" id="usernamemsg" for="username">Sector(Seria si se necesita algun recurso?)</label>
-										<div class="wcontrols">
-											<input type="text" id="username" name="jform[username]" size="40" value="" class="inputbox required validate-username" maxlength="25" aria-required="true" required="required">*
-										</div>
-									</div>
+									
 									<div class="wcgroup">
 										<label class="wlabel" id="emailmsg" for="email">
-											Fecha:</label>
+											Categoria:</label>
 										<div class="wcontrols">
-										<form:input path="fecha" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
-										</div>
+										<form:select path="categoria" multiple="false"> 
+											<form:options items="${categorias}" itemValue="id" itemLabel="nombre" /> 
+									</form:select>
 									</div>
-									<div class="wcgroup">
-										<label class="wlabel" id="emailmsg" for="email">
-											Horario:</label>
-										<div class="wcontrols">
-										<form:input path="hourIni" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
-										</div>
 									</div>
+
 									<div class="wheader k2ProfileHeading">Descripcion</div>
 									<!-- K2 attached fields -->
 									<div class="wcgroup">
-										<label class="wlabel" id="descriptionmsg" for="description">Conta
-											bien la idea para que los demas se unan!</label>
+										<label class="wlabel" id="descriptionmsg" for="description">De que se trata tu Reclamo?</label>
 										<div class="wcontrols">
-										<form:textarea path="descripcion"  rows="3" cols="20" style="width: 100%; height: 250px;" class="mce_editable" aria-hidden="true" />
+										<form:textarea path="respuesta"  rows="3" cols="20" style="width: 100%; height: 250px;" class="mce_editable" aria-hidden="true" />
 					
 										</span>
 										</div>
 									</div>
 									<!-- Joomla! 1.6+ JForm implementation -->
 									<div class="k2AccountPageUpdate">
-									<input type="button" class="button" value="Crear evento" onclick="translator.onSubmit('evento');">
-
+										<input type="button" class="button" value="Crear reclamo" onclick="translator.onSubmit('mensaje');">
 									</div>
 								</div>
 								
 </form:form>						</div>
-					</div>
+				</div>
 					<!-- // MAIN CONTENT -->
 					<!-- ASIDE -->
 					<div id="aside">

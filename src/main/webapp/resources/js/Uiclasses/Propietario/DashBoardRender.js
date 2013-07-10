@@ -9,13 +9,7 @@ var DashBoardender = new Class({
     
     populateData: function(dataToAppend){
     	var me=this;
-    	var peopleImage = [{firstName: "John",lastName: "Doe"},{firstName: "topu",lastName: "Doe"},{firstName: "jaja",lastName: "Doe"
-    	              		},{firstName: "jaja",lastName: "Doe"},{firstName: "jaja",lastName: "Doe"}];
-    	var peopleNoImage = [{firstName: "John",lastName: "Doe"},{firstName: "topu",lastName: "Doe"},{firstName: "jaja",lastName: "Doe"
-    	              	  },{firstName: "jaja",lastName: "Doe"},{firstName: "jaja",lastName: "Doe"}];
-    	
-    	var peopleImportant = [{firstName: "John",lastName: "Doe"}]	
-    	console.log("PEOPL",peopleImage)
+    
     	$.get("../resources/static/templateDashboard.html", function (data) {
     		$('body').append(data);
     		me.onFinishLoading(dataToAppend)

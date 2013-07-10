@@ -60,7 +60,7 @@ public class DashboardController {
 		return "Propietario/sidebar";
 	}
 
-	@RequestMapping(value = "/lista",method = RequestMethod.GET)
+	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public @ResponseBody  JSONObject showMainContent(ModelMap model) {
 		//JSONArray dashboard = new JSONArray();
 

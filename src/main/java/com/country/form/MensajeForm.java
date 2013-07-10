@@ -14,6 +14,7 @@ public class MensajeForm extends Form  {
 	private String resolucion;
 	private int categoria;
 	private int integrante;
+	private String respuesta;
 	private String integranteNombre;
 	private Map<Integer, String> detalles = new HashMap<Integer, String>();
 	
@@ -84,6 +85,12 @@ public class MensajeForm extends Form  {
 	}
 	public void setIntegrante(int integrante) {
 		this.integrante = integrante;
+	}
+	public String getRespuesta() {
+		return respuesta;
+	}
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
 	}
 
 }

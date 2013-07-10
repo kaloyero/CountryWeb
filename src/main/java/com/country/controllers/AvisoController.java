@@ -28,6 +28,7 @@ import com.country.services.NewsManager;
 public class AvisoController {
 
 	@Autowired
+
 	private NewsManager newsManager;
 	
 	@Autowired

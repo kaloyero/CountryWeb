@@ -48,52 +48,42 @@ public class MensajeController {
 	
 	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
-	public @ResponseBody  JSONObject showMessageList(ModelMap model) {
+	public String  showMessageList(ModelMap model) {
 
 		
 		List<Mensaje> mensajes =messageManager.listAll();
-
-		JSONArray mensajeJsonArray = new JSONArray();
-		for ( Mensaje mensaje : mensajes) {
-			JSONObject mensajeJson=new JSONObject();
-			mensajeJson.put("titulo",mensaje.getAsunto());
-			mensajeJson.put("descripcion",messageDetailManager.getLastDetailMessage(mensaje.getId()).getMensajeDetalle());
-			mensajeJson.put("categoria",mensaje.getCategoria().getNombre());
-			mensajeJson.put("autor",mensaje.getIntegrante().getPersona().getApellido() + " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
-
-			mensajeJsonArray.add(mensajeJson);
-		};
-
-		JSONObject collectionArray = new JSONObject();
-		collectionArray.put("mensajes", mensajeJsonArray);
-		return collectionArray;
+		model.addAttribute("mensajes", mensajes);
+		
+		
+		return "Propietario/listadoMensajes";	
 		
 	}
 
-	@RequestMapping(value = "/listaMisMensajes",method = RequestMethod.GET)
-	public @ResponseBody  JSONObject showMyMessages(ModelMap model) {
-		return showMessageList(model);
+	@RequestMapping(value = "/listaPropietarioFromUsuario",method = RequestMethod.GET)
+	public String showMyMessages(ModelMap model) {
+		return this.showMessageList(model);
 	}
 
 	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
+		//Preguntar en sesion si es un Admin o propietario
 		MensajeForm mensaje = new MensajeForm();
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
-		
-		return "mensaje";
+		//return "Propietario/mensajeForm";//HAbiliutar esto para que ande el alta en Prop
+		return "mensaje";//HAbiliutar esto para que ande el alta en Admin
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
-		
 		messageManager.save(form);
 				return "success";
+
 		
 	}
 	

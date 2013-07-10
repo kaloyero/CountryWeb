@@ -1,9 +1,12 @@
 package com.country.controllers;
 
 
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,24 +34,52 @@ public class EventoController {
 
 	@Autowired
 	private EventManager eventManager;
-	
 	@Autowired
 	private IntegratorManager integratorManager;
+
+
+	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
+	public String showMainContent(ModelMap model,HttpServletRequest request) {
+		System.out.println("VALOR "+ request.getRequestURL().toString());
+		List<Evento> eventos =eventManager.listAll();
+		model.addAttribute("eventos", eventos);
+		
+		
+		return "Propietario/listadoEventos";
+	}
+	
+	@RequestMapping(value = "/listaPropietarioFromUsuario",method = RequestMethod.GET)
+	public String getListaEventosByUser(ModelMap model,HttpServletRequest request) {
+		System.out.println("VALOR "+ request.getRequestURL().toString());
+		System.out.println("VALOR "+ request.getLocalAddr().toString());
+		
+		List<Evento> eventos =eventManager.listAll();
+		model.addAttribute("eventos", eventos);
+		
+		
+		return "Propietario/listadoEventos";
+	}
+	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		EventoForm evento = new EventoForm();
-		model.addAttribute("EVENTO", evento);
-		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		
-		return "evento";
+			  
+		//TODO depende el usuario o algo que podamos setear en la cookie saber si esta en el modulo de admin o propietario
+		// para saber si enviarle el form de Eventos para admin o Propietario
+		model.addAttribute("EVENTO", evento);
+		return "forms/eventoForm";
+		//model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+		
+		//return "evento";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "EVENTO") EventoForm form,
 			BindingResult result) throws ParseException {
-		
+		//TODO sirve saber si la creacion viene de Admin o propietario?
 		eventManager.save(EventoMapper.getEvento(form));
 				return "success";
 		
@@ -56,7 +87,7 @@ public class EventoController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
+
 		EventoForm form = eventManager.findFormById(id);
 		model.addAttribute("EVENTO", form);
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
@@ -73,7 +104,7 @@ public class EventoController {
 	}
 
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
-	public  @ResponseBody DataTable getUserInJSON()  {
+	public  @ResponseBody DataTable getUserInJSON(HttpServletRequest request)  {
            
            DataTable dataTable=new DataTable();
 

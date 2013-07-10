@@ -1,4 +1,6 @@
-#Fri May 17 19:46:30 GMT-03:00 2013
+#Tue Jun 25 22:51:21 GMT-03:00 2013
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/Propietario/nuevoEvento.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/forms/eventoForm.jsp=UTF-8
 encoding//src/main/webapp/resources/static/dashboard.html=UTF-8
 encoding//src/main/webapp/resources/static/templateDashboard.html=UTF-8

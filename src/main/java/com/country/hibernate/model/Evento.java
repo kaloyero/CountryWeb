@@ -1,6 +1,7 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Eventos", catalog = "country")
+@Table(name = "Eventos")
 public class Evento implements Serializable {
 
 	/** Serial Version UID */
@@ -29,13 +30,16 @@ public class Evento implements Serializable {
 	private Date fecha;
 	
 	@Column(name = "HoraIni")
-	private Integer HourIni;
+	private Integer hourIni;
 
 	@Column(name = "Descripcion")
 	private String description;
 
 	@Column(name = "Cupo")
 	private Integer cupo;
+	
+	@Column(name = "Nombre")
+	private String nombre;
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = false, insertable = false)	
@@ -58,15 +62,23 @@ public class Evento implements Serializable {
 	}
 
 	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(fecha);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date truncatedDate = calendar.getTime();
+		this.fecha = truncatedDate;
 	}
 
+
 	public Integer getHourIni() {
-		return HourIni;
+		return hourIni;
 	}
 
 	public void setHourIni(Integer hourIni) {
-		HourIni = hourIni;
+		this.hourIni = hourIni;
 	}
 
 	public String getDescription() {
@@ -99,6 +111,14 @@ public class Evento implements Serializable {
 
 	public void setIntegrante(Integrante integrante) {
 		this.integrante = integrante;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }

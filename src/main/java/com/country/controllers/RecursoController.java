@@ -93,7 +93,7 @@ public class RecursoController {
 	}
 	
 	
-	@RequestMapping(value = "/recursosParaReservar",method = RequestMethod.GET)
+	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showActivitiesForBook(ModelMap model) {
 		
 		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();

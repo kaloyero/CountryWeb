@@ -11,10 +11,12 @@ var ActividadReservaRender = new Class({
    
     onFinishLoading : function(dataToAppend){
     	this.cleanCanvas();
-    	$("#masonry-container").append(dataToAppend);
-    	$("body").addClass("display-imageview");
+    	$("#content").append(dataToAppend);
+    	jQuery(".corner-stamp").load('../resources/static/corner.html');
+    	$("body").removeClass();
+
+    	$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview display-imageview");
         createEffect();
-    	//templateManager.add("actividadesReserva",dataToAppend);
     	
     }
 });

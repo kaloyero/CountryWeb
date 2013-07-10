@@ -79,27 +79,28 @@ var RecursoRender = new Class({
      	
      	if (eventList) {
      		var obj = JSON.parse(eventList);
-     		var fechaDesde= new Date(start.getTime());
-     		var fechaHasta= new Date(start.getTime());
-         	console.log("Obje",obj);
-         	console.log("StartGetTime",start.getDate());
-         	fechaDesde.setDate(start.getDate() +obj[0].dia)
-         	fechaDesde.setHours(obj[0].horaIni);
-         	fechaHasta.setDate(start.getDate() +obj[0].dia)
-         	fechaHasta.setHours(obj[0].horaFin);
-         	console.log("Des",fechaDesde);
-         	console.log("Hasta",fechaHasta);
+     		$(obj).each(function(index) {
+     			var fechaDesde= new Date(start.getTime());
+     			var fechaHasta= new Date(start.getTime());
+     			console.log("Obje",this);
+     			console.log("StartGetTime",start.getDate());
+     			fechaDesde.setDate(start.getDate() +this.dia);
+     			fechaDesde.setHours(this.horaIni);
+     			fechaHasta.setDate(start.getDate() +this.dia);
+     			fechaHasta.setHours(this.horaFin);
+     			console.log("Des",fechaDesde);
+     			console.log("Hasta",fechaHasta);
 
          	
-    		var nuevoEvento=new Object();
-     		nuevoEvento.title="PPUT";
-     		nuevoEvento.allDay=false;
+     			var nuevoEvento=new Object();
+     			nuevoEvento.title="PPUT";
+     			nuevoEvento.allDay=false;
      		
-     		nuevoEvento.start=fechaDesde;
-     		nuevoEvento.end=fechaHasta;
+     			nuevoEvento.start=fechaDesde;
+     			nuevoEvento.end=fechaHasta;
      	
-    		events.push(nuevoEvento);
-     	}
+     			events.push(nuevoEvento);
+     	})}
      	/*if (eventList) {
      		var obj = JSON.parse(eventList);
          	console.log("Obje",obj);

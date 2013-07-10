@@ -1,6 +1,7 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,23 +11,44 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "mensajedetalles", catalog = "country")
+@Table(name = "MensajeDetalles")
 public class MensajeDetalles implements Serializable {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IdMensajeDetalle", unique = true, nullable = false)
 	private int id;
-	
+
 	@Column(name = "IdMensaje")
 	private int mensaje;
 
 	@Column(name = "Mensaje")
 	private String mensajeDetalle;
 
+	@Column(name = "Fecha")
+	private Date fecha;
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getModoMensaje() {
+		return modoMensaje;
+	}
+
+	public void setModoMensaje(String modoMensaje) {
+		this.modoMensaje = modoMensaje;
+	}
+
+	@Column(name = "ModoMensaje")
+	private String modoMensaje;
 
 	public int getId() {
 		return id;
@@ -51,6 +73,5 @@ public class MensajeDetalles implements Serializable {
 	public void setMensajeDetalle(String mensajeDetalle) {
 		this.mensajeDetalle = mensajeDetalle;
 	}
-	
-	
+
 }

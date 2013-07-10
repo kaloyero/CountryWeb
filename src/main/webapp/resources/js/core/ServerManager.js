@@ -30,6 +30,8 @@ var ServerManager = new Class({
         this.services['recursosReserva']={};
         this.services['evento']={};
         this.services['noticia']={};
+        this.services['eventos']={};
+        this.services['avisos']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
         this.services['instructor']["load"]="/CountryWeb/instructor/load/";
@@ -82,6 +84,9 @@ var ServerManager = new Class({
         this.services['mensajeReclamo']["save"]="/CountryWeb/mensajeReclamo/create/";
         this.services['noticia']["load"]="/CountryWeb/noticia/load/";
         this.services['noticia']["save"]="/CountryWeb/noticia/create/";
+        this.services['eventos']["lista"]="/CountryWeb/evento/listaPropietario";
+        this.services['avisos']["lista"]="/CountryWeb/avisos/lista";
+
 
     },
  

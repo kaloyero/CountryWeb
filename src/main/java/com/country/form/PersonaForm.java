@@ -5,10 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public class PersonaForm extends Form {
 
-public class PersonaForm extends Form  {
-
-	private Integer id=0;
+	private Integer id = 0;
 	private String nombre;
 	private String apellido;
 	private String nacimiento;
@@ -16,13 +15,13 @@ public class PersonaForm extends Form  {
 	private String nroDoc;
 	private String email;
 	private int tipoDocumento;
-	
+	private String telefonosTest = "";
+
 	private Map<Integer, String> direcciones = new HashMap<Integer, String>();
 	private Map<Integer, String> telefonos = new HashMap<Integer, String>();
 
 	private List<DireccionForm> listaDirecciones = new ArrayList<DireccionForm>();
 	private List<TelefonoForm> listaTelefonos = new ArrayList<TelefonoForm>();
-
 
 	public Map<Integer, String> getDirecciones() {
 		return direcciones;
@@ -118,6 +117,14 @@ public class PersonaForm extends Form  {
 
 	public void setListaTelefonos(List<TelefonoForm> listaTelefonos) {
 		this.listaTelefonos = listaTelefonos;
+	}
+
+	public String getTelefonosTest() {
+		return telefonosTest;
+	}
+
+	public void setTelefonosTest(String telefonosTest) {
+		this.telefonosTest = telefonosTest;
 	}
 
 }

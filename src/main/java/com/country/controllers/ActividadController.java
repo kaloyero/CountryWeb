@@ -80,7 +80,7 @@ public class ActividadController {
 
 	}
 	
-	@RequestMapping(value = "/actividadesParaReservar",method = RequestMethod.GET)
+	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showActivitiesForBook(ModelMap model) {
 		
 		List<ActividadReservaForm> listaActividadesForm = new ArrayList();

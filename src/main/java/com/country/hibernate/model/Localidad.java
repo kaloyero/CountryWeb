@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Localidades", catalog = "country")
+@Table(name = "Localidades")
 public class Localidad implements Serializable {
 
 	/** Serial Version UID */

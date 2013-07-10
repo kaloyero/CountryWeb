@@ -9,11 +9,8 @@ var TemplateManager = new Class({
 		case "mensajes":
 			return $('#reclamosTemplate');
 			break;
-		case "actividadesReserva":
-			return $('#actividadesReservaTemplate');
-			break;
-		}
-    },
+
+    }},
     
     add: function(idTemplate,data){
     	console.log("Data a Agregar",data)

@@ -61,7 +61,6 @@ public class PersonaMapper {
 				lista.put(telefono.getId(), FormaterObject.getFormatPhone(telefono));
 			}
 		}
-		
 		return lista;
 		
 	}
@@ -73,6 +72,7 @@ public class PersonaMapper {
 				lista.put(direccion.getId(), FormaterObject.getFormatDirection(direccion));
 			}
 		}
+			
 		
 		return lista;
 	}
