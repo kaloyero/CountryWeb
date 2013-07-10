@@ -92,7 +92,7 @@ public class MensajeController {
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
 		
-		messageManager.save(MensajeMapper.getMensaje(form));
+		messageManager.save(form);
 				return "success";
 		
 	}

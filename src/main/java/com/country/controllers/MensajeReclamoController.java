@@ -1,7 +1,6 @@
 package com.country.controllers;
 
 import java.text.ParseException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,43 +14,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.NoticiaForm;
+import com.country.common.TipoMensajes;
+import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Noticia;
-import com.country.services.NewsCategoryManager;
-import com.country.services.NewsManager;
+import com.country.hibernate.model.Mensaje;
+import com.country.services.MessageManager;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/noticia")
-public class NoticiaController {
+@RequestMapping(value = "/mensajeReclamo")
+public class MensajeReclamoController {
 
 	@Autowired
-	private NewsManager newsManager;
-	
-	@Autowired
-	private NewsCategoryManager newsCategoryManager;
-	
+	private MessageManager messageManager;
+		
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		NoticiaForm noticia = new NoticiaForm();
+		MensajeForm mensaje = new MensajeForm();
 		
-		model.addAttribute("NOTICIA", noticia);
-		model.addAttribute("categorias", newsCategoryManager.listAll());
+		model.addAttribute("MENSAJE", mensaje);
 		
-		return "noticia";
+		return "mensajeReclamo";
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "NOTICIA") NoticiaForm form,
+			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
 		
+		//Seteo el TIPO de mensaje como RECLAMO
+		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 		
+		messageManager.save(form);
 		
-		newsManager.save(form);
 		return "success";
 		
 	}
@@ -59,19 +56,19 @@ public class NoticiaController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		NoticiaForm form = newsManager.findFormById(id);
+		MensajeForm form = messageManager.findFormById(id);
+
+		model.addAttribute("MENSAJE", form);
 		
-		model.addAttribute("categorias", newsCategoryManager.listAll());
-		model.addAttribute("NOTICIA", form);
-		
-		return "forms/noticiaForm";
+		return "forms/mensajeReclamoForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "NOTICIA") NoticiaForm form,@PathVariable int id,
+	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		//newsManager.update(form);
+		//TODO update mensaje
+		//newsManager.update(integranteForm);
 		return "success";
 		
 
@@ -79,19 +76,20 @@ public class NoticiaController {
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public  @ResponseBody DataTable getUserInJSON()  {
            
-           DataTable dataTable=new DataTable();
+			DataTable dataTable=new DataTable();
 
-			for (Noticia noticia : newsManager.listAll()) {
+			for (Mensaje obj : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
 				List <String> row =new ArrayList<String>();
-				row.add(String.valueOf(noticia.getId()));
-				row.add(noticia.getTitulo());
+				row.add(String.valueOf(obj.getId()));
+				row.add(obj.getAsunto());
+				row.add(obj.getEstado());
 				dataTable.getAaData().add(row);
 			}
 
-           dataTable.setsEcho("1");
-           dataTable.setiTotalDisplayRecords("5");
-           dataTable.setiTotalRecords("1");
-           return dataTable;
+			dataTable.setsEcho("1");
+			dataTable.setiTotalDisplayRecords("5");
+			dataTable.setiTotalRecords("1");
+			return dataTable;
 	}
 
 }

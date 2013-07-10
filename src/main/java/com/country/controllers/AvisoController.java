@@ -1,7 +1,6 @@
 package com.country.controllers;
 
 import java.text.ParseException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,8 @@ import com.country.services.NewsManager;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/noticia")
-public class NoticiaController {
+@RequestMapping(value = "/aviso")
+public class AvisoController {
 
 	@Autowired
 	private NewsManager newsManager;

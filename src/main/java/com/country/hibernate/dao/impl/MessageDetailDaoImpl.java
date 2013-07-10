@@ -23,7 +23,7 @@ public class MessageDetailDaoImpl extends GenericDaoImpl<MensajeDetalles, Intege
     	  criteria.addOrder(Order.desc("id"));
     	  criteria.setMaxResults(1);
    
-        return (MensajeDetalles) criteria.uniqueResult();
+          return (MensajeDetalles) criteria.uniqueResult();
       }
 
 	

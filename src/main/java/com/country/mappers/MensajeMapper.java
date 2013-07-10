@@ -36,7 +36,7 @@ public class MensajeMapper {
 	
 	}
 	
-	public static MensajeForm getForm(Mensaje mensaje,List<MensajeDetalles> detalles)
+	public static MensajeForm getForm(Mensaje mensaje)
 			throws ParseException {
 		
 		MensajeForm form=new MensajeForm();
@@ -54,7 +54,7 @@ public class MensajeMapper {
 								mensaje.getIntegrante().getPersona().getNroDoc() );
 		form.setResolucion(mensaje.getResolucion());
 		form.setTipo(mensaje.getTipo());
-		form.setDetalles(getDetalles(detalles));
+		form.setDetalles(getDetalles(mensaje.getDetalles()));
 		
 		return form;
 	

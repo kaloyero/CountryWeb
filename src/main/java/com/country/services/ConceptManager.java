@@ -1,7 +1,6 @@
 package com.country.services;
 
 import com.country.hibernate.model.Concepto;
-import com.country.hibernate.model.Tarifa;
 
 public interface ConceptManager extends AbstractManager<Concepto>{
 
