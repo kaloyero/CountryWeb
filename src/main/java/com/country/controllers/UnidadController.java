@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,10 +36,12 @@ public class UnidadController {
 
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model,HttpServletRequest request) {
 		UnidadForm unidad = new UnidadForm();
 		model.addAttribute("UNIDAD", unidad);
-		
+		HttpSession session = request.getSession(true);
+		 String param = (String) session.getAttribute("MySessionVariable");
+	        System.out.println("PARA "+ param);
 		return "unidad";
 	}
 

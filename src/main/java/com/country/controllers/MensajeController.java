@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
 import com.country.mappers.MensajeDetalleMapper;
 import com.country.mappers.MensajeMapper;
+import com.country.mappers.MensajeSimpleMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageDetailManager;
@@ -68,13 +72,20 @@ public class MensajeController {
 	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model,HttpServletRequest request) {
 		//Preguntar en sesion si es un Admin o propietario
 		MensajeForm mensaje = new MensajeForm();
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
-		return "Propietario/mensajeForm";
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		 if (usuarioConectado.equals("Admin")){
+			 return "mensajeForm";
+		 }else{
+			 return "Propietario/mensajeForm";
+		 }
+		
 		//return "mensaje";HAbiliutar esto para que ande el alta en Admin
 	}
 
@@ -83,7 +94,7 @@ public class MensajeController {
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
 		
-		messageManager.save(MensajeMapper.getMensaje(form));
+		messageManager.save(MensajeSimpleMapper.getMensaje(form));
 		messageDetailManager.save(MensajeDetalleMapper.getMensajeDetalle(1,form.getRespuesta()));
 		return "success";
 		
@@ -104,7 +115,8 @@ public class MensajeController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm tipoForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		messageManager.update(MensajeMapper.getMensaje(tipoForm));
+		//Pasar la llamada al mapper en el manager,igual que en otros lados
+		messageManager.update(MensajeSimpleMapper.getMensaje(tipoForm));
 		return "success";
 	}
 

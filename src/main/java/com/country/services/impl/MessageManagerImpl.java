@@ -14,6 +14,7 @@ import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.mappers.MensajeMapper;
+import com.country.mappers.MensajeSimpleMapper;
 import com.country.services.MessageManager;
 
 @Service("messageManager")
@@ -56,7 +57,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		Mensaje dto = findById(id);
 		List<MensajeDetalles> detalles = messageDetailDao.findAllByProperty("mensaje", id);
 		
-		form = (MensajeForm) MensajeMapper.getForm(dto,detalles);
+		form = (MensajeForm) MensajeSimpleMapper.getForm(dto,detalles);
 		
 		return form;
 	}

@@ -7,6 +7,17 @@ public class EventoForm extends Form  {
 	private  String descripcion ;
 	private  String fecha ;
 	private String nombre;
+	private int recurso;
+	public int getRecurso() {
+		return recurso;
+	}
+
+
+	public void setRecurso(int recurso) {
+		this.recurso = recurso;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}

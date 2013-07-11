@@ -48,10 +48,12 @@
 										</div>
 									</div>
 									<div class="wcgroup">
-										<label class="wlabel" id="usernamemsg" for="username">Sector(Seria si se necesita algun recurso?)</label>
-										<div class="wcontrols">
-											<input type="text" id="username" name="jform[username]" size="40" value="" class="inputbox required validate-username" maxlength="25" aria-required="true" required="required">*
-										</div>
+										<label for="select">Recurso necesario:</label>
+											<form:select path="recurso" multiple="false" id="recursoCombo">
+				   								<option value="-1">Seleccione un Recurso</option>
+											<form:options items="${recursos}" itemValue="id"
+													itemLabel="nombre" />
+									</form:select>
 									</div>
 									<div class="wcgroup">
 										<label class="wlabel" id="emailmsg" for="email">

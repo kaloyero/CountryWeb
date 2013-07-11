@@ -10,8 +10,10 @@ var ServerManager = new Class({
         this.services['recurso']={};
         this.services['reclamo']={};
         this.services['evento']={};
+        this.services['recurso']={};
         this.services['evento']["save"]="/CountryWeb/evento/create/";
         this.services['mensaje']["save"]="/CountryWeb/mensaje/create/";
+        this.services['recurso']["load"]="/CountryWeb/recurso/load/";
         //this.services['avisos']={};
    
         //this.services['dashboard']["lista"]="/CountryWeb/dashboard/lista/";
@@ -46,6 +48,19 @@ var ServerManager = new Class({
 			}
 		});
     },
+    getObjectById: function(config){
+
+    	var type = config.object.split('_')[0];
+    	var self=this;
+    	$.ajax({
+			type: 'GET',
+			url: self.services[type]["load"]+config.objectId,
+			success: function(data) {
+				
+				config.onSuccess(data);
+			}
+		});
+    },
     getAll: function(config){
     	var self=this;
     	var type = config.object.split('_');
@@ -58,7 +73,6 @@ var ServerManager = new Class({
 			type: 'GET',
 			url: url,
 			success: function(data) {
-				
 				config.onSuccess(data);
 			}
 		});

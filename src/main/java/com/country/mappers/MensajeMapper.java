@@ -24,7 +24,7 @@ public class MensajeMapper {
 		MensajeCategorias cat = new MensajeCategorias();
 		cat.setId(form.getCategoria());
 		mensaje.setCategoria(cat);
-		//Si el estado esta vacio,es un nuevo Mensaje(Reclamo)
+		//Si el estado esta vacio,es un nuevo Mensaje(Reclamo),Esto calculardo en el servicio
 		 if (form.getEstado()!=null){
 			 mensaje.setEstado(form.getEstado());
 
@@ -41,7 +41,7 @@ public class MensajeMapper {
 		mensaje.setIntegrante(integ);
 		mensaje.setResolucion("X");
 		//Si es Reclamo va Ro,sino M
-		mensaje.setTipo("R");
+		//mensaje.setTipo("R");
 		//mensaje.setTipo(form.getTipo());
 		
 		return mensaje;
@@ -58,6 +58,7 @@ public class MensajeMapper {
 		form.setEstado(mensaje.getEstado());
 		form.setFecha(DateFormater.convertDateToString(mensaje.getFecha()));
 		form.setFechaCierre(DateFormater.convertDateToString(mensaje.getFechaCierre()));
+		//OJO ,el integrante puede ser nulo
 		form.setIntegrante(mensaje.getIntegrante().getId());
 		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
 								mensaje.getIntegrante().getPersona().getNombre() + " " +
@@ -65,8 +66,9 @@ public class MensajeMapper {
 								mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
 								mensaje.getIntegrante().getPersona().getNroDoc() );
 		form.setResolucion(mensaje.getResolucion());
-		form.setTipo(mensaje.getTipo());
+
 		form.setDetalles(getDetalles(detalles));
+		form.setTipo(mensaje.getTipo());
 		
 		return form;
 	

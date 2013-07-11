@@ -33,7 +33,7 @@ var ComponentTranslator = new Class(
 
 			onLoad : function(objectType, objectId) {
 				var type = objectType.split('_')[0];
-				serverManager.getNewObject({
+				serverManager.getObjectById({
 					object : objectType,
 					objectId : objectId,
 					onSuccess : function(data) {
@@ -44,7 +44,14 @@ var ComponentTranslator = new Class(
 			},
 			
 			showForm : function(objectType) {
-				this.onLoad(objectType,0);
+				var type = objectType.split('_')[0];
+				serverManager.getNewObject({
+					object : objectType,
+					onSuccess : function(data) {
+
+						canvasController.onLoaded(type,data);
+					}
+				});
 			},
 
 
