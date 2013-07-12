@@ -11,5 +11,8 @@ public class TipoMensajes {
 
 	//Cuando a un mensaje no se le puede asignar estado devuelve E : ERROR 
 	public static final String STATUS_ERROR =  "E";
+
+	//Cuando a un mensaje no se le puede asignar estado devuelve C : CERRADO 
+	public static final String STATUS_CLOSE =  "C";
 	
 }

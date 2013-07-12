@@ -2,6 +2,9 @@ package com.country.controllers;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +28,13 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
 		
 		String txt = homeService.getText();
-		
+		  //Obtain the session object, create a new session if doesn't exist
+        HttpSession session = request.getSession(true);
+        session.setAttribute("TipoDeUsuario", "Admin");
+       
 		model.addAttribute("serverTime", txt );
 		
 		return "index";

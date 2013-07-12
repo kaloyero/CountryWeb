@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -43,44 +46,35 @@ public class MensajeController {
 	
 	@Autowired
 	private MessageDetailManager messageDetailManager;
-	
-	
-	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
-	public String  showMessageList(ModelMap model) {
-
-		
-		List<Mensaje> mensajes =messageManager.listAll();
-		model.addAttribute("mensajes", mensajes);
-		
-		
-		return "Propietario/listadoMensajes";	
-		
-	}
-
-	@RequestMapping(value = "/listaPropietarioFromUsuario",method = RequestMethod.GET)
-	public String showMyMessages(ModelMap model) {
-		return this.showMessageList(model);
-	}
 
 	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model,HttpServletRequest request) {
 		//Preguntar en sesion si es un Admin o propietario
 		MensajeForm mensaje = new MensajeForm();
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		 if (usuarioConectado.equals("Admin")){
+			 return "mensajeForm";
+		 }else{
+			 return "Propietario/mensajeForm";
+		 }
+		
+
 		//return "Propietario/mensajeForm";//HAbiliutar esto para que ande el alta en Prop
-		return "mensaje";//HAbiliutar esto para que ande el alta en Admin
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
+
 		messageManager.save(form);
-				return "success";
+	   return "success";
 
 		
 	}
@@ -100,6 +94,7 @@ public class MensajeController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm tipoForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
+		//Pasar la llamada al mapper en el manager,igual que en otros lados
 		messageManager.update(MensajeMapper.getMensaje(tipoForm));
 		return "success";
 	}

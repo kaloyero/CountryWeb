@@ -1,5 +1,7 @@
 package com.country.hibernate.dao.impl;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Repository;
 
 import com.country.common.GenericDaoImpl;
@@ -14,12 +16,21 @@ public class MessageDaoImpl extends GenericDaoImpl<Mensaje, Integer> implements 
 		return Mensaje.class;
 	}
 
-	public void updateStatus(int idMensaje, String status) {
-		// TODO hacer metodo
+	public void updateStatus(int idMensaje, int category, String status) {
+		Mensaje msj = findById(idMensaje);
+		msj.setEstado(status);
+		if (category != 0){
+			msj.getCategoria().setId(category);
+		}
+		update(msj);
 	}
 
-	public void closeMessage(int idMensaje, String respuesta) {
-		// TODO hacer metodo	
+	public void closeMessage(int idMensaje, String status, Date closeDate, String resolucion) {
+		Mensaje msj = findById(idMensaje);
+		msj.setEstado(status);
+		msj.setFechaCierre(closeDate);
+		msj.setResolucion(resolucion);
+		update(msj);
 	}
 
 }

@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -66,9 +69,7 @@ public class RecursoController {
 
 		model.addAttribute("tipoRecurso", tipoResourceManager.listAll());
 		model.addAttribute("RECURSO", form);
-		
 		return "forms/recursoForm";
-
 	}
 	
 	@RequestMapping(value = "recursosParaReservar/load/{id}", method = RequestMethod.GET)

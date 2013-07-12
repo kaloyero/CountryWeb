@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.EventoForm;
+import com.country.form.RecursoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
+import com.country.hibernate.model.Recurso;
 import com.country.mappers.EventoMapper;
+import com.country.mappers.RecursoMapper;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
+import com.country.services.ResourceManager;
 
 /**
  * Handles requests for the application home page.
@@ -36,6 +41,8 @@ public class EventoController {
 	private EventManager eventManager;
 	@Autowired
 	private IntegratorManager integratorManager;
+	@Autowired
+	private ResourceManager recursoManager;
 
 
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
@@ -62,14 +69,28 @@ public class EventoController {
 	
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model,HttpServletRequest request) {
 		EventoForm evento = new EventoForm();
-		
-			  
-		//TODO depende el usuario o algo que podamos setear en la cookie saber si esta en el modulo de admin o propietario
-		// para saber si enviarle el form de Eventos para admin o Propietario
 		model.addAttribute("EVENTO", evento);
-		return "forms/eventoForm";
+		
+		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();
+
+		for (Recurso recurso : recursoManager.listAll()) {
+			listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));
+		}
+		
+		
+		model.addAttribute("recursos", listaRecursosForm);
+			  
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		 if (usuarioConectado.equals("Admin")){
+			 return "evento";
+		 }else{
+			 return "forms/eventoForm";
+		 }
+	
+		
 		//model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		
 		//return "evento";

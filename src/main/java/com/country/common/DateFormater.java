@@ -14,7 +14,9 @@ public class DateFormater {
 		Date returnDate = null;
 
 		try {
-			returnDate = sdf1.parse(d);
+			if (d != null){
+				returnDate = sdf1.parse(d);	
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 			System.out.println("ERROR (DateFormater.java) Error en el parseo de formato ");
@@ -27,10 +29,27 @@ public class DateFormater {
 	public static String convertDateToString (Date d){
 		
 		Format formatter = new SimpleDateFormat("dd-MM-yyyy");
-		String resultDate = formatter.format(d);
+		String resultDate = null; 
+		if (d != null){
+			resultDate = formatter.format(d);
+		}
 
 		return resultDate;
 		
 	}
 
+	public static String getStringToday (){
+		Date fecha = new Date();
+		String resultDate = convertDateToString(fecha);
+
+		return resultDate;
+		
+	}
+	
+	public static Date getDateToday (){
+		Date fecha = new Date();
+
+		return fecha;
+		
+	}
 }

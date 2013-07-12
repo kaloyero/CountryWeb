@@ -23,14 +23,15 @@ public class MensajeMapper {
 		MensajeCategorias cat = new MensajeCategorias();
 		cat.setId(form.getCategoria());
 		mensaje.setCategoria(cat);
+
 		mensaje.setEstado(form.getEstado());
 		mensaje.setFecha(DateFormater.convertStringToDate((form.getFecha())));
-		if (form.getFechaCierre()!=null)
-			mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
+		mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
-		mensaje.setResolucion("");
+		mensaje.setTipo(form.getTipo());
+		mensaje.setResolucion(form.getResolucion());
 		mensaje.setTipo(form.getTipo());
 		
 		return mensaje;
@@ -47,13 +48,17 @@ public class MensajeMapper {
 		form.setEstado(mensaje.getEstado());
 		form.setFecha(DateFormater.convertDateToString(mensaje.getFecha()));
 		form.setFechaCierre(DateFormater.convertDateToString(mensaje.getFechaCierre()));
-		form.setIntegrante(mensaje.getIntegrante().getId());
-		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
+		//OJO ,el integrante puede ser nulo
+		if (mensaje.getIntegrante() != null){
+			form.setIntegrante(mensaje.getIntegrante().getId());
+     		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
 								mensaje.getIntegrante().getPersona().getNombre() + " " +
 								mensaje.getIntegrante().getPersona().getApellido() + " " +
 								mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
 								mensaje.getIntegrante().getPersona().getNroDoc() );
+		}
 		form.setResolucion(mensaje.getResolucion());
+
 		form.setTipo(mensaje.getTipo());
 		form.setDetalles(getDetalles(mensaje.getDetalles()));
 		

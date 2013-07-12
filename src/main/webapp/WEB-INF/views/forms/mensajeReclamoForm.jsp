@@ -8,9 +8,12 @@
 		<legend>Reclamo</legend>
 		<div class="_100">
 			<p>
-				<label for="textfield">Para</label>
+				<label for="textfield">Creado por: </label>
 				<c:if test="${MENSAJE.id == 0}">
-					<form:input path="integranteNombre" class="required" />
+					<form:select path="integrante" multiple="false"> 
+						<form:options items="${integrantes}" itemValue="id"
+							itemLabel="nombre" /> 
+					</form:select> 		
 				</c:if>
 				<c:if test="${MENSAJE.id != 0}">
 					<form:input path="integranteNombre"  readonly="true"/>
@@ -28,18 +31,29 @@
 					<form:input path="asunto"  readonly="true"/>
 				</c:if>
 				<form:hidden path="id" />
+				<form:hidden path="tipo" />
 			</p>
 		</div>
 		<div class="_25">
 			<p>
-				<label for="textfield">Tipo</label>
-				<form:input path="tipo" class="required" />
+				<label for="select">Categoria</label>
+				<form:select path="categoria" multiple="false"> 
+					<form:options items="${categorias}" itemValue="id"
+						itemLabel="nombre" /> 
+				</form:select> 				
 			</p>
-		</div>
+		</div>	
 		<div class="_25">
 			<p>
-				<label for="textfield">Estado</label>
-				<form:input path="estado" class="required" />
+				<c:if test="${MENSAJE.id == 0}">
+					<label for="textfield"></label>
+					<form:hidden path="estado" />
+				</c:if>
+				<c:if test="${MENSAJE.id != 0}">
+					<label for="textfield">Estado</label>
+					<form:input path="estado"  readonly="true"/>
+				</c:if>
+
 			</p>
 		</div>
 		<div class="_25">
@@ -53,12 +67,15 @@
 				</c:if>
 			</p>
 		</div>
-		<div class="_25">
+		<div class="_25"></div>
+		<div class="_100">
 			<p>
-				<label for="datepicker">Fecha de cierre</label>
-				<form:input path="fechaCierre" class="required datepicker" />
+				<label for="datepicker">Descripción</label>
+				<form:textarea path="respuesta" class="required datepicker" />
 			</p>
 		</div>
+		
+
 </fieldset>
 
 <div class="clear"></div>

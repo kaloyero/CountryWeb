@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.DateFormater;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
+import com.country.services.IntegratorManager;
+import com.country.services.MessageCategoryManager;
 import com.country.services.MessageManager;
 
 /**
@@ -29,23 +35,44 @@ public class MensajeReclamoController {
 
 	@Autowired
 	private MessageManager messageManager;
+	
+	@Autowired
+	private MessageCategoryManager messageCategoryManager;
 		
+	@Autowired
+	private IntegratorManager integratorManager;
+
+	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model,HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		
 		MensajeForm mensaje = new MensajeForm();
 		
-		model.addAttribute("MENSAJE", mensaje);
+		//Setea como la fecha por defecto la fecha actual.
+		mensaje.setFecha(DateFormater.getStringToday());
+		//Seteo el TIPO de mensaje como RECLAMO
+		mensaje.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 		
-		return "mensajeReclamo";
+		
+		model.addAttribute("MENSAJE", mensaje);
+		model.addAttribute("categorias", messageCategoryManager.listAll());
+		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+		
+		
+		 if (usuarioConectado.equals("Admin")){
+			 return "mensajeReclamo";
+		 }else{
+			 return "Propietario/mensajeForm";
+		 }
+		
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
-		
-		//Seteo el TIPO de mensaje como RECLAMO
-		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 		
 		messageManager.save(form);
 		
@@ -54,21 +81,31 @@ public class MensajeReclamoController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
-	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
+	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		
+		
 		MensajeForm form = messageManager.findFormById(id);
 
+		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("MENSAJE", form);
 		
-		return "forms/mensajeReclamoForm";
+		
+		 if (usuarioConectado.equals("Admin")){
+			 return "forms/mensajeReclamoForm";
+		 }else{
+			 return "forms/mensajeReclamoForm";
+		 }
+		
+		
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		//Seteo el TIPO de mensaje como RECLAMO
-		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
+
 		messageManager.update(form);
 		
 		return "success";
@@ -92,6 +129,23 @@ public class MensajeReclamoController {
 			dataTable.setiTotalDisplayRecords("5");
 			dataTable.setiTotalRecords("1");
 			return dataTable;
+	}
+	
+	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
+	public String  showMessageList(ModelMap model) {
+
+		
+		List<Mensaje> mensajes =messageManager.listAll();
+		model.addAttribute("mensajes", mensajes);
+		
+		
+		return "Propietario/listadoMensajes";	
+		
+	}
+
+	@RequestMapping(value = "/listaPropietarioFromUsuario",method = RequestMethod.GET)
+	public String showMyMessages(ModelMap model) {
+		return this.showMessageList(model);
 	}
 
 }

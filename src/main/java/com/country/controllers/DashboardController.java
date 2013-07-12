@@ -2,6 +2,9 @@ package com.country.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +64,10 @@ public class DashboardController {
 	}
 
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
-	public @ResponseBody  JSONObject showMainContent(ModelMap model) {
+	public @ResponseBody  JSONObject showMainContent(ModelMap model, HttpServletRequest request) {
 		//JSONArray dashboard = new JSONArray();
-
+		 HttpSession session = request.getSession(true);
+	      session.setAttribute("TipoDeUsuario", "Propietario");
 		List<Noticia> noticias =newsManager.listAll();
 		JSONArray noticiasJsonArray = new JSONArray();
 		//JSONObject noticiasJson=new JSONObject();

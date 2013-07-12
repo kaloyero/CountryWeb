@@ -1,8 +1,7 @@
 package com.country.services.impl;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.form.IntegranteForm;
+import com.country.form.TipoForm;
 import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Telefono;
@@ -42,13 +42,16 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		return form;
 	}
 
-	public Map<Integer, String> getIntegratorNames() {
+	public List<TipoForm> getIntegratorNames() {
 		List<Integrante> listIntegrators = integratorDao.findAll();
 		
-		Map<Integer, String> list = new HashMap<Integer, String>();
+		List<TipoForm> list = new ArrayList<TipoForm>();
 		for (Integrante integrator : listIntegrators) {
 			String name = integrator.getPersona().getNombre() + " " + integrator.getPersona().getApellido() + " - " + integrator.getPersona().getTipoDoc().getNombre() + " " + integrator.getPersona().getNroDoc();
-			list.put(integrator.getId(),name);
+			TipoForm tipo = new TipoForm();
+			tipo.setId(integrator.getId());
+			tipo.setNombre(name);
+			list.add(tipo);
 		}
 				
 		return list;

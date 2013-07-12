@@ -1,5 +1,6 @@
 package com.country.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -7,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.DateFormater;
 import com.country.common.GenericDao;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
 import com.country.hibernate.dao.MessageDao;
 import com.country.hibernate.dao.MessageDetailDao;
-import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.mappers.MensajeDetalleMapper;
@@ -24,10 +25,11 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 
 	@Autowired
     private MessageDao messageDao;
-	
+
 	@Autowired
     private MessageDetailDao messageDetailDao;
 
+	public static final String ACTION_CLOSE =  "CLOSE";
 	
 	protected GenericDao<Mensaje, Integer> getDao() {
 		return messageDao;
@@ -39,76 +41,61 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		dto.getDetalles().size();
 		return dto;
 	}
-	
+
 	@Transactional
 	public MensajeForm findFormById(Integer id) {
 		Mensaje dto = findById(id);
 
 		MensajeForm form = (MensajeForm) MensajeMapper.getForm(dto);
-		
+
 		return form;
 	}
 
 	@Transactional
 	public void save(MensajeForm form) {
-		
+
 		Mensaje dto = MensajeMapper.getMensaje(form);
-		
+
 		//Seteo el estado inicial del mensaje
-		getNextStatus(dto.getTipo(), dto.getEstado(), "");
+		dto.setEstado(getNextStatus(dto.getTipo(), dto.getEstado(), ""));
 		//Seteo la resolucion en blanco
 		dto.setResolucion("");
-		
-		//TODO hacer que tome el integrante real. Crear combo
-		Integrante integrante = new Integrante();
-		integrante.setId(1);
-		dto.setIntegrante(integrante);
 
-		// Guardo los Detalles
-//		if (dto.getDetalles() != null){
-//			for (MensajeDetalles detalle : dto.getDetalles()) {
-//				detalle.setMensaje(dto.getId());
-//				messageDetailDao.save(detalle);
-//			}
-//		}
-		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo());
-		messageDetailDao.save(detalle);
-		
 		//guarda el mensaje
-		getDao().save(dto);
+		messageDao.save(dto);
+		
+		// Guardo el Detalle
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(dto.getId(), form.getRespuesta(), form.getTipo());
+		messageDetailDao.save(detalle);
 	}
 
 	@Transactional
 	public void update(MensajeForm form) {
-		
-		// Guardo el o los Detalles
-//		if (dto.getDetalles() != null){
-//			for (MensajeDetalles detalle : dto.getDetalles()) {
-//				detalle.setMensaje(dto.getId());
-//				messageDetailDao.save(detalle);
-//			}
-//		}
 
+		// Guardo el Detalle
 		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo());
 		messageDetailDao.save(detalle);
-		
-		//TODO falta hacer servicio que actualice el estado del mensaje
+
 		//Toma el nuevo estado
 		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), "");
 		//actualiza el estado
-		messageDao.updateStatus(form.getId(),newStatus);
-		
+		messageDao.updateStatus(form.getId(),form.getCategoria(),newStatus);
+
 	}
 
 	@Transactional
 	public void closeMessage(MensajeForm form) {
+
+		//Toma el nuevo estado
+		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), ACTION_CLOSE);
+		//Utilizo la fecha actual para cerrar
+		Date closeDate = DateFormater.getDateToday();
 		
 		//actualiza el estado
-		messageDao.closeMessage(form.getId(),form.getRespuesta());
-		
-		
+		messageDao.closeMessage(form.getId(),newStatus,closeDate,form.getRespuesta());
+
 	}
-	
+
 	public List<Mensaje> getMessajesCategoryType(String type) {
 		List<Mensaje> list = messageDao.findAllByProperty("tipo", type);
 		return list;
@@ -116,12 +103,12 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 
 	private String getNextStatus(String typeMessage,String estado,String accion) {
 		String nextStatus = TipoMensajes.STATUS_ERROR;
-		
+
 		//Si es un mensaje de tipo reclamo
-		if (TipoMensajes.STATUS_ERROR.equalsIgnoreCase(typeMessage)){
+		if (TipoMensajes.TYPE_MESSAGE_RECLAMO.equalsIgnoreCase(typeMessage)){
 			nextStatus = getNextStatusClaim(estado,accion);				 
 		}
-		
+
 		return nextStatus;
 	}
 
@@ -131,10 +118,14 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		//Si el mensaje no tiene un estado inicial lo pone como A: ABIERTO
 		if (StringUtils.isBlank(estado)){
 			nextStatusClaim = TipoMensajes.STATUS_INIT;
-		}
-		
+		} else {
+			if (ACTION_CLOSE.equals(accion)){
+				nextStatusClaim = TipoMensajes.STATUS_CLOSE;
+			}		
+		}	
+
 		return nextStatusClaim;
 	}
 
-	
+
 }

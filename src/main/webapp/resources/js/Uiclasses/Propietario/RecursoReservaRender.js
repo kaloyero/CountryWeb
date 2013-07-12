@@ -12,12 +12,15 @@ var RecursoReservaRender = new Class({
    
     onFinishLoading : function(dataToAppend){
     	this.cleanCanvas();
-    	$("#masonry-container").html(dataToAppend)
+    	$("#content").append(dataToAppend);
+    	$("body").removeClass();
+    	$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
+	
     	calendarController.createCalendar(null,null,this.getCalendarConfig());
     	this.bindEvents();
-    	//templateManager.add("actividadesReserva",dataToAppend);
-    	
+	
     },
+
     bindEvents : function(){
     	this.bindRecursoEvents();
     },
@@ -26,26 +29,30 @@ var RecursoReservaRender = new Class({
     		  var selectedRecurso=$(this).find('option:selected').val();
     		  //Si selecciono algo
     		  if (selectedRecurso!=-1)
-    			  translator.onLoad("recursosReserva",selectedRecurso)
+    			  translator.onLoad("recurso",selectedRecurso)
     	
     });
     },
     load : function(data){
+    	
+        var disponibilidades=$(data).find("#recursoDis")[0].value;
+       //TODO tal vez lo mejor seria tener una llamada que nos devuelva JSON para no hacer lo de arriba
+        
     	var self=this;
     	this.events=null;
     	$("#calendar").fullCalendar( 'addEventSource',   
   			   function(start, end, callback) {
   	    	    	var translatedEvents=[];
-  	    	     	var eventList =data;
+  	    	     	var eventList =disponibilidades;
   	    	     	
-  	    	     	console.log("ADDEVENTSOURCE",eventList);
+  	    	     	//console.log("ADDEVENTSOURCE",eventList);
   	    	     	self.removeEvents();
   	    	     	if (self.events) {
   	    	     		translatedEvents=self.getTranslatedEvents(start,end);  	    	     	
   	    	    		
   	    	     	}else{
   	    	     		self.events=JSON.parse(eventList);
-  	    	     		console.log("EVENTOS",self.events)
+  	    	     		//console.log("EVENTOS",self.events)
   	    	     		translatedEvents=self.getTranslatedEvents(start,end);
   	    	     	}
   	    
@@ -55,7 +62,7 @@ var RecursoReservaRender = new Class({
     	
     	
     	
-    	console.log("LOADDDD",data)
+    	//console.log("LOADDDD",data)
     },
     
     removeEvents:function(){

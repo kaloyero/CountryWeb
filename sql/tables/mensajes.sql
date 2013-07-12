@@ -5,7 +5,7 @@ CREATE TABLE `mensajes`
 	`IdMensaje`            int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`Fecha`                DATE NOT NULL,
 	`Asunto`               VARCHAR(50) NOT NULL,
-	`FechaCierre`          DATE NOT NULL,
+	`FechaCierre`          DATE NULL,
 	`Resolucion`           VARCHAR(50) NOT NULL,
 	`Estado`               VARCHAR(1) NOT NULL,
 	`IdMensajeCategoria`   int(10) NULL,
