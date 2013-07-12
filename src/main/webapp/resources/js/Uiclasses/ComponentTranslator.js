@@ -73,6 +73,9 @@ var ComponentTranslator = new Class(
 				case "mensaje":
 					formToSend =mensajeRender.onSubmit();
 					break;
+				case "mensajeReclamo":
+					formToSend =mensajeReclamoRender.onSubmit();
+					break;
 				case "noticia":
 					formToSend =noticiaRender.onSubmit();
 					break;
@@ -167,6 +170,9 @@ var ComponentTranslator = new Class(
 					break;
 				case "mensaje":
 					formToSend =mensajeRender.onSubmit();
+					break;
+				case "mensajeReclamo":
+					formToSend =mensajeReclamoRender.onSubmit();
 					break;
 				case "evento":
 					formToSend =eventoRender.onSubmit();

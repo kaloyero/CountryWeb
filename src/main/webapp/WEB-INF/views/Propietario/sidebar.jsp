@@ -15,7 +15,7 @@
 					<ul class="categories-module">
 						<li>
 							<h4>
-								<a  class="option" id="mensaje_lista_mio">Reclamos</a>
+								<a  class="option" id="mensajeReclamo_lista_mio">Reclamos</a>
 							</h4>
 
 						</li>
@@ -62,7 +62,7 @@
 						<li class="item-503"><a class="option" id="evento_lista">Eventos</a></li>
 						<li class="item-579"><a class="option" id="avisos">Clasificados</a></li>
 						<li class="item-598"><a class="option" id="recomendaciones" href="#">Recomendaciones</a></li>
-						<li class="item-560"><a class="option" id="mensaje_lista" >Reclamos</a></li>
+						<li class="item-560"><a class="option" id="mensajeReclamo_lista" >Reclamos</a></li>
 					</ul>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 						</li>
 						<li>
 							<h4>
-								<a class="optionNew" id="mensaje_propietario_nuevo">+ Reclamo</a>
+								<a class="optionNew" id="mensajeReclamo_propietario_nuevo">+ Reclamo</a>
 							</h4>
 
 						</li>

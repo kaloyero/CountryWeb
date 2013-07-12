@@ -1,6 +1,7 @@
 package com.country.controllers;
 
 import java.text.ParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.IntegranteForm;
 import com.country.form.NoticiaForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Noticia;
@@ -69,9 +69,9 @@ public class NoticiaController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "NOTICIA") IntegranteForm integranteForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "NOTICIA") NoticiaForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		//newsManager.update(integranteForm);
+		//newsManager.update(form);
 		return "success";
 		
 

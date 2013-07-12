@@ -24,31 +24,28 @@ public class MensajeMapper {
 		MensajeCategorias cat = new MensajeCategorias();
 		cat.setId(form.getCategoria());
 		mensaje.setCategoria(cat);
-		//Si el estado esta vacio,es un nuevo Mensaje(Reclamo),Esto calculardo en el servicio
-		 if (form.getEstado()!=null){
-			 mensaje.setEstado(form.getEstado());
 
-		 }else{
-			 mensaje.setEstado("A");
-
-		 }
-		
+		mensaje.setEstado(form.getEstado());
+		//TODO la fecha deberia ser la de hoy en un new,pero si es update no deberia cambiar
 		mensaje.setFecha(new Date());
 		if (form.getFechaCierre()!=null)
 			mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
-		mensaje.setResolucion("X");
 		//Si es Reclamo va Ro,sino M
 		//mensaje.setTipo("R");
 		//mensaje.setTipo(form.getTipo());
+		mensaje.setResolucion("");
+		//TODO BORRAR
+		mensaje.setEstado("A");
+		mensaje.setTipo(form.getTipo());
 		
 		return mensaje;
 	
 	}
 	
-	public static MensajeForm getForm(Mensaje mensaje,List<MensajeDetalles> detalles)
+	public static MensajeForm getForm(Mensaje mensaje)
 			throws ParseException {
 		
 		MensajeForm form=new MensajeForm();
@@ -67,8 +64,8 @@ public class MensajeMapper {
 								mensaje.getIntegrante().getPersona().getNroDoc() );
 		form.setResolucion(mensaje.getResolucion());
 
-		form.setDetalles(getDetalles(detalles));
 		form.setTipo(mensaje.getTipo());
+		form.setDetalles(getDetalles(mensaje.getDetalles()));
 		
 		return form;
 	

@@ -8,12 +8,12 @@ var ServerManager = new Class({
         this.services['mensaje']={};
         this.services['actividad']={};
         this.services['recurso']={};
-        this.services['reclamo']={};
+        this.services['mensajeReclamo']={};
         this.services['evento']={};
         this.services['recurso']={};
         this.services['evento']["save"]="/CountryWeb/evento/create/";
-        this.services['mensaje']["save"]="/CountryWeb/mensaje/create/";
-        this.services['recurso']["load"]="/CountryWeb/recurso/load/";
+        this.services['mensajeReclamo']["save"]="/CountryWeb/mensajeReclamo/create/";
+        this.services['mensajeReclamo']["load"]="/CountryWeb/mensajeReclamo/load/";
         //this.services['avisos']={};
    
         //this.services['dashboard']["lista"]="/CountryWeb/dashboard/lista/";

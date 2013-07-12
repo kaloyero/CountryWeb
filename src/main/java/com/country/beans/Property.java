@@ -19,7 +19,5 @@ public class Property {
 	}
 	public void setType(String type) {
 		this.type = type;
-	}
-	
-	
+	}	
 }

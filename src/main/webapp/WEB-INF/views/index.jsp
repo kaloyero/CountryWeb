@@ -60,6 +60,7 @@
   <script src="resources/js/Uiclasses/mensajeCategoriaRender.js"></script>
   <script src="resources/js/Uiclasses/noticiaCategoriaRender.js"></script>
   <script src="resources/js/Uiclasses/MensajeRender.js"></script>
+  <script src="resources/js/Uiclasses/MensajeReclamoRender.js"></script>  
   <script src="resources/js/Uiclasses/EventoRender.js"></script>
   <script src="resources/js/Uiclasses/NoticiaRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
@@ -155,6 +156,7 @@
 					<a href="javascript:void(0);" class="option current" id="recurso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Recurso<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="vehiculo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Vehiculo<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="mascota"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mascota<span class="badge red"></span></a>
+					<a href="javascript:void(0);" class="option current" id="mensajeReclamo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Reclamos (no modifica)<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no modifica)<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia (no modifica)<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento (falta alta y modif)<span class="badge red"></span></a>					

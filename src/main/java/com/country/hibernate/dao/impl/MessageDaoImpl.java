@@ -14,4 +14,12 @@ public class MessageDaoImpl extends GenericDaoImpl<Mensaje, Integer> implements 
 		return Mensaje.class;
 	}
 
+	public void updateStatus(int idMensaje, String status) {
+		// TODO hacer metodo
+	}
+
+	public void closeMessage(int idMensaje, String respuesta) {
+		// TODO hacer metodo	
+	}
+
 }

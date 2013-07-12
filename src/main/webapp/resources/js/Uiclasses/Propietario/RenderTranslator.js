@@ -14,7 +14,7 @@ var RenderTranslator = new Class({
 		case "meEventos":
 			return eventoRender;
 			break;
-		case "mensaje":
+		case "mensajeReclamo":
 			return reclamoRender;
 			break;
 		case "actividad":

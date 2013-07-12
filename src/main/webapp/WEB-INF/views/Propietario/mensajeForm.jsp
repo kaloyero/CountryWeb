@@ -45,7 +45,7 @@
 									</div>
 									<!-- Joomla! 1.6+ JForm implementation -->
 									<div class="k2AccountPageUpdate">
-										<input type="button" class="button" value="Crear reclamo" onclick="translator.onSubmit('mensaje');">
+										<input type="button" class="button" value="Crear reclamo" onclick="translator.onSubmit('mensajeReclamo');">
 									</div>
 								</div>
 								

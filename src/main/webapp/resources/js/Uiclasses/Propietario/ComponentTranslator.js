@@ -7,7 +7,6 @@ var ComponentTranslator = new Class(
 
 			onSubmit : function(objectType) {
 		    	var formToSend=$(".formulario");
-		    	console.log("SE")
 		    	serverManager.save({
 					object : objectType,
 					form : formToSend,
