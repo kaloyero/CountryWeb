@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "recursoExcepciones", catalog = "country")
+@Table(name = "RecursoExcepciones")
 public class RecursoExcepcion implements Serializable {
 
 	/** Serial Version UID */

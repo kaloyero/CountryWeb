@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ActividadCronograma", catalog = "country")
+@Table(name = "ActividadCronograma")
 public class Cronograma implements Serializable{
 	
 	/** Serial Version UID */

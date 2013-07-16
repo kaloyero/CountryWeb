@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.BatchSize;
 
 @Entity
-@Table(name = "mensajes", catalog = "country")
+@Table(name = "Mensajes")
 public class Mensaje implements Serializable {
 
 	/** Serial Version UID */

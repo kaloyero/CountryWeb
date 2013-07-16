@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.BatchSize;
 
 @Entity
-@Table(name = "actividades", catalog = "country")
+@Table(name = "actividades")
 public class Actividad implements Serializable {
 
 	/** Serial Version UID */
@@ -28,7 +28,7 @@ public class Actividad implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdActividad", unique = true, nullable = false)
-	private Integer id;
+	private int id;
 	
 	@Column(name = "Nombre")
 	private  String nombre;
