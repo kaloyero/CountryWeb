@@ -9,6 +9,13 @@ public class TipoMensajes {
 	//Estado inicial de un Mensaje: A : ABIERTO 
 	public static final String STATUS_INIT =  "A";
 
+	//Estado inicial de un Mensaje: I : ENTRADA 
+	public static final String STATUS_IN =  "I";
+
+	//Estado inicial de un Mensaje: O : SALIDA 
+	public static final String STATUS_OUT =  "O";
+
+	
 	//Cuando a un mensaje no se le puede asignar estado devuelve E : ERROR 
 	public static final String STATUS_ERROR =  "E";
 

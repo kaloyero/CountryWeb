@@ -104,7 +104,17 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
-			BindingResult result) throws ParseException {
+			BindingResult result,HttpServletRequest request) throws ParseException {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+
+		
+		//TODO ver de que forma en el servicio puedo averiguar si es Admin o propietario
+		 if (usuarioConectado.equals("Admin")){
+			 form.setAccion(TipoMensajes.STATUS_OUT);
+		 }else{
+			 form.setAccion(TipoMensajes.STATUS_IN);
+		 }
 
 		messageManager.update(form);
 		

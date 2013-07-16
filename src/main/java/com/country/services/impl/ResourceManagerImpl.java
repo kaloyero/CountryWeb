@@ -1,5 +1,6 @@
 package com.country.services.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -138,4 +139,16 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		return form;
 	}
 
+	public List<RecursoForm> listAllResourceForm(){
+		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();
+		for (Recurso recurso : listAll()) {
+			Tarifa tarifa = priceManager.getLastPriceByConcept(recurso.getConcepto().getId());
+			listaRecursosForm.add(RecursoMapper.getForm(recurso,tarifa.getImporte(),null));
+		}
+
+		
+		return listaRecursosForm;
+	}
+
+	
 }

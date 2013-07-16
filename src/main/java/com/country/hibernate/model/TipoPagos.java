@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TipoPagos")
+@Table(name = "tipopagos", catalog = "country")
 public class TipoPagos implements Serializable{
 	
 	/** Serial Version UID */

@@ -11,17 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MensajeDetalles")
+@Table(name = "mensajedetalles", catalog = "country")
 public class MensajeDetalles implements Serializable {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "IdMensajeDetalle", unique = true, nullable = false)
 	private int id;
-
+	
 	@Column(name = "IdMensaje")
 	private int mensaje;
 
@@ -30,15 +30,10 @@ public class MensajeDetalles implements Serializable {
 
 	@Column(name = "Fecha")
 	private Date fecha;
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
+	
+	@Column(name = "ModoMensaje")
+	private String modoMensaje;
+	
 	public String getModoMensaje() {
 		return modoMensaje;
 	}
@@ -47,8 +42,13 @@ public class MensajeDetalles implements Serializable {
 		this.modoMensaje = modoMensaje;
 	}
 
-	@Column(name = "ModoMensaje")
-	private String modoMensaje;
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 
 	public int getId() {
 		return id;
@@ -73,5 +73,6 @@ public class MensajeDetalles implements Serializable {
 	public void setMensajeDetalle(String mensajeDetalle) {
 		this.mensajeDetalle = mensajeDetalle;
 	}
-
+	
+	
 }

@@ -7,4 +7,8 @@ public interface EventManager extends AbstractManager<Evento>{
 
 	EventoForm findFormById(Integer id);
 	
+	public void save(EventoForm form);
+	
+	public void update(EventoForm form);
+	
 }

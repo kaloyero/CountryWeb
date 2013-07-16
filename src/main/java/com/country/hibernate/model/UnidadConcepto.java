@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UnidadConceptos")
+@Table(name = "unidadconceptos", catalog = "country")
 public class UnidadConcepto implements Serializable {
 
 	/** Serial Version UID */

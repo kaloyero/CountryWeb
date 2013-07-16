@@ -16,7 +16,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 @Entity
-@Table(name = "Direcciones")
+@Table(name = "Direcciones", catalog = "country")
 public class Direccion implements Serializable {
 	
 	/** Serial Version UID */

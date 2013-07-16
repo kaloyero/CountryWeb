@@ -6,8 +6,56 @@ public class EventoForm extends Form  {
 	private int id =0;
 	private  String descripcion ;
 	private  String fecha ;
+	private Integer hourIni;
+	private  String horaHasta;
 	private String nombre;
+	private int cupo;
 	private int recurso;
+	private int integrante;
+	private String integranteNombre;
+	ConceptoForm concepto;
+	
+	
+	public String getHoraHasta() {
+		return horaHasta;
+	}
+
+
+	public void setHoraHasta(String horaHasta) {
+		this.horaHasta = horaHasta;
+	}
+
+
+	public ConceptoForm getConcepto() {
+		return concepto;
+	}
+
+
+	public void setConcepto(ConceptoForm concepto) {
+		this.concepto = concepto;
+	}
+
+
+	public int getIntegrante() {
+		return integrante;
+	}
+
+
+	public void setIntegrante(int integrante) {
+		this.integrante = integrante;
+	}
+
+
+	public String getIntegranteNombre() {
+		return integranteNombre;
+	}
+
+
+	public void setIntegranteNombre(String integranteNombre) {
+		this.integranteNombre = integranteNombre;
+	}
+
+
 	public int getRecurso() {
 		return recurso;
 	}
@@ -27,14 +75,6 @@ public class EventoForm extends Form  {
 		this.nombre = nombre;
 	}
 
-
-	private Integer hourIni;
-
-
-
-	private int cupo;
-
-	
 	public int getId() {
 		return id;
 	}

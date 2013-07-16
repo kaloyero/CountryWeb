@@ -77,7 +77,8 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		messageDetailDao.save(detalle);
 
 		//Toma el nuevo estado
-		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), "");
+		//TODO ver de que forma puedo tomar de la session si es Admin o Propietario
+		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), form.getAccion());
 		//actualiza el estado
 		messageDao.updateStatus(form.getId(),form.getCategoria(),newStatus);
 
@@ -118,11 +119,13 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		//Si el mensaje no tiene un estado inicial lo pone como A: ABIERTO
 		if (StringUtils.isBlank(estado)){
 			nextStatusClaim = TipoMensajes.STATUS_INIT;
+		} else if (ACTION_CLOSE.equals(accion)){
+			nextStatusClaim = TipoMensajes.STATUS_CLOSE;		
+		} else if (TipoMensajes.STATUS_IN.equals(accion)){
+			nextStatusClaim = TipoMensajes.STATUS_IN;
 		} else {
-			if (ACTION_CLOSE.equals(accion)){
-				nextStatusClaim = TipoMensajes.STATUS_CLOSE;
-			}		
-		}	
+			nextStatusClaim = TipoMensajes.STATUS_OUT;
+		}
 
 		return nextStatusClaim;
 	}

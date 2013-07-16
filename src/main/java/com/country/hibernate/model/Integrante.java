@@ -17,7 +17,7 @@ import org.hibernate.annotations.CascadeType;
 
 
 @Entity
-@Table(name = "Integrantes")
+@Table(name = "Integrantes", catalog = "country")
 public class Integrante implements Serializable {
 	
 	/** Serial Version UID */

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "IntegranteActividades")
+@Table(name = "IntegranteActividades", catalog = "country")
 public class IntegranteActividades implements Serializable {
 	
 	/** Serial Version UID */

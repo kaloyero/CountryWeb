@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "LiquidacionCargos")
+@Table(name = "liquidacionCargos", catalog = "country")
 public class LiquidacionCargo implements Serializable {
 
 	/** Serial Version UID */
@@ -58,7 +58,7 @@ public class LiquidacionCargo implements Serializable {
 	private  UnidadConcepto unidadconcepto;
 	
     @ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name = "IntegranteActividades", joinColumns = {@JoinColumn(name = "IdActividad", nullable = false, updatable = true) }, 
+    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdActividad", nullable = false, updatable = true) }, 
 			inverseJoinColumns = { @JoinColumn(name = "IdIntegrante", nullable = false, updatable = true) })
 	private  List <Integrante> integrantes ;
 	

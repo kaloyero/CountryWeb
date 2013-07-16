@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.country.common.IType;
 
 @Entity
-@Table(name = "TipoAutorizados")
+@Table(name = "tipoautorizados", catalog = "country")
 public class TipoAutorizacion implements IType{
 	
 	/** Serial Version UID */

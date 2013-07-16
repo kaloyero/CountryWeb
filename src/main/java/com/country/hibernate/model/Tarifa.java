@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "Tarifas")
+@Table(name = "tarifas", catalog = "country")
 public class Tarifa implements Serializable{
 	
 	/** Serial Version UID */

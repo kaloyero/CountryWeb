@@ -1,7 +1,6 @@
 package com.country.controllers;
 
 
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.EventoForm;
-import com.country.form.RecursoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
-import com.country.hibernate.model.Recurso;
-import com.country.mappers.EventoMapper;
-import com.country.mappers.RecursoMapper;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
 import com.country.services.ResourceManager;
@@ -70,30 +65,19 @@ public class EventoController {
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model,HttpServletRequest request) {
-		EventoForm evento = new EventoForm();
-		model.addAttribute("EVENTO", evento);
-		
-		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();
-
-		for (Recurso recurso : recursoManager.listAll()) {
-			listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));
-		}
-		
-		
-		model.addAttribute("recursos", listaRecursosForm);
-			  
 		HttpSession session = request.getSession(true);
 		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		 if (usuarioConectado.equals("Admin")){
-			 return "evento";
-		 }else{
-			 return "forms/eventoForm";
-		 }
-	
-		
-		//model.addAttribute("integrantes", integratorManager.getIntegratorNames());
-		
-		//return "evento";
+
+		EventoForm evento = new EventoForm();
+		model.addAttribute("EVENTO", evento);
+		model.addAttribute("recursos", recursoManager.listAllResourceForm());
+			  
+		if (usuarioConectado.equals("Admin")){
+			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			return "evento";
+		}else{
+			return "forms/eventoForm";
+		}
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
@@ -101,26 +85,35 @@ public class EventoController {
 			@ModelAttribute(value = "EVENTO") EventoForm form,
 			BindingResult result) throws ParseException {
 		//TODO sirve saber si la creacion viene de Admin o propietario?
-		eventManager.save(EventoMapper.getEvento(form));
+		eventManager.save(form);
 				return "success";
 		
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
-	public String load(ModelMap model,@PathVariable int id) throws ParseException {
+	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
 
+		
 		EventoForm form = eventManager.findFormById(id);
 		model.addAttribute("EVENTO", form);
-		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
-
-		return "forms/eventoForm";
-
+		model.addAttribute("recursos", recursoManager.listAllResourceForm());
+		
+		if (usuarioConectado.equals("Admin")){
+			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			return "forms/eventoForm";
+		}else{
+			return "Propietario/eventoForm";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "EVENTO") EventoForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		eventManager.update(EventoMapper.getEvento(form));
+		
+		eventManager.update(form);
 		return "success";
 	}
 
@@ -133,6 +126,7 @@ public class EventoController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getDescription());
+				row.add(tipo.getConcepto().getNombre());
 				dataTable.getAaData().add(row);
 			}
 
