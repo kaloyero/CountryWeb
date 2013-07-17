@@ -1,8 +1,9 @@
 package com.country.services;
 
-import java.util.Map;
+import java.util.List;
 
 import com.country.form.IntegranteForm;
+import com.country.form.TipoForm;
 import com.country.hibernate.model.Integrante;
 
 public interface IntegratorManager extends AbstractManager<Integrante>{
@@ -13,6 +14,6 @@ public interface IntegratorManager extends AbstractManager<Integrante>{
 	
 	void update(IntegranteForm form);
 	
-	Map<Integer, String> getIntegratorNames();
+	List<TipoForm> getIntegratorNames();
 	
 }

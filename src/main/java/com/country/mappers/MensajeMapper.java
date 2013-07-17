@@ -1,6 +1,5 @@
 package com.country.mappers;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,19 +25,13 @@ public class MensajeMapper {
 		mensaje.setCategoria(cat);
 
 		mensaje.setEstado(form.getEstado());
-		//TODO la fecha deberia ser la de hoy en un new,pero si es update no deberia cambiar
-		mensaje.setFecha(new Date());
-		if (form.getFechaCierre()!=null)
-			mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
+		mensaje.setFecha(DateFormater.convertStringToDate((form.getFecha())));
+		mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
-		//Si es Reclamo va Ro,sino M
-		//mensaje.setTipo("R");
-		//mensaje.setTipo(form.getTipo());
-		mensaje.setResolucion("");
-		//TODO BORRAR
-		mensaje.setEstado("A");
+		mensaje.setTipo(form.getTipo());
+		mensaje.setResolucion(form.getResolucion());
 		mensaje.setTipo(form.getTipo());
 		
 		return mensaje;
@@ -56,12 +49,14 @@ public class MensajeMapper {
 		form.setFecha(DateFormater.convertDateToString(mensaje.getFecha()));
 		form.setFechaCierre(DateFormater.convertDateToString(mensaje.getFechaCierre()));
 		//OJO ,el integrante puede ser nulo
-		form.setIntegrante(mensaje.getIntegrante().getId());
-		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
+		if (mensaje.getIntegrante() != null){
+			form.setIntegrante(mensaje.getIntegrante().getId());
+     		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
 								mensaje.getIntegrante().getPersona().getNombre() + " " +
 								mensaje.getIntegrante().getPersona().getApellido() + " " +
 								mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
 								mensaje.getIntegrante().getPersona().getNroDoc() );
+		}
 		form.setResolucion(mensaje.getResolucion());
 
 		form.setTipo(mensaje.getTipo());

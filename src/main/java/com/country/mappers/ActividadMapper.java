@@ -71,7 +71,7 @@ public class ActividadMapper {
 
 	public static List<Asignacion> getListAsignacion(ActividadForm actividadForm,InstructorManager instructorManager)
 			throws ParseException {
-		List<Asignacion> asignaciones = new ArrayList();
+		List<Asignacion> asignaciones = new ArrayList<Asignacion>();
 		Actividad actividad = new Actividad();
 		actividad.setId(actividadForm.getId());
 		asignaciones =getAsignaciones(actividadForm,actividad,instructorManager);

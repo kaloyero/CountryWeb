@@ -16,7 +16,9 @@ public class MensajeForm extends Form  {
 	private int integrante;
 	private String respuesta;
 	private String integranteNombre;
+	private String accion;
 	private Map<Integer, String> detalles = new HashMap<Integer, String>();
+	
 	
 	
 	
@@ -92,5 +94,12 @@ public class MensajeForm extends Form  {
 	public void setRespuesta(String respuesta) {
 		this.respuesta = respuesta;
 	}
+	public String getAccion() {
+		return accion;
+	}
+	public void setAccion(String accion) {
+		this.accion = accion;
+	}
 
+	
 }

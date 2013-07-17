@@ -1,39 +1,53 @@
 package com.country.mappers;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.country.common.DateFormater;
 import com.country.form.EventoForm;
 import com.country.form.Form;
-import com.country.form.NoticiaForm;
-import com.country.hibernate.model.Emprendimiento;
 import com.country.hibernate.model.Evento;
-import com.country.hibernate.model.Unidad;
+import com.country.hibernate.model.Integrante;
+import com.country.hibernate.model.Tarifa;
 
 public class EventoMapper {
 
-	public static Evento getEvento(Form form) throws ParseException {
+	public static Evento getEvento(Form form) {
 		
 		Evento evento = new Evento();
+		evento.setId(((EventoForm) form).getId());
+		
+		((EventoForm) form).getConcepto().setFechaComienzo(((EventoForm) form).getFecha());
+		evento.setConcepto(ConceptoMapper.getConcepto(((EventoForm) form).getConcepto()));
+		
 		evento.setDescription(((EventoForm) form).getDescripcion());
 		evento.setHourIni(((EventoForm) form).getHourIni());
+		evento.setCupo(((EventoForm) form).getCupo());
+		evento.setFecha(DateFormater.convertStringToDate(((EventoForm) form).getFecha()));
+		evento.setHourIni(((EventoForm) form).getHourIni());
 		
-		DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		evento.setNombre(((EventoForm) form).getNombre());
-		evento.setFecha((Date) formatter.parse(((EventoForm) form).getFecha()) );
-
+		Integrante integrante = new Integrante();
+		integrante.setId(((EventoForm) form).getIntegrante());
+		evento.setIntegrante(integrante);
+		
 		return evento;
 
 	}
 	
 
-	public static Form getForm(Evento evento) {
+	public static Form getForm(Evento evento, Tarifa tarifa) {
 		EventoForm form=new EventoForm();
 		
-	
+		form.setConcepto(ConceptoMapper.getForm(evento.getConcepto(),tarifa));
+		form.setCupo(evento.getCupo());
+		form.setDescripcion(evento.getDescription());
+		form.setFecha(DateFormater.convertDateToString(evento.getFecha()));
+		form.setHoraHasta(String.valueOf(evento.getHourIni()));
+		form.setHourIni(evento.getHourIni());
+		form.setId(evento.getId());
+		if (evento.getIntegrante() != null){
+			form.setIntegrante(evento.getIntegrante().getId());	
+		}
+		
+		//form.setRecurso(evento.get);
+		
 		return form;
 	}
 	

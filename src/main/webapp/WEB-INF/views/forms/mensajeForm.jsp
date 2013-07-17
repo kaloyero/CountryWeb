@@ -49,12 +49,7 @@
 				<form:input path="fecha" class="required datepicker" />
 			</p>
 		</div>
-		<div class="_50">
-			<p>
-				<label for="datepicker">Fecha de cierre</label>
-				<form:input path="fechaCierre" class="required datepicker" />
-			</p>
-		</div>
+
 
 		
 </fieldset>

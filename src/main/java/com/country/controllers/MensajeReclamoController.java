@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.DateFormater;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
+import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageManager;
 
@@ -37,17 +39,28 @@ public class MensajeReclamoController {
 	@Autowired
 	private MessageCategoryManager messageCategoryManager;
 		
+	@Autowired
+	private IntegratorManager integratorManager;
+
+	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model,HttpServletRequest request) {
-		MensajeForm mensaje = new MensajeForm();
-		
-		model.addAttribute("MENSAJE", mensaje);
-		
-		model.addAttribute("categorias", messageCategoryManager.listAll());
-		//TODO Lo comentado abajo esta en mensaje,pero no en reclamo,porque??
-		//model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		HttpSession session = request.getSession(true);
 		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		
+		MensajeForm mensaje = new MensajeForm();
+		
+		//Setea como la fecha por defecto la fecha actual.
+		mensaje.setFecha(DateFormater.getStringToday());
+		//Seteo el TIPO de mensaje como RECLAMO
+		mensaje.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
+		
+		
+		model.addAttribute("MENSAJE", mensaje);
+		model.addAttribute("categorias", messageCategoryManager.listAll());
+		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+		
+		
 		 if (usuarioConectado.equals("Admin")){
 			 return "mensajeReclamo";
 		 }else{
@@ -61,9 +74,6 @@ public class MensajeReclamoController {
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result) throws ParseException {
 		
-		//Seteo el TIPO de mensaje como RECLAMO
-		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
-		
 		messageManager.save(form);
 		
 		return "success";
@@ -71,21 +81,41 @@ public class MensajeReclamoController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
-	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
+	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		
+		
 		MensajeForm form = messageManager.findFormById(id);
 
+		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("MENSAJE", form);
 		
-		return "forms/mensajeReclamoForm";
+		
+		 if (usuarioConectado.equals("Admin")){
+			 return "forms/mensajeReclamoForm";
+		 }else{
+			 return "forms/mensajeReclamoForm";
+		 }
+		
+		
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
-			BindingResult result) throws ParseException {
-		//Seteo el TIPO de mensaje como RECLAMO
-		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
+			BindingResult result,HttpServletRequest request) throws ParseException {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+
+		
+		//TODO ver de que forma en el servicio puedo averiguar si es Admin o propietario
+		 if (usuarioConectado.equals("Admin")){
+			 form.setAccion(TipoMensajes.STATUS_OUT);
+		 }else{
+			 form.setAccion(TipoMensajes.STATUS_IN);
+		 }
+
 		messageManager.update(form);
 		
 		return "success";

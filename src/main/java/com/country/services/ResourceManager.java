@@ -1,5 +1,7 @@
 package com.country.services;
 
+import java.util.List;
+
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.Recurso;
 
@@ -11,5 +13,7 @@ public interface ResourceManager extends AbstractManager<Recurso>{
 	RecursoForm getResourceForm(Integer id);
 	
 	void update(RecursoForm form);
+
+	List<RecursoForm> listAllResourceForm();
 	
 }
