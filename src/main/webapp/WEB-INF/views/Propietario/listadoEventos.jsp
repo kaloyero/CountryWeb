@@ -70,6 +70,9 @@
 													</c:if>
 
 						</dd>
+						<dd class="hits">
+							<a onclick="translator.onSubmit('eventoParticipante')">Click aqui para anotarse al evento</a>
+						</dd>
 					</dl>
 				</div>
 		<!-- //Item footer -->

@@ -9,11 +9,15 @@ var ServerManager = new Class({
         this.services['actividad']={};
         this.services['recurso']={};
         this.services['mensajeReclamo']={};
+        this.services['recursoReserva']={};
         this.services['evento']={};
         this.services['recurso']={};
         this.services['evento']["save"]="/CountryWeb/evento/create/";
+        this.services['recursoReserva']["save"]="/CountryWeb/recursoReserva/create/";
         this.services['mensajeReclamo']["save"]="/CountryWeb/mensajeReclamo/create/";
         this.services['mensajeReclamo']["load"]="/CountryWeb/mensajeReclamo/load/";
+        this.services['recurso']["load"]="/CountryWeb/recurso/recursosParaReservar/load/";
+        
         //this.services['avisos']={};
    
         //this.services['dashboard']["lista"]="/CountryWeb/dashboard/lista/";
@@ -51,6 +55,7 @@ var ServerManager = new Class({
     getObjectById: function(config){
 
     	var type = config.object.split('_')[0];
+    	console.log("TYPE",type,this.services[type])
     	var self=this;
     	$.ajax({
 			type: 'GET',
@@ -78,19 +83,35 @@ var ServerManager = new Class({
 		});
     },
     save: function(config){
+    	//console.log("SER",config.form.serialize())
+    	var transformedData="";
+    	if (config.form)
+    	transformedData =config.form.serialize()
     	var self=this;
     	$.ajax( {
 		      type: "POST",
 		      url: self.services[config.object]["save"],
-		      data: config.form.serialize(),
+		      data: transformedData,
 		      success: function(data) {
 		    	  console.log("@@")
 		    	  config.onSuccess(data);
 				}
 		    } );
     },
-   
-
+    saveJson: function(config){
+    	var self=this;
+    	$.ajax( {
+		      type: "POST",
+		      dataType: 'json', 
+		      url: self.services[config.object]["save"],
+		      data: JSON.stringify(config.data),
+		      contentType: 'application/json',
+		      mimeType: 'application/json',
+		      success: function(data) {
+		    	  config.onSuccess(data);
+				}
+		    } );
+    },
    
 });
 

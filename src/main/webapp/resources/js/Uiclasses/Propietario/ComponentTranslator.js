@@ -18,6 +18,19 @@ var ComponentTranslator = new Class(
 					}
 				});
 			},
+			
+			onSubmitJson : function(objectType,json) {
+		    	serverManager.saveJson({
+					object : objectType,
+					data : json,
+					onSuccess : function(data) {
+						console.log("SEsese")
+								$.jGrowl("Creado con exito.", {
+									theme : 'success'
+								});
+					}
+				});
+			},
 
 			onSaved : function() {
 			
@@ -36,7 +49,6 @@ var ComponentTranslator = new Class(
 					object : objectType,
 					objectId : objectId,
 					onSuccess : function(data) {
-
 						canvasController.onLoaded(type,data);
 					}
 				});

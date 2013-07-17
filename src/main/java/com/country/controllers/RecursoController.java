@@ -66,7 +66,7 @@ public class RecursoController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 		RecursoForm form = recursoManager.getResourceForm(id);
-
+		
 		model.addAttribute("tipoRecurso", tipoResourceManager.listAll());
 		model.addAttribute("RECURSO", form);
 		return "forms/recursoForm";

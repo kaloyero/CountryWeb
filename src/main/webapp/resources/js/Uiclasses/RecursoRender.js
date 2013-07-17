@@ -170,7 +170,7 @@ var RecursoRender = new Class({
     	})
     	
     	var disponibilidadesText = JSON.stringify(disponibilidades);
-    	$('[name="disponibilidades"]').remove()
+    	$('[name="disponibilidades"]').remove();
     	html.push("<input type=hidden id=testa  name='disponibilidades' value="+disponibilidadesText+">")
     	form.append(html.join(''));
     	console.log("EVENTOS ",disponibilidadesText)
