@@ -7,12 +7,17 @@ var IntegranteRender = new Class({
     	this.bindListeners();
     	
     },
+    onNewTab: function(){
+    	this.bindListeners();
+    	
+    },
     bindListeners: function(){
     	var self=this;
 
     	this.getAddForm().find("#addPhone").click(function() {
     		var newEntry="";
     		if (self.getAddForm().find("#telNumber").val().trim() != "" ){
+    			
 	    		newEntry="<strong>( </strong><span class='pais'>"+ self.getAddForm().find("#telCountry").val()+"</span>";
 	    		newEntry+= " <span class='state'>" +self.getAddForm().find("#telState").val() + "</span><strong> ) </strong>";
 	    		newEntry+=" <span class='tel'>" +self.getAddForm().find("#telNumber").val()+"</span>"	;

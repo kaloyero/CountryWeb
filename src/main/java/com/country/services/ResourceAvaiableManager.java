@@ -6,6 +6,7 @@ import com.country.hibernate.model.RecursoDisponibilidad;
 
 public interface ResourceAvaiableManager extends AbstractManager<RecursoDisponibilidad>{
 	
-	public List<RecursoDisponibilidad> findResourcesAvaiableById(Integer id);
-	
+	List<RecursoDisponibilidad> findResourcesAvaiableById(Integer id);
+
+	List<RecursoDisponibilidad> findResourcesAvaiableByDayOfWeek(Integer resource,int dayOfweek);
 }

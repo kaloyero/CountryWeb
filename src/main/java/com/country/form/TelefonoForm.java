@@ -9,14 +9,21 @@ public class TelefonoForm extends Form  {
 	private String codigoArea;
 	private String prefijo;
 	private Integer tipoTelefono;
+	private String tipoTelefonoNombre;
 	private String numero;
-	private Integer persona;
+	private int persona;
 	
-	
-	public Integer getPersona() {
+	public String getTipoTelefonoNombre() {
+		return tipoTelefonoNombre;
+	}
+	public void setTipoTelefonoNombre(String tipoTelefonoNombre) {
+		this.tipoTelefonoNombre = tipoTelefonoNombre;
+	}
+
+	public int getPersona() {
 		return persona;
 	}
-	public void setPersona(Integer persona) {
+	public void setPersona(int persona) {
 		this.persona = persona;
 	}
 	public Integer getId() {

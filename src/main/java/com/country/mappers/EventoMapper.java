@@ -1,6 +1,6 @@
 package com.country.mappers;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.form.EventoForm;
 import com.country.form.Form;
 import com.country.hibernate.model.Evento;
@@ -20,7 +20,7 @@ public class EventoMapper {
 		evento.setDescription(((EventoForm) form).getDescripcion());
 		evento.setHourIni(((EventoForm) form).getHourIni());
 		evento.setCupo(((EventoForm) form).getCupo());
-		evento.setFecha(DateFormater.convertStringToDate(((EventoForm) form).getFecha()));
+		evento.setFecha(DateUtil.convertStringToDate(((EventoForm) form).getFecha()));
 		evento.setHourIni(((EventoForm) form).getHourIni());
 		
 		Integrante integrante = new Integrante();
@@ -38,8 +38,8 @@ public class EventoMapper {
 		form.setConcepto(ConceptoMapper.getForm(evento.getConcepto(),tarifa));
 		form.setCupo(evento.getCupo());
 		form.setDescripcion(evento.getDescription());
-		form.setFecha(DateFormater.convertDateToString(evento.getFecha()));
-		form.setHoraHasta(String.valueOf(evento.getHourIni()));
+		form.setFecha(DateUtil.convertDateToString(evento.getFecha()));
+		form.setDuracion(evento.getHourIni());
 		form.setHourIni(evento.getHourIni());
 		form.setId(evento.getId());
 		if (evento.getIntegrante() != null){

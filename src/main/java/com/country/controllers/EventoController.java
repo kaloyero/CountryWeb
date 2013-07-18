@@ -69,6 +69,8 @@ public class EventoController {
 		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
 
 		EventoForm evento = new EventoForm();
+		//Seteo el cupo minimo TODO setear cupo minimo
+		evento.setCupo(1);
 		model.addAttribute("EVENTO", evento);
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 			  

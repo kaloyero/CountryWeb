@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
@@ -51,7 +51,7 @@ public class MensajeReclamoController {
 		MensajeForm mensaje = new MensajeForm();
 		
 		//Setea como la fecha por defecto la fecha actual.
-		mensaje.setFecha(DateFormater.getStringToday());
+		mensaje.setFecha(DateUtil.getStringToday());
 		//Seteo el TIPO de mensaje como RECLAMO
 		mensaje.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 		

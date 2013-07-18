@@ -35,19 +35,31 @@
 				</form:select>
 			</p>
 		</div>
-		<div class="_25">
+		<div class="_20">
 			<p>
-				<label for="textfield">Fecha: </label>
-				El dìa <form:input path="fecha" class="required datepicker" />
+				<label for="textfield">Cupo Mínimo: </label>
+				<form:input path="cupo" class="required datepicker" />
 			</p>
 		</div>
-		<div class="_25">
+		<div class="_20">
 			<p>
-				<label for="textfield"></label>
-				desde las <form:input path="hourIni" class="required" />
+				<label for="textfield">El dìa: </label>
+				<form:input path="fecha" class="required datepicker" />
 			</p>
 		</div>
-		<div class="_25">
+		<div class="_20">
+			<p>
+				<label for="textfield">Comienza a las</label>
+				<form:input path="hourIni" class="required" />
+			</p>
+		</div>
+		<div class="_20">
+			<p>
+				<label for="textfield">Duración</label>
+				<form:input path="duracion" class="required" />
+			</p>
+		</div>
+		<div class="_20">
 			<p>
 				<label for="textfield">Costo</label>
 				<form:input path="concepto.importe" class="required" />

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
@@ -25,8 +25,8 @@ public class MensajeMapper {
 		mensaje.setCategoria(cat);
 
 		mensaje.setEstado(form.getEstado());
-		mensaje.setFecha(DateFormater.convertStringToDate((form.getFecha())));
-		mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
+		mensaje.setFecha(DateUtil.convertStringToDate((form.getFecha())));
+		mensaje.setFechaCierre(DateUtil.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
@@ -46,8 +46,8 @@ public class MensajeMapper {
 		form.setAsunto(mensaje.getAsunto());
 		form.setCategoria(mensaje.getCategoria().getId());
 		form.setEstado(mensaje.getEstado());
-		form.setFecha(DateFormater.convertDateToString(mensaje.getFecha()));
-		form.setFechaCierre(DateFormater.convertDateToString(mensaje.getFechaCierre()));
+		form.setFecha(DateUtil.convertDateToString(mensaje.getFecha()));
+		form.setFechaCierre(DateUtil.convertDateToString(mensaje.getFechaCierre()));
 		//OJO ,el integrante puede ser nulo
 		if (mensaje.getIntegrante() != null){
 			form.setIntegrante(mensaje.getIntegrante().getId());

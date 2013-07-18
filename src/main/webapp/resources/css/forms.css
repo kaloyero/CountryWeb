@@ -101,6 +101,13 @@ p.inline-small-label label.error {
 /* ==================================================
  * 3) Grid
  * ================================================== */
+._5 {
+    width: 1%;
+    display: inline;
+    float: left;
+    margin-left: 2%;
+    margin-right: 2%;
+}
 ._10 {
     width: 6%;
     display: inline;
@@ -132,6 +139,13 @@ p.inline-small-label label.error {
 }
 ._30 {
     width: 26%;
+    display: inline;
+    float: left;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+._35 {
+    width: 31%;
     display: inline;
     float: left;
     margin-left: 2%;

@@ -54,15 +54,14 @@ public class InstructorController {
 			@ModelAttribute(value = "INSTRUCTOR") InstructorForm instructorForm,
 			BindingResult result) throws ParseException {
 		
-		instructorManager.save(InstructorMapper.getInstructor(instructorForm));
+		instructorManager.save(instructorForm);
 				return "success";
 		
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-		Instructor instructor =instructorManager.findById(id);
-		InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor);
+		InstructorForm form = instructorManager.findFormById(id);
 		model.addAttribute("INSTRUCTOR", form);
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());

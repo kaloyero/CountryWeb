@@ -1,9 +1,7 @@
 package com.country.form;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PersonaForm extends Form {
 
@@ -17,27 +15,8 @@ public class PersonaForm extends Form {
 	private int tipoDocumento;
 	private String telefonosTest = "";
 
-	private Map<Integer, String> direcciones = new HashMap<Integer, String>();
-	private Map<Integer, String> telefonos = new HashMap<Integer, String>();
-
 	private List<DireccionForm> listaDirecciones = new ArrayList<DireccionForm>();
 	private List<TelefonoForm> listaTelefonos = new ArrayList<TelefonoForm>();
-
-	public Map<Integer, String> getDirecciones() {
-		return direcciones;
-	}
-
-	public void setDirecciones(Map<Integer, String> direcciones) {
-		this.direcciones = direcciones;
-	}
-
-	public Map<Integer, String> getTelefonos() {
-		return telefonos;
-	}
-
-	public void setTelefonos(Map<Integer, String> telefonos) {
-		this.telefonos = telefonos;
-	}
 
 	public Integer getId() {
 		return id;

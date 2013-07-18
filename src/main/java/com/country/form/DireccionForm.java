@@ -11,15 +11,23 @@ public class DireccionForm extends Form  {
 	private String block;
 	private String floor;
 	private String flat;
-	private Integer person;
+	private int person;
 	private Integer town;
+	private String townName;
 
 	
 	
-	public Integer getPerson() {
+	public String getTownName() {
+		return townName;
+	}
+	public void setTownName(String townName) {
+		this.townName = townName;
+	}
+
+	public int getPerson() {
 		return person;
 	}
-	public void setPerson(Integer person) {
+	public void setPerson(int person) {
 		this.person = person;
 	}
 	public Integer getId() {

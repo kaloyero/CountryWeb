@@ -26,5 +26,16 @@ public class ResourceAvaiableManagerImpl extends AbstractManagerImpl<RecursoDisp
 		List<RecursoDisponibilidad> list = resourceAvaiableDao.findAllByProperty("recurso", id);
 		return list;
 	}
+
+	@Transactional
+	public List<RecursoDisponibilidad> findResourcesAvaiableByDayOfWeek(Integer resource,int dayOfweek) {
+	
+		
+		List<RecursoDisponibilidad> list = resourceAvaiableDao.listDisponibilidadRecursoPorDia(resource, dayOfweek);
+		return list;
+	}
+	
+	
+	
 	
 }

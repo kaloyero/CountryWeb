@@ -46,23 +46,16 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		IntegranteActividadForm form = new IntegranteActividadForm();
 		
 		IntegranteActividades dto = findById(id);
-		IntegranteForm intForm = integratorManager.findFormById(id);
-		ActividadForm actForm = activityManager.findFormById(id);
-				
-		form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(dto,intForm , actForm );
+//		IntegranteForm intForm = integratorManager.findFormById(id);
+//		ActividadForm actForm = activityManager.findFormById(id);
+//				
+//		form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(dto,intForm , actForm );
+		form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(dto);
 		
 		return form;
 	}
 
 	
-	@Transactional
-	public void save(IntegranteActividadForm form) {
-		IntegranteActividades dto = IntegranteActividadMapper.getIntegranteActividad(form);
-		
-		integratorActivityDao.save(dto);
-
-	}
-
 	@Transactional
 	public void update(IntegranteActividadForm form) {
 		IntegranteActividades dto = IntegranteActividadMapper.getIntegranteActividad(form);
@@ -105,6 +98,26 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 			
 		}
 		return list;
+	}
+
+	@Transactional
+	public void inscribirse(int integrante, int actividad, String fechaIni,
+			String fechaFin) {
+		
+		IntegranteActividadForm form = new IntegranteActividadForm();
+		form.setActividad(actividad);
+		form.setIntegrante(integrante);
+		form.setFechaIni(fechaIni);
+		form.setFechaFin(fechaFin);
+		
+		inscribirse(form);
+	}
+
+	@Transactional
+	public void inscribirse(IntegranteActividadForm form) {
+		IntegranteActividades dto = IntegranteActividadMapper.getIntegranteActividad(form);
+		
+		integratorActivityDao.save(dto);
 	}
 	
 }

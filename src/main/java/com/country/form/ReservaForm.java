@@ -11,19 +11,6 @@ public class ReservaForm extends Form {
 	private  Integer horaIni ;
 	private  Integer duracion ;
 
-	
-	public IntegranteForm getIntegrante() {
-		return integrante;
-	}
-	public void setIntegrante(IntegranteForm integrante) {
-		this.integrante = integrante;
-	}
-	public EventoForm getEvento() {
-		return evento;
-	}
-	public void setEvento(EventoForm evento) {
-		this.evento = evento;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -42,12 +29,6 @@ public class ReservaForm extends Form {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public RecursoForm getRecurso() {
-		return recurso;
-	}
-	public void setRecurso(RecursoForm recurso) {
-		this.recurso = recurso;
-	}
 	public Integer getHoraIni() {
 		return horaIni;
 	}
@@ -59,6 +40,24 @@ public class ReservaForm extends Form {
 	}
 	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
+	}
+	public RecursoForm getRecurso() {
+		return recurso;
+	}
+	public void setRecurso(RecursoForm recurso) {
+		this.recurso = recurso;
+	}
+	public IntegranteForm getIntegrante() {
+		return integrante;
+	}
+	public void setIntegrante(IntegranteForm integrante) {
+		this.integrante = integrante;
+	}
+	public EventoForm getEvento() {
+		return evento;
+	}
+	public void setEvento(EventoForm evento) {
+		this.evento = evento;
 	}
 
 	

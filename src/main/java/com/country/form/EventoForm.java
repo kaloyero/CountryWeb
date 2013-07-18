@@ -7,7 +7,7 @@ public class EventoForm extends Form  {
 	private  String descripcion ;
 	private  String fecha ;
 	private Integer hourIni;
-	private  String horaHasta;
+	private  int duracion;
 	private String nombre;
 	private int cupo;
 	private int recurso;
@@ -15,18 +15,17 @@ public class EventoForm extends Form  {
 	private String integranteNombre;
 	ConceptoForm concepto;
 	
-	
-	public String getHoraHasta() {
-		return horaHasta;
+	public int getDuracion() {
+		return duracion;
 	}
 
 
-	public void setHoraHasta(String horaHasta) {
-		this.horaHasta = horaHasta;
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
 	}
 
 
-	public ConceptoForm getConcepto() {
+		public ConceptoForm getConcepto() {
 		return concepto;
 	}
 

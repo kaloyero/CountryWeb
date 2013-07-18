@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.form.Form;
 import com.country.form.NoticiaForm;
 import com.country.hibernate.model.Noticia;
@@ -22,12 +22,12 @@ public class NoticiaMapper {
 		Noticia	dto = new Noticia();
 		dto.setId(((NoticiaForm) form).getId());
 		dto.setEstado(((NoticiaForm) form).getEstado());
-		dto.setFecha(DateFormater.convertStringToDate(((NoticiaForm) form).getFecha()));
+		dto.setFecha(DateUtil.convertStringToDate(((NoticiaForm) form).getFecha()));
 		NoticiaCategorias notCat = new NoticiaCategorias();
 		notCat.setId(((NoticiaForm) form).getCategoria());
 		dto.setCategoria(notCat);
-		dto.setFechaDesde(DateFormater.convertStringToDate(((NoticiaForm) form).getFechaDesde()));
-		dto.setFechaHasta(DateFormater.convertStringToDate(((NoticiaForm) form).getFechaHasta()));
+		dto.setFechaDesde(DateUtil.convertStringToDate(((NoticiaForm) form).getFechaDesde()));
+		dto.setFechaHasta(DateUtil.convertStringToDate(((NoticiaForm) form).getFechaHasta()));
 		dto.setTexto(((NoticiaForm) form).getTexto());
 		dto.setTitulo(((NoticiaForm) form).getTitulo());
 		
@@ -49,9 +49,9 @@ public class NoticiaMapper {
 		form.setId(dto.getId());
 		form.setCategoria(dto.getCategoria().getId());
 		form.setEstado(dto.getEstado());
-		form.setFecha(DateFormater.convertDateToString(dto.getFecha()));
-		form.setFechaDesde(DateFormater.convertDateToString(dto.getFechaDesde()));
-		form.setFechaHasta(DateFormater.convertDateToString(dto.getFechaHasta()));
+		form.setFecha(DateUtil.convertDateToString(dto.getFecha()));
+		form.setFechaDesde(DateUtil.convertDateToString(dto.getFechaDesde()));
+		form.setFechaHasta(DateUtil.convertDateToString(dto.getFechaHasta()));
 		form.setTexto(dto.getTexto());
 		form.setTitulo(dto.getTitulo());
 		form.setAdjuntos(getAdjuntos(dto.getAdjuntos()));

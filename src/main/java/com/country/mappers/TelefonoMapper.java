@@ -26,8 +26,17 @@ public class TelefonoMapper {
 	}
 	
 
-	public static Form getForm(Telefono telefono) {
+	public static TelefonoForm getForm(Telefono telefono) {
 		TelefonoForm form=new TelefonoForm();
+		
+		form.setId(telefono.getId());
+		form.setCodigoArea(String.valueOf(telefono.getCodigoArea()));
+		form.setCodigoPais(String.valueOf(telefono.getCodigoPais()));
+		form.setNumero(String.valueOf(telefono.getNumero()));
+		form.setPersona(telefono.getPersona());
+		form.setPrefijo(String.valueOf(telefono.getPrefijo()));
+		form.setTipoTelefono(telefono.getTipoTelefono().getId());
+		form.setTipoTelefonoNombre(telefono.getTipoTelefono().getNombre());
 		
 	
 		return form;
