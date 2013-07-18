@@ -208,7 +208,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 			}
 		}
 
-		if (responseAnt && responsePost){
+		if (( anterior== null && posterior ==null )|| (responseAnt && responsePost)){
 			return true;	
 		} 
 		
@@ -226,7 +226,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		boolean disponibleHoraIni = false;
 		for (RecursoDisponibilidad disponibilidad : listaDisponibilidad) {
 			//Comparo la hra inicial, para saber si esta dentro de los horarios de ese dia.
-			if (horaIni >= disponibilidad.getHoraIni() && horaIni >= disponibilidad.getHoraFin()){
+			if (horaIni >= disponibilidad.getHoraIni() && horaIni <= disponibilidad.getHoraFin()){
 				disponibleHoraIni = true;
 			}
 		}
@@ -236,14 +236,14 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		}
 		
 		//HORA FINAL
-		Date fechaFin = DateUtil.sumarHoras(fecha, duracion);
+		Date fechaFin = DateUtil.sumarHoras(fechaInicio, duracion);
 		//Tomo todos los horarios disponibles en que esta el recurso ese dia.
 		listaDisponibilidad= resourceAvaiableManager.findResourcesAvaiableByDayOfWeek(resource, DateUtil.getDiaDeLaSemana(fechaFin));
 		boolean disponibleHoraFin = false;
 		int horaFin = DateUtil.getHora(fechaFin); 
 		for (RecursoDisponibilidad disponibilidad : listaDisponibilidad) {
 			//Comparo la hra inicial, para saber si esta dentro de los horarios de ese dia.
-			if (horaFin >= disponibilidad.getHoraIni() && horaFin >= disponibilidad.getHoraFin()){
+			if (horaFin >= disponibilidad.getHoraIni() && horaFin <= disponibilidad.getHoraFin()){
 				disponibleHoraFin = true;
 			}
 		}

@@ -8,14 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
-import com.country.form.DireccionForm;
 import com.country.form.InstructorForm;
-import com.country.form.TelefonoForm;
 import com.country.form.TipoForm;
 import com.country.hibernate.dao.InstructorDao;
 import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Instructor;
-import com.country.hibernate.model.Localidad;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.InstructorMapper;
 import com.country.services.AddressManager;
@@ -38,7 +35,7 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 	protected GenericDao<Instructor, Integer> getDao() {
 		return instructorDao;
 	}	
-	
+
 	@Transactional
 	public void save(InstructorForm form) {
 		Instructor dto = InstructorMapper.getInstructor(form);
@@ -54,11 +51,16 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 		
 	}
 	
-	@Transactional
+	public Instructor findById(Integer id) {
+		
+		Instructor dto = instructorDao.findById(id);
+		return dto;
+	}
+
 	public InstructorForm findFormById(Integer id) {
 		InstructorForm form = new InstructorForm();
 		
-		Instructor dto = instructorDao.findById(id);
+		Instructor dto = findById(id);
 		List<Telefono> telefonos = telephoneManager.findListByIdPerson(dto.getPersona().getId());
 		List<Direccion> direcciones = addressManager.findListByIdPerson(dto.getPersona().getId());
 		

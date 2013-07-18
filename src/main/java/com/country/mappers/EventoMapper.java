@@ -19,6 +19,7 @@ public class EventoMapper {
 		
 		evento.setDescription(((EventoForm) form).getDescripcion());
 		evento.setHourIni(((EventoForm) form).getHourIni());
+		evento.setDuracion(((EventoForm) form).getDuracion());
 		evento.setCupo(((EventoForm) form).getCupo());
 		evento.setFecha(DateUtil.convertStringToDate(((EventoForm) form).getFecha()));
 		evento.setHourIni(((EventoForm) form).getHourIni());
@@ -39,7 +40,7 @@ public class EventoMapper {
 		form.setCupo(evento.getCupo());
 		form.setDescripcion(evento.getDescription());
 		form.setFecha(DateUtil.convertDateToString(evento.getFecha()));
-		form.setDuracion(evento.getHourIni());
+		form.setDuracion(evento.getDuracion());
 		form.setHourIni(evento.getHourIni());
 		form.setId(evento.getId());
 		if (evento.getIntegrante() != null){

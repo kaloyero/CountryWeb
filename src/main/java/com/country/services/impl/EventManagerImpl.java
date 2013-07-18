@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.DateUtil;
 import com.country.common.GenericDao;
 import com.country.form.EventoForm;
 import com.country.form.IntegranteForm;
@@ -11,9 +12,11 @@ import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.EventDao;
 import com.country.hibernate.model.Evento;
+import com.country.hibernate.model.Tarifa;
 import com.country.mappers.EventoMapper;
 import com.country.services.ConceptManager;
 import com.country.services.EventManager;
+import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
 
 @Service("eventManager")
@@ -24,6 +27,9 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	
 	@Autowired
     private ConceptManager conceptManager;
+
+	@Autowired
+    private PriceManager priceManager;
 
 	@Autowired
     private ReserveManager reserveManager;
@@ -41,6 +47,12 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	
 	public EventoForm findFormById(Integer id) {
 		EventoForm form = new EventoForm();
+		
+		Evento evento = findById(id);
+		//Toma la ultima tarifa
+		Tarifa tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+		
+		form = (EventoForm) EventoMapper.getForm(evento, tarifa);
 		return form;
 	}
 	
@@ -49,12 +61,19 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	public void save(EventoForm form) {
 		Evento dto = EventoMapper.getEvento(form);
 		
-		conceptManager.save(dto.getConcepto(),form.getConcepto().getImporte());
-
+		eventDao.save(dto);
+		
+		//Guarda el importe
+		Tarifa price = new Tarifa();
+		price.setConcepto(dto.getConcepto().getId());
+		price.setImporte(form.getConcepto().getImporte());
+		price.setFechaComienzo(DateUtil.getDateToday());
+		priceManager.save(price);		
+		
 		ReservaForm reserva = getReserva(form);
 		reserveManager.save(reserva);
 		
-		eventDao.save(dto);
+		
 		
 	}
 	

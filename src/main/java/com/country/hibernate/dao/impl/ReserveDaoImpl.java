@@ -23,20 +23,20 @@ public class ReserveDaoImpl extends GenericDaoImpl<Reserva, Integer> implements 
 			Integer resource, Date fecha, int horaIni) {
 
 		Criteria criteria = getSession().createCriteria(getEntityClass());
-		criteria.add(Restrictions.eq("recurso.id", resource));
+		criteria.add(Restrictions.eq("recurso", resource));
 		
 		if (AfterBefore){
 			//After
 			//mayor igual a la fecha
 			criteria.add(Restrictions.ge("fecha", fecha));
-			criteria.add(Restrictions.ge("horaIni", fecha));
+			criteria.add(Restrictions.ge("horaIni", horaIni));
 			criteria.addOrder(Order.asc("fecha"));
 			criteria.addOrder(Order.asc("horaIni"));
 		} else {
 			//Before
 			//menor a la fecha
 			criteria.add(Restrictions.lt("fecha", fecha));
-			criteria.add(Restrictions.lt("horaIni", fecha));
+			criteria.add(Restrictions.lt("horaIni", horaIni));
 			criteria.addOrder(Order.desc("fecha"));
 			criteria.addOrder(Order.desc("horaIni"));
 		}

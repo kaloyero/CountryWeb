@@ -3,6 +3,7 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,19 +32,35 @@ public class Evento implements Serializable {
 	@Column(name = "HoraIni")
 	private Integer hourIni;
 
+	@Column(name = "Duracion")
+	private Integer duracion;
+
 	@Column(name = "Descripcion")
 	private String description;
 
 	@Column(name = "Cupo")
 	private Integer cupo;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdConcepto",updatable = false, insertable = false)	
+	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private  Concepto  concepto ;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante",updatable = false, insertable = false)	
+	@JoinColumn(name="IdIntegrante",updatable = true, insertable = true)	
 	private  Integrante integrante;
+
+//	@OneToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="IdEvento",updatable = false, insertable = false)	
+//	private  Reserva reserva;
+//
+//	
+//	public Reserva getReserva() {
+//		return reserva;
+//	}
+//
+//	public void setReserva(Reserva reserva) {
+//		this.reserva = reserva;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -99,6 +116,14 @@ public class Evento implements Serializable {
 
 	public void setIntegrante(Integrante integrante) {
 		this.integrante = integrante;
+	}
+
+	public Integer getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(Integer duracion) {
+		this.duracion = duracion;
 	}
 
 }

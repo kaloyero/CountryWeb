@@ -18,6 +18,7 @@ import com.country.form.InstructorForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
 import com.country.mappers.InstructorMapper;
+import com.country.services.CityManager;
 import com.country.services.InstructorManager;
 import com.country.services.TypeDocumentManager;
 import com.country.services.TypeTelephoneManager;
@@ -37,13 +38,18 @@ public class InstructorController {
 
 	@Autowired
 	private TypeTelephoneManager typeTelephoneManager;
-
+	
+	@Autowired
+	private CityManager cityManager;
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		InstructorForm instructor = new InstructorForm();
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());
+		//TODO agregar la ciudad especifica
+		model.addAttribute("localidades", cityManager.getTownsByIdCity(1));
+		
 		model.addAttribute("INSTRUCTOR", instructor);
 		
 		return "instructor";
@@ -65,6 +71,9 @@ public class InstructorController {
 		model.addAttribute("INSTRUCTOR", form);
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());
+		//TODO agregar la ciudad especifica
+		model.addAttribute("localidades", cityManager.getTownsByIdCity(1));
+		
 		return "forms/instructorForm";
 
 	}

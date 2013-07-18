@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.DateUtil;
 import com.country.common.GenericDao;
 import com.country.hibernate.dao.PriceDao;
 import com.country.hibernate.model.Tarifa;
@@ -31,5 +32,23 @@ public class PriceManagerImpl extends AbstractManagerImpl<Tarifa> implements Pri
 		return obj;
 	}
 
+	
+	@Transactional	
+	public void updateTarifa(int conceptoId, Double nuevaTarifa) {
+		//Agarro la tarifa que viene del form
+		Tarifa price = new Tarifa();
+		price.setConcepto(conceptoId);
+		price.setImporte(nuevaTarifa);
+		price.setFechaComienzo(DateUtil.getDateToday());
 
+		//si es igual a la ultima no la actualizo, sino la agrego a la lista
+		Tarifa tarifaUltima = priceDao.getLastPriceByConcept(conceptoId);
+		
+		if (tarifaUltima == null || price.getImporte() != tarifaUltima.getImporte()){
+			priceDao.save(price);	
+		}
+		
+	}
+
+	
 }

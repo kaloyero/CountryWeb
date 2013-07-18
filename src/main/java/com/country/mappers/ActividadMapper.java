@@ -87,8 +87,7 @@ public class ActividadMapper {
 					Asignacion asignacion = new Asignacion();
 					asignacion.setId(actividadForm.getIdAsignacion());
 					asignacion.setFechaComienzo(DateUtil.convertStringToDate(actividadForm.getFechaInicio()));
-					asignacion.setInstructor(instructorManager
-							.findById((Integer) instructor));
+					asignacion.setInstructor(instructorManager.findById((Integer) instructor));
 					asignacion.setActividad(actividad);
 					asignaciones.add(asignacion);
 				}

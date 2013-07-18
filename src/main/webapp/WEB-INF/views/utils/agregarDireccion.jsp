@@ -9,8 +9,8 @@
 			<li>
 				<div class="_25">
 					<select id="telContact"> 
-						<c:forEach var="tel" items="${tipoTelefono}">
-							<option value="${tel.id}">${tel.nombre}</option>
+						<c:forEach var="loc" items="${localidades}">
+							<option value="${loc.id}">${loc.name}</option>
 						</c:forEach>
 					</select> 				
 				</div>
