@@ -1,5 +1,6 @@
 package com.country.mappers;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,12 @@ public class MensajeMapper {
 		mensaje.setCategoria(cat);
 
 		mensaje.setEstado(form.getEstado());
+		//TODO aca la fecha ya viene seteada,dejar comentada la siguiente linea
 		mensaje.setFecha(DateFormater.convertStringToDate((form.getFecha())));
 		mensaje.setFechaCierre(DateFormater.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
-		integ.setId(form.getIntegrante());
+		integ.setId(1);
 		mensaje.setIntegrante(integ);
-		mensaje.setTipo(form.getTipo());
 		mensaje.setResolucion(form.getResolucion());
 		mensaje.setTipo(form.getTipo());
 		
