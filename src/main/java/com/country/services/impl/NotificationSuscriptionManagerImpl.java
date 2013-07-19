@@ -44,12 +44,6 @@ public class NotificationSuscriptionManagerImpl extends AbstractManagerImpl<Avis
 		notificationSuscriptionDao.update(dto);
 	}
 	
-	/**
-	 * Este metodo devuelve todos los Integrantes(FORM) que estan suscriptos a el aviso categoria. 
-	 * 
-	 * @param id de aviso categoria
-	 * @return lista de Integrantes
-	 */
 	public List<IntegranteForm> findAllIntegrantorFormByNotificationId(Integer id) {
 		List<IntegranteForm> list = new ArrayList<IntegranteForm>();
 		List<AvisoSuscripcion> searchList = new ArrayList<AvisoSuscripcion>();
@@ -62,12 +56,6 @@ public class NotificationSuscriptionManagerImpl extends AbstractManagerImpl<Avis
 		return list;
 	}
 	
-	/**
-	 * Este metodo devuelve todas las aviso categorias  (FORM) que esta suscripto el integrante especifico 
-	 * 
-	 * @param id de Integrante
-	 * @return lista de avisos categoria
-	 */
 	public List<AvisoCategoriaForm> findAllCategoriesByIntegratorId(Integer id) {
 		List<AvisoCategoriaForm> list = new ArrayList<AvisoCategoriaForm>();
 		List<AvisoSuscripcion > searchList = new ArrayList<AvisoSuscripcion >();
@@ -79,4 +67,29 @@ public class NotificationSuscriptionManagerImpl extends AbstractManagerImpl<Avis
 		}
 		return list;
 	}
+	
+	@Transactional
+	public boolean inscribirseAviso(int aviso, int integrante) {
+		boolean inscripcion = true;
+		
+		AvisoSuscripcion inscrip = new AvisoSuscripcion();
+		inscrip.setCategoria(aviso);
+		inscrip.setIntegrante(integrante);
+		
+		notificationSuscriptionDao.save(inscrip);
+		
+		return inscripcion;
+	}
+
+	@Transactional
+	public boolean desinscribirseAviso(int aviso, int integrante) {
+		boolean desinscripcion = false;
+		
+		//TODO hacer que borre la inscripcion
+		
+		return desinscripcion;
+	}
+	
+	
+	
 }

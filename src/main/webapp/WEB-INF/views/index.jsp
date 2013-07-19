@@ -43,6 +43,7 @@
   <script src="resources/js/Uiclasses/ActividadRender.js"></script>
   <script src="resources/js/Uiclasses/InstructorRender.js"></script>
   <script src="resources/js/Uiclasses/IntegranteRender.js"></script>
+  <script src="resources/js/Uiclasses/AvisoRender.js"></script>  
   <script src="resources/js/Uiclasses/ConceptoRender.js"></script>
   <script src="resources/js/Uiclasses/UnidadRender.js"></script>
   <script src="resources/js/Uiclasses/RecursoRender.js"></script>
@@ -57,8 +58,9 @@
   <script src="resources/js/Uiclasses/TipoRecursoRender.js"></script>
   <script src="resources/js/Uiclasses/TipoVacunaRender.js"></script>
   <script src="resources/js/Uiclasses/TipoVehiculoRender.js"></script>
-  <script src="resources/js/Uiclasses/mensajeCategoriaRender.js"></script>
-  <script src="resources/js/Uiclasses/noticiaCategoriaRender.js"></script>
+  <script src="resources/js/Uiclasses/MensajeCategoriaRender.js"></script>
+  <script src="resources/js/Uiclasses/NoticiaCategoriaRender.js"></script>
+  <script src="resources/js/Uiclasses/AvisoCategoriaRender.js"></script>  
   <script src="resources/js/Uiclasses/MensajeRender.js"></script>
   <script src="resources/js/Uiclasses/MensajeReclamoRender.js"></script>  
   <script src="resources/js/Uiclasses/EventoRender.js"></script>
@@ -160,7 +162,7 @@
 					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no anda)<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia (no modifica)<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="aviso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Aviso (no anda)<span class="badge red"></span></a>					
-					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento (falta alta y modif)<span class="badge red"></span></a>					
+					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento (falta modif)<span class="badge red"></span></a>					
 					<a href="javascript:void(0);"><img src="src/main/webapp/resources/img/icons/packs/fugue/16x16/clipboard-list.png">Configuracion<span class="badge grey">9</span></a>
 	    			<ul class="sub">
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoAutorizacion">Tipo de Autorizaciones</a></li>
@@ -175,6 +177,7 @@
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoAviso">Tipo de Avisos</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="mensajeCategoria">Categorias de Mensajes</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="noticiaCategoria">Categorias de Noticias</a></li>
+	    				<li><a href="javascript:void(0);" class="option current" id="avisoCategoria">Categorias de Avisos</a></li>	    				
 	    			</ul>
 	    		</li>
 	    		

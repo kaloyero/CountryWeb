@@ -67,6 +67,9 @@ var ComponentTranslator = new Class(
 				case "noticiaCategoria":
 					formToSend =noticiaCategoriaRender.onSubmit();
 					break;
+				case "avisoCategoria":
+					formToSend =avisoCategoriaRender.onSubmit();
+					break;
 				case "evento":
 					formToSend =eventoRender.onSubmit();
 					break;
@@ -78,6 +81,9 @@ var ComponentTranslator = new Class(
 					break;
 				case "noticia":
 					formToSend =noticiaRender.onSubmit();
+					break;
+				case "aviso":
+					formToSend =avisoRender.onSubmit();
 					break;
 					
 				default:
@@ -162,11 +168,17 @@ var ComponentTranslator = new Class(
 				case "noticiaCategoria":
 					formToSend =noticiaCategoriaRender.onSubmit();
 					break;
+				case "avisoCategoria":
+					formToSend =avisoCategoriaRender.onSubmit();
+					break;
 				case "mensajeCategoria":
 					formToSend =mensajeCategoriaRender.onSubmit();
 					break;
 				case "noticia":
 					formToSend =noticiaRender.onSubmit();
+					break;
+				case "aviso":
+					formToSend =avisoRender.onSubmit();
 					break;
 				case "mensaje":
 					formToSend =mensajeRender.onSubmit();

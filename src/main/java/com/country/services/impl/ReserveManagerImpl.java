@@ -74,24 +74,12 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	}
 
 
-	/**
-	 * Este metodo devuelve todas las reservas que pertenecen a una unidad especifica 
-	 * 
-	 * @param id de unidad
-	 * @return lista de reservas
-	 */
 	public List<Reserva> findListReservationByUnit(Integer id) {
 		List<Reserva> list = new ArrayList<Reserva>();
 		list = reserveDao.findAllByProperty("unidad", id);
 		return list;
 	}
 
-	/**
-	 * Este metodo devuelve todas las reservas que pertenecen a un recurso especifico 
-	 * 
-	 * @param id de recurso
-	 * @return lista de reservas
-	 */
 	public List<Reserva> findListReservationByResource(Integer id) {
 		List<Reserva> list = new ArrayList<Reserva>();
 		list = reserveDao.findAllByProperty("recurso", id);

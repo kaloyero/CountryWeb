@@ -3,6 +3,7 @@ package com.country.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.form.AvisoForm;
@@ -35,4 +36,20 @@ public class NotificationManagerImpl extends AbstractManagerImpl<Aviso> implemen
 		return form;
 	}
 
+	@Transactional
+	public int save(AvisoForm form) {
+		Aviso dto = AvisoMapper.getAviso(form);
+		
+		getDao().save(dto);
+
+		return dto.getId();
+	}
+
+	@Transactional
+	public void update(AvisoForm form) {
+		Aviso dto = AvisoMapper.getAviso(form);
+		
+		getDao().update(dto);
+	}
+	
 }
