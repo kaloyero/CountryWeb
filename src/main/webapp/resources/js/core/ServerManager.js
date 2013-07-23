@@ -24,6 +24,7 @@ var ServerManager = new Class({
         this.services['mensaje']={};
         this.services['mensajeReclamo']={};
         this.services['noticiaCategoria']={};
+        this.services['avisoCategoria']={};
         this.services['dashboard']={};
         this.services['meReclamos']={}
         this.services['actividadesReserva']={};
@@ -31,7 +32,7 @@ var ServerManager = new Class({
         this.services['evento']={};
         this.services['noticia']={};
         this.services['eventos']={};
-        this.services['avisos']={};
+        this.services['aviso']={};
         this.services['actividad']["load"]="/CountryWeb/actividad/load/";
         this.services['actividad']["save"]="/CountryWeb/actividad/create/";
         this.services['instructor']["load"]="/CountryWeb/instructor/load/";
@@ -70,6 +71,8 @@ var ServerManager = new Class({
         this.services['mensajeCategoria']["save"]="/CountryWeb/mensajeCategoria/create/";
         this.services['noticiaCategoria']["load"]="/CountryWeb/noticiaCategoria/load/";
         this.services['noticiaCategoria']["save"]="/CountryWeb/noticiaCategoria/create/";
+        this.services['avisoCategoria']["load"]="/CountryWeb/avisoCategoria/load/";
+        this.services['avisoCategoria']["save"]="/CountryWeb/avisoCategoria/create/";
         this.services['dashboard']["lista"]="/CountryWeb/dashboard/lista/";
         this.services['mensajesPropietario']["lista"]="/CountryWeb/mensaje/listaPropietario";
         this.services['meReclamos']["lista"]="/CountryWeb/mensaje/listaMisMensajes";
@@ -84,8 +87,10 @@ var ServerManager = new Class({
         this.services['mensajeReclamo']["save"]="/CountryWeb/mensajeReclamo/create/";
         this.services['noticia']["load"]="/CountryWeb/noticia/load/";
         this.services['noticia']["save"]="/CountryWeb/noticia/create/";
+        this.services['aviso']["load"]="/CountryWeb/aviso/load/";
+        this.services['aviso']["save"]="/CountryWeb/aviso/create/";
         this.services['eventos']["lista"]="/CountryWeb/evento/listaPropietario";
-        this.services['avisos']["lista"]="/CountryWeb/avisos/lista";
+        this.services['aviso']["lista"]="/CountryWeb/aviso/lista";
 
 
     },

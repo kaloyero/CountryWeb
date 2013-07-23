@@ -12,8 +12,20 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 	
 	ReservaForm findFormById(Integer id);
 
+	/**
+	 * Este metodo devuelve todas las reservas que pertenecen a una unidad especifica 
+	 * 
+	 * @param id de unidad
+	 * @return lista de reservas
+	 */
 	List<Reserva> findListReservationByUnit(Integer id);
 
+	/**
+	 * Este metodo devuelve todas las reservas que pertenecen a un recurso especifico 
+	 * 
+	 * @param id de recurso
+	 * @return lista de reservas
+	 */
 	List<Reserva> findListReservationByResource(Integer id);
 
 	/**

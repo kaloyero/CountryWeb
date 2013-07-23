@@ -4,6 +4,7 @@ package com.country.mappers;
 import com.country.form.Form;
 import com.country.form.TipoForm;
 import com.country.form.TipoRazaForm;
+import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.Especie;
 import com.country.hibernate.model.MensajeCategorias;
 import com.country.hibernate.model.NoticiaCategorias;
@@ -86,6 +87,16 @@ public class TipoMapper {
 		
 	}
 
+	public static AvisoCategoria getAvisoCategoria(TipoForm form)
+			throws ParseException {
+		
+			AvisoCategoria type = new AvisoCategoria();
+			type.setId(form.getId());
+			type.setNombre(form.getNombre());
+			
+			return type;
+		
+	}
 	
 	public static TipoPagos getTipoPagos(TipoForm form)
 			throws ParseException {
@@ -186,6 +197,16 @@ public class TipoMapper {
 			return form;
 		
 		}
+
+	public static TipoForm getForm(AvisoCategoria tipo)
+			throws ParseException {
+		
+			TipoForm form = new TipoForm();
+			form.setId(tipo.getId());
+			form.setNombre(tipo.getNombre());
+			return form;
+		
+	}
 	
 	public static TipoForm getForm(TipoDocumento tipo)
 			throws ParseException {
