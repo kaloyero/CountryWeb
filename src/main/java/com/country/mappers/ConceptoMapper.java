@@ -3,7 +3,7 @@ package com.country.mappers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.form.ConceptoForm;
 import com.country.form.Form;
 import com.country.hibernate.model.Concepto;
@@ -17,7 +17,7 @@ public class ConceptoMapper {
 		concepto.setId(((ConceptoForm) form).getId());
 		concepto.setDescripcion(((ConceptoForm) form).getDescripcion());
 		concepto.setNombre(((ConceptoForm) form).getNombre());
-		concepto.setFechaComienzo(DateFormater.convertStringToDate(((ConceptoForm) form).getFechaComienzo()));
+		concepto.setFechaComienzo(DateUtil.convertStringToDate(((ConceptoForm) form).getFechaComienzo()));
 		return concepto;
 
 	}
@@ -27,7 +27,7 @@ public class ConceptoMapper {
 		form.setId(concepto.getId());
 		form.setNombre(concepto.getNombre());
 		form.setDescripcion(concepto.getDescripcion());
-		form.setFechaComienzo(DateFormater.convertDateToString(concepto.getFechaComienzo()));
+		form.setFechaComienzo(DateUtil.convertDateToString(concepto.getFechaComienzo()));
 		form.setImporte(tarifa.getImporte());
 	
 		return form;
@@ -38,7 +38,7 @@ public class ConceptoMapper {
 
 		Tarifa tarifa = new Tarifa();
 		tarifa.setImporte(((ConceptoForm) form).getImporte());
-		tarifa.setFechaComienzo(DateFormater.convertStringToDate(((ConceptoForm) form).getFechaComienzo()));
+		tarifa.setFechaComienzo(DateUtil.convertStringToDate(((ConceptoForm) form).getFechaComienzo()));
 		tarifa.setConcepto(concepto.getId());
 		tarifas.add(tarifa);
 		return tarifas;

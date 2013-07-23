@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.form.EventoForm;
@@ -31,14 +32,7 @@ public class EventIntegratorManagerImpl extends AbstractManagerImpl<EventoIntegr
 	protected GenericDao<EventoIntegrante, Integer> getDao() {
 		return eventIntegratorDao;
 	}
-
 	
-	/**
-	 * Este metodo devuelve todos los Integrantes(FORM) que estan en el eveto. 
-	 * 
-	 * @param id de evento
-	 * @return lista de Integrantes
-	 */
 	public List<IntegranteForm> findAllIntegrantorFormByEventoId(Integer id) {
 		List<IntegranteForm> list = new ArrayList<IntegranteForm>();
 		List<EventoIntegrante> searchList = new ArrayList<EventoIntegrante>();
@@ -51,12 +45,7 @@ public class EventIntegratorManagerImpl extends AbstractManagerImpl<EventoIntegr
 		return list;
 	}
 	
-	/**
-	 * Este metodo devuelve todas las aviso categorias  (FORM) que esta suscripto el integrante especifico 
-	 * 
-	 * @param id de Integrante
-	 * @return lista de avisos categoria
-	 */
+	@Transactional
 	public List<EventoForm> findAllEventByIntegratorId(Integer id) {
 		List<EventoForm> list = new ArrayList<EventoForm>();
 		List<EventoIntegrante> searchList = new ArrayList<EventoIntegrante>();
@@ -67,5 +56,26 @@ public class EventIntegratorManagerImpl extends AbstractManagerImpl<EventoIntegr
 			
 		}
 		return list;
+	}
+
+	@Transactional
+	public boolean inscribirseEvento(int evento, int integrante) {
+		boolean inscripcion = true;
+		
+		EventoIntegrante inscrip = new EventoIntegrante();
+		inscrip.setEvento(evento);
+		inscrip.setIntegrante(integrante);
+		eventIntegratorDao.save(inscrip);
+		
+		return inscripcion;
+	}
+
+	@Transactional
+	public boolean desinscribirseEvento(int evento, int integrante) {
+		boolean desinscripcion = false;
+		
+		//TODO hacer que borre la inscripcion
+		
+		return desinscripcion;
 	}
 }

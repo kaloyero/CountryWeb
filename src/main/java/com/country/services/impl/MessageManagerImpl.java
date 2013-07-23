@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.common.GenericDao;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
@@ -90,7 +90,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		//Toma el nuevo estado
 		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), ACTION_CLOSE);
 		//Utilizo la fecha actual para cerrar
-		Date closeDate = DateFormater.getDateToday();
+		Date closeDate = DateUtil.getDateToday();
 		
 		//actualiza el estado
 		messageDao.closeMessage(form.getId(),newStatus,closeDate,form.getRespuesta());

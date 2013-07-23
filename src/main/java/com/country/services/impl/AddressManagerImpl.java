@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.form.DireccionForm;
@@ -28,6 +29,7 @@ public class AddressManagerImpl extends AbstractManagerImpl<Direccion> implement
 		return list;
 	}
 
+	@Transactional
 	public void saveFormList(List<DireccionForm> direcciones, int idPerson) {
 		
 		for (DireccionForm form : direcciones) {
@@ -37,6 +39,7 @@ public class AddressManagerImpl extends AbstractManagerImpl<Direccion> implement
 		}
 	}
 
+	@Transactional
 	public void updateFormList(List<DireccionForm> direcciones, int idPerson) {
 		
 		List<Direccion> listDire= addressDao.findAllByProperty("person", idPerson);

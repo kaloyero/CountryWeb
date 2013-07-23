@@ -18,6 +18,7 @@ import com.country.form.InstructorForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Instructor;
 import com.country.mappers.InstructorMapper;
+import com.country.services.CityManager;
 import com.country.services.InstructorManager;
 import com.country.services.TypeDocumentManager;
 import com.country.services.TypeTelephoneManager;
@@ -37,13 +38,18 @@ public class InstructorController {
 
 	@Autowired
 	private TypeTelephoneManager typeTelephoneManager;
-
+	
+	@Autowired
+	private CityManager cityManager;
 
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
 		InstructorForm instructor = new InstructorForm();
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());
+		//TODO agregar la ciudad especifica
+		model.addAttribute("localidades", cityManager.getTownsByIdCity(1));
+		
 		model.addAttribute("INSTRUCTOR", instructor);
 		
 		return "instructor";
@@ -54,18 +60,20 @@ public class InstructorController {
 			@ModelAttribute(value = "INSTRUCTOR") InstructorForm instructorForm,
 			BindingResult result) throws ParseException {
 		
-		instructorManager.save(InstructorMapper.getInstructor(instructorForm));
+		instructorManager.save(instructorForm);
 				return "success";
 		
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-		Instructor instructor =instructorManager.findById(id);
-		InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor);
+		InstructorForm form = instructorManager.findFormById(id);
 		model.addAttribute("INSTRUCTOR", form);
 		model.addAttribute("tipoDocumento", tipoDocumentoManager.listAll());
 		model.addAttribute("tipoTelefono", typeTelephoneManager.listAll());
+		//TODO agregar la ciudad especifica
+		model.addAttribute("localidades", cityManager.getTownsByIdCity(1));
+		
 		return "forms/instructorForm";
 
 	}

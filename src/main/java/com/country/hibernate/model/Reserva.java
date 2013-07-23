@@ -5,12 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,19 +31,26 @@ public class Reserva implements Serializable {
 	@Column(name = "Descripcion")
 	private  String descripcion ;
 	
-    @OneToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="IdRecurso",updatable = false, insertable = false)	
-	private  Recurso recurso ;
+//    @OneToOne(fetch= FetchType.EAGER)
+//    @JoinColumn(name="IdRecurso",updatable = false, insertable = false)	
+//	private  Recurso recurso ;
 
+	@Column(name = "IdRecurso")
+	private  int recurso ;
+	
 	@Column(name = "HoraIni")
 	private  int horaIni ;
 
 	@Column(name = "Duracion")
 	private  int duracion ;
 
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdEvento",nullable=true)		
-	private  Evento evento;
+//	@OneToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="IdEvento",nullable=true)		
+//	private  Evento evento;
+	@Column(name = "IdEvento")
+	private  int evento;
+
+	
 	
 //	@OneToOne(fetch=FetchType.EAGER)
 //	@JoinColumn(name="IdIntegrante",updatable = false, insertable = false)	
@@ -54,15 +58,6 @@ public class Reserva implements Serializable {
 
 	@Column(name = "IdIntegrante")
 	private  int integrante ;
-
-	
-	public Evento getEvento() {
-		return evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
-	}
 
 	
 	public int getIntegrante() {
@@ -97,14 +92,6 @@ public class Reserva implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Recurso getRecurso() {
-		return recurso;
-	}
-
-	public void setRecurso(Recurso recurso) {
-		this.recurso = recurso;
-	}
-
 	public int getHoraIni() {
 		return horaIni;
 	}
@@ -121,4 +108,21 @@ public class Reserva implements Serializable {
 		this.duracion = duracion;
 	}
 
+	public void setRecurso(int recurso) {
+		this.recurso = recurso;
+	}
+
+	public int getEvento() {
+		return evento;
+	}
+
+	public void setEvento(int evento) {
+		this.evento = evento;
+	}
+
+	public int getRecurso() {
+		return recurso;
+	}
+
+	
 }

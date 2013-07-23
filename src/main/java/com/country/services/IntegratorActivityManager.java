@@ -11,8 +11,24 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	
 	IntegranteActividadForm findFormById(Integer id);
 	
-	void save(IntegranteActividadForm form); 
 	
+	/**
+	 * Inscribir el integrante a una actividad
+	 * 
+	 * @param integrante
+	 * @param actividad
+	 * @param fechaIni
+	 * @param fechaFin
+	 */
+	void inscribirse(int integrante,int actividad,String fechaIni,String fechaFin);
+	
+	/**
+	 * Inscribir el integrante a una actividad
+	 * 
+	 * @param form
+	 */
+	void inscribirse(IntegranteActividadForm form);
+
 	void update(IntegranteActividadForm form);
 	
 	public List<IntegranteForm> findAllIntegrantorFormByActivityId(Integer id);

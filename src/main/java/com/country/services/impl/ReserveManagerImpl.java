@@ -1,6 +1,7 @@
 package com.country.services.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,13 @@ import com.country.form.IntegranteForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.ReserveDao;
-import com.country.hibernate.model.RecursoDisponibilidad;
 import com.country.hibernate.model.Reserva;
-import com.country.hibernate.model.Tarifa;
-import com.country.mappers.EventoMapper;
-import com.country.mappers.RecursoMapper;
 import com.country.mappers.ReserveMapper;
+import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
+import com.country.services.ResourceManager;
 
 @Service("reserveManager")
 public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements ReserveManager{
@@ -28,6 +27,12 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	@Autowired
     private ReserveDao reserveDao;
 
+	@Autowired
+    private ResourceManager resourceManager;
+	
+	@Autowired
+    private EventManager eventManager;
+	
 	@Autowired
     private PriceManager priceManager;
 
@@ -42,21 +47,30 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		Reserva dto = reserveDao.findById(id);
 		return dto;
 	}
-
+	
 	public ReservaForm findFormById(Integer id) {
 		ReservaForm form = new ReservaForm();
 		
 		Reserva dto = findById(id);
 		
-		//TODO no esta trayendo las disponibiledades. Es necesario?
-		Tarifa tarifa = priceManager.getLastPriceByConcept(dto.getRecurso().getConcepto().getId());
-		RecursoForm recForm = RecursoMapper.getForm(dto.getRecurso(),tarifa.getImporte(), new ArrayList<RecursoDisponibilidad>());
+		RecursoForm recForm = resourceManager.getResourceForm(dto.getRecurso());
 		IntegranteForm integranteForm = integratorManager.findFormById(dto.getIntegrante());
-		EventoForm eventoForm = (EventoForm) EventoMapper.getForm(dto.getEvento());
+		EventoForm eventoForm = eventManager.findFormById(dto.getEvento()); 
 				
 		form = (ReservaForm) ReserveMapper.getForm(dto,recForm , integranteForm,eventoForm );
 		
 		return form;
+	}
+	
+	
+	public void save(ReservaForm form) {
+		
+		Reserva dto = ReserveMapper.getReserva(form);
+
+		if (resourceManager.checkReserveResource(dto.getRecurso(), dto.getFecha(), dto.getHoraIni(), dto.getDuracion())){
+			save(dto);
+		}
+		
 	}
 
 
@@ -82,6 +96,20 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		List<Reserva> list = new ArrayList<Reserva>();
 		list = reserveDao.findAllByProperty("recurso", id);
 		return list;
+	}
+
+	public Reserva findResourceBefore(Integer resource, Date fecha, int horaIni) {
+
+		//Tomo la reserva anterior
+		Reserva anterior = reserveDao.findResourceAfterBefore(false, resource, fecha, horaIni);
+		
+		return anterior;
+	}
+
+	public Reserva findResourceAfter(Integer resource, Date fecha, int horaIni) {
+		//Tomo la reserva posterior
+		Reserva posterior = reserveDao.findResourceAfterBefore(true, resource, fecha, horaIni);
+		return posterior;
 	}
 
 }

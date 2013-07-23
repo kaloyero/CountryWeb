@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
@@ -49,8 +49,11 @@ public class MensajeReclamoController {
 		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
 		
 		MensajeForm mensaje = new MensajeForm();
-		
-		
+
+		//Setea como la fecha por defecto la fecha actual.
+		mensaje.setFecha(DateUtil.getStringToday());
+		//Seteo el TIPO de mensaje como RECLAMO
+		mensaje.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 		
 		
 		model.addAttribute("MENSAJE", mensaje);
@@ -75,7 +78,7 @@ public class MensajeReclamoController {
 		//cambia el tipo de relcamo a M o otra cosa
 		
 		//Setea como la fecha por defecto la fecha actual.
-		form.setFecha(DateFormater.getStringToday());
+		form.setFecha(DateUtil.getStringToday());
 		//Seteo el TIPO de mensaje como RECLAMO
 		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 		messageManager.save(form);

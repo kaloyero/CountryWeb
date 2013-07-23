@@ -1,53 +1,58 @@
 package com.country.mappers;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import com.country.common.DateFormater;
+import com.country.common.DateUtil;
 import com.country.form.EventoForm;
 import com.country.form.IntegranteForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
-import com.country.hibernate.model.Evento;
-import com.country.hibernate.model.Recurso;
 import com.country.hibernate.model.Reserva;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class ReserveMapper {
 
-	public static Reserva getReserva(ReservaForm form) throws ParseException {
 
-		Reserva reserva = new Reserva();
-
-		reserva.setHoraIni(form.getHoraIni());
-		reserva.setIntegrante(1);
-		reserva.setFecha(DateFormater.convertStringToDate(form.getFecha()));
-		 String dateString = "2001-12-25"; 
-	     
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
-		    Date convertedDate;
-			try {
-				convertedDate = dateFormat.parse(dateString);
-			    System.out.println("Converted string to date : " + convertedDate); 
-			    System.out.println("Converted string to date : " + convertedDate); 
-
-			} catch (java.text.ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-
-		System.out.println("Day of the week: " + reserva.getFecha().getDay());
-		System.out.println("Tota " + reserva.getFecha());
-		Recurso recurso = new Recurso();
-		recurso.setId(form.getRecursoId());
-		reserva.setRecurso(recurso);
-		reserva.setDuracion(form.getDuracion());
-
-		return reserva;
-
+	public static Reserva getReserva(ReservaForm form)
+			throws ParseException {
+		
+		Reserva	dto = new Reserva();
+		dto.setId(form.getId());
+		dto.setDescripcion(form.getDescripcion());
+		dto.setDuracion(form.getDuracion());
+		dto.setFecha(DateUtil.convertStringToDate((form.getFecha())));
+		dto.setHoraIni(form.getHoraIni());
+		dto.setRecurso(form.getRecursoId());
+		dto.setIntegrante(form.getIntegranteId());
+		if (form.getEventoId()!=0 ){
+			dto.setEvento(form.getEventoId());
+		}
+		return dto;
+	
 	}
 	
-
+	/** devuelve el formulario completo
+	 * @param reserva
+	 * @param recurso
+	 * @param integrante
+	 * @param evento
+	 * @return
+	 * @throws ParseException
+	 */
+	public static ReservaForm getForm(Reserva reserva,RecursoForm recurso,IntegranteForm integrante,EventoForm evento)
+			throws ParseException {
+		
+		ReservaForm form=new ReservaForm();
+		form.setId(reserva.getId());
+		form.setFecha(DateUtil.convertDateToString(reserva.getFecha()));
+		form.setDescripcion(reserva.getDescripcion());
+		form.setDuracion(reserva.getDuracion());
+		form.setHoraIni(reserva.getHoraIni());
+		form.setRecursoId(reserva.getRecurso());
+		form.setIntegranteId(reserva.getIntegrante());
+		form.setEventoId(reserva.getEvento());
+		
+		return form;
 	
+	}
+
 }

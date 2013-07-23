@@ -1,9 +1,9 @@
 package com.country.hibernate.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,22 +32,35 @@ public class Evento implements Serializable {
 	@Column(name = "HoraIni")
 	private Integer hourIni;
 
+	@Column(name = "Duracion")
+	private Integer duracion;
+
 	@Column(name = "Descripcion")
 	private String description;
 
 	@Column(name = "Cupo")
 	private Integer cupo;
 	
-	@Column(name = "Nombre")
-	private String nombre;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdConcepto",updatable = false, insertable = false)	
+	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private  Concepto  concepto ;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante",updatable = false, insertable = false)	
+	@JoinColumn(name="IdIntegrante",updatable = true, insertable = true)	
 	private  Integrante integrante;
+
+//	@OneToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="IdEvento",updatable = false, insertable = false)	
+//	private  Reserva reserva;
+//
+//	
+//	public Reserva getReserva() {
+//		return reserva;
+//	}
+//
+//	public void setReserva(Reserva reserva) {
+//		this.reserva = reserva;
+//	}
 
 	public Integer getId() {
 		return id;
@@ -62,16 +75,8 @@ public class Evento implements Serializable {
 	}
 
 	public void setFecha(Date fecha) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(fecha);
-		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
-		Date truncatedDate = calendar.getTime();
-		this.fecha = truncatedDate;
+		this.fecha = fecha;
 	}
-
 
 	public Integer getHourIni() {
 		return hourIni;
@@ -113,12 +118,12 @@ public class Evento implements Serializable {
 		this.integrante = integrante;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public Integer getDuracion() {
+		return duracion;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDuracion(Integer duracion) {
+		this.duracion = duracion;
 	}
 
 }

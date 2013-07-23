@@ -134,5 +134,11 @@ public class RecursoController {
            dataTable.setiTotalRecords("1");
            return dataTable;
 	}
+	@RequestMapping(value = "/diasOcupados", method = RequestMethod.GET)
+	public  @ResponseBody String getDiasOcupados()  {
+		
+	String test="[{\"title\":\"Test\",\"start\":\"2013-07-21T08:00:00\",\"end\":\"2013-07-21T09:00:00\",\"url\":null,\"id\":1}]";
+	return test;
+}
 
 }

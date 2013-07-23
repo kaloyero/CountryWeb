@@ -7,30 +7,11 @@ public class ReservaForm extends Form {
 	private  String descripcion ;
 	private  int recursoId ;
 	private  int integranteId;
-	private  int eventoId;
+	private  int eventoId=0;
 	private  Integer horaIni ;
 	private  Integer duracion ;
 
 
-	
-	public int getRecursoId() {
-		return recursoId;
-	}
-	public void setRecursoId(int recursoId) {
-		this.recursoId = recursoId;
-	}
-	public int getIntegranteId() {
-		return integranteId;
-	}
-	public void setIntegranteId(int integranteId) {
-		this.integranteId = integranteId;
-	}
-	public int getEventoId() {
-		return eventoId;
-	}
-	public void setEventoId(int eventoId) {
-		this.eventoId = eventoId;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -62,6 +43,25 @@ public class ReservaForm extends Form {
 	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
+	public int getRecursoId() {
+		return recursoId;
+	}
+	public void setRecursoId(int recursoId) {
+		this.recursoId = recursoId;
+	}
+	public int getIntegranteId() {
+		return integranteId;
+	}
+	public void setIntegranteId(int integranteId) {
+		this.integranteId = integranteId;
+	}
+	public int getEventoId() {
+		return eventoId;
+	}
+	public void setEventoId(int eventoId) {
+		this.eventoId = eventoId;
+	}
+
 
 	
 }

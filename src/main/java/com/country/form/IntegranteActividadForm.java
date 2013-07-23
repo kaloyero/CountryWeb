@@ -4,8 +4,8 @@ package com.country.form;
 public class IntegranteActividadForm extends Form  {
 
 	private Integer id =0;
-	private IntegranteForm integrante;
-	private ActividadForm actividad;
+	private int integrante;
+	private int actividad;
 	private String fechaIni;
 	private String fechaFin;
 	
@@ -15,16 +15,16 @@ public class IntegranteActividadForm extends Form  {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public IntegranteForm getIntegrante() {
+	public int getIntegrante() {
 		return integrante;
 	}
-	public void setIntegrante(IntegranteForm integrante) {
+	public void setIntegrante(int integrante) {
 		this.integrante = integrante;
 	}
-	public ActividadForm getActividad() {
+	public int getActividad() {
 		return actividad;
 	}
-	public void setActividad(ActividadForm actividad) {
+	public void setActividad(int actividad) {
 		this.actividad = actividad;
 	}
 	public String getFechaIni() {

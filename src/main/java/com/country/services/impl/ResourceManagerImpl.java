@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.DateUtil;
 import com.country.common.GenericDao;
 import com.country.form.RecursoForm;
 import com.country.hibernate.dao.PriceDao;
@@ -15,9 +16,11 @@ import com.country.hibernate.dao.ResourceAvaiableDao;
 import com.country.hibernate.dao.ResourceDao;
 import com.country.hibernate.model.Recurso;
 import com.country.hibernate.model.RecursoDisponibilidad;
+import com.country.hibernate.model.Reserva;
 import com.country.hibernate.model.Tarifa;
 import com.country.mappers.RecursoMapper;
 import com.country.services.PriceManager;
+import com.country.services.ReserveManager;
 import com.country.services.ResourceAvaiableManager;
 import com.country.services.ResourceManager;
 
@@ -29,6 +32,9 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 	
 	@Autowired
     private ResourceAvaiableManager resourceAvaiableManager;
+	
+	@Autowired
+    private ReserveManager reserveManager;
 	
 	@Autowired
     private ResourceDao resourceDao;
@@ -115,7 +121,8 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		Tarifa price = new Tarifa();
 		price.setConcepto(dto.getConcepto().getId());
 		price.setImporte(form.getImporte());
-		price.setFechaComienzo(new Date(2012, 12, 12));
+		//TODO setear la fecha correspondiente
+		price.setFechaComienzo(new Date());
 		
 		//si es igual a la ultima no la actualizo, sino la agrego a la lista
 		Tarifa tarifaUltima = priceManager.getLastPriceByConcept(dto.getConcepto().getId());
@@ -143,12 +150,130 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();
 		for (Recurso recurso : listAll()) {
 			Tarifa tarifa = priceManager.getLastPriceByConcept(recurso.getConcepto().getId());
-			listaRecursosForm.add(RecursoMapper.getForm(recurso,tarifa.getImporte(),null));
+			if (tarifa != null){
+				listaRecursosForm.add(RecursoMapper.getForm(recurso,tarifa.getImporte(),null));	
+			} else {
+				listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));	
+			}
+			
 		}
 
 		
 		return listaRecursosForm;
 	}
+	
+	public boolean checkReserveResourceAvaibility(int resource, Date fecha,
+			int horaIni, int duracion) {
+		
+		Reserva anterior = reserveManager.findResourceBefore(resource, fecha, horaIni);
+		Reserva posterior = reserveManager.findResourceAfter(resource, fecha, horaIni);
+		
+		Date fechaReservar = DateUtil.sumarHoras(fecha, horaIni);
+		
+		//ANTERIOR
+		boolean responseAnt = false;
+		if (anterior != null){
+			Date fechaAnt = DateUtil.sumarHoras(anterior.getFecha(), anterior.getHoraIni());
+			fechaAnt = DateUtil.sumarHoras(fechaAnt, anterior.getDuracion());
+			
+			// Si la reserva anterior termina antes de la reserva que quiero hacer devuelve ok
+			if (fechaAnt.before(fechaReservar) ){
+				responseAnt = true;
+			} else {
+				//Hay una reserva anterior que se pisa con el horario que quiero reservar
+				return false;
+			}
+		}
+		
+		//POSTERIOR
+		boolean responsePost = false;
+		if (posterior != null){
+			Date fechaPost = DateUtil.sumarHoras(posterior.getFecha(), posterior.getHoraIni());
+			
+			// Pregunto si la reserva posterior empieza despues de la hora que empieza la actual reserva 
+			if (fechaPost.after(fechaReservar) ){
+				//le sumo a la reserva actual la duracion
+				fechaReservar = DateUtil.sumarHoras(fechaReservar, duracion);
+				// Pregunto si la reserva posterior empieza despues de la hora que empieza la actual reserva con la duracion
+				if (fechaPost.after(fechaReservar) ){
+					responsePost = true;
+				} else {
+					//hay una reserva que empieza en ese horario
+					return false;
+				}
+				responseAnt = true;
+			} else {
+				//hay una reserva que empieza en ese horario
+				return false;
+			}
+		}
 
+		if (( anterior== null && posterior ==null )|| (responseAnt && responsePost)){
+			return true;	
+		} 
+		
+		return false;
+		
+	}
+
+	public boolean checkReserveResourceDisponibility(int resource, Date fecha,
+			int horaIni, int duracion) {
+		
+		//HORA INICIAL
+		Date fechaInicio = DateUtil.sumarHoras(fecha, horaIni);
+		//Tomo todos los horarios disponibles en que esta el recurso ese dia.
+		List<RecursoDisponibilidad> listaDisponibilidad= resourceAvaiableManager.findResourcesAvaiableByDayOfWeek(resource, DateUtil.getDiaDeLaSemana(fechaInicio));
+		boolean disponibleHoraIni = false;
+		for (RecursoDisponibilidad disponibilidad : listaDisponibilidad) {
+			//Comparo la hra inicial, para saber si esta dentro de los horarios de ese dia.
+			if (horaIni >= disponibilidad.getHoraIni() && horaIni <= disponibilidad.getHoraFin()){
+				disponibleHoraIni = true;
+			}
+		}
+		if (!disponibleHoraIni){
+			//Si sale por aca es porque la hora inicial no esta dentro del horario disponible del recurso.
+			return false;
+		}
+		
+		//HORA FINAL
+		Date fechaFin = DateUtil.sumarHoras(fechaInicio, duracion);
+		//Tomo todos los horarios disponibles en que esta el recurso ese dia.
+		listaDisponibilidad= resourceAvaiableManager.findResourcesAvaiableByDayOfWeek(resource, DateUtil.getDiaDeLaSemana(fechaFin));
+		boolean disponibleHoraFin = false;
+		int horaFin = DateUtil.getHora(fechaFin); 
+		for (RecursoDisponibilidad disponibilidad : listaDisponibilidad) {
+			//Comparo la hra inicial, para saber si esta dentro de los horarios de ese dia.
+			if (horaFin >= disponibilidad.getHoraIni() && horaFin <= disponibilidad.getHoraFin()){
+				disponibleHoraFin = true;
+			}
+		}
+		if (!disponibleHoraFin){
+			//Si sale por aca es porque la hora inicial no esta dentro del horario disponible del recurso.
+			return false;
+		}
+
+		if (disponibleHoraIni && disponibleHoraFin){
+			return true;
+		}
+		
+		return false;
+	}
+
+	public boolean checkReserveResource(int resource, Date fecha,
+			int horaIni, int duracion) {
+		boolean disponible = false;
+		
+		if (checkReserveResourceAvaibility(resource, fecha, horaIni, duracion)){
+			if (checkReserveResourceDisponibility(resource, fecha, horaIni, duracion)){
+				disponible = true;
+			} else {
+				System.out.println("Para esta reserva el recurso no esta disponible");
+			}
+		} else {
+			System.out.println("El recurso esta reservado para esa fecha");
+		}
+	
+		return disponible;
+	}
 	
 }

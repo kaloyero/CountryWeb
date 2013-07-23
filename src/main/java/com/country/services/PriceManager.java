@@ -8,4 +8,6 @@ public interface PriceManager extends AbstractManager<Tarifa>{
 	
 	Tarifa getLastPriceByConcept(int idConcept);
 	
+	void updateTarifa(int conceptoId, Double nuevaTarifa);
+	
 }

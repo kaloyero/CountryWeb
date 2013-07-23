@@ -1,13 +1,13 @@
 package com.country.mappers;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import com.country.common.DateFormater;
-import com.country.common.FormaterObject;
+import com.country.common.DateUtil;
+import com.country.form.DireccionForm;
 import com.country.form.Form;
 import com.country.form.PersonaForm;
+import com.country.form.TelefonoForm;
 import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Telefono;
@@ -19,19 +19,18 @@ public class PersonaMapper {
 		
 		Persona persona = new Persona();
 		persona.setApellido(((PersonaForm) form).getApellido());
-		persona.setDtNacimiento(DateFormater.convertStringToDate(((PersonaForm) form).getNacimiento()));
+		persona.setDtNacimiento(DateUtil.convertStringToDate(((PersonaForm) form).getNacimiento()));
 		persona.setEmail(((PersonaForm) form).getEmail());
 		persona.setNombre(((PersonaForm) form).getNombre());
 		persona.setNroDoc(((PersonaForm) form).getNroDoc());
 		persona.setSexo(((PersonaForm) form).getSexo());
-		//TODO
-//REEMPLAZAR 		persona.setDirections(new ArrayList<Direccion>());
-//REEMPLAZAR 		persona.setTelefonos(new ArrayList<Telefono>());
+//TODO
+//		persona.setDirections(getDirecciones(((PersonaForm) form).getListaDirecciones()));
+//		persona.setTelefonos(getTelefonos(((PersonaForm) form).getListaTelefonos()));
 		TipoDocumento tipoDoc = new TipoDocumento();
-		tipoDoc.setId(1);
+		tipoDoc.setId(((PersonaForm) form).getTipoDocumento());
 		persona.setTipoDoc(tipoDoc);
 		
-		System.out.println("IDDDDDDDD??" + ((PersonaForm) form).getId() );
 		persona.setId(((PersonaForm) form).getId());
 		return persona;
 
@@ -40,54 +39,66 @@ public class PersonaMapper {
 	public static PersonaForm getForm(Persona persona,List<Direccion> dires,List<Telefono> tels) {
 		PersonaForm form=new PersonaForm();
 		form.setApellido(persona.getApellido());
-		form.setNacimiento(DateFormater.convertDateToString(persona.getDtNacimiento()));
+		form.setNacimiento(DateUtil.convertDateToString(persona.getDtNacimiento()));
 		form.setEmail(persona.getEmail());
 		form.setNombre(persona.getNombre());
 		form.setNroDoc(persona.getNroDoc());
 		form.setSexo(persona.getSexo());
 		form.setId(persona.getId());
 		form.setTipoDocumento(persona.getTipoDoc().getId());
-		form.setDirecciones(getDirecciones(dires));
-		form.setTelefonos(getTelefonos(tels));
+		form.setListaTelefonos(getTelefonosForm(tels));
+		form.setListaDirecciones(getDireccionesForm(dires));
 		
 		return form;
 	}
 
-	private static Map<Integer, String> getTelefonos(List<Telefono> telefonos) {
+	private static List<TelefonoForm> getTelefonosForm(List<Telefono> telefonos) {
 		
-		Map<Integer, String> lista = new HashMap<Integer, String>();
+		List<TelefonoForm> lista = new ArrayList<TelefonoForm>();
 		if (telefonos != null){
 			for (Telefono telefono : telefonos) {
-				lista.put(telefono.getId(), FormaterObject.getFormatPhone(telefono));
+				lista.add(TelefonoMapper.getForm(telefono));
 			}
 		}
 		return lista;
 		
 	}
 
-	private static Map<Integer, String> getDirecciones(List<Direccion> dires) {
-		Map<Integer, String> lista = new HashMap<Integer, String>();
-		if (dires != null){
-			for (Direccion direccion : dires) {
-				lista.put(direccion.getId(), FormaterObject.getFormatDirection(direccion));
+	private static List<DireccionForm> getDireccionesForm(List<Direccion> direcciones) {
+		
+		List<DireccionForm> lista = new ArrayList<DireccionForm>();
+		if (direcciones != null){
+			for (Direccion direccion : direcciones) {
+				lista.add(DireccionMapper.getForm(direccion));
 			}
 		}
-			
-		
 		return lista;
-	}
-
-	public static List<Telefono> getTelefonosDto(PersonaForm form) {
-		
-		
-		return null;
 		
 	}
 
-	public static List<Telefono> getDireccionesDto (PersonaForm form) {
+	
+	private static List<Telefono> getTelefonos(List<TelefonoForm> telefonos) {
 		
-		return null;
+		List<Telefono> lista = new ArrayList<Telefono>();
+		if (telefonos != null){
+			for (TelefonoForm telefono : telefonos) {
+				lista.add(TelefonoMapper.getTelefono(telefono));
+			}
+		}
+		return lista;
+		
 	}
 
+	private static List<Direccion> getDirecciones(List<DireccionForm> direcciones) {
+		
+		List<Direccion> lista = new ArrayList<Direccion>();
+		if (direcciones != null){
+			for (DireccionForm direccion : direcciones) {
+				lista.add(DireccionMapper.getDireccion(direccion));
+			}
+		}
+		return lista;
+		
+	}
 	
 }
