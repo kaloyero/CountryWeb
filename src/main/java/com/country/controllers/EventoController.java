@@ -85,8 +85,18 @@ public class EventoController {
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "EVENTO") EventoForm form,
-			BindingResult result) throws ParseException {
-		//TODO sirve saber si la creacion viene de Admin o propietario?
+			BindingResult result,HttpServletRequest request)  throws ParseException {
+		HttpSession session = request.getSession(true);
+		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
+		
+
+		if (usuarioConectado.equals("Admin")){
+			//En el caso de Admin Setea el nombre del concepto
+			if (((EventoForm) form).getConcepto() != null){
+				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
+			}
+		}
+
 		eventManager.save(form);
 				return "success";
 		

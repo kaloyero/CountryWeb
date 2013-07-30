@@ -9,7 +9,7 @@
 		<div class="_100">
 			<p>
 				<label for="textfield">Evento</label>
-				<form:input path="concepto.nombre" class="required" />
+				<form:input path="nombre" class="required" />
 
 				<form:hidden path="id" />
 				<form:hidden path="concepto.id" />
