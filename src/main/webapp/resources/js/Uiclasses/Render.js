@@ -54,11 +54,8 @@ var Render = new Class({
    	$(form).find(".datepicker").datepicker({
 		dateFormat : 'dd-mm-yy'
 	});
-   	//var obj = JSON.parse($(form).find("#disponibilidades").attr("value"));
-   	//console.log("OBBJ",obj);
+
    },
-      
-    
     
 });
 

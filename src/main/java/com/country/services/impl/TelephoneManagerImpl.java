@@ -1,14 +1,21 @@
 package com.country.services.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.country.common.GenericDao;
+import com.country.form.RecursoForm;
 import com.country.form.TelefonoForm;
 import com.country.hibernate.dao.TelephoneDao;
+import com.country.hibernate.model.RecursoDisponibilidad;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.TelefonoMapper;
 import com.country.services.TelephoneManager;
@@ -27,15 +34,6 @@ public class TelephoneManagerImpl extends AbstractManagerImpl<Telefono> implemen
 		
 		List<Telefono> list = telephoneDao.findAllByProperty("persona", id);
 		return list;
-	}
-	
-	public void saveFormList(List<TelefonoForm> telefonos, int idPerson) {
-		
-		for (TelefonoForm form : telefonos) {
-			Telefono tel = TelefonoMapper.getTelefono(form);
-			tel.setPersona(idPerson);
-			telephoneDao.save(tel);
-		}
 	}
 
 	public void updateFormList(List<TelefonoForm> telefonos, int idPerson) {
@@ -80,6 +78,11 @@ public class TelephoneManagerImpl extends AbstractManagerImpl<Telefono> implemen
 				telephoneDao.delete(telefono);	
 			}
 		}
+		
+	}
+
+	public void saveFormList(String telefonos, int idPerson) {
+		// TODO Auto-generated method stub
 		
 	}
 

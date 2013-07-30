@@ -48,10 +48,11 @@ var IntegranteRender = new Class({
     	var telefonos = [];
     	var html = [];
        	$('.telefono').each(function(index) {
-       		telefonos.push({"Telefono": $(this).find("tel"), "State": $(this).find("state"),"country":  $(this).find("pais")});
+       		telefonos.push({"Telefono": parseInt($(this).find(".tel").text()), "State": $(this).find(".state").text(),"country":  $(this).find(".pais").text()});
     	});
+       	
        	var telefonosText = JSON.stringify(telefonos);
-       	html.push("<input type=hidden id=testa  name='telefonos' value="+telefonosText+">")
+       	html.push("<input type=hidden id=testa  name='persona.telefonos' value="+telefonosText+">")
        	form.append(html.join(''));
     	return form;
     }
