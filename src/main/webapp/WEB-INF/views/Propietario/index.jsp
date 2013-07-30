@@ -40,6 +40,10 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="../resources/js/mylibs/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="../resources/js/Uiclasses/Propietario/wall.js"></script>
+<script src="../resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+ <link rel="stylesheet" href="../resources/css/jquery-ui-1.8.15.custom.css"> <!-- jQuery UI, optional -->
+
+
 
 <!-- //MEDIA QUERIES -->
 <!-- CUSTOM THEMES -->

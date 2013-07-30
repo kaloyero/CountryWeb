@@ -13,8 +13,21 @@ public class EventoForm extends Form  {
 	private int recurso;
 	private int integrante;
 	private String integranteNombre;
+	private String integranteApellido;
 	ConceptoForm concepto;
+	private int cantidadUnidos;
+	private String diaSemana;
 	
+	public int getCantidadUnidos() {
+		return cantidadUnidos;
+	}
+
+
+	public void setCantidadUnidos(int cantidadUnidos) {
+		this.cantidadUnidos = cantidadUnidos;
+	}
+
+
 	public int getDuracion() {
 		return duracion;
 	}
@@ -121,6 +134,26 @@ public class EventoForm extends Form  {
 
 	public void setHourIni(Integer hourIni) {
 		this.hourIni = hourIni;
+	}
+
+
+	public String getIntegranteApellido() {
+		return integranteApellido;
+	}
+
+
+	public void setIntegranteApellido(String integranteApellido) {
+		this.integranteApellido = integranteApellido;
+	}
+
+
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+
+
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 	
 	

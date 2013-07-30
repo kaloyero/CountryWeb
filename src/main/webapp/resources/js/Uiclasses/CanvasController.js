@@ -60,6 +60,8 @@ var CanvasController = new Class({
 		 case "recurso":
 			recursoRender.onNewTab();
 			break;
+		default :
+			render.onNewTab();
        	}
     },
     onSaved: function(){

@@ -65,11 +65,12 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		
 		//Guarda el importe
 		Tarifa price = new Tarifa();
-		price.setConcepto(dto.getConcepto().getId());
-		price.setImporte(form.getConcepto().getImporte());
-		price.setFechaComienzo(DateUtil.getDateToday());
-		priceManager.save(price);		
-		
+		if (dto.getConcepto() != null){
+			price.setConcepto(dto.getConcepto().getId());
+			price.setImporte(form.getConcepto().getImporte());
+			price.setFechaComienzo(DateUtil.getDateToday());
+			priceManager.save(price);		
+		}
 		ReservaForm reserva = getReserva(form);
 		reserveManager.save(reserva);
 		
@@ -99,7 +100,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	public void update(EventoForm form) {
 		Evento dto = EventoMapper.getEvento(form);
 
-		conceptManager.update(dto.getConcepto(),form.getConcepto().getImporte());
+		//conceptManager.update(dto.getConcepto(),form.getConcepto().getImporte());
 		
 		eventDao.update(dto);
 		

@@ -66,7 +66,6 @@ var RecursoReservaRender = new Class(
 										success: function(doc) {
 											//TODO no me conviene en realidad pintar y cambiar algun valor de los eventos disponibles ya pintados en lugar
 											//de hacer todo el lio del EventAfterRender y etc?
-											debugger
 											callback(JSON.parse(doc), [ true ]);
 										}
 									});
@@ -148,7 +147,6 @@ var RecursoReservaRender = new Class(
 					eventRender: function(event, element) {
 				        var dateFrom=event.start;
 						var dateTo=event.end;
-						
 						//Si encuentro un evento ocupado,no deberia mostrar el evento Disponible en ese mismo lugar,guardo el id para removerlo luego
 						if (event.title =="Disponible"){
 							$('#calendar').fullCalendar('clientEvents', function(eventa) {
@@ -166,6 +164,8 @@ var RecursoReservaRender = new Class(
 				    		for (i=0;i<self.eventosDisponiblesAEliminar.length;i++){
 				    			$("#calendar").fullCalendar( 'removeEvents',self.eventosDisponiblesAEliminar[i] )
 				    		}
+						self.eventosDisponiblesAEliminar=new Array();
+
 				    	},
 				
 				    defaultView:"agendaWeek",
@@ -193,25 +193,29 @@ var RecursoReservaRender = new Class(
 				return this.events;
 			},
 			onEventClick:function(calEvent, jsEvent, view){
-				console.log("Evento ",calEvent, jsEvent, view);
-				console.log("FEcha ", new Date (calEvent.start.getTime()))
-				console.log("FEcha2 ", calEvent.start.getDate())
-				console.log("Hora ", calEvent.start.getHours())
-				var date = calEvent.start.getDate();
-				var month = calEvent.start.getMonth() + 1; //Months are zero based
-				var year = calEvent.start.getFullYear();
-				var fecha=date + "-" + month + "-" + year
+				if (calEvent.title=="Disponible"){
+					console.log("Evento ",calEvent, jsEvent, view);
+					console.log("FEcha ", new Date (calEvent.start.getTime()))
+					console.log("FEcha2 ", calEvent.start.getDate())
+					console.log("Hora ", calEvent.start.getHours())
+					var date = calEvent.start.getDate();
+					var month = calEvent.start.getMonth() + 1; //Months are zero based
+					var year = calEvent.start.getFullYear();
+					var fecha=date + "-" + month + "-" + year
+					var recursoId=$("#recursoCombo").val();
+					var horaIni=calEvent.start.getHours();
 				
-				var recursoId=$("#recursoCombo").val();
-				var horaIni=calEvent.start.getHours();
-				var reserva = {
-					"descripcion" : "borrarCampo",
-					"recursoId" : recursoId,
-					"horaIni" : horaIni,
-					"duracion" : 1,
-					"fecha":fecha
-				};
-				translator.onSubmitJson('recursoReserva', reserva);
+					var reserva = {
+							"descripcion" : "borrarCampo",
+							"recursoId" : recursoId,
+							"horaIni" : horaIni,
+							"duracion" : 1,
+							"fecha":fecha
+					};
+					translator.onSubmitJson('recursoReserva', reserva);
+				}else{
+					alert("Este horario esta ocupado!!")
+				}
 				
 			},
 			isRecursoSelected : function() {

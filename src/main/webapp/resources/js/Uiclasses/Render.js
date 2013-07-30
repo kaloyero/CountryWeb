@@ -49,6 +49,14 @@ var Render = new Class({
     getActiveForm: function(){
    	 return $(this.getActiveTab()).find("form");
    },
+   onNewTab: function(){
+   	var form=this.getActiveForm();
+   	$(form).find(".datepicker").datepicker({
+		dateFormat : 'dd-mm-yy'
+	});
+   	//var obj = JSON.parse($(form).find("#disponibilidades").attr("value"));
+   	//console.log("OBBJ",obj);
+   },
       
     
     

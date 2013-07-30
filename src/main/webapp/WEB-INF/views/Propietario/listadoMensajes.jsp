@@ -33,7 +33,7 @@
 					</dd>
 
 					<dd class="create">
-						<strong>Created:</strong> 08 February 2012
+						<strong>Created:</strong> >${mensaje.fecha}
 					</dd>
 
 					<dd class="create">

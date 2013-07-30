@@ -41,9 +41,28 @@ public class Evento implements Serializable {
 	@Column(name = "Cupo")
 	private Integer cupo;
 	
+	@Column(name = "Nombre")
+	private String nombre;
+	
 	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
-	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
+	@JoinColumn(name="IdConcepto",updatable = true, insertable = true,nullable = true)	
 	private  Concepto  concepto ;
+
+	public Concepto getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(Concepto concepto) {
+		this.concepto = concepto;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdIntegrante",updatable = true, insertable = true)	
@@ -102,13 +121,7 @@ public class Evento implements Serializable {
 		this.cupo = cupo;
 	}
 
-	public Concepto getConcepto() {
-		return concepto;
-	}
 
-	public void setConcepto(Concepto concepto) {
-		this.concepto = concepto;
-	}
 
 	public Integrante getIntegrante() {
 		return integrante;
