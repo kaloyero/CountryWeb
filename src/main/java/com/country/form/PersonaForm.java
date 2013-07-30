@@ -1,5 +1,7 @@
 package com.country.form;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonaForm extends Form {
 
@@ -12,7 +14,8 @@ public class PersonaForm extends Form {
 	private String email;
 	private int tipoDocumento;
 	private String telefonos = "";
-	
+	private List<DireccionForm> listaDirecciones = new ArrayList<DireccionForm>();
+	private List<TelefonoForm> listaTelefonos = new ArrayList<TelefonoForm>();
 
 	public Integer getId() {
 		return id;
@@ -78,6 +81,22 @@ public class PersonaForm extends Form {
 		this.tipoDocumento = tipoDocumento;
 	}
 
+	public List<DireccionForm> getListaDirecciones() {
+		return listaDirecciones;
+	}
+
+	public void setListaDirecciones(List<DireccionForm> listaDirecciones) {
+		this.listaDirecciones = listaDirecciones;
+	}
+
+	public List<TelefonoForm> getListaTelefonos() {
+		return listaTelefonos;
+	}
+
+	public void setListaTelefonos(List<TelefonoForm> listaTelefonos) {
+		this.listaTelefonos = listaTelefonos;
+	}
+
 	public String getTelefonos() {
 		return telefonos;
 	}
@@ -86,5 +105,6 @@ public class PersonaForm extends Form {
 		this.telefonos = telefonos;
 	}
 
+	
 
 }
