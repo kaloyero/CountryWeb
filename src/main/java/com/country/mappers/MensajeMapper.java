@@ -29,9 +29,11 @@ public class MensajeMapper {
 
 		mensaje.setFecha(DateUtil.convertStringToDate((form.getFecha())));
 		mensaje.setFechaCierre(DateUtil.convertStringToDate((form.getFechaCierre())));
+		//TODO aca hay q setearle que tome como integrante al usuario que esta conectado.
 		Integrante integ = new Integrante();
-		integ.setId(1);
+		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
+		mensaje.setTipo(form.getTipo());
 		mensaje.setResolucion(form.getResolucion());
 		mensaje.setTipo(form.getTipo());
 		
