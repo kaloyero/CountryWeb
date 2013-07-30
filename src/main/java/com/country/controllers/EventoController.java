@@ -18,9 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.form.ActividadReservaForm;
 import com.country.form.EventoForm;
+import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
+import com.country.mappers.ActividadReservaMapper;
+import com.country.mappers.EventoMapper;
+import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
 import com.country.services.ResourceManager;
@@ -38,14 +43,22 @@ public class EventoController {
 	private IntegratorManager integratorManager;
 	@Autowired
 	private ResourceManager recursoManager;
-
+	@Autowired
+	private EventIntegratorManager eventIntegratorManager;
 
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showMainContent(ModelMap model,HttpServletRequest request) {
 		System.out.println("VALOR "+ request.getRequestURL().toString());
-		List<Evento> eventos =eventManager.listAll();
-		model.addAttribute("eventos", eventos);
 		
+
+		List<EventoForm> listaEventoForm = new ArrayList();
+
+		for (Evento evento : eventManager.listAll()) {
+			listaEventoForm.add((EventoForm) EventoMapper.getForm(evento,null));
+		}
+		
+		
+		model.addAttribute("eventos", listaEventoForm);
 		
 		return "Propietario/listadoEventos";
 	}
@@ -55,11 +68,7 @@ public class EventoController {
 		System.out.println("VALOR "+ request.getRequestURL().toString());
 		System.out.println("VALOR "+ request.getLocalAddr().toString());
 		
-		List<Evento> eventos =eventManager.listAll();
-		model.addAttribute("eventos", eventos);
-		
-		
-		return "Propietario/listadoEventos";
+		return showMainContent(model,request);
 	}
 	
 	
@@ -78,14 +87,15 @@ public class EventoController {
 			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			return "evento";
 		}else{
-			return "forms/eventoForm";
+			return "Propietario/eventoForm";
 		}
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "EVENTO") EventoForm form,
-			BindingResult result,HttpServletRequest request)  throws ParseException {
+		BindingResult result,HttpServletRequest request)  throws ParseException {
+
 		HttpSession session = request.getSession(true);
 		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
 		
@@ -95,8 +105,10 @@ public class EventoController {
 			if (((EventoForm) form).getConcepto() != null){
 				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
 			}
+		} else {
+			//TODO tomar el integrante que crea el evento
+			form.setIntegrante(1);
 		}
-
 		eventManager.save(form);
 				return "success";
 		
@@ -138,7 +150,7 @@ public class EventoController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getDescription());
-				row.add(tipo.getConcepto().getNombre());
+				//row.add(tipo.getConcepto().getNombre());
 				dataTable.getAaData().add(row);
 			}
 

@@ -67,6 +67,19 @@
 											Horario:</label>
 										<div class="wcontrols">
 										<form:input path="hourIni" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
+										
+										</div>
+										<label class="wlabel" id="emailmsg" for="email">
+											Duracion:</label>
+										<div class="wcontrols">
+										<form:input path="duracion" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
+										
+										</div>
+										<div class="wcontrols">
+										<label class="wlabel" id="emailmsg" for="email">
+											Cupo minimo:</label>
+										<form:input path="cupo" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
+										
 										</div>
 									</div>
 									<div class="wheader k2ProfileHeading">Descripcion</div>

@@ -11,6 +11,6 @@ public interface TelephoneManager extends AbstractManager<Telefono>{
 
 	void updateFormList(List<TelefonoForm> telefonos, int idPerson);
 
-	void saveFormList(List<TelefonoForm> telefonos, int idPerson);
+	void saveFormList(String telefonos, int idPerson);
 
 }

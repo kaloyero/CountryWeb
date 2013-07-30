@@ -11,12 +11,16 @@ var ServerManager = new Class({
         this.services['mensajeReclamo']={};
         this.services['recursoReserva']={};
         this.services['evento']={};
+        this.services['eventoParticipar']={};
+
         this.services['recurso']={};
         this.services['evento']["save"]="/CountryWeb/evento/create/";
         this.services['recursoReserva']["save"]="/CountryWeb/recursoReserva/create/";
         this.services['mensajeReclamo']["save"]="/CountryWeb/mensajeReclamo/create/";
         this.services['mensajeReclamo']["load"]="/CountryWeb/mensajeReclamo/load/";
         this.services['recurso']["load"]="/CountryWeb/recurso/recursosParaReservar/load/";
+        this.services['eventoParticipar']["save"]="/CountryWeb/eventoParticipar/create/";
+        
         
         //this.services['avisos']={};
    

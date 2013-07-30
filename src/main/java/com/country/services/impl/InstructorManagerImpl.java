@@ -46,7 +46,7 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 		}
 		
 		if (form.getPersona().getListaTelefonos() != null){
-			telephoneManager.saveFormList(form.getPersona().getListaTelefonos(),dto.getPersona().getId());
+			//telephoneManager.saveFormList(form.getPersona().getListaTelefonos(),dto.getPersona().getId());
 		}
 		
 	}

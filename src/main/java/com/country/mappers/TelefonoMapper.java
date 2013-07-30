@@ -1,5 +1,7 @@
 package com.country.mappers;
 
+import org.json.simple.JSONObject;
+
 import com.country.form.Form;
 import com.country.form.TelefonoForm;
 import com.country.hibernate.model.Telefono;
@@ -19,6 +21,23 @@ public class TelefonoMapper {
 		dto.setPrefijo(Integer.parseInt(((TelefonoForm) form).getPrefijo()));
 		TipoTelefono tipoTel = new TipoTelefono();
 		tipoTel.setId(((TelefonoForm) form).getTipoTelefono());
+		dto.setTipoTelefono(tipoTel);
+		
+		return dto;
+
+	}
+	//Devolver un telefono en base a un Json recibido
+	public static Telefono getTelefono(JSONObject nodo) {
+		
+		Telefono dto = new Telefono();
+
+		//dto.setId(((TelefonoForm) form).getId());
+		dto.setCodigoArea(((Long) nodo.get("Telefono")).intValue());
+		dto.setCodigoPais(((Long) nodo.get("Telefono")).intValue());
+		dto.setNumero(((Long) nodo.get("Telefono")).intValue());
+		dto.setPrefijo(((Long) nodo.get("Telefono")).intValue());
+		TipoTelefono tipoTel = new TipoTelefono();
+		tipoTel.setId(1);
 		dto.setTipoTelefono(tipoTel);
 		
 		return dto;

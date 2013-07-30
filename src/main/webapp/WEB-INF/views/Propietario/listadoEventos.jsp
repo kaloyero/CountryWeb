@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+
 
 <div class="inner content-inner clearfix">
 							<div id="masonry-container" class="clearfix masonry"
@@ -17,7 +20,7 @@
 	<div class="item-image">
 					<div class="img-intro-left">
 						<a href="/ja_wall/default/instagram/17975-instagram-id-339270252753126384-1323391.html" title="Nombre Evento" class="item-link">
-							<div class="img_caption none" style="float: none; width: 209px;"><img class="caption" title="Nombre Evento" src="../resources/img/propietarios/events-icon-small.png" alt="Nombre Evento"><p class="img_caption">Nombre Evento</p></div>
+							<div class="img_caption none" style="float: none; width: 209px;"><img class="caption" title="Nombre Evento" src="../resources/img/propietarios/events-icon-small.png" alt="Nombre Evento"><p class="img_caption">${evento.nombre}</p></div>
 							<span>&nbsp;</span>
 				<span class="item-pin">&nbsp;</span>
 			</a>
@@ -35,16 +38,21 @@
 		
 					<dl class="article-info">
 				<dt class="article-info-term">Details</dt>
-		
+
 		
 						<dd class="category-name">
 		
 						<dd class="create">
-				<strong>Created:(sirve fecha creacion?)</strong> 05 December 2012				</dd>
-		
-		
-		
-		
+						<c:if test="${evento.cupo > 1}">
+							<strong>Se necesitan:</strong> ${evento.cupo} personas
+						<strong>Dia se la semana:</strong>: ${evento.diaSemana} 
+						</c:if>
+						<c:if test="${evento.cupo <= 1}">
+							<strong>Se realiza el:</strong> ${evento.fecha}						
+						</c:if>
+					<strong>Horario comienzo:</strong> ${evento.hourIni}
+					<strong>Duracion:</strong> ${evento.duracion} horas
+					</dd>
 					</dl>
 			
 		</div>
@@ -52,7 +60,7 @@
 
 		<!-- Item content -->
 		<div class="content item-content">
-		${evento.description}		</div>
+		${evento.descripcion}		</div>
 		<!-- //Item content -->
 
 		<div class="footer item-footer clearfix">
@@ -61,17 +69,18 @@
 							<strong>Unidos:</strong> 0 
 						</dd>
 						<dd class="hits">
-							<strong>Finaliza con al
-								menos:</strong> 30
-						</dd>
-						<dd class="hits">
 							<c:if test="${evento.integrante == null}">
 								<strong>Creado por:</strong> Admin
 													</c:if>
+							<c:if test="${evento.integrante != null}">
+								<strong>Creado por:</strong> ${evento.integranteNombre} ${evento.integranteApellido}
+													</c:if>
 
 						</dd>
-						<dd class="hits">
-							<a onclick="translator.onSubmit('eventoParticipante')">Click aqui para anotarse al evento</a>
+						<dd class="hits anotarseEvento">
+							<input type="hidden" name="idEvento" value="${evento.id}">
+						
+							<a>Click aqui para anotarse al evento</a>
 						</dd>
 					</dl>
 				</div>

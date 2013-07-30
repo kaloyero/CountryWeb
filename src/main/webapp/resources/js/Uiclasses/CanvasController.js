@@ -53,13 +53,14 @@ var CanvasController = new Class({
     },
     
     onLoaded: function(rowSelectedName,id,objectType,data){
-    	console.log("ASDsa",objectType)
     	this.addTab(rowSelectedName,id+objectType,data);
     	
        	switch (objectType) {
 		 case "recurso":
 			recursoRender.onNewTab();
 			break;
+		default :
+			render.onNewTab();
        	}
     },
     onSaved: function(){

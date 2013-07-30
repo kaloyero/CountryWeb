@@ -13,8 +13,7 @@ public class PersonaForm extends Form {
 	private String nroDoc;
 	private String email;
 	private int tipoDocumento;
-	private String telefonosTest = "";
-
+	private String telefonos = "";
 	private List<DireccionForm> listaDirecciones = new ArrayList<DireccionForm>();
 	private List<TelefonoForm> listaTelefonos = new ArrayList<TelefonoForm>();
 
@@ -98,12 +97,14 @@ public class PersonaForm extends Form {
 		this.listaTelefonos = listaTelefonos;
 	}
 
-	public String getTelefonosTest() {
-		return telefonosTest;
+	public String getTelefonos() {
+		return telefonos;
 	}
 
-	public void setTelefonosTest(String telefonosTest) {
-		this.telefonosTest = telefonosTest;
+	public void setTelefonos(String telefonos) {
+		this.telefonos = telefonos;
 	}
+
+	
 
 }
