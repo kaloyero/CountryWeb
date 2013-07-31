@@ -1,6 +1,12 @@
 package com.country.mappers;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.country.form.Form;
 import com.country.form.TelefonoForm;
@@ -60,5 +66,41 @@ public class TelefonoMapper {
 	
 		return form;
 	}
+
+	public static List <Telefono> getTelefonos(String listaTelefonos) {
+
+		   List <Telefono> telefonos = new ArrayList<Telefono>();
+			
+		   
+			try {
+				if (listaTelefonos != null){
+					JSONArray json = (JSONArray)new JSONParser().parse(listaTelefonos);
+					Iterator it = 	json.iterator();
+				        while( it.hasNext() ){
+				        	JSONObject nodo = (JSONObject)it.next();
+				        	Telefono dto = new Telefono();
+	
+				    		dto.setId(((Long) nodo.get("idTel")).intValue());
+				    		dto.setCodigoArea(((Long) nodo.get("State")).intValue());
+				    		dto.setCodigoPais(((Long) nodo.get("Country")).intValue());
+				    		dto.setNumero(((Long) nodo.get("Telefono")).intValue());
+				    		dto.setPrefijo(((Long) nodo.get("Prefix")).intValue());
+				    		TipoTelefono tipoTel = new TipoTelefono();
+				    		tipoTel.setId(((Long) nodo.get("tipoTe")).intValue());
+				    		dto.setTipoTelefono(tipoTel);
+				    		telefonos.add(dto);
+						         
+				        }		
+				}
+
+			} catch (org.json.simple.parser.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return telefonos;
+
+	}
+
 	
 }

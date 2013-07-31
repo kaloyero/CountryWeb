@@ -29,9 +29,6 @@ public class Evento implements Serializable {
 	@Column(name = "Fecha")
 	private Date fecha;
 	
-	@Column(name = "Nombre")
-	private String nombre;
-	
 	@Column(name = "HoraIni")
 	private Integer hourIni;
 

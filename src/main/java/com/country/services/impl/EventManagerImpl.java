@@ -100,7 +100,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	public void update(EventoForm form) {
 		Evento dto = EventoMapper.getEvento(form);
 
-		//conceptManager.update(dto.getConcepto(),form.getConcepto().getImporte());
+		conceptManager.update(dto.getConcepto(),form.getConcepto().getImporte());
 		
 		eventDao.update(dto);
 		

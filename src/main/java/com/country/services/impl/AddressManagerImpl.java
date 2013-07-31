@@ -85,5 +85,58 @@ public class AddressManagerImpl extends AbstractManagerImpl<Direccion> implement
 		
 	}
 
+	public void saveList(String diresStrList, int idPerson) {
+		if (diresStrList != null){
+			for (Direccion direccion : DireccionMapper.getDirecciones(diresStrList)) {
+				direccion.setPerson(idPerson);
+				save(direccion);
+			}
+		}
+	}
+
+	public void updateList(String diresStrList, int idPerson) {
+		List<Direccion> listDire= addressDao.findAllByProperty("person", idPerson);
+		
+		//Mapeo los telefonos
+		List<Direccion> direcciones = new ArrayList<Direccion>();
+		for (Direccion direccion : DireccionMapper.getDirecciones(diresStrList)) {
+			direcciones.add(direccion);
+		}
+		
+		if (direcciones != null && direcciones.size() > 0 ){
+			//INSERT UPDATE
+			//Pregunto si modifico o agrego.
+			for (Direccion dir : direcciones ) {
+				if (dir.getId() != 0){
+					addressDao.save(dir);
+				} else {
+					addressDao.update(dir);
+				}
+			}
+			
+			//DELETE
+			//Borro las direcciones q ya no estan
+			for (Direccion  direccion : listDire) {
+				boolean delete = true;
+				for (Direccion dire : direcciones) {
+					if (dire.getId() == direccion.getId() ){
+						delete = false;
+					}
+				}
+				if (delete){
+					addressDao.delete(direccion);
+				}
+			}		
+			
+		} else {
+			//DELETE
+			//la lista de direcciones viene vacia borra todo
+			for (Direccion direccion : listDire) {
+				addressDao.delete(direccion);	
+			}
+		}
+		
+	}
+
 	
 }

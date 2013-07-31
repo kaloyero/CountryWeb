@@ -1,21 +1,14 @@
 package com.country.services.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
-import com.country.form.RecursoForm;
-import com.country.form.TelefonoForm;
 import com.country.hibernate.dao.TelephoneDao;
-import com.country.hibernate.model.RecursoDisponibilidad;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.TelefonoMapper;
 import com.country.services.TelephoneManager;
@@ -36,21 +29,22 @@ public class TelephoneManagerImpl extends AbstractManagerImpl<Telefono> implemen
 		return list;
 	}
 
-	public void updateFormList(List<TelefonoForm> telefonos, int idPerson) {
+	@Transactional
+	public void updateList(String telefonosStrList, int idPerson) {
 		
 		List<Telefono> listTele= telephoneDao.findAllByProperty("persona", idPerson);
 		
+		//Mapeo los telefonos
+		List<Telefono> telefonos = new ArrayList<Telefono>();
+		for (Telefono telefono : TelefonoMapper.getTelefonos(telefonosStrList)) {
+			telefonos.add(telefono);
+		}
+		
 		if (telefonos != null && telefonos.size() > 0 ){
-			List<Telefono> listTelefonos= new ArrayList<Telefono>();
-			
 			//INSERT UPDATE
-			//Primero convierto los telefonos con el mapper. Y pregunto si modifico o agrego.
-			for (TelefonoForm tele : telefonos ) {
-				Telefono tel = TelefonoMapper.getTelefono(tele);
-				//lleno la lista de telefonos
-				listTelefonos.add(tel);
-				
-				if (tele.getId() != 0){
+			//Pregunto si modifico o agrego.
+			for (Telefono tel : telefonos ) {
+				if (tel.getId() != 0){
 					telephoneDao.save(tel);
 				} else {
 					telephoneDao.update(tel);
@@ -61,7 +55,7 @@ public class TelephoneManagerImpl extends AbstractManagerImpl<Telefono> implemen
 			//Borro los telefonos q ya no estan
 			for (Telefono telefono : listTele) {
 				boolean delete = true;
-				for (Telefono tele : listTelefonos) {
+				for (Telefono tele : telefonos) {
 					if (tele.getId() == telefono.getId() ){
 						delete = false;
 					}
@@ -81,10 +75,15 @@ public class TelephoneManagerImpl extends AbstractManagerImpl<Telefono> implemen
 		
 	}
 
-	public void saveFormList(String telefonos, int idPerson) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public void saveList(String telefonosStrList, int idPerson) {
+		if (telefonosStrList != null){
+			for (Telefono telefono : TelefonoMapper.getTelefonos(telefonosStrList)) {
+				telefono.setPersona(idPerson);
+				save(telefono);
+			}
+		}
 		
 	}
-
 
 }

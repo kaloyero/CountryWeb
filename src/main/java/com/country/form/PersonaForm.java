@@ -14,8 +14,19 @@ public class PersonaForm extends Form {
 	private String email;
 	private int tipoDocumento;
 	private String telefonos = "";
+	private String direcciones = "";
 	private List<DireccionForm> listaDirecciones = new ArrayList<DireccionForm>();
 	private List<TelefonoForm> listaTelefonos = new ArrayList<TelefonoForm>();
+
+	
+	
+	public String getDirecciones() {
+		return direcciones;
+	}
+
+	public void setDirecciones(String direcciones) {
+		this.direcciones = direcciones;
+	}
 
 	public Integer getId() {
 		return id;

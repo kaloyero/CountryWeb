@@ -150,7 +150,7 @@ public class EventoController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getDescription());
-				//row.add(tipo.getConcepto().getNombre());
+				row.add(tipo.getNombre());
 				dataTable.getAaData().add(row);
 			}
 

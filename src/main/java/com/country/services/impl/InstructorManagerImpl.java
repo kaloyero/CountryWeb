@@ -41,13 +41,10 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 		Instructor dto = InstructorMapper.getInstructor(form);
 		
 		instructorDao.save(dto);
-		if (form.getPersona().getListaDirecciones() != null){
-//			addressManager.saveFormList(form.getPersona().getListaDirecciones(),dto.getPersona().getId());
-		}
-		
-		if (form.getPersona().getListaTelefonos() != null){
-			//telephoneManager.saveFormList(form.getPersona().getListaTelefonos(),dto.getPersona().getId());
-		}
+		//Inserta telefonos
+		telephoneManager.saveList(form.getPersona().getTelefonos(),dto.getPersona().getId());
+		//Inserta direcciones
+		addressManager.saveList(form.getPersona().getDirecciones(),dto.getPersona().getId());
 		
 	}
 	
@@ -75,8 +72,10 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 		Instructor dto = InstructorMapper.getInstructor(form);
 		
 		instructorDao.update(dto);
-		addressManager.updateFormList(form.getPersona().getListaDirecciones(),form.getPersona().getId());
-		telephoneManager.updateFormList(form.getPersona().getListaTelefonos(),form.getPersona().getId());
+		//Modifico la lista de telefonos
+		telephoneManager.updateList(form.getPersona().getTelefonos(),dto.getPersona().getId());
+		//Modifico la lista de direcciones
+		telephoneManager.updateList(form.getPersona().getDirecciones(),dto.getPersona().getId());
 		
 	}
 

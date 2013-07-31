@@ -37,4 +37,10 @@ public class MessageDetailManagerImpl extends AbstractManagerImpl<MensajeDetalle
 		return obj;
 	}
 
+	@Transactional
+	public MensajeDetalles getFirstDetailMessage(int idMessage){
+		MensajeDetalles obj = messageDetailDao.getFirstDetailByIdMessage(idMessage);
+		return obj;
+	}
+
 }

@@ -8,7 +8,7 @@
 		<ul class="block-list">	
 			<li>
 				<div class="_25">
-					<select id="telContact"> 
+					<select id="dirTown"> 
 						<c:forEach var="loc" items="${localidades}">
 							<option value="${loc.id}">${loc.name}</option>
 						</c:forEach>
@@ -43,7 +43,7 @@
 					<label> </label> 
 				</div>
 				<div class="_10">
-					<input type="button" id="addPhone" value="+" />
+					<input type="button" id="addAddress" value="+" />
 				</div>
 				
 			</li>

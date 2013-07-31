@@ -23,14 +23,17 @@
 				<div class="block-content">
 					<ul class="block-list" id ="listaTelefonos">
 						<c:forEach var="tel" items="${INTEGRANTE.persona.listaTelefonos}">
-						<li>
-							<div class='alert success telefono'>
-								<span class='hide'>x</span> 
-								<span class='tipoTel'>${tel.tipoTelefonoNombre} </span>
-								<strong>( </strong><span class='pais'>${tel.codigoPais} </span>								
-								<span class='state'> ${tel.codigoArea} </span><strong> ) </strong>								
-								<span class='tel'>${tel.numero}</span>
-							</div>
+							<li>
+								<div class='alert success telefono'>
+					    			<span class='idTel' hidden='true'>${tel.id}</span>
+					    			<span class='idTipoTe' hidden='true'>${tel.tipoTelefonoNombre}</span>
+					    			<span class='tipoTe' >${tel.tipoTelefonoNombre} </span>
+						    		<strong>( </strong><span class='pais'> ${tel.codigoPais}</span>
+						    		<span class='state'> ${tel.codigoArea}</span>
+						    		<span class='prefix'> ${tel.prefijo}</span><strong> ) </strong>
+						    		<span class='tel'>${tel.numero}</span>
+						    		<span class='hide'>x</span>
+								</div>
 							</li>
 						</c:forEach>
 					</ul>

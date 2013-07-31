@@ -14,13 +14,16 @@
 						</c:forEach>
 					</select> 				
 				</div>
-				<div class="_15">
-					<input type="text" class=""  id="telCountry" placeholder="pais" size="50%" maxlength="6" />
+				<div class="_10">
+					<input type="text" class=""  id="telCountry" placeholder="Pais" size="50%" maxlength="6" />
+				</div>
+				<div class="_10">
+					<input type="text" class="" id="telState" placeholder="Ciudad" size="25%" maxlength="5"/>
 				</div>
 				<div class="_15">
-					<input type="text" class="" id="telState" placeholder="ciudad" size="25%" maxlength="6"/>
+					<input type="text" class=""  id="telPrefijo" placeholder="Prefijo" size="50%" maxlength="6" />
 				</div>
-				<div class="_30">
+				<div class="_25">
 					<input type="text" class="" id="telNumber" placeholder="numero" size="25%" maxlength="16"/>
 				</div>
 				<div class="_10">

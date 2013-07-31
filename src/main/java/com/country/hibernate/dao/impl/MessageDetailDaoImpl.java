@@ -26,5 +26,13 @@ public class MessageDetailDaoImpl extends GenericDaoImpl<MensajeDetalles, Intege
           return (MensajeDetalles) criteria.uniqueResult();
       }
 
+    public MensajeDetalles getFirstDetailByIdMessage(int message) {
+  	  Criteria criteria = getSession().createCriteria(getEntityClass());
+  	  criteria.add(Restrictions.like("mensaje", message));
+  	  criteria.addOrder(Order.asc("id"));
+  	  criteria.setMaxResults(1);
+ 
+        return (MensajeDetalles) criteria.uniqueResult();
+    }
 	
 }

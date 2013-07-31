@@ -12,10 +12,8 @@ import com.country.form.IntegranteForm;
 import com.country.form.TipoForm;
 import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.model.Integrante;
-import com.country.hibernate.model.RecursoDisponibilidad;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.IntegranteMapper;
-import com.country.mappers.RecursoMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.TelephoneManager;
 
@@ -65,13 +63,8 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		Integrante dto = IntegranteMapper.getIntegrante(form);
 		
 		integratorDao.save(dto);
-		if (form.getPersona().getListaTelefonos() != null){
-			//telephoneManager.saveFormList(form.getPersona().getTelefonosTest(),dto.getPersona().getId());
-			for (Telefono telefono : IntegranteMapper.getTelefonos(form)) {
-				telefono.setPersona(dto.getPersona().getId());
-				telephoneManager.save(telefono);
-			}
-		}
+		//Inserta telefonos
+		telephoneManager.saveList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		
 	}
 
@@ -80,7 +73,8 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		Integrante dto = IntegranteMapper.getIntegrante(form);
 		
 		integratorDao.update(dto);
-		telephoneManager.updateFormList(form.getPersona().getListaTelefonos(),form.getPersona().getId());
+		//Modifico la lista de telefonos
+		telephoneManager.updateList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		
 	}
 
