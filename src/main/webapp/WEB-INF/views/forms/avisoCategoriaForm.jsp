@@ -7,19 +7,33 @@
 	<fieldset>
 			<legend>Configuracion</legend>
 	
-		<div class="_50">
+		<div class="_25">
 			<p>
-				<label for="textfield">Raza</label>
+				<label for="textfield">Categoria</label>
 				<form:input path="nombre" class="required" />
 				<form:hidden path="id" />
+				<form:hidden disabled="true" path="concepto.id" />
 			</p>
 		</div>
-		<div class="_50">
+		<div class="_25">
 			<p>
-				<label for="textfield">Especie</label>
-				<form:select path="especie" multiple="false">
-					<form:options items="${especies}" itemValue="id" itemLabel="nombre" />
-				</form:select>
+				<label for="textfield">Importe</label>
+				<form:input path="concepto.importe" class="required"  maxlength="8" />
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Publicado (en dias)</label>
+				<form:input path="diasPublicacion" class="required"  maxlength="4" />
+			</p>
+		</div>
+		<div class="_25">
+		</div>		
+		<div class="100">
+			<p>
+				<label for="textfield">Descipcion</label>
+				<form:textarea path="concepto.descripcion" class="required" rows="4"/>
+	
 			</p>
 		</div>
 		

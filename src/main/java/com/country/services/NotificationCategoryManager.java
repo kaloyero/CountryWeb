@@ -8,5 +8,8 @@ public interface NotificationCategoryManager extends AbstractManager<AvisoCatego
 	AvisoCategoria findById(Integer id);
 	
 	AvisoCategoriaForm findFormById(int id);
+
+	public void save(AvisoCategoriaForm form);
 	
+	public void update(AvisoCategoriaForm form);
 }

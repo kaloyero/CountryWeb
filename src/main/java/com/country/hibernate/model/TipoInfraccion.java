@@ -3,6 +3,7 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,11 +29,11 @@ public class TipoInfraccion implements Serializable{
 	@Column(name = "Nombre")
 	private String nombre;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = true, insertable = true)	
 	private  Concepto  concepto ;
-
-	@Column(name = "FechaIni")
+	
+	@Column(name = "FechaIni",updatable = false)
 	private  Date fechaIni ;
 
 	@Column(name = "FechaFin")

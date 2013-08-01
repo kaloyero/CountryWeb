@@ -35,7 +35,7 @@ public class AvisoCategoria implements Serializable {
 	@Column(name = "FechaFin")
 	private Date dateEnd;
 
-	@Column(name = "DiasPublicacion")
+	@Column(name = "DiasPublicacion",updatable = false)
 	private String publishDays;
 
 	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)

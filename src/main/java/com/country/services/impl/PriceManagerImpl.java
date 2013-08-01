@@ -50,5 +50,15 @@ public class PriceManagerImpl extends AbstractManagerImpl<Tarifa> implements Pri
 		
 	}
 
+	public void saveTarifa(int conceptoId, Double nuevaTarifa) {
+		//Agarro la tarifa que viene del form
+		Tarifa price = new Tarifa();
+		price.setConcepto(conceptoId);
+		price.setImporte(nuevaTarifa);
+		price.setFechaComienzo(DateUtil.getDateToday());
+
+		priceDao.save(price);	
+	}
+
 	
 }

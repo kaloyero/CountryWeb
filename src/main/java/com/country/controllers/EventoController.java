@@ -18,12 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.ActividadReservaForm;
 import com.country.form.EventoForm;
-import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
-import com.country.mappers.ActividadReservaMapper;
 import com.country.mappers.EventoMapper;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
