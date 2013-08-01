@@ -59,6 +59,12 @@ var CanvasController = new Class({
 		 case "recurso":
 			recursoRender.onNewTab();
 			break;
+		 case "integrante":
+			integranteRender.onNewTab();
+			break;
+		 case "instructor":
+			instructorRender.onNewTab();
+			break;
 		default :
 			render.onNewTab();
        	}
@@ -80,6 +86,9 @@ var CanvasController = new Class({
 			break;
 		 case "integrante":
 				integranteRender.onLoaded();
+				break;
+		 case "instructor":
+				instructorRender.onLoaded();
 			break;
 
 	}
@@ -89,20 +98,15 @@ var CanvasController = new Class({
     },
     
     populateGrid: function(objectType){
-    	console.log("broke");
     	translator.onPopulateGrid(objectType);
     },
     
     getTabContainer: function(){
-    	//alert("ale aca se toca cnd aparece el tab");
     	return $("#tab-panel-1");
     },
     getClose: function(){
-    	alert("se cieRRA pos");
     	
     	this.getTabContainer().find(".tab-content").remove();
-
-    	alert("termino ");
     },
     
     getTableRows: function(){

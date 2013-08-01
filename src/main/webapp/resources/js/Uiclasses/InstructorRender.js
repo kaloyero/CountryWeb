@@ -5,60 +5,61 @@ var InstructorRender = new Class({
     },
 
     onLoaded: function(){
-    	this.bindListeners();
+    	var form=this.getAddForm();
+    	this.bindListeners(form);
     	
     },
     onNewTab: function(){
-    	this.bindListeners();
+    	var form=this.getActiveForm();
+    	this.bindListeners(form);
     	
     },
-    bindListeners: function(){
+    bindListeners: function(form){
     	var self=this;
 
-    	this.getAddForm().find("#addPhone").click(function() {
-    		alert("hola");
+    	form.find("#addPhone").click(function() {
     		var newEntry="";
-    		if (self.getAddForm().find("#telNumber").val().trim() != "" ){
+    		if (form.find("#telNumber").val().trim() != "" ){
     			newEntry=" <span class='idTel' hidden='true'>0</span>"	;
-    			newEntry+="<span class='idTipoTe' hidden='true'>"+ self.getAddForm().find("#telContact").val() +" </span>";
-    			newEntry+="<span class='tipoTe' >"+ self.getAddForm().find("#telContact").val() +" </span>";
-	    		newEntry+="<strong>( </strong><span class='pais'> "+ self.getAddForm().find("#telCountry").val()+"</span>";
-	    		newEntry+= " <span class='state'>" +self.getAddForm().find("#telState").val() + "</span>";
-	    		newEntry+= " <span class='prefix'>" +self.getAddForm().find("#telPrefijo").val() + "</span><strong> ) </strong>";
-	    		newEntry+=" <span class='tel'>" +self.getAddForm().find("#telNumber").val()+"</span>"	;
-	    		self.getAddForm().find("#listaTelefonos").append("<li><div class='alert success telefono'><span class='hide'>x</span> "+newEntry+"</div></li>");
+    			newEntry+="<span class='idTipoTe' hidden='true'>"+ form.find("#telContact").val() +" </span>";
+    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").val() +" </span>";
+	    		newEntry+="<strong>( </strong><span class='pais'> "+ form.find("#telCountry").val()+"</span>";
+	    		newEntry+= " <span class='state'>" +form.find("#telState").val() + "</span>";
+	    		newEntry+= " <span class='prefix'>" +form.find("#telPrefijo").val() + "</span><strong> ) </strong>";
+	    		newEntry+=" <span class='tel'>" +form.find("#telNumber").val()+"</span>"	;
+	    		form.find("#listaTelefonos").append("<li><div class='alert success telefono'><span class='hide'>x</span> "+newEntry+"</div></li>");
 	    		self.addCloseListener();
-	    		self.getAddForm().find("#telCountry").val("");
-	    		self.getAddForm().find("#telState").val("");
-	    		self.getAddForm().find("#telPrefijo").val("");
-	    		self.getAddForm().find("#telNumber").val("");
+	    		form.find("#telCountry").val("");
+	    		form.find("#telState").val("");
+	    		form.find("#telPrefijo").val("");
+	    		form.find("#telNumber").val("");
 
     		}
 		});
 	    	
-    	this.getAddForm().find("#addAddress").click(function() {
+    	form.find("#addAddress").click(function() {
     		var newEntry="";
-    		if (self.getAddForm().find("#dirStreetName").val().trim() != "" ){
+    		if (form.find("#dirStreetName").val().trim() != "" ){
     			
     			newEntry=" <span class='idDire' hidden='true'>0</span>"	;
-    			newEntry+="<span class='idTownDire' hidden='true'>"+ self.getAddForm().find("#dirTown").val() +" </span>";
-    			newEntry+="<span class='townDire' >"+ self.getAddForm().find("#dirTown").val() +" </span>";
-    			newEntry+="<span class='streetNameDire' >"+ self.getAddForm().find("#dirStreetName").val() +" </span>";
-    			newEntry+="<span class='streetNumDire' >"+ self.getAddForm().find("#dirStreetNum").val() +" </span>";
-    			newEntry+="<span class='floorDire' >"+ self.getAddForm().find("#dirFloor").val() +" </span>";
-    			newEntry+="<span class='flatDire' >"+ self.getAddForm().find("#dirFlat").val() +" </span>";
-    			newEntry+="<span class='towerDire' >"+ self.getAddForm().find("#dirTower").val() +" </span>";
-    			newEntry+="<span class='blockDire' >"+ self.getAddForm().find("#dirBlock").val() +" </span>";
+    			newEntry+="<span class='idTownDire' hidden='true'>"+ form.find("#dirTown").val() +" </span>";
+    			newEntry+="<span class='townDire' >"+ form.find("#dirTown").val() +" </span>";
+    			newEntry+="<span class='streetNameDire' >"+ form.find("#dirStreetName").val() +" </span>";
+    			newEntry+="<span class='streetNumDire' >"+ form.find("#dirStreetNum").val() +" </span>";
+    			newEntry+="<span class='floorDire' >"+ form.find("#dirFloor").val() +" </span>";
+    			newEntry+="<span class='flatDire' >"+ form.find("#dirFlat").val() +" </span>";
+    			newEntry+="<span class='towerDire' >"+ form.find("#dirTower").val() +" </span>";
+    			newEntry+="<span class='blockDire' >"+ form.find("#dirBlock").val() +" </span>";
     			
-    			self.getAddForm().find("#listaDirecciones").append("<li><div class='alert success direccion'><span class='hide'>x</span> "+newEntry+"</div></li>");
+    			form.find("#listaDirecciones").append("<li><div class='alert success direccion'><span class='hide'>x</span> "+newEntry+"</div></li>");
 	    		self.addCloseListener();
-	    		self.getAddForm().find("#dirTown").val("1");
-	    		self.getAddForm().find("#dirStreetName").val("");
-	    		self.getAddForm().find("#dirStreetNum").val("");
-	    		self.getAddForm().find("#dirFloor").val("");
-	    		self.getAddForm().find("#dirFlat").val("");
-	    		self.getAddForm().find("#dirTower").val("");
-	    		self.getAddForm().find("#dirBlock").val("");
+	    		form.find("#dirTown").val("1");
+	    		form.find("#dirStreetName").val("");
+	    		form.find("#dirStreetNum").val("");
+	    		form.find("#dirFloor").val("");
+	    		form.find("#dirFlat").val("");
+	    		form.find("#dirTower").val("");
+	    		form.find("#dirBlock").val("");
 	    		
     		}
 		});
