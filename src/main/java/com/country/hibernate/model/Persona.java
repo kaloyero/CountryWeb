@@ -37,7 +37,7 @@ public class Persona implements Serializable {
 	@Column(name = "Sexo", nullable = false)
 	private String sexo;
 	
-	@Column(name = "Tipo", nullable = false)
+	@Column(name = "Tipo", updatable = false)
 	private String tipo;
 
 	@Column(name = "NroDocumento")
