@@ -34,5 +34,14 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	public List<IntegranteForm> findAllIntegrantorFormByActivityId(Integer id);
 	
 	public List<ActividadForm> findAllActivitiesByIntegratorId(Integer id);
+
 	
+	/**
+	 * Este servicio devielve TRUE si el usuario esta inscripto o FALSE si no lo esta.
+	 *  
+	 * @param actividad
+	 * @param integrante
+	 * @return
+	 */
+	public boolean esUsuarioInscripto(int actividad, int integrante);
 }

@@ -5,4 +5,6 @@ import com.country.hibernate.model.IntegranteActividades;
 
 public interface IntegratorActivityDao extends GenericDao<IntegranteActividades, Integer> {
 
+	IntegranteActividades findByActivityUser (int activityId, int userId);
+	
 }

@@ -15,8 +15,6 @@ public class ActivityDaoImpl extends GenericDaoImpl<Actividad, Integer> implemen
 	}
 	
     public void update(Actividad obj) {
-//  	  getSession().merge(obj);
-//    	getSession().update(obj.getConcepto());
     	getSession().update(obj);
     }
 	

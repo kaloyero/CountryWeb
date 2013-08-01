@@ -42,4 +42,13 @@ public interface EventIntegratorManager extends AbstractManager<EventoIntegrante
 	 */
 	List<IntegranteForm> findAllIntegrantorFormByEventoId(Integer id);
 	
+	
+	/**
+	 * Este servicio devielve TRUE si el usuario esta inscripto o FALSE si no lo esta. 
+	 * 
+	 * @param evento
+	 * @param integrante
+	 * @return
+	 */
+	boolean esUsuarioInscripto(int evento, int integrante);
 }

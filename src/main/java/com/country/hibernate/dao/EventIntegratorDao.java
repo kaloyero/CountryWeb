@@ -5,5 +5,6 @@ import com.country.hibernate.model.EventoIntegrante;
 
 public interface EventIntegratorDao extends GenericDao<EventoIntegrante, Integer> {
 
-
+	EventoIntegrante findByEventUser (int eventId, int userId);
+	
 }
