@@ -19,15 +19,19 @@ public class TelefonoMapper {
 		
 		Telefono dto = new Telefono();
 
-		dto.setId(((TelefonoForm) form).getId());
-		dto.setCodigoArea(Integer.parseInt(((TelefonoForm) form).getCodigoArea()));
-		dto.setCodigoPais(Integer.parseInt(((TelefonoForm) form).getCodigoPais()));
-		dto.setNumero(Integer.parseInt(((TelefonoForm) form).getNumero()));
-		dto.setPersona(((TelefonoForm) form).getPersona());
-		dto.setPrefijo(Integer.parseInt(((TelefonoForm) form).getPrefijo()));
-		TipoTelefono tipoTel = new TipoTelefono();
-		tipoTel.setId(((TelefonoForm) form).getTipoTelefono());
-		dto.setTipoTelefono(tipoTel);
+		if (((TelefonoForm) form).getId() != null){
+			dto.setId(((TelefonoForm) form).getId());
+			dto.setCodigoArea(Integer.parseInt(((TelefonoForm) form).getCodigoArea()));
+			dto.setCodigoPais(Integer.parseInt(((TelefonoForm) form).getCodigoPais()));
+			dto.setNumero(Integer.parseInt(((TelefonoForm) form).getNumero()));
+			dto.setPersona(((TelefonoForm) form).getPersona());
+			dto.setPrefijo(Integer.parseInt(((TelefonoForm) form).getPrefijo()));
+			TipoTelefono tipoTel = new TipoTelefono();
+			tipoTel.setId(((TelefonoForm) form).getTipoTelefono());
+			dto.setTipoTelefono(tipoTel);
+		} else {
+			return null;
+		}
 		
 		return dto;
 
@@ -79,16 +83,17 @@ public class TelefonoMapper {
 				        while( it.hasNext() ){
 				        	JSONObject nodo = (JSONObject)it.next();
 				        	Telefono dto = new Telefono();
-	
-				    		dto.setId(((Long) nodo.get("idTel")).intValue());
-				    		dto.setCodigoArea(((Long) nodo.get("State")).intValue());
-				    		dto.setCodigoPais(((Long) nodo.get("Country")).intValue());
-				    		dto.setNumero(((Long) nodo.get("Telefono")).intValue());
-				    		dto.setPrefijo(((Long) nodo.get("Prefix")).intValue());
-				    		TipoTelefono tipoTel = new TipoTelefono();
-				    		tipoTel.setId(((Long) nodo.get("tipoTe")).intValue());
-				    		dto.setTipoTelefono(tipoTel);
-				    		telefonos.add(dto);
+				        	if (nodo.get("IdTel") != null){	
+					    		dto.setId(((Long) nodo.get("IdTel")).intValue());
+					    		dto.setCodigoArea(((Long) nodo.get("State")).intValue());
+					    		dto.setCodigoPais(((Long) nodo.get("Country")).intValue());
+					    		dto.setNumero(((Long) nodo.get("Telefono")).intValue());
+					    		dto.setPrefijo(((Long) nodo.get("Prefix")).intValue());
+					    		TipoTelefono tipoTel = new TipoTelefono();
+					    		tipoTel.setId(((Long) nodo.get("IdTipoTel")).intValue());
+					    		dto.setTipoTelefono(tipoTel);
+					    		telefonos.add(dto);
+				        	}
 						         
 				        }		
 				}

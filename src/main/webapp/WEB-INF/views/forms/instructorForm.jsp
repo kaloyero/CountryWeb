@@ -44,7 +44,7 @@
 							<li>
 								<div class='alert success telefono'>
 					    			<span class='idTel' hidden='true'>${tel.id}</span>
-					    			<span class='idTipoTe' hidden='true'>${tel.tipoTelefonoNombre}</span>
+					    			<span class='idTipoTe' hidden='true'>${tel.tipoTelefono}</span>
 					    			<span class='tipoTe' >${tel.tipoTelefonoNombre} </span>
 						    		<strong>( </strong><span class='pais'> ${tel.codigoPais}</span>
 						    		<span class='state'> ${tel.codigoArea}</span>
@@ -69,7 +69,7 @@
 					<ul class="block-list" id ="listaDirecciones">
 						<c:forEach var="tel" items="${INSTRUCTOR.persona.listaDirecciones}">
 							<li>
-								<div class='alert success telefono'>
+								<div class='alert success direccion'>
 					    			<span class='idDire' hidden='true'>${tel.id}</span>
 					    			<span class='idTownDire' hidden='true'>${tel.id} </span>
 					    			<span class='townDire' >${tel.townName} </span>

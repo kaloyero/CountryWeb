@@ -65,12 +65,12 @@ public class DireccionMapper {
 				        	Direccion dto = new Direccion();
 	
 				    		dto.setId(((Long) nodo.get("IdDir")).intValue());
-				    		dto.setStreetName(((String) nodo.get("StreetName")).toString());
-				    		dto.setStreetNumber(((String) nodo.get("StreetNum")).toString());
-				    		dto.setFloor(((String) nodo.get("Floor")).toString());
-				    		dto.setFlat(((String) nodo.get("Flat")).toString());
-				    		dto.setTower(((String) nodo.get("Tower")).toString());
-				    		dto.setBlock(((String) nodo.get("Block")).toString());
+				    		dto.setStreetName(((String) nodo.get("StreetName")));
+				    		dto.setStreetNumber(((String) nodo.get("StreetNum")));
+				    		dto.setFloor(((String) nodo.get("Floor")));
+				    		dto.setFlat(((String) nodo.get("Flat")));
+				    		dto.setTower(((String) nodo.get("Tower")));
+				    		dto.setBlock(((String) nodo.get("Block")));
 				    		Localidad town = new Localidad();
 				    		town.setId(((Long) nodo.get("IdTownDir")).intValue());
 				    		dto.setTown(town);

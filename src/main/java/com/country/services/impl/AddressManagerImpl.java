@@ -100,6 +100,7 @@ public class AddressManagerImpl extends AbstractManagerImpl<Direccion> implement
 		//Mapeo los telefonos
 		List<Direccion> direcciones = new ArrayList<Direccion>();
 		for (Direccion direccion : DireccionMapper.getDirecciones(diresStrList)) {
+			direccion.setPerson(idPerson);
 			direcciones.add(direccion);
 		}
 		
@@ -107,10 +108,10 @@ public class AddressManagerImpl extends AbstractManagerImpl<Direccion> implement
 			//INSERT UPDATE
 			//Pregunto si modifico o agrego.
 			for (Direccion dir : direcciones ) {
-				if (dir.getId() != 0){
+				if (dir.getId() == 0){
 					addressDao.save(dir);
 				} else {
-					addressDao.update(dir);
+					//No hace nada porque la direccion no se puede editar.
 				}
 			}
 			

@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.DateUtil;
 import com.country.form.AvisoCategoriaForm;
+import com.country.form.TipoInfraccionForm;
 import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Evento;
+import com.country.hibernate.model.TipoInfraccion;
 import com.country.mappers.TipoMapper;
 import com.country.services.NotificationCategoryManager;
 
@@ -53,7 +58,7 @@ public class AvisoCategoriaController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
-	public String load(ModelMap model,@PathVariable int id) throws ParseException {
+	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
 	
 		AvisoCategoriaForm form = notificationCategoryManager.findFormById(id);
 		model.addAttribute("TIPO", form);
@@ -70,16 +75,18 @@ public class AvisoCategoriaController {
 		
 
 	}
+
+	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
-	public  @ResponseBody DataTable getUserInJSON()  {
+	public  @ResponseBody DataTable getUserInJSON(HttpServletRequest request)  {
            
            DataTable dataTable=new DataTable();
 
 			for (AvisoCategoria tipo : notificationCategoryManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
-				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getNombre());
+				row.add(tipo.getConcepto().getDescripcion());
 				dataTable.getAaData().add(row);
 			}
 

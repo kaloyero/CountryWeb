@@ -93,14 +93,18 @@ var InstructorRender = new Class({
 
        	var direcciones = [];
        	$('.direccion').each(function(index) {
-       		direcciones.push({	"StreetName": parseInt($(this).find(".streetNameDire").text()),
-       							"StreetNum":  parseInt($(this).find(".streetNumDire").text()),
-       							"Floor": 	parseInt($(this).find(".floorDire").text()),
-       							"Flat": 	parseInt($(this).find(".flatDire").text()),
-       							"Tower": 	parseInt($(this).find(".towerDire").text()),
-       							"Block": 	parseInt($(this).find(".blockDire").text()),
+       		var streetName = new String($(this).find(".streetNameDire").text());
+       		alert("Ale"+ streetName);
+       		
+       		direcciones.push({  "StreetNum":  "678",//($(this).find(".streetNumDire").text()).toString(),	
+				       			"Floor": 	parseInt($(this).find(".floorDire").text()),
+				       			"StreetName": "CERV" + streetName.toString() ,
+				       			"Flat": 	$(this).find(".flatDire").text().toString(),
+       							"Tower": 	$(this).find(".towerDire").text(),
+       							"Block": 	$(this).find(".blockDire").text(),
        							"IdDir": 	parseInt($(this).find(".idDire").text()),
-       							"IdTownDir":  parseInt($(this).find(".idTownDire").text())});
+       							"IdTownDir":  parseInt($(this).find(".idTownDire").text())
+       							});
        		
     	});
 

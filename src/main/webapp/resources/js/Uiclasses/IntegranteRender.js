@@ -21,7 +21,7 @@ var IntegranteRender = new Class({
     		if (form.find("#telNumber").val().trim() != "" ){
     			newEntry=" <span class='idTel' hidden='true'>0</span>"	;
     			newEntry+="<span class='idTipoTe' hidden='true'>"+ form.find("#telContact").val() +" </span>";
-    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").val() +" </span>";
+    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").text() +" </span>";
 	    		newEntry+="<strong>( </strong><span class='pais'> "+ form.find("#telCountry").val()+"</span>";
 	    		newEntry+= " <span class='state'>" +form.find("#telState").val() + "</span>";
 	    		newEntry+= " <span class='prefix'>" +form.find("#telPrefijo").val() + "</span><strong> ) </strong>";

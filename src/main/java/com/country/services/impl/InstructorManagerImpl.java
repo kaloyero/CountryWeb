@@ -75,7 +75,7 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 		//Modifico la lista de telefonos
 		telephoneManager.updateList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		//Modifico la lista de direcciones
-		telephoneManager.updateList(form.getPersona().getDirecciones(),dto.getPersona().getId());
+		addressManager.updateList(form.getPersona().getDirecciones(),dto.getPersona().getId());
 		
 	}
 

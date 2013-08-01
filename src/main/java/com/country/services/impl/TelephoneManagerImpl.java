@@ -37,17 +37,20 @@ public class TelephoneManagerImpl extends AbstractManagerImpl<Telefono> implemen
 		//Mapeo los telefonos
 		List<Telefono> telefonos = new ArrayList<Telefono>();
 		for (Telefono telefono : TelefonoMapper.getTelefonos(telefonosStrList)) {
-			telefonos.add(telefono);
+			if (telefono != null){
+				telefono.setPersona(idPerson);
+				telefonos.add(telefono);
+			}
 		}
 		
 		if (telefonos != null && telefonos.size() > 0 ){
 			//INSERT UPDATE
 			//Pregunto si modifico o agrego.
 			for (Telefono tel : telefonos ) {
-				if (tel.getId() != 0){
+				if (tel.getId() == 0){
 					telephoneDao.save(tel);
 				} else {
-					telephoneDao.update(tel);
+					//No hace nada porque el telefono no se puede editar. 
 				}
 			}
 			

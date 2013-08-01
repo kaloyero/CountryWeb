@@ -81,7 +81,7 @@ public class InstructorController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "INSTRUCTOR") InstructorForm instructorForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		instructorManager.update(InstructorMapper.getInstructor(instructorForm));
+		instructorManager.update(instructorForm);
 		return "success";
 
 	}
