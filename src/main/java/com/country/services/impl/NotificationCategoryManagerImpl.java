@@ -1,15 +1,17 @@
 package com.country.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.country.common.GenericDao;
 import com.country.form.AvisoCategoriaForm;
-import com.country.form.TipoInfraccionForm;
+import com.country.form.TipoForm;
 import com.country.hibernate.dao.NotificationCategoryDao;
 import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.Tarifa;
-import com.country.hibernate.model.TipoInfraccion;
 import com.country.mappers.TipoMapper;
 import com.country.services.NotificationCategoryManager;
 import com.country.services.PriceManager;
@@ -64,4 +66,22 @@ public class NotificationCategoryManagerImpl extends AbstractManagerImpl<AvisoCa
 		
 	}
 
+	public List<TipoForm> listAllCategoriesDescription(){
+		List<AvisoCategoria> lista= notificationCategoryDao.findAll();
+		List<TipoForm> listaCategorias= new ArrayList<TipoForm>();
+		
+		for (AvisoCategoria cat : lista) {
+			TipoForm tipo = new TipoForm();
+			Tarifa tarifa = priceManager.getLastPriceByConcept(cat.getConcepto().getId());
+			
+			tipo.setId(cat.getId());
+			tipo.setNombre(cat.getNombre() + " - $"+  tarifa.getImporte() +" - " + cat.getPublishDays() + " dias.");
+			listaCategorias.add(tipo);
+			
+		}
+		return listaCategorias;
+		
+		
+	}
+	
 }

@@ -12,9 +12,18 @@ public class AvisoForm extends Form  {
 	private String cierre;
 	private String fechaCierre;
 	private  int categoria;
+	private  String categoriaDescription;
 	private  int integrante;
 	private  String integranteNombre;
 
+	
+	
+	public String getCategoriaDescription() {
+		return categoriaDescription;
+	}
+	public void setCategoriaDescription(String categoriaDescription) {
+		this.categoriaDescription = categoriaDescription;
+	}
 	public Integer getId() {
 		return id;
 	}

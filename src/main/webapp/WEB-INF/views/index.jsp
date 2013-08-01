@@ -160,8 +160,8 @@
 					<a href="javascript:void(0);" class="option current" id="mascota"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mascota<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="mensajeReclamo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Reclamos<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no anda)<span class="badge red"></span></a>
-					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia (no modifica)<span class="badge red"></span></a>					
-					<a href="javascript:void(0);" class="option current" id="aviso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Aviso (no anda)<span class="badge red"></span></a>					
+					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia<span class="badge red"></span></a>					
+					<a href="javascript:void(0);" class="option current" id="aviso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Aviso<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento<span class="badge red"></span></a>					
 					<a href="javascript:void(0);"><img src="src/main/webapp/resources/img/icons/packs/fugue/16x16/clipboard-list.png">Configuracion<span class="badge grey">9</span></a>
 	    			<ul class="sub">

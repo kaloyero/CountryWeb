@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.Constants;
 import com.country.common.GenericDao;
 import com.country.form.IntegranteForm;
 import com.country.form.TipoForm;
@@ -61,8 +62,12 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	@Transactional
 	public void save(IntegranteForm form) {
 		Integrante dto = IntegranteMapper.getIntegrante(form);
+
+		//Seteo que es un integrante
+		dto.getPersona().setTipo(Constants.PERSONA_INTEGRANTE);
 		
 		integratorDao.save(dto);
+
 		//Inserta telefonos
 		telephoneManager.saveList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		

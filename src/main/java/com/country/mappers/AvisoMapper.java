@@ -35,6 +35,7 @@ public class AvisoMapper {
 		AvisoForm form=new AvisoForm();
 
 		form.setCategoria(dto.getCategoria().getId());
+		form.setCategoriaDescription(dto.getCategoria().getNombre());
 		form.setCierre(dto.getClose());
 		form.setCuerpo(dto.getBody());
 		form.setEncabezado(dto.getHeader());
@@ -42,7 +43,7 @@ public class AvisoMapper {
 		form.setFechaCierre(DateUtil.convertDateToString(dto.getFechaFin()));
 		form.setId(dto.getId());
 		form.setIntegrante(dto.getIntegrante().getId());
-		form.setIntegranteNombre("");
+		form.setIntegranteNombre(dto.getIntegrante().getPersona().getNombre() + " " + dto.getIntegrante().getPersona().getApellido() + " - " + dto.getIntegrante().getUnidad().getCode());
 		form.setTitulo(dto.getTittle());
 		
 		return form;

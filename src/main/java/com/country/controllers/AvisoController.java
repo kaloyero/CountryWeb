@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.SessionUtil;
 import com.country.form.AvisoForm;
 import com.country.hibernate.model.Aviso;
 import com.country.hibernate.model.DataTable;
+import com.country.services.IntegratorManager;
+import com.country.services.NotificationCategoryManager;
 import com.country.services.NotificationManager;
-import com.country.services.NotificationSuscriptionManager;
 
 /**
  * Handles requests for the application home page.
@@ -28,20 +33,28 @@ import com.country.services.NotificationSuscriptionManager;
 public class AvisoController {
 
 	@Autowired
-
 	private NotificationManager notificationManager;
 	
 	@Autowired
-	private NotificationSuscriptionManager notificationSuscriptionManager;
+	private IntegratorManager integratorManager;
+	
+	@Autowired
+	private NotificationCategoryManager notificationCategoryManager;
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
-	public String showForm(ModelMap model) {
+	public String showForm(ModelMap model,HttpServletRequest request) {
 		AvisoForm aviso = new AvisoForm();
 		
 		model.addAttribute("AVISO", aviso);
-		model.addAttribute("categorias", notificationSuscriptionManager.listAll());
+		model.addAttribute("categorias", notificationCategoryManager.listAllCategoriesDescription());
 		
-		return "aviso";
+		if (SessionUtil.isAdminUser(request)){
+			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			return "aviso";
+		}else{
+			return "Propietario/avisoForm";
+		}
+
 	}
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
@@ -56,14 +69,21 @@ public class AvisoController {
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
-	public String load(ModelMap model,@PathVariable int id) throws ParseException {
-	
+	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
+
 		AvisoForm form = notificationManager.findFormById(id);
 		
-		model.addAttribute("categorias", notificationSuscriptionManager.listAll());
+		model.addAttribute("categorias", notificationCategoryManager.listAllCategoriesDescription());
 		model.addAttribute("AVISO", form);
+
 		
-		return "forms/avisoForm";
+		if (SessionUtil.isAdminUser(request)){
+			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			return "forms/avisoForm";
+		} else {
+			return "forms/avisoForm";
+		}
+		
 
 	}
 	

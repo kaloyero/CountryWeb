@@ -23,8 +23,10 @@
 		<div class="_25">
 			<p>
 				<label for="textfield">Sexo</label>
-
-				<form:input path="persona.sexo" class="required" />
+				<form:select path="persona.sexo" multiple="false"> 
+					<form:option value="M">Masculino</form:option>
+					<form:option value="F">Femenino</form:option>
+				</form:select> 
 			</p>
 		</div>
 

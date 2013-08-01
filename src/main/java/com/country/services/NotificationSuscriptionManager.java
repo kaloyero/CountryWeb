@@ -51,4 +51,5 @@ public interface NotificationSuscriptionManager extends AbstractManager<AvisoSus
 	 * @return
 	 */
 	public boolean esUsuarioInscripto(int categoria, int integrante);
+	
 }

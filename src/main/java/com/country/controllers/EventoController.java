@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
@@ -48,7 +48,7 @@ public class EventoController {
 		System.out.println("VALOR "+ request.getRequestURL().toString());
 		
 
-		List<EventoForm> listaEventoForm = new ArrayList();
+		List<EventoForm> listaEventoForm = new ArrayList<EventoForm>();
 
 		for (Evento evento : eventManager.listAll()) {
 			listaEventoForm.add((EventoForm) EventoMapper.getForm(evento,null));
@@ -71,8 +71,6 @@ public class EventoController {
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model,HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
 
 		EventoForm evento = new EventoForm();
 		//Seteo el cupo minimo TODO setear cupo minimo
@@ -80,7 +78,7 @@ public class EventoController {
 		model.addAttribute("EVENTO", evento);
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 			  
-		if (usuarioConectado.equals("Admin")){
+		if (SessionUtil.isAdminUser(request)){
 			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			return "evento";
 		}else{
@@ -93,11 +91,7 @@ public class EventoController {
 			@ModelAttribute(value = "EVENTO") EventoForm form,
 		BindingResult result,HttpServletRequest request)  throws ParseException {
 
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		
-
-		if (usuarioConectado.equals("Admin")){
+		if (SessionUtil.isAdminUser(request)){
 			//En el caso de Admin Setea el nombre del concepto
 			if (((EventoForm) form).getConcepto() != null){
 				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
@@ -113,15 +107,12 @@ public class EventoController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-
 		
 		EventoForm form = eventManager.findFormById(id);
 		model.addAttribute("EVENTO", form);
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 		
-		if (usuarioConectado.equals("Admin")){
+		if (SessionUtil.isAdminUser(request)){
 			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			return "forms/eventoForm";
 		}else{

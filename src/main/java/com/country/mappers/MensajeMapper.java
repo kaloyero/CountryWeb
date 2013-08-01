@@ -1,6 +1,5 @@
 package com.country.mappers;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +28,6 @@ public class MensajeMapper {
 
 		mensaje.setFecha(DateUtil.convertStringToDate((form.getFecha())));
 		mensaje.setFechaCierre(DateUtil.convertStringToDate((form.getFechaCierre())));
-		//TODO aca hay q setearle que tome como integrante al usuario que esta conectado.
 		Integrante integ = new Integrante();
 		integ.setId(form.getIntegrante());
 		mensaje.setIntegrante(integ);
@@ -48,6 +46,7 @@ public class MensajeMapper {
 		form.setId(mensaje.getId());
 		form.setAsunto(mensaje.getAsunto());
 		form.setCategoria(mensaje.getCategoria().getId());
+		form.setCategoriaDescripcion(mensaje.getCategoria().getNombre());
 		form.setEstado(mensaje.getEstado());
 		form.setFecha(DateUtil.convertDateToString(mensaje.getFecha()));
 		form.setFechaCierre(DateUtil.convertDateToString(mensaje.getFechaCierre()));

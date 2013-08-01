@@ -37,10 +37,16 @@
 		<div class="_25">
 			<p>
 				<label for="select">Categoria</label>
-				<form:select path="categoria" multiple="false"> 
-					<form:options items="${categorias}" itemValue="id"
-						itemLabel="nombre" /> 
-				</form:select> 				
+				<c:if test="${MENSAJE.id == 0}">
+					<form:select path="categoria" multiple="false"> 
+						<form:options items="${categorias}" itemValue="id"
+							itemLabel="nombre" /> 
+					</form:select> 				
+				</c:if>
+				<c:if test="${MENSAJE.id != 0}">
+					<form:input path="categoriaDescripcion"  readonly="true"/>
+					<form:hidden path="categoria"  readonly="true"/>
+				</c:if>
 			</p>
 		</div>	
 		<div class="_25">
@@ -90,7 +96,7 @@
 				onClick="translator.onSubmit('mensajeReclamo');"></li>									
 								</c:if>
 			<c:if test="${MENSAJE.id != 0}">
-				<li><input type="button" class="button" value="Guardar!"
+				<li><input type="button" class="button" value="Enviar!"
 				onClick="updateMensaje(${MENSAJE.id})"></li>									
 			</c:if>
 		</ul>

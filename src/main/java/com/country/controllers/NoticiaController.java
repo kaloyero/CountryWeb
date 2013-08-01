@@ -71,7 +71,7 @@ public class NoticiaController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "NOTICIA") NoticiaForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		//newsManager.update(form);
+		newsManager.update(form);
 		return "success";
 		
 

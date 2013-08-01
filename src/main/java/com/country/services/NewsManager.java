@@ -9,4 +9,6 @@ public interface NewsManager extends AbstractManager<Noticia>{
 	
 	public int save(NoticiaForm form);
 	
+	public int update(NoticiaForm form);
+	
 }

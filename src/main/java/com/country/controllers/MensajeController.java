@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.SessionUtil;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Mensaje;
@@ -56,10 +56,9 @@ public class MensajeController {
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		 if (usuarioConectado.equals("Admin")){
-			 return "mensajeForm";
+		
+		if (SessionUtil.isAdminUser(request)){
+			return "mensajeForm";
 		 }else{
 			 return "Propietario/mensajeForm";
 		 }

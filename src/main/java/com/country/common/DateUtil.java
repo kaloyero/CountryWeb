@@ -111,7 +111,23 @@ public class DateUtil {
 
         return new Date(cal.getTimeInMillis());
     }
-	
+
+    /**
+     * Suma X dias a una fecha especifica
+     * 
+     * @param fch
+     * @param dias
+     * @return
+     */
+    public static Date sumarDias(Date fch, int dias) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(fch.getTime());
+        cal.add(Calendar.DATE, dias);
+
+        return new Date(cal.getTimeInMillis());
+    }
+
+    
     /**
      * Devuelve el dia de la semana
      * 
