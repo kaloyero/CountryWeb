@@ -40,12 +40,13 @@
 												</h2>
 												<dl class="article-info">
 													<dt class="article-info-term">Detalles</dt>
-
-
 													<dd class="category-name">
 														<strong>Categoria:</strong> <a href="/ja_wall/default/instagram.html">Actividades</a>
 													</dd>
-
+													<dd class="create">
+														<strong>Costo:</strong>00
+													</dd>
+											
 												</dl>
 
 											</div>
@@ -53,9 +54,9 @@
 
 											<!-- Item content -->
 											<div class="content item-content">
-											   Esta actividad es .....(Descripcion?)
+											 ${actividad.descripcion}
 												<ul>
-													<p>Dias y Horarios:</p>
+													<strong><p>Dias y Horarios:</p></strong>
 													<c:forEach items="${actividad.cronograma}" var="cronograma">
 														<li><a href="#">${cronograma.dia} a las ${cronograma.horario}</a></li>
 

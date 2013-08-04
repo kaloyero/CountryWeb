@@ -16,7 +16,7 @@ var InstructorRender = new Class({
     },
     bindListeners: function(form){
     	var self=this;
-
+    	this.addCloseListenerToAllList(form);
     	form.find("#addPhone").click(function() {
     		var newEntry="";
     		if (form.find("#telNumber").val().trim() != "" ){
@@ -28,7 +28,7 @@ var InstructorRender = new Class({
 	    		newEntry+= " <span class='prefix'>" +form.find("#telPrefijo").val() + "</span><strong> ) </strong>";
 	    		newEntry+=" <span class='tel'>" +form.find("#telNumber").val()+"</span>"	;
 	    		form.find("#listaTelefonos").append("<li><div class='alert success telefono'><span class='hide'>x</span> "+newEntry+"</div></li>");
-	    		self.addCloseListener();
+	    		self.addCloseListener(form);
 	    		form.find("#telCountry").val("");
 	    		form.find("#telState").val("");
 	    		form.find("#telPrefijo").val("");
@@ -52,7 +52,7 @@ var InstructorRender = new Class({
     			newEntry+="<span class='blockDire' >"+ form.find("#dirBlock").val() +" </span>";
     			
     			form.find("#listaDirecciones").append("<li><div class='alert success direccion'><span class='hide'>x</span> "+newEntry+"</div></li>");
-	    		self.addCloseListener();
+	    		self.addCloseListener(form);
 	    		form.find("#dirTown").val("1");
 	    		form.find("#dirStreetName").val("");
 	    		form.find("#dirStreetNum").val("");
@@ -65,11 +65,20 @@ var InstructorRender = new Class({
 		});
     	
     },
-    addCloseListener: function(){
-    	$('#listaTelefonos li:last-child').click(function() {
+    addCloseListener: function(form){
+    	form.find('#listaTelefonos li:last-child').click(function() {
     		$(this).slideUp();					   
     	});
-    	$('#listaDirecciones li:last-child').click(function() {
+    	form.find('#listaDirecciones li:last-child').click(function() {
+    		$(this).slideUp();					   
+    	});
+    	
+    },
+    addCloseListenerToAllList: function(form){
+    	form.find('#listaTelefonos li').click(function() {
+    		$(this).slideUp();					   
+    	});
+    	form.find('#listaDirecciones li').click(function() {
     		$(this).slideUp();					   
     	});
     	
@@ -93,7 +102,8 @@ var InstructorRender = new Class({
 
        	var direcciones = [];
        	$('.direccion').each(function(index) {
-       		direcciones.push({	"StreetName": parseInt($(this).find(".streetNameDire").text()),
+       		console.log("ADSADAS",$(this).find(".streetNameDire").text())
+       		direcciones.push({	"StreetName": $(this).find(".streetNameDire").text(),
        							"StreetNum":  parseInt($(this).find(".streetNumDire").text()),
        							"Floor": 	parseInt($(this).find(".floorDire").text()),
        							"Flat": 	parseInt($(this).find(".flatDire").text()),
@@ -110,7 +120,8 @@ var InstructorRender = new Class({
        	html.push("<input type=hidden id=testa  name='persona.telefonos' value="+telefonosText+">");
        	html.push("<input type=hidden id=testa  name='persona.direcciones' value="+direccionesText+">");
        	form.append(html.join(''));
-    	return form;
+       	console.log("DIRECION",direcciones)
+    	//return form;
     }    		
     
 });

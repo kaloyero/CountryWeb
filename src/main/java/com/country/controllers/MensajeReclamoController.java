@@ -19,11 +19,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.DateUtil;
 import com.country.common.TipoMensajes;
+import com.country.form.EventoForm;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Mensaje;
+import com.country.hibernate.model.MensajeDetalles;
+import com.country.mappers.EventoMapper;
+import com.country.mappers.MensajeMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
+import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
 
 /**
@@ -41,6 +47,10 @@ public class MensajeReclamoController {
 		
 	@Autowired
 	private IntegratorManager integratorManager;
+	
+	@Autowired
+	private MessageDetailManager messageDetailManager;
+
 
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
@@ -150,10 +160,17 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String  showMessageList(ModelMap model) {
-
+		List<MensajeForm> listaReclamos = new ArrayList();
 		
-		List<Mensaje> mensajes =messageManager.listAll();
-		model.addAttribute("mensajes", mensajes);
+		for (Mensaje mensaje : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
+			 MensajeForm mensajeDto=(MensajeForm) MensajeMapper.getForm(mensaje);
+			 mensajeDto.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
+			 MensajeDetalles mensa=messageDetailManager.getFirstDetailMessage(mensajeDto.getId());
+			 mensajeDto.setDescripcion(mensa.getMensajeDetalle());
+			 listaReclamos.add(mensajeDto);
+		}
+		
+		model.addAttribute("mensajes", listaReclamos);
 		
 		
 		return "Propietario/listadoMensajes";	

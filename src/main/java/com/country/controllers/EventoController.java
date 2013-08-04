@@ -52,9 +52,12 @@ public class EventoController {
 		
 
 		List<EventoForm> listaEventoForm = new ArrayList();
-
+		
 		for (Evento evento : eventManager.listAll()) {
-			listaEventoForm.add((EventoForm) EventoMapper.getForm(evento,null));
+			 EventoForm eventoDto=(EventoForm) EventoMapper.getForm(evento,null);
+			 List test =eventIntegratorManager.findAllIntegrantorFormByEventoId(eventoDto.getId());
+			 eventoDto.setCantidadUnidos(test.size());
+			listaEventoForm.add(eventoDto);
 		}
 		
 		

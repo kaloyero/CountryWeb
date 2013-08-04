@@ -29,16 +29,16 @@
 
 
 					<dd class="category-name">
-						<strong>Category:</strong>${mensaje.categoria.nombre}
+						<strong>Categoria:</strong>${mensaje.categoriaNombre}
 					</dd>
 
 					<dd class="create">
-						<strong>Created:</strong> >${mensaje.fecha}
+						<strong>Creado:</strong> ${mensaje.fecha}
 					</dd>
 
 					<dd class="create">
-						<strong>por :</strong> ${mensaje.integrante.persona.apellido} 
-						<strong>unidad :</strong> ${mensaje.integrante.unidad.code} 
+						<strong>Por :</strong> ${mensaje.integranteNombre} ${mensaje.integranteApellido}  
+						<strong>Unidad :</strong> ${mensaje.integranteUnidad} 
 						
 					</dd>
 
@@ -49,7 +49,7 @@
 			<!-- //Item header -->
 
 			<!-- Item content -->
-			<div class="content item-content">${mensa.asunto}</div>
+			<div class="content item-content">${mensaje.descripcion}</div>
 			<!-- //Item content -->
 
 			<!-- Item footer -->

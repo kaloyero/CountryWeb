@@ -71,7 +71,6 @@ var ComponentTranslator = new Class(
 				serverManager.getAll({
 					object : objectType,
 					onSuccess : function(data) {
-						console.log("Data",data)
 						canvasController.onFinishShow(type,data);
 						//self.onShowed(objectType, data);
 					}

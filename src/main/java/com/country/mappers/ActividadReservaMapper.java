@@ -13,6 +13,7 @@ public class ActividadReservaMapper {
 		
 		ActividadReservaForm form = new ActividadReservaForm();
 		form.setNombre(actividad.getNombre());
+		form.setDescripcion(actividad.getDescripcion());
 		
 		
 		for (Cronograma cronograma : actividad.getCronogramas()) {

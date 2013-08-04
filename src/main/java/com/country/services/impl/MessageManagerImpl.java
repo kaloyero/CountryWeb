@@ -47,6 +47,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		Mensaje dto = findById(id);
 
 		MensajeForm form = (MensajeForm) MensajeMapper.getForm(dto);
+		form.setDetalles(MensajeMapper.getDetalles(dto.getDetalles()));
 
 		return form;
 	}

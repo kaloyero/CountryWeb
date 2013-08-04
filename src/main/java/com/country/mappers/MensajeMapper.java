@@ -48,28 +48,28 @@ public class MensajeMapper {
 		form.setId(mensaje.getId());
 		form.setAsunto(mensaje.getAsunto());
 		form.setCategoria(mensaje.getCategoria().getId());
+		form.setCategoriaNombre(mensaje.getCategoria().getNombre());
 		form.setEstado(mensaje.getEstado());
 		form.setFecha(DateUtil.convertDateToString(mensaje.getFecha()));
 		form.setFechaCierre(DateUtil.convertDateToString(mensaje.getFechaCierre()));
-		//OJO ,el integrante puede ser nulo
+		//TODO ,el integrante puede ser nulo??
 		if (mensaje.getIntegrante() != null){
 			form.setIntegrante(mensaje.getIntegrante().getId());
-     		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
-								mensaje.getIntegrante().getPersona().getNombre() + " " +
-								mensaje.getIntegrante().getPersona().getApellido() + " " +
-								mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
-								mensaje.getIntegrante().getPersona().getNroDoc() );
+     		form.setIntegranteNombre(mensaje.getIntegrante().getPersona().getNombre());
+     		form.setIntegranteApellido(mensaje.getIntegrante().getPersona().getApellido());
+
+     		form.setIntegranteUnidad(mensaje.getIntegrante().getUnidad().getCode());
 		}
 		form.setResolucion(mensaje.getResolucion());
 
 		form.setTipo(mensaje.getTipo());
-		form.setDetalles(getDetalles(mensaje.getDetalles()));
+		//form.setDetalles(getDetalles(mensaje.getDetalles()));
 		
 		return form;
 	
 	}
 
-	private static Map<Integer, String> getDetalles(List<MensajeDetalles> detalles) {
+	public static Map<Integer, String> getDetalles(List<MensajeDetalles> detalles) {
 		Map<Integer, String> lista = new HashMap<Integer, String>();
 		for (MensajeDetalles msjDet : detalles) {
 			lista.put(msjDet.getId(), msjDet.getMensajeDetalle());

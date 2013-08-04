@@ -11,28 +11,17 @@
 								
 <c:forEach items="${eventos}" var="evento">
 
-	
-<div class="tileContent item instagram item-hot masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 200px;">
+<div class="tileContent item hi-tech  no-image masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 228px;">
 <div class="inner item-inner clearfix">
 	
 	
-	<!-- Item Img -->
-	<div class="item-image">
-					<div class="img-intro-left">
-						<a href="/ja_wall/default/instagram/17975-instagram-id-339270252753126384-1323391.html" title="Nombre Evento" class="item-link">
-							<div class="img_caption none" style="float: none; width: 209px;"><img class="caption" title="Nombre Evento" src="../resources/img/propietarios/events-icon-small.png" alt="Nombre Evento"><p class="img_caption">${evento.nombre}</p></div>
-							<span>&nbsp;</span>
-				<span class="item-pin">&nbsp;</span>
-			</a>
-					</div>
-		</div>
-	<!-- //Item Img -->
+
 
 	<div class="item-main clearfix">
 		<!-- Item header -->
 		<div class="header item-header clearfix">
 					<h2>
-									<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
+					<img src="../resources/img/propietarios/events-icon-small.png" alt="Evento" height="42" width="42">				<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
 					</a>
 						</h2>
 		
@@ -66,7 +55,7 @@
 		<div class="footer item-footer clearfix">
 					<dl class="article-hit">
 						<dd class="hits">
-							<strong>Unidos:</strong> 0 
+							<strong>Unidos:</strong> ${evento.cantidadUnidos} 
 						</dd>
 						<dd class="hits">
 							<c:if test="${evento.integrante == null}">
