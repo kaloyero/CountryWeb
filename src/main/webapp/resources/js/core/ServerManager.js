@@ -73,6 +73,7 @@ var ServerManager = new Class({
         this.services['noticiaCategoria']["save"]="/CountryWeb/noticiaCategoria/create/";
         this.services['avisoCategoria']["load"]="/CountryWeb/avisoCategoria/load/";
         this.services['avisoCategoria']["save"]="/CountryWeb/avisoCategoria/create/";
+        this.services['avisoCategoria']["lista"]="/CountryWeb/avisoCategoria/lista";
         this.services['dashboard']["lista"]="/CountryWeb/dashboard/lista/";
         this.services['mensajesPropietario']["lista"]="/CountryWeb/mensaje/listaPropietario";
         this.services['meReclamos']["lista"]="/CountryWeb/mensaje/listaMisMensajes";

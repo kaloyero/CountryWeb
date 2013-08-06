@@ -7,19 +7,31 @@
 	<fieldset>
 			<legend>Configuracion</legend>
 	
-		<div class="_50">
+		<div class="_25">
 			<p>
-				<label for="textfield">Raza</label>
+				<label for="textfield">Vacuna</label>
 				<form:input path="nombre" class="required" />
 				<form:hidden path="id" />
 			</p>
 		</div>
-		<div class="_50">
+		<div class="_25">
 			<p>
 				<label for="textfield">Especie</label>
 				<form:select path="especie" multiple="false">
 					<form:options items="${especies}" itemValue="id" itemLabel="nombre" />
 				</form:select>
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Vigencia (en meses)</label>
+				<form:input path="vigencia" class="required"  maxlength="4" />
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Obligatorios</label>
+				<form:checkbox path="obligatoria" value="true" />
 			</p>
 		</div>
 		

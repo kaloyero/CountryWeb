@@ -61,6 +61,7 @@
    <script src="../resources/js/Uiclasses/Propietario/ResumenRender.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/ReclamoRender.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/EventoRender.js"></script>
+   <script src="../resources/js/Uiclasses/Propietario/AvisoRender.js"></script>
    
   
   

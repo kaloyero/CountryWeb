@@ -29,19 +29,19 @@ public class Mensaje implements Serializable {
 	@Column(name = "IdMensaje", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name = "Fecha")
+	@Column(name = "Fecha",updatable=false)
 	private Date fecha;
 	
 	@Column(name = "FechaCierre")
 	private Date fechaCierre;
 	
-	@Column(name = "Asunto")
+	@Column(name = "Asunto",updatable=false)
 	private String asunto;
 	
 	@Column(name = "Resolucion")
 	private String resolucion;
 	
-	@Column(name = "Estado")
+	@Column(name = "Estado",updatable=false)
 	private String estado;
 	
 	@Column(name = "TipoMensaje")
@@ -52,7 +52,7 @@ public class Mensaje implements Serializable {
 	private MensajeCategorias categoria;
     
     @OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante")	
+	@JoinColumn(name="IdIntegrante",updatable=false)	
 	private Integrante integrante;
     
 	@OneToMany(fetch=FetchType.LAZY)

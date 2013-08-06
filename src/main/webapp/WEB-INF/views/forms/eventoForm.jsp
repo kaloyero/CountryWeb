@@ -38,7 +38,7 @@
 		<div class="_20">
 			<p>
 				<label for="textfield">Cupo Mínimo: </label>
-				<form:input path="cupo" class="required datepicker" />
+				<form:input path="cupo" class="required" />
 			</p>
 		</div>
 		<div class="_20">

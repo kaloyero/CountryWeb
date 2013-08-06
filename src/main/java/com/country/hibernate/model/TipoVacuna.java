@@ -33,8 +33,20 @@ public class TipoVacuna implements Serializable{
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdEspecie",updatable = true, insertable = true)	
 	private Especie especie;
+
+	@Column(name = "Obligatoria")
+	private String obligatorio;
+
 	
 	
+	public String getObligatorio() {
+		return obligatorio;
+	}
+
+	public void setObligatorio(String obligatorio) {
+		this.obligatorio = obligatorio;
+	}
+
 	public int getVigencia() {
 		return vigencia;
 	}

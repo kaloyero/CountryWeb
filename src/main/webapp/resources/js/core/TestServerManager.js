@@ -9,6 +9,7 @@ var ServerManager = new Class({
         this.services['actividad']={};
         this.services['recurso']={};
         this.services['resumen']={};
+        this.services['aviso']={};
         this.services['mensajeReclamo']={};
         this.services['recursoReserva']={};
         this.services['evento']={};

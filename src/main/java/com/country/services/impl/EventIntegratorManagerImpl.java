@@ -61,11 +61,17 @@ public class EventIntegratorManagerImpl extends AbstractManagerImpl<EventoIntegr
 	@Transactional
 	public boolean inscribirseEvento(int evento, int integrante) {
 		boolean inscripcion = true;
-		
-		EventoIntegrante inscrip = new EventoIntegrante();
-		inscrip.setEvento(evento);
-		inscrip.setIntegrante(integrante);
-		eventIntegratorDao.save(inscrip);
+
+		if (esUsuarioInscripto(evento,integrante)){
+			inscripcion = false;
+		} else {
+			//Si no esta inscripto inscribe al usuario
+			EventoIntegrante inscrip = new EventoIntegrante();
+			inscrip.setEvento(evento);
+			inscrip.setIntegrante(integrante);
+			eventIntegratorDao.save(inscrip);
+
+		}
 		
 		return inscripcion;
 	}
@@ -78,4 +84,18 @@ public class EventIntegratorManagerImpl extends AbstractManagerImpl<EventoIntegr
 		
 		return desinscripcion;
 	}
+	
+	@Transactional
+	public boolean esUsuarioInscripto(int evento, int integrante) {
+		boolean inscripto = true;
+		
+		EventoIntegrante dto = eventIntegratorDao.findByEventUser(evento, integrante);
+		if (dto == null  || dto.getId() == 0  ){
+			//el usuario no esta inscripto
+			inscripto = false;
+		}
+		
+		return inscripto;
+	}
+	
 }

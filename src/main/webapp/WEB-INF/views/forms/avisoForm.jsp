@@ -6,6 +6,20 @@
 
 <fieldset>
 		<legend>Aviso</legend>
+		<div class="_100">
+			<p>
+				<label for="textfield">Publicado por: </label>
+				<c:if test="${AVISO.id == 0}">
+					<form:select path="integrante" multiple="false"> 
+						<form:options items="${integrantes}" itemValue="id"
+							itemLabel="nombre" /> 
+					</form:select> 		
+				</c:if>
+				<c:if test="${AVISO.id != 0}">
+					<form:input path="integranteNombre" class="required" readonly="true"/>				
+				</c:if>
+			</p>
+		</div>
 		<div class="_50">
 			<p>
 				<label for="textfield">titulo</label>
@@ -16,29 +30,35 @@
 		<div class="_25">
 			<p>
 				<label for="select">Categoria</label>
-				<form:select path="categoria" multiple="false"> 
-					<form:options items="${categorias}" itemValue="id"
-						itemLabel="nombre" /> 
-				</form:select> 				
+				<c:if test="${AVISO.id == 0}">
+					<form:select path="categoria" multiple="false" >  
+						<form:options items="${categorias}" itemValue="id"
+							itemLabel="nombre" /> 
+					</form:select> 				
+				</c:if>
+				<c:if test="${AVISO.id != 0}">
+					<form:input path="categoriaDescription" class="required" readonly="true"/>				
+				</c:if>
 			</p>
 		</div>
 		<div class="_25">
-			<p>
-				<label for="textfield">Fecha Publicacion</label>
-				<form:input path="fecha" class="required datepicker" />
-			</p>
 		</div>
-		<div class="_25">
-			<p>
-				<label for="textfield">Fecha Cierre</label>
-				<form:input path="fechaCierre" class="required datepicker" />
-			</p>
-		</div>
-		<div class="_25">
-		
-		</div>
-		
-		
+		<c:if test="${AVISO.id != 0}">
+			<div class="_25">
+				<p>
+					<label for="textfield">Fecha Publicacion</label>
+					<form:input path="fecha" class="required" readonly="true"/>
+				</p>
+			</div>
+			<div class="_25">
+				<p>
+					<label for="textfield">Fecha Cierre</label>
+					<form:input path="fechaCierre" class="required" readonly="true"/>
+				</p>
+			</div>
+			<div class="_50">
+			</div>
+		</c:if>
 		<div class="_100">
 			<p>
 				<label for="textarea">Encabezado</label>

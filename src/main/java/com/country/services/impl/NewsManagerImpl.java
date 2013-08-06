@@ -56,6 +56,20 @@ public class NewsManagerImpl extends AbstractManagerImpl<Noticia> implements
 		return dto.getId();
 	}
 	
+	@Transactional
+	public int update(NoticiaForm form) {
+		Noticia dto = NoticiaMapper.getNoticia(form);
+		
+		getDao().update(dto);
+
+		// Guardo los adjuntos TODO ver que onda
+		for (NoticiaAdjunto adjunto : dto.getAdjuntos()) {
+			adjunto.setNoticia(dto.getId());
+			newsAttachManager.save(adjunto);
+		}
+
+		return dto.getId();
+	}
 	
 
 }

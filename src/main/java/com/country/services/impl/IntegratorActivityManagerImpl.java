@@ -103,6 +103,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 	@Transactional
 	public void inscribirse(int integrante, int actividad, String fechaIni,
 			String fechaFin) {
+
 		
 		IntegranteActividadForm form = new IntegranteActividadForm();
 		form.setActividad(actividad);
@@ -110,14 +111,33 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		form.setFechaIni(fechaIni);
 		form.setFechaFin(fechaFin);
 		
-		inscribirse(form);
+			inscribirse(form);	
+		
 	}
 
 	@Transactional
 	public void inscribirse(IntegranteActividadForm form) {
 		IntegranteActividades dto = IntegranteActividadMapper.getIntegranteActividad(form);
+
+		if (esUsuarioInscripto(form.getActividad(),form.getIntegrante())){
+			
+		} else  {
+			integratorActivityDao.save(dto);	
+		}
 		
-		integratorActivityDao.save(dto);
 	}
-	
+
+	@Transactional
+	public boolean esUsuarioInscripto(int actividad, int integrante) {
+		boolean inscripto = true;
+		
+		IntegranteActividades dto = integratorActivityDao.findByActivityUser(actividad, integrante);
+		if (dto == null  || dto.getId() == 0  ){
+			//el usuario no esta inscripto
+			inscripto = false;
+		}
+		
+		return inscripto;
+	}
+
 }

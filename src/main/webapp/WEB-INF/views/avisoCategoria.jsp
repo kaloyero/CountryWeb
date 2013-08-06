@@ -43,7 +43,7 @@
 					</table>
 				</div>
 				<div id="new" class="tab-content">
-					<%@include file="forms/tipoForm.jsp" %>
+					<%@include file="forms/avisoCategoriaForm.jsp" %>
 
 				</div>
 			</div>

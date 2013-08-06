@@ -20,12 +20,14 @@ var EventoRender = new Class(
 			onFinishLoading : function(dataToAppend) {
 				this.cleanCanvas();
 				$("#content").append(dataToAppend);
-				jQuery(".corner-stamp").load('../resources/static/corner.html');
 				$("body").removeClass();
 
 				$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
-				createEffect();
-				this.bindEvents();
+				jQuery(".corner-stamp").load('../resources/static/corner.html',function(){
+    				createEffect();
+    				this.bindEvents();
+
+    			});
 
 			},
 			bindEvents : function() {

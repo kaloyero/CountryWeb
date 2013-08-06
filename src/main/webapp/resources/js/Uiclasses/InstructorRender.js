@@ -102,15 +102,17 @@ var InstructorRender = new Class({
 
        	var direcciones = [];
        	$('.direccion').each(function(index) {
-       		console.log("ADSADAS",$(this).find(".streetNameDire").text())
+       		
+
        		direcciones.push({	"StreetName": $(this).find(".streetNameDire").text(),
-       							"StreetNum":  parseInt($(this).find(".streetNumDire").text()),
-       							"Floor": 	parseInt($(this).find(".floorDire").text()),
-       							"Flat": 	parseInt($(this).find(".flatDire").text()),
-       							"Tower": 	parseInt($(this).find(".towerDire").text()),
-       							"Block": 	parseInt($(this).find(".blockDire").text()),
+				       			"Floor": 	parseInt($(this).find(".floorDire").text()),
+				       			"StreetName": "CERV" + streetName.toString() ,
+				       			"Flat": 	$(this).find(".flatDire").text().toString(),
+       							"Tower": 	$(this).find(".towerDire").text(),
+       							"Block": 	$(this).find(".blockDire").text(),
        							"IdDir": 	parseInt($(this).find(".idDire").text()),
-       							"IdTownDir":  parseInt($(this).find(".idTownDire").text())});
+       							"IdTownDir":  parseInt($(this).find(".idTownDire").text())
+       							});
        		
     	});
 
@@ -121,7 +123,7 @@ var InstructorRender = new Class({
        	html.push("<input type=hidden id=testa  name='persona.direcciones' value="+direccionesText+">");
        	form.append(html.join(''));
        	console.log("DIRECION",direcciones)
-    	//return form;
+    	return form;
     }    		
     
 });

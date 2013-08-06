@@ -4,7 +4,7 @@ var DashBoardender = new Class({
         this.name = name;
     },
     getHtml: function(data){
-        return "../resources/static/dashboard.html"
+        //return "../resources/static/dashboard.html"
     },
     
     populateData: function(dataToAppend){
@@ -21,14 +21,9 @@ var DashBoardender = new Class({
     onFinishLoading : function(coleccion){
     	for (tipo in coleccion){
     		templateManager.add(tipo,coleccion[tipo])
-    		//console.log("Tipo",tipo)
-    		//console.log("OBJECT",coleccion[tipo])
     	}
     	jQuery(".corner-stamp").load('../resources/static/corner.html');
-    	//$('#dashboardNoImage').tmpl(data2).appendTo('#masonry-container');
-    	//$('#dashboardNews').tmpl(data3).appendTo('#masonry-container');
-    	//$('#dashboardImage').tmpl(data).appendTo('#masonry-container');
-    	//$("#masonry-container").append(data);
+
     	createEffect();
 
     }

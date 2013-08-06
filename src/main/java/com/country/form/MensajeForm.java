@@ -13,6 +13,7 @@ public class MensajeForm extends Form  {
 	private String fechaCierre;
 	private String resolucion;
 	private int categoria;
+	private String categoriaDescripcion;
 	private int integrante;
 	private String respuesta;
 	private String categoriaNombre;
@@ -25,7 +26,12 @@ public class MensajeForm extends Form  {
 	
 	
 	
-	
+	public String getCategoriaDescripcion() {
+		return categoriaDescripcion;
+	}
+	public void setCategoriaDescripcion(String categoriaDescripcion) {
+		this.categoriaDescripcion = categoriaDescripcion;
+	}
 	public Map<Integer, String> getDetalles() {
 		return detalles;
 	}

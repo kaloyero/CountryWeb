@@ -42,4 +42,14 @@ public interface NotificationSuscriptionManager extends AbstractManager<AvisoSus
 	 * @return
 	 */
 	boolean desinscribirseAviso(int aviso, int integrante);
+	
+	/**
+	 * Este servicio devielve TRUE si el usuario esta inscripto o FALSE si no lo esta.
+	 * 
+	 * @param categoria
+	 * @param integrante
+	 * @return
+	 */
+	public boolean esUsuarioInscripto(int categoria, int integrante);
+	
 }

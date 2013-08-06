@@ -13,8 +13,10 @@ public class EventoMapper {
 		
 		Evento evento = new Evento();
 		evento.setId(((EventoForm) form).getId());
+		
 		if ((((EventoForm) form)).getConcepto() != null) {
 			((EventoForm) form).getConcepto().setFechaComienzo(((EventoForm) form).getFecha());
+			((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
 			evento.setConcepto(ConceptoMapper.getConcepto(((EventoForm) form).getConcepto()));
 		}
 		

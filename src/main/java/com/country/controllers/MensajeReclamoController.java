@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.DateUtil;
+import com.country.common.SessionUtil;
 import com.country.common.TipoMensajes;
 import com.country.form.EventoForm;
 import com.country.form.MensajeForm;
@@ -55,9 +56,6 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model,HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		
 		MensajeForm mensaje = new MensajeForm();
 
 		//Setea como la fecha por defecto la fecha actual.
@@ -68,10 +66,11 @@ public class MensajeReclamoController {
 		
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
-		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		
 		
-		 if (usuarioConectado.equals("Admin")){
+		
+		 if (SessionUtil.isAdminUser(request)){
+			 model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			 return "mensajeReclamo";
 		 }else{
 			 return "Propietario/mensajeForm";
@@ -99,17 +98,13 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		
-		
 		MensajeForm form = messageManager.findFormById(id);
 
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("MENSAJE", form);
 		
 		
-		 if (usuarioConectado.equals("Admin")){
+		 if (SessionUtil.isAdminUser(request)){
 			 return "forms/mensajeReclamoForm";
 		 }else{
 			 return "forms/mensajeReclamoForm";
@@ -122,12 +117,8 @@ public class MensajeReclamoController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
 			BindingResult result,HttpServletRequest request) throws ParseException {
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-
-		
 		//TODO ver de que forma en el servicio puedo averiguar si es Admin o propietario
-		 if (usuarioConectado.equals("Admin")){
+		if (SessionUtil.isAdminUser(request)){
 			 form.setAccion(TipoMensajes.STATUS_OUT);
 		 }else{
 			 form.setAccion(TipoMensajes.STATUS_IN);

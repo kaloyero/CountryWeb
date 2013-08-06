@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.Constants;
 import com.country.common.GenericDao;
 import com.country.form.InstructorForm;
 import com.country.form.TipoForm;
@@ -39,6 +40,9 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 	@Transactional
 	public void save(InstructorForm form) {
 		Instructor dto = InstructorMapper.getInstructor(form);
+		
+		//Seteo que es un instructor
+		dto.getPersona().setTipo(Constants.PERSONA_INSTRUCTOR);
 		
 		instructorDao.save(dto);
 		//Inserta telefonos
@@ -75,7 +79,7 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 		//Modifico la lista de telefonos
 		telephoneManager.updateList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		//Modifico la lista de direcciones
-		telephoneManager.updateList(form.getPersona().getDirecciones(),dto.getPersona().getId());
+		addressManager.updateList(form.getPersona().getDirecciones(),dto.getPersona().getId());
 		
 	}
 

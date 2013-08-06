@@ -1,14 +1,20 @@
 package com.country.mappers;
 
 
+import com.country.common.Constants;
+import com.country.common.DateUtil;
+import com.country.form.AvisoCategoriaForm;
 import com.country.form.Form;
 import com.country.form.TipoForm;
+import com.country.form.TipoInfraccionForm;
 import com.country.form.TipoRazaForm;
+import com.country.form.TipoVacunaForm;
 import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.Especie;
 import com.country.hibernate.model.MensajeCategorias;
 import com.country.hibernate.model.NoticiaCategorias;
 import com.country.hibernate.model.Raza;
+import com.country.hibernate.model.Tarifa;
 import com.country.hibernate.model.TipoAutorizacion;
 import com.country.hibernate.model.TipoDocumento;
 import com.country.hibernate.model.TipoInfraccion;
@@ -86,17 +92,6 @@ public class TipoMapper {
 			return type;
 		
 	}
-
-	public static AvisoCategoria getAvisoCategoria(TipoForm form)
-			throws ParseException {
-		
-			AvisoCategoria type = new AvisoCategoria();
-			type.setId(form.getId());
-			type.setNombre(form.getNombre());
-			
-			return type;
-		
-	}
 	
 	public static TipoPagos getTipoPagos(TipoForm form)
 			throws ParseException {
@@ -118,12 +113,21 @@ public class TipoMapper {
 	
 	}	
 	
-	public static TipoVacuna getTipoVacuna(TipoForm form)
+	public static TipoVacuna getTipoVacuna(TipoVacunaForm form)
 			throws ParseException {
 		
 		TipoVacuna type = new TipoVacuna();
 		type.setId(form.getId());
 		type.setNombre(form.getNombre());
+		type.setVigencia(form.getVigencia());
+		if (form.isObligatoria()){
+			type.setObligatorio(Constants.TRUE);
+		} else {
+			type.setObligatorio(Constants.FALSE);
+		}
+		Especie especie = new Especie();
+		especie.setId(form.getEspecie());
+		type.setEspecie(especie);
 		return type;
 	
 	}
@@ -158,16 +162,40 @@ public class TipoMapper {
 	
 	}
 
-	public static TipoInfraccion getTipoInfraccion(TipoForm form)
+	public static TipoInfraccion getTipoInfraccion(TipoInfraccionForm form)
 			throws ParseException {
 		
 		TipoInfraccion type = new TipoInfraccion();
 		type.setId(form.getId());
 		type.setNombre(form.getNombre());
+		//seteo la fecha del concepto
+		form.getConcepto().setFechaComienzo(form.getFechaIni());
+		form.getConcepto().setNombre(form.getNombre());
+		type.setConcepto(ConceptoMapper.getConcepto(form.getConcepto()));
+		type.setFechaIni(DateUtil.convertStringToDate(form.getFechaIni()));
+		type.setFechaFin(DateUtil.convertStringToDate(form.getFechaFin()));
 		return type;
 	
 	}
 
+	public static AvisoCategoria getAvisoCategoria(AvisoCategoriaForm form)
+			throws ParseException {
+		
+		AvisoCategoria type = new AvisoCategoria();
+		type.setId(form.getId());
+		type.setNombre(form.getNombre());
+		//seteo la fecha del concepto
+		form.getConcepto().setFechaComienzo(form.getFechaIni());
+		form.getConcepto().setNombre(form.getNombre());
+		type.setConcepto(ConceptoMapper.getConcepto(form.getConcepto()));
+		type.setDateIni(DateUtil.convertStringToDate(form.getFechaIni()));
+		type.setDateEnd(DateUtil.convertStringToDate(form.getFechaFin()));
+		type.setPublishDays(String.valueOf(form.getDiasPublicacion()));
+		return type;
+	
+	}
+
+	
 	public static TipoForm getForm(TipoAutorizacion tipo)
 		throws ParseException {
 	
@@ -198,16 +226,6 @@ public class TipoMapper {
 		
 		}
 
-	public static TipoForm getForm(AvisoCategoria tipo)
-			throws ParseException {
-		
-			TipoForm form = new TipoForm();
-			form.setId(tipo.getId());
-			form.setNombre(tipo.getNombre());
-			return form;
-		
-	}
-	
 	public static TipoForm getForm(TipoDocumento tipo)
 			throws ParseException {
 		
@@ -228,16 +246,36 @@ public class TipoMapper {
 	
 	}
 
-	public static TipoForm getForm(TipoInfraccion tipo)
+	public static TipoInfraccionForm getForm(TipoInfraccion tipo,Tarifa tarifa)
 			throws ParseException {
 		
-		TipoForm form = new TipoForm();
+		TipoInfraccionForm form = new TipoInfraccionForm();
 		form.setId(tipo.getId());
 		form.setNombre(tipo.getNombre());
+		form.setConcepto(ConceptoMapper.getForm(tipo.getConcepto(), tarifa));
+		form.setFechaIni(DateUtil.convertDateToString(tipo.getFechaIni()));
+		form.setFechaFin(DateUtil.convertDateToString(tipo.getFechaFin()));
+		
 		return form;
 	
 	}
 
+	public static AvisoCategoriaForm getForm(AvisoCategoria tipo,Tarifa tarifa)
+			throws ParseException {
+		
+		AvisoCategoriaForm form = new AvisoCategoriaForm();
+		form.setId(tipo.getId());
+		form.setNombre(tipo.getNombre());
+		form.setConcepto(ConceptoMapper.getForm(tipo.getConcepto(), tarifa));
+		form.setFechaIni(DateUtil.convertDateToString(tipo.getDateIni()));
+		form.setFechaFin(DateUtil.convertDateToString(tipo.getDateEnd()));
+		form.setDiasPublicacion(Integer.parseInt(tipo.getPublishDays()));
+		
+		return form;
+	
+	}
+
+	
 	public static TipoRazaForm getForm(Raza tipo)
 			throws ParseException {
 		
@@ -259,12 +297,19 @@ public class TipoMapper {
 	
 	}
 	
-	public static TipoForm getForm(TipoVacuna tipo)
+	public static TipoVacunaForm getForm(TipoVacuna tipo)
 			throws ParseException {
 		
-		TipoForm form = new TipoForm();
+		TipoVacunaForm form = new TipoVacunaForm();
 		form.setId(tipo.getId());
+		if (Constants.TRUE.equals(tipo.getObligatorio())){
+			form.setObligatoria(true);	
+		} else {
+			form.setObligatoria(false);
+		}
+		form.setVigencia(tipo.getVigencia());
 		form.setNombre(tipo.getNombre());
+		form.setEspecie(tipo.getEspecie().getId());
 		return form;
 	
 	}

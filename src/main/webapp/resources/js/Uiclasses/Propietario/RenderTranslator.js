@@ -31,6 +31,9 @@ var RenderTranslator = new Class({
     	case "resumen":
     		return resumenRender;
     		break;
+    	case "aviso":
+    		return avisoRender;
+    		break;
 	}
     	
     }

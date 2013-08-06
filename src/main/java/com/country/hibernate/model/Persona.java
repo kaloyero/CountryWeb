@@ -37,6 +37,9 @@ public class Persona implements Serializable {
 	@Column(name = "Sexo", nullable = false)
 	private String sexo;
 	
+	@Column(name = "Tipo", updatable = false)
+	private String tipo;
+
 	@Column(name = "NroDocumento")
 	private String nroDoc;
 	
@@ -112,5 +115,14 @@ public class Persona implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	
 	
 }

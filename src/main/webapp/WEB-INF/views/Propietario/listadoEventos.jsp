@@ -5,9 +5,11 @@
 <%@ page import="java.util.Date" %>
 
 
-<div class="inner content-inner clearfix">
+<div class="inner content-inner clearfix"><strong>Filtrar por : </strong><a href="#" title="">Todos | </a><a href="#" title="">Mis Eventos Creados  | </a><a href="#" title="">Eventos donde me anote  |</a>
 							<div id="masonry-container" class="clearfix masonry"
-								style="position: relative; height: 1592px;">
+								style="position: relative; height: 1592px;"><div class="corner-stamp" style="width: 227px;">
+									
+								</div>
 								
 <c:forEach items="${eventos}" var="evento">
 
@@ -31,17 +33,21 @@
 		
 						<dd class="category-name">
 		
-						<dd class="create">
 						<c:if test="${evento.cupo > 1}">
-							<strong>Se necesitan:</strong> ${evento.cupo} personas
-						<strong>Dia se la semana:</strong>: ${evento.diaSemana} 
+						<dd class="create">
+							<strong>Se necesitan:</strong> ${evento.cupo} personas</dd>
+							<dd class="create">
+						<strong>Dia se la semana:</strong>: ${evento.diaSemana} </dd>
 						</c:if>
 						<c:if test="${evento.cupo <= 1}">
-							<strong>Se realiza el:</strong> ${evento.fecha}						
+						<dd class="create">
+							<strong>Se realiza el:</strong> ${evento.fecha}	</dd>					
 						</c:if>
-					<strong>Horario comienzo:</strong> ${evento.hourIni}
-					<strong>Duracion:</strong> ${evento.duracion} horas
-					</dd>
+						<dd class="create">
+					<strong>Horario :</strong> ${evento.hourIni}</dd>
+					
+					<dd class="create">
+					<strong>Duracion:</strong> ${evento.duracion} horas</dd>
 					</dl>
 			
 		</div>
@@ -80,9 +86,7 @@
 	</div>
 </div>
 </c:forEach>
-<div class="corner-stamp" style="width: 227px;">
-									
-								</div>
+
 								
 								
 							</div>

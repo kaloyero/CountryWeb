@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.TipoForm;
+import com.country.common.DateUtil;
+import com.country.form.AvisoCategoriaForm;
+import com.country.form.TipoInfraccionForm;
 import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Evento;
+import com.country.hibernate.model.TipoInfraccion;
 import com.country.mappers.TipoMapper;
 import com.country.services.NotificationCategoryManager;
 
@@ -32,7 +38,7 @@ public class AvisoCategoriaController {
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		TipoForm tipo = new TipoForm();
+		AvisoCategoriaForm tipo = new AvisoCategoriaForm();
 		model.addAttribute("TIPO", tipo);
 		model.addAttribute("accion", "avisoCategoria");
 		
@@ -41,43 +47,46 @@ public class AvisoCategoriaController {
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "TIPO") TipoForm tipoForm,
+			@ModelAttribute(value = "TIPO") AvisoCategoriaForm form,
 			BindingResult result) throws ParseException {
 		
-		notificationCategoryManager.save(TipoMapper.getAvisoCategoria(tipoForm));
+		form.setFechaIni(DateUtil.getStringToday());
+		
+		notificationCategoryManager.save(form);
 				return "success";
 		
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
-	public String load(ModelMap model,@PathVariable int id) throws ParseException {
+	public String load(ModelMap model,@PathVariable int id,HttpServletRequest request) throws ParseException {
 	
-		AvisoCategoria type = notificationCategoryManager.findById(id);
-		TipoForm form = (TipoForm) TipoMapper.getForm(type);
+		AvisoCategoriaForm form = notificationCategoryManager.findFormById(id);
 		model.addAttribute("TIPO", form);
 
-		return "forms/tipoForm";
+		return "forms/avisoCategoriaForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "TIPO") TipoForm tipoForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "TIPO") AvisoCategoriaForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		notificationCategoryManager.update(TipoMapper.getAvisoCategoria(tipoForm));
+		notificationCategoryManager.update(TipoMapper.getAvisoCategoria(form));
 		return "success";
 		
 
 	}
+
+	
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
-	public  @ResponseBody DataTable getUserInJSON()  {
+	public  @ResponseBody DataTable getUserInJSON(HttpServletRequest request)  {
            
            DataTable dataTable=new DataTable();
 
 			for (AvisoCategoria tipo : notificationCategoryManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
-				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getNombre());
+				row.add(tipo.getConcepto().getDescripcion());
 				dataTable.getAaData().add(row);
 			}
 

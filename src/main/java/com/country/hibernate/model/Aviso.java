@@ -44,11 +44,11 @@ public class Aviso implements Serializable {
 	private Date fechaFin;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdAvisoCategoria",updatable = true, insertable = true)	
+	@JoinColumn(name="IdAvisoCategoria",updatable = false, insertable = true)	
 	private  AvisoCategoria categoria;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante",updatable = true, insertable = true)	
+	@JoinColumn(name="IdIntegrante",updatable = false, insertable = true)	
 	private  Integrante integrante;
 
 	public Integer getId() {

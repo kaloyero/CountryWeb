@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.form.TipoForm;
+import com.country.common.DateUtil;
+import com.country.form.TipoInfraccionForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.TipoInfraccion;
-import com.country.mappers.TipoMapper;
 import com.country.services.TypeInfractionManager;
 
 /**
@@ -32,7 +32,7 @@ public class TipoInfraccionesController {
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model) {
-		TipoForm tipo = new TipoForm();
+		TipoInfraccionForm tipo = new TipoInfraccionForm();
 		model.addAttribute("TIPO", tipo);
 		model.addAttribute("accion", "tipoInfraccion");		
 		return "tipoInfraccion";
@@ -40,10 +40,12 @@ public class TipoInfraccionesController {
 
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
-			@ModelAttribute(value = "TIPO") TipoForm tipoForm,
+			@ModelAttribute(value = "TIPO") TipoInfraccionForm form,
 			BindingResult result) throws ParseException {
 		
-		typeInfractionManager.save(TipoMapper.getTipoInfraccion(tipoForm));
+		form.setFechaIni(DateUtil.getStringToday());
+		
+		typeInfractionManager.save(form);
 				return "success";
 		
 	}
@@ -51,18 +53,17 @@ public class TipoInfraccionesController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.GET)
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 	
-		TipoInfraccion type =typeInfractionManager.findById(id);
-		TipoForm form = (TipoForm) TipoMapper.getForm(type);
+		TipoInfraccionForm form =typeInfractionManager.findByFormId(id);
 		model.addAttribute("TIPO", form);
 		
-		return "forms/tipoForm";
+		return "forms/tipoInfraccionForm";
 
 	}
 	
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute(value = "TIPO") TipoForm tipoForm,@PathVariable int id,
+	public String update(@ModelAttribute(value = "TIPO") TipoInfraccionForm tipoForm,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		typeInfractionManager.update(TipoMapper.getTipoInfraccion(tipoForm));
+		typeInfractionManager.update(tipoForm);
 		return "success";
 		
 
@@ -74,7 +75,6 @@ public class TipoInfraccionesController {
 
 			for (TipoInfraccion tipo : typeInfractionManager.listAll()) {
 				List <String> row =new ArrayList<String>();
-				row.add(String.valueOf(tipo.getId()));
 				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getNombre());
 				dataTable.getAaData().add(row);

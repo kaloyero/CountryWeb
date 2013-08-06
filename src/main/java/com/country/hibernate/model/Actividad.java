@@ -66,7 +66,7 @@ public class Actividad implements Serializable {
 //	public List<Integrante> getIntegrants() {
 //		return integrants;
 //	}
-//
+//adsasd
 //	public void setIntegrants(List<Integrante> integrants) {
 //		this.integrants = integrants;
 //	}

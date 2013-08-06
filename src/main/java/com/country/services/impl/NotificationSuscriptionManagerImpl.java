@@ -72,11 +72,16 @@ public class NotificationSuscriptionManagerImpl extends AbstractManagerImpl<Avis
 	public boolean inscribirseAviso(int aviso, int integrante) {
 		boolean inscripcion = true;
 		
-		AvisoSuscripcion inscrip = new AvisoSuscripcion();
-		inscrip.setCategoria(aviso);
-		inscrip.setIntegrante(integrante);
-		
-		notificationSuscriptionDao.save(inscrip);
+		if (esUsuarioInscripto(aviso,integrante)){
+			inscripcion = false;			
+		} else{
+			AvisoSuscripcion inscrip = new AvisoSuscripcion();
+			inscrip.setCategoria(aviso);
+			inscrip.setIntegrante(integrante);
+			
+			notificationSuscriptionDao.save(inscrip);
+
+		}
 		
 		return inscripcion;
 	}
@@ -90,6 +95,20 @@ public class NotificationSuscriptionManagerImpl extends AbstractManagerImpl<Avis
 		return desinscripcion;
 	}
 	
+
+	@Transactional
+	public boolean esUsuarioInscripto(int categoria, int integrante) {
+		boolean inscripto = true;
+		
+		AvisoSuscripcion dto = notificationSuscriptionDao.findByCategoryUser(categoria, integrante);
+		if (dto == null  || dto.getId() == 0  ){
+			//el usuario no esta inscripto
+			inscripto = false;
+		}
+		
+		return inscripto;
+	}
+
 	
 	
 }
