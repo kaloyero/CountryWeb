@@ -70,6 +70,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		price.setFechaComienzo(dto.getConcepto().getFechaComienzo());
 		priceDao.save(price);		
 
+
 		//Agrego la disponibilidad
 		for (RecursoDisponibilidad recDispo : RecursoMapper.getRecursoDisponibilidad(form)) {
 			recDispo.setRecurso(id);
@@ -275,5 +276,18 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 	
 		return disponible;
 	}
-	
+
+	public List<RecursoForm> listAllForms() {
+		List<RecursoForm> list = new ArrayList<RecursoForm>();
+		List<Recurso> recursos = resourceDao.findAll();
+		
+		for (Recurso recurso : recursos) {
+			//Toma la ultima tarifa
+			Tarifa tarifa = priceManager.getLastPriceByConcept(recurso.getConcepto().getId());
+
+			RecursoForm form = (RecursoForm) RecursoMapper.getForm(recurso, tarifa.getImporte(),null);
+			list.add(form);
+		}
+		return list;
+	}
 }

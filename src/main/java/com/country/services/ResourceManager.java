@@ -50,4 +50,11 @@ public interface ResourceManager extends AbstractManager<Recurso>{
 	 * @return
 	 */
 	public boolean checkReserveResource(int resource, Date fecha,int horaIni, int duracion);
+	
+	
+	/**
+	 * @return
+	 */
+	public List<RecursoForm> listAllForms(); 
+	
 }

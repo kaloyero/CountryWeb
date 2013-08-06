@@ -164,5 +164,25 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		return actividades;
 	}
 
+	public List<ActividadForm> listAllFormsComplete() {
+		List<ActividadForm> list = new ArrayList<ActividadForm>();
+		List<Actividad> actividades = activityDao.findAll();
 
+		for (Actividad actividad : actividades) {
+			//Asignaciones
+			actividad.getAsignaciones().size();
+			//Cronogramas
+			actividad.getCronogramas().size();
+			//Toma la ultima tarifa
+			Tarifa tarifa = priceManager.getLastPriceByConcept(actividad.getConcepto().getId());
+			
+			ActividadForm form = (ActividadForm) ActividadMapper.getForm(actividad, tarifa);
+			list.add(form);
+		}
+		
+		return list;
+	}
+
+	
+	
 }

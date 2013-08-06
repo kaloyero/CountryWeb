@@ -68,7 +68,7 @@ public class MensajeMapper {
 	
 	}
 
-	private static Map<Integer, String> getDetalles(List<MensajeDetalles> detalles) {
+	public static Map<Integer, String> getDetalles(List<MensajeDetalles> detalles) {
 		Map<Integer, String> lista = new HashMap<Integer, String>();
 		for (MensajeDetalles msjDet : detalles) {
 			lista.put(msjDet.getId(), msjDet.getMensajeDetalle());
