@@ -41,7 +41,8 @@ public class ActividadController {
 	public String showForm(ModelMap model) {
 		ActividadForm actividad = new ActividadForm();
 		model.addAttribute("ACTIVIDAD", actividad);
-		model.addAttribute("instructores", instructorManager.listAll());
+		//solo instrucotres activos
+		model.addAttribute("instructores", instructorManager.listAll(true));
 		return "actividad";
 	}
 
@@ -62,7 +63,8 @@ public class ActividadController {
 	public String load(ModelMap model,@PathVariable int id) throws ParseException {
 		ActividadForm form = (ActividadForm) activityManager.findFormById(id);
 		model.addAttribute("ACTIVIDAD", form);
-		model.addAttribute("instructores", instructorManager.listAll());
+		//solo instrucotres activos
+		model.addAttribute("instructores", instructorManager.listAll(true));
 		return "forms/actividadForm";
 
 	}

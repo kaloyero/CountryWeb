@@ -49,7 +49,7 @@ public class Persona implements Serializable {
 	@OneToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name="IdTipoDocumento",updatable = true, insertable = true)	
 	private TipoDocumento tipoDoc;
-
+	
 	public Date getDtNacimiento() {
 		return dtNacimiento;
 	}

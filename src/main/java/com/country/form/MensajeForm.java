@@ -1,4 +1,4 @@
-package com.country.form;
+	package com.country.form;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,15 +14,40 @@ public class MensajeForm extends Form  {
 	private String resolucion;
 	private int categoria;
 	private String categoriaDescripcion;
-	private int integrante;
 	private String respuesta;
-	private String integranteNombre;
 	private String accion;
 	private int cantidadDestalles;
+	private int idIntegrante;
+	private String integranteNombre;
+	private int idEmpleado;
+	private boolean envio; //este campo hace referencia a quien creo el mensaje (ADM o integrante)
 	private Map<Integer, String> detalles = new HashMap<Integer, String>();
 	
 	
-	
+	public boolean isEnvio() {
+		return envio;
+	}
+	public void setEnvio(boolean envio) {
+		this.envio = envio;
+	}
+	public String getIntegranteNombre() {
+		return integranteNombre;
+	}
+	public void setIntegranteNombre(String integranteNombre) {
+		this.integranteNombre = integranteNombre;
+	}
+	public int getIdIntegrante() {
+		return idIntegrante;
+	}
+	public void setIdIntegrante(int idIntegrante) {
+		this.idIntegrante = idIntegrante;
+	}
+	public int getIdEmpleado() {
+		return idEmpleado;
+	}
+	public void setIdEmpleado(int idEmpleado) {
+		this.idEmpleado = idEmpleado;
+	}
 	public int getCantidadDestalles() {
 		return cantidadDestalles;
 	}
@@ -41,12 +66,7 @@ public class MensajeForm extends Form  {
 	public void setDetalles(Map<Integer, String> detalles) {
 		this.detalles = detalles;
 	}
-	public String getIntegranteNombre() {
-		return integranteNombre;
-	}
-	public void setIntegranteNombre(String integranteNombre) {
-		this.integranteNombre = integranteNombre;
-	}
+
 	public int getId() {
 		return id;
 	}
@@ -94,12 +114,6 @@ public class MensajeForm extends Form  {
 	}
 	public void setCategoria(int categoria) {
 		this.categoria = categoria;
-	}
-	public int getIntegrante() {
-		return integrante;
-	}
-	public void setIntegrante(int integrante) {
-		this.integrante = integrante;
 	}
 	public String getRespuesta() {
 		return respuesta;

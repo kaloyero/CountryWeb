@@ -7,12 +7,28 @@
 <%@include file="personaForm.jsp" %>
 <fieldset>
 		<legend>Contacto</legend>
-		<div class="_100">
+		<div class="_50">
 			<p>
 				<label for="datepicker">Email</label>
 				<form:input path="persona.email" class="required" />
 			</p>
 		</div>
+		<div class="_25">
+			<p>
+				<label for="select">Unidad</label>
+				<form:select path="unidad" multiple="false"> 
+					<form:options items="${unidades}" itemValue="id" 
+						itemLabel="code" />
+				</form:select> 
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Estado</label>
+				<form:checkbox path="estado" value="true" />
+			</p>
+			
+		</div>		
 		<div class="_50">
 			<%@include file="../utils/agregarTelefono.jsp" %>
 			<BR>
@@ -41,16 +57,35 @@
 			</div>			
 			
 		</div>
-		<div class="_50">
+
+</fieldset>
+<fieldset>
+		<legend>Integrante</legend>
+		<div class="_25">
 			<p>
-				<label for="select">Unidad</label>
-				<form:select path="unidad" multiple="false"> 
-					<form:options items="${unidades}" itemValue="id" 
-						itemLabel="code" />
-				</form:select> 
+				<label for="textfield">Nombre Usuario</label>
+				<form:input path="usuario.usuario" class="required" />
+				<form:hidden path="usuario.id" />
 			</p>
 		</div>
-
+		<div class="_25">
+			<p>
+				<label for="textfield">Clave</label>
+				<form:input path="usuario.clave" class="required" />
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="datepicker">Fecha Expiracion</label>
+				<form:input path="usuario.fechaCaduca" class="required datepicker" />
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Estado</label>
+				<form:checkbox path="usuario.estado" value="true" />
+			</p>
+		</div>
 </fieldset>
 
  	<div class="clear"></div>

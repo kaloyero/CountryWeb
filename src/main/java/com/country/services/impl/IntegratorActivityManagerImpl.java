@@ -46,11 +46,24 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		IntegranteActividadForm form = new IntegranteActividadForm();
 		
 		IntegranteActividades dto = findById(id);
-//		IntegranteForm intForm = integratorManager.findFormById(id);
-//		ActividadForm actForm = activityManager.findFormById(id);
-//				
-//		form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(dto,intForm , actForm );
 		form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(dto);
+		
+		return form;
+	}
+
+	@Transactional
+	public IntegranteActividadForm findFormByIdComplete(Integer id) {
+		IntegranteActividadForm form = new IntegranteActividadForm();
+		
+		IntegranteActividades dto = findById(id);
+		
+		ActividadForm actForm = activityManager.findFormById(id);
+		IntegranteForm intForm = integratorManager.findFormById(dto.getIntegrante());
+		
+		form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(dto);
+		//Le agrego al form la actividad e integrantes
+		form.setActividad(actForm);
+		form.setIntegrante(intForm);
 		
 		return form;
 	}
@@ -106,8 +119,8 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 
 		
 		IntegranteActividadForm form = new IntegranteActividadForm();
-		form.setActividad(actividad);
-		form.setIntegrante(integrante);
+		form.setActividadId(actividad);
+		form.setIntegranteId(integrante);
 		form.setFechaIni(fechaIni);
 		form.setFechaFin(fechaFin);
 		
@@ -119,7 +132,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 	public void inscribirse(IntegranteActividadForm form) {
 		IntegranteActividades dto = IntegranteActividadMapper.getIntegranteActividad(form);
 
-		if (esUsuarioInscripto(form.getActividad(),form.getIntegrante())){
+		if (esUsuarioInscripto(form.getActividadId(),form.getIntegranteId())){
 			
 		} else  {
 			integratorActivityDao.save(dto);	
@@ -138,6 +151,25 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		}
 		
 		return inscripto;
+	}
+
+	public List<IntegranteActividadForm> listAllFormsComplete() {
+
+		List<IntegranteActividadForm> list = new ArrayList<IntegranteActividadForm>();
+		List<IntegranteActividades> reservas = integratorActivityDao.findAll();
+
+		for (IntegranteActividades intAct : reservas) {
+			ActividadForm actForm = activityManager.findFormById(intAct.getActividad());
+			IntegranteForm intForm = integratorManager.findFormById(intAct.getIntegrante());
+
+			IntegranteActividadForm form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(intAct);
+			//Le agrego al form la actividad e integrantes
+			form.setActividad(actForm);
+			form.setIntegrante(intForm);
+			list.add(form);
+		}
+		
+		return list;
 	}
 
 }

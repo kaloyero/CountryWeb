@@ -6,21 +6,45 @@
 
 <fieldset>
 		<legend>Reclamo</legend>
-		<div class="_100">
+		<div class="_50">
 			<p>
-				<label for="textfield">Creado por: </label>
 				<c:if test="${MENSAJE.id == 0}">
-					<form:select path="integrante" multiple="false"> 
+					<label for="textfield">Creado por Administrador: </label>
+					<form:checkbox id="checkEnvio" path="envio" value="true" onclick="alert('culo');"/>
+				</c:if>
+				<c:if test="${MENSAJE.id != 0}">
+					<c:if test="${envio}">
+						<label for="textfield">De: Administrador</label>
+					</c:if>
+					<c:if test="${!envio}">
+						<label for="textfield">De: </label>
+						<form:input path="integranteNombre"  readonly="true"/>					
+					</c:if>
+				</c:if>
+				
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<c:if test="${MENSAJE.id == 0}">
+					<label for="textfield">Integrante: </label>
+					<form:select path="idIntegrante" multiple="false"> 
 						<form:options items="${integrantes}" itemValue="id"
 							itemLabel="nombre" /> 
 					</form:select> 		
 				</c:if>
 				<c:if test="${MENSAJE.id != 0}">
-					<form:input path="integranteNombre"  readonly="true"/>
+					<c:if test="${envio}">
+						<label for="textfield">Para:</label>
+						<form:input path="integranteNombre"  readonly="true"/>					
+					</c:if>
+					<c:if test="${!envio}">
+						<label for="textfield">Para: Administrador</label>
+					</c:if>
 				</c:if>
-				
 			</p>
 		</div>
+		
 		<div class="_100">
 			<p>
 				<label for="textfield">Asunto</label>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.hibernate.model.Mensaje;
+import com.country.form.MensajeForm;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.hibernate.model.Noticia;
 import com.country.services.ConceptManager;
@@ -82,16 +82,17 @@ public class DashboardController {
    		    noticiasJsonArray.add(noticiasJson);
 		};
 		
-		List<Mensaje> mensajes =mensajeManager.listAll();
+		List<MensajeForm> mensajes =mensajeManager.listAllForms();
 	
 		JSONArray mensajeJsonArray = new JSONArray();
-		for ( Mensaje mensaje : mensajes) {
+		for ( MensajeForm mensaje : mensajes) {
 			JSONObject mensajeJson=new JSONObject();
 			mensajeJson.put("titulo",mensaje.getAsunto());
 			MensajeDetalles mensa=messageDetailManager.getLastDetailMessage(mensaje.getId());
 			mensajeJson.put("descripcion",mensa.getMensajeDetalle());
-			mensajeJson.put("categoria",mensaje.getCategoria().getNombre());
-			mensajeJson.put("autor",mensaje.getIntegrante().getPersona().getApellido() + " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
+			mensajeJson.put("categoria",mensaje.getCategoriaDescripcion());
+			mensajeJson.put("autor",mensaje.getIntegranteNombre()); 
+			//+ " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
 
 			mensajeJsonArray.add(mensajeJson);
 		};

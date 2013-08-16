@@ -85,10 +85,10 @@ public class TelefonoMapper {
 				        	Telefono dto = new Telefono();
 				        	if (nodo.get("IdTel") != null){	
 					    		dto.setId(((Long) nodo.get("IdTel")).intValue());
-					    		dto.setCodigoArea(((Long) nodo.get("State")).intValue());
-					    		dto.setCodigoPais(((Long) nodo.get("Country")).intValue());
-					    		dto.setNumero(((Long) nodo.get("Telefono")).intValue());
-					    		dto.setPrefijo(((Long) nodo.get("Prefix")).intValue());
+				    			dto.setCodigoArea(((Long) nodo.get("State")).intValue());	
+					    		dto.setCodigoPais(((Long) nodo.get("Country")).intValue());	
+				    			dto.setNumero(((Long) nodo.get("Telefono")).intValue());	
+				    			dto.setPrefijo(((Long) nodo.get("Prefix")).intValue());	
 					    		TipoTelefono tipoTel = new TipoTelefono();
 					    		tipoTel.setId(((Long) nodo.get("IdTipoTel")).intValue());
 					    		dto.setTipoTelefono(tipoTel);

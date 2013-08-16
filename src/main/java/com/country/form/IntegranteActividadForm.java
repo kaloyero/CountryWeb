@@ -4,27 +4,40 @@ package com.country.form;
 public class IntegranteActividadForm extends Form  {
 
 	private Integer id =0;
-	private int integrante;
-	private int actividad;
+	private int integranteId;
+	private int actividadId;
+	private IntegranteForm integrante;
+	private ActividadForm actividad;	
 	private String fechaIni;
 	private String fechaFin;
-	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getIntegrante() {
+	public int getIntegranteId() {
+		return integranteId;
+	}
+	public void setIntegranteId(int integranteId) {
+		this.integranteId = integranteId;
+	}
+	public int getActividadId() {
+		return actividadId;
+	}
+	public void setActividadId(int actividadId) {
+		this.actividadId = actividadId;
+	}
+	public IntegranteForm getIntegrante() {
 		return integrante;
 	}
-	public void setIntegrante(int integrante) {
+	public void setIntegrante(IntegranteForm integrante) {
 		this.integrante = integrante;
 	}
-	public int getActividad() {
+	public ActividadForm getActividad() {
 		return actividad;
 	}
-	public void setActividad(int actividad) {
+	public void setActividad(ActividadForm actividad) {
 		this.actividad = actividad;
 	}
 	public String getFechaIni() {

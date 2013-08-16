@@ -3,6 +3,7 @@ package com.country.mappers;
 import java.util.List;
 
 import com.country.common.DateUtil;
+import com.country.common.MapperUtil;
 import com.country.form.InstructorForm;
 import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Instructor;
@@ -20,6 +21,7 @@ public class InstructorMapper {
 		instructor.setFechaFin(DateUtil.convertStringToDate(instructorForm.getFechaFin()));
 		instructor.setPersona(PersonaMapper.getPersona(instructorForm.getPersona()));
 		instructor.setId(instructorForm.getId());
+		instructor.setEstado(MapperUtil.getStatusEntity(instructorForm.isEstado()));
 		return instructor;
 	
 	}
@@ -32,6 +34,7 @@ public class InstructorMapper {
 		instructorForm.setPersona(PersonaMapper.getForm(instructor.getPersona(), dirs, tels));
 		instructorForm.setFechaComienzo(DateUtil.convertDateToString(instructor.getFechaComienzo()));
 		instructorForm.setFechaFin(DateUtil.convertDateToString(instructor.getFechaFin()));
+		instructorForm.setEstado(MapperUtil.getStatusForm(instructor.getEstado()));
 		return instructorForm;
 	
 	}

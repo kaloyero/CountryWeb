@@ -1,8 +1,8 @@
 package com.country.mappers;
 
 
-import com.country.common.Constants;
 import com.country.common.DateUtil;
+import com.country.common.MapperUtil;
 import com.country.form.AvisoCategoriaForm;
 import com.country.form.Form;
 import com.country.form.TipoForm;
@@ -120,11 +120,7 @@ public class TipoMapper {
 		type.setId(form.getId());
 		type.setNombre(form.getNombre());
 		type.setVigencia(form.getVigencia());
-		if (form.isObligatoria()){
-			type.setObligatorio(Constants.TRUE);
-		} else {
-			type.setObligatorio(Constants.FALSE);
-		}
+		type.setObligatorio(MapperUtil.getStatusEntity(form.isObligatoria()));
 		Especie especie = new Especie();
 		especie.setId(form.getEspecie());
 		type.setEspecie(especie);
@@ -302,11 +298,7 @@ public class TipoMapper {
 		
 		TipoVacunaForm form = new TipoVacunaForm();
 		form.setId(tipo.getId());
-		if (Constants.TRUE.equals(tipo.getObligatorio())){
-			form.setObligatoria(true);	
-		} else {
-			form.setObligatoria(false);
-		}
+		form.setObligatoria(MapperUtil.getStatusForm(tipo.getObligatorio()));	
 		form.setVigencia(tipo.getVigencia());
 		form.setNombre(tipo.getNombre());
 		form.setEspecie(tipo.getEspecie().getId());

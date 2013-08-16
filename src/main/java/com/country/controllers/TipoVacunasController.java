@@ -87,6 +87,11 @@ public class TipoVacunasController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
 				row.add(tipo.getNombre());
+				if (tipo.getEspecie() != null){
+					row.add(tipo.getEspecie().getNombre());	
+				}else {
+					row.add("");
+				}
 				dataTable.getAaData().add(row);
 			}
 

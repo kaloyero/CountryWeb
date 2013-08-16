@@ -1,10 +1,19 @@
 package com.country.hibernate.dao.impl;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.country.common.Constants;
 import com.country.common.GenericDaoImpl;
 import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.model.Integrante;
+import com.country.hibernate.model.Persona;
 
 @Repository("integratorDao")
 public class IntegratorDaoImpl extends GenericDaoImpl<Integrante, Integer> implements IntegratorDao{
@@ -18,5 +27,44 @@ public class IntegratorDaoImpl extends GenericDaoImpl<Integrante, Integer> imple
   	  getSession().update(integrante);
     }
 
+    @SuppressWarnings("unchecked")
+	public List<Integrante> searchComboIntegrators(String searchText,boolean name,boolean surName,boolean unit,boolean document) {
+    	Criteria criteria = getSession().createCriteria(getEntityClass());
+
+    	if (surName){
+    		criteria.add(Restrictions.like("persona.apellido", "%"+searchText+"%"));
+    		criteria.addOrder(Order.asc("persona.apellido"));
+    	}
+    	if (name){
+    		criteria.add(Restrictions.like("persona.nombre", "%"+searchText+"%"));
+    		criteria.addOrder(Order.asc("persona.nombre"));
+    	}
+		if (unit){
+			criteria.add(Restrictions.like("unidad.code", "%"+searchText+"%"));
+			criteria.addOrder(Order.asc("unidad.code"));
+		}
+    	if (document){
+    		criteria.add(Restrictions.like("persona.nroDoc", "%"+searchText+"%"));
+    		criteria.addOrder(Order.asc("persona.nroDoc"));
+    	}
+    	//Me aseguro que el usuario este Activo
+		criteria.add(Restrictions.like("estado", Constants.TRUE));
+		
+		return ((List<Integrante>) criteria.list());
+    }
+    
+
+    @SuppressWarnings("unchecked")
+    @Transactional
+	public List<Integrante> findAll(boolean active) {
+    	Criteria criteria = getSession().createCriteria(getEntityClass());
+    	 if (active){
+    		 criteria.add(Restrictions.like("estado", Constants.TRUE));	 
+    	 } else {
+    		 criteria.add(Restrictions.like("estado", Constants.FALSE));    		 
+    	 }
+		
+		return ((List<Integrante>) criteria.list());
+    }
 
 }

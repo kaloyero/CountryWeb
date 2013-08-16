@@ -8,16 +8,22 @@
 
 <fieldset>
 		<legend>Instructor</legend>
-		<div class="_50">
+		<div class="_25">
 			<p>
 				<label for="textfield">Fecha desde</label>
 				<form:input path="fechaComienzo" class="required datepicker" />
 			</p>
 		</div>
-			<div class="_50">
+		<div class="_25">
 			<p>
 				<label for="textfield">Fecha hasta</label>
 				<form:input path="fechaFin" class="required datepicker" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Estado</label>
+				<form:checkbox path="estado" value="true" />
 			</p>
 		</div>
 		

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.Constants;
 import com.country.common.DateUtil;
 import com.country.common.GenericDao;
 import com.country.common.TipoMensajes;
@@ -19,7 +20,9 @@ import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.mappers.MensajeDetalleMapper;
 import com.country.mappers.MensajeMapper;
+import com.country.services.IntegratorManager;
 import com.country.services.MessageManager;
+import com.country.session.SessionData;
 
 @Service("messageManager")
 public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements MessageManager{
@@ -30,6 +33,9 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	@Autowired
     private MessageDetailDao messageDetailDao;
 
+	@Autowired
+    private IntegratorManager integratorManager;
+	
 	public static final String ACTION_CLOSE =  "CLOSE";
 	
 	protected GenericDao<Mensaje, Integer> getDao() {
@@ -65,8 +71,15 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		//guarda el mensaje
 		messageDao.save(dto);
 		
-		// Guardo el Detalle
-		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(dto.getId(), form.getRespuesta(), form.getTipo());
+		// GUARDO EL DETALLE
+		//Si el que envia el mensaje es el administradortiene que ver si lo envia como ADM o como Integrante. 
+		int idPersona = SessionData.getPersonaId();
+		if (Constants.PERSONA_EMPLEADO.equals( SessionData.getTipoUsuario())){
+			if (! form.isEnvio()){
+				idPersona = integratorManager.getPersonId(form.getIdIntegrante());
+			}	
+		}
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(dto.getId(), form.getRespuesta(), form.getTipo(),idPersona);
 		messageDetailDao.save(detalle);
 	}
 
@@ -74,7 +87,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	public void update(MensajeForm form) {
 
 		// Guardo el Detalle
-		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo());
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo(), SessionData.getPersonaId());
 		messageDetailDao.save(detalle);
 
 		//Toma el nuevo estado
@@ -145,4 +158,5 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		return list;
 	}
 
+	
 }

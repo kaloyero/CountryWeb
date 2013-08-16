@@ -36,17 +36,36 @@ public class Integrante implements Serializable {
 	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
 
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdUsuario",updatable = false, insertable = true)	
+	private Usuario usuario;
+	
     @OneToOne(fetch=FetchType.EAGER )
     @JoinColumn(name="IdUnidad",updatable = true, insertable = true)	
 	private Unidad unidad;
     
-//    @ManyToMany(fetch=FetchType.LAZY)
-//    @BatchSize(size = 10)
-//    @JoinTable(name = "IntegranteActividades", catalog = "country", joinColumns = {@JoinColumn(name = "IdIntegrante", nullable = false, updatable = false,insertable = false) }, 
-//			inverseJoinColumns = { @JoinColumn(name = "IdActividad", nullable = false, updatable = false,insertable = false) })
-//	private  List <Actividad> activities ;
-    
-    
+	@Column(name = "estado")
+	private String estado; 
+	
+	
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public Unidad getUnidad() {
 		return unidad;
 	}

@@ -97,5 +97,12 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 				
 		return list;
 	}
+
+	@Transactional
+	public List<Instructor> listAll(boolean active) {
+		List<Instructor> lista = new ArrayList<Instructor>();
+		lista = instructorDao.findAll(active);
 	
+		return lista;
+	}
 }

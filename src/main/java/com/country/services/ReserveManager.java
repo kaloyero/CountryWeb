@@ -1,4 +1,4 @@
-package com.country.services;
+    package com.country.services;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +12,8 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 	
 	ReservaForm findFormById(Integer id);
 
+	public ReservaForm findFormByIdCoplete(Integer id);
+	
 	/**
 	 * Este metodo devuelve todas las reservas que pertenecen a una unidad especifica 
 	 * 
@@ -48,4 +50,6 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 	 */
 	public Reserva findResourceAfter(Integer resource, Date fecha, int horaIni);
 
+	public List<ReservaForm> listAllFormsComplete();
+	
 }

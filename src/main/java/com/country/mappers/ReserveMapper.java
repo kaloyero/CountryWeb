@@ -2,9 +2,6 @@ package com.country.mappers;
 
 
 import com.country.common.DateUtil;
-import com.country.form.EventoForm;
-import com.country.form.IntegranteForm;
-import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.model.Reserva;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
@@ -38,7 +35,7 @@ public class ReserveMapper {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static ReservaForm getForm(Reserva reserva,RecursoForm recurso,IntegranteForm integrante,EventoForm evento)
+	public static ReservaForm getForm(Reserva reserva)
 			throws ParseException {
 		
 		ReservaForm form=new ReservaForm();

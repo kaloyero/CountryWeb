@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,9 +31,17 @@ public class MensajeDetalles implements Serializable {
 	@Column(name = "Mensaje")
 	private String mensajeDetalle;
 
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdPersona",updatable = false, insertable = true)	
+	private Persona persona;	
+	
 	@Column(name = "Fecha")
 	private Date fecha;
 
+	@Column(name = "ModoMensaje")
+	private String modoMensaje;
+
+	
 	public Date getFecha() {
 		return fecha;
 	}
@@ -46,9 +57,13 @@ public class MensajeDetalles implements Serializable {
 	public void setModoMensaje(String modoMensaje) {
 		this.modoMensaje = modoMensaje;
 	}
+	public Persona getPersona() {
+		return persona;
+	}
 
-	@Column(name = "ModoMensaje")
-	private String modoMensaje;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 
 	public int getId() {
 		return id;

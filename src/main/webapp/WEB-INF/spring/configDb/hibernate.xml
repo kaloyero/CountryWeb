@@ -28,6 +28,8 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
  
     <property name="annotatedClasses">
 	<list>
+		<value>com.country.hibernate.model.Acceso</value>
+		<value>com.country.hibernate.model.AccesoGrupo</value>
 		<value>com.country.hibernate.model.Actividad</value>
 		<value>com.country.hibernate.model.Asignacion</value>
 		<value>com.country.hibernate.model.Autorizado</value>
@@ -39,6 +41,8 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.Cronograma</value>
 		<value>com.country.hibernate.model.DataTable</value>
 		<value>com.country.hibernate.model.Direccion</value>
+		<value>com.country.hibernate.model.Empleado</value>
+		<value>com.country.hibernate.model.EmpleadoCategoria</value>
 		<value>com.country.hibernate.model.Emprendimiento</value>
 		<value>com.country.hibernate.model.Especie</value>
 		<value>com.country.hibernate.model.Evento</value>
@@ -81,8 +85,9 @@ class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBea
 		<value>com.country.hibernate.model.Unidad</value>
 		<value>com.country.hibernate.model.UnidadConcepto</value>
 		<value>com.country.hibernate.model.User</value>
+		<value>com.country.hibernate.model.Usuario</value>
+		<value>com.country.hibernate.model.UsuarioAccesos</value>		
 		<value>com.country.hibernate.model.Vacuna</value>
-		<value>com.country.hibernate.model.Vehiculo</value>
 		<value>com.country.hibernate.model.Vehiculo</value>		
 	</list>
     </property>
