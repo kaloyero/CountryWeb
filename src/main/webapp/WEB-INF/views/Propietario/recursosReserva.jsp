@@ -14,9 +14,11 @@
 				<label for="select">Recursos</label>
 				<form:select path="recursos" multiple="false" id="recursoCombo">
 				   <option value="-1">Seleccione un Recurso</option>
-					<form:options items="${recursos}" itemValue="id"
+					<form:options style="display:none" items="${recursos}" itemValue="id"
 						itemLabel="nombre" />
+						
 				</form:select>
+				<div id="importeRecurso"></div>
 			</p>
 		</div>
 		

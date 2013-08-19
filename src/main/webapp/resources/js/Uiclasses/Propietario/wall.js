@@ -57,7 +57,7 @@ function createEffect(){
 
 	var $container = $('#masonry-container'),
 		itemSelector = '.item';
-
+	
 
 
 	// force show scrollbar
@@ -120,8 +120,139 @@ function createEffect(){
 		updateContainerWidth();
 	});
 
-
-
-
 });
 }
+//function check iframe popup load to resize
+function ifmOnload(){
+	if(this.src == 'about:blank'){
+		return;
+	}
+	
+	$(document.body).addClass ('popupview-loaded');
+	this.id="popupIFrame";
+	console.log("EL ID",this.id)
+	var doc=$("#popupIFrame")
+	/*var doc = this.contentDocument ? this.contentDocument : window.frames[this.id].document,
+		ifm = this;
+	console.log("EL Doc",doc)
+	if (doc.readyState && doc.readyState != 'complete'){
+	   return;
+	}
+
+	if (doc.body && doc.body.innerHTML == "false"){
+		return;
+	}*/
+	
+	this.height = $(doc).height();
+	
+	if(window.popupIscroll){
+		window.popupIscroll.destroy();
+	}
+
+	//window.popupIscroll = new iScroll('popup-inner', {vScrollbar: true, hScrollbar: false, scrollbarClass: 'popupTracker', useTransform: false, scroller: (isTouch ? doc.getElementById('container') : null) });
+	var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion)
+	if(isTouch){
+		$(doc).bind('touchmove.scroll', function(e){
+			e.preventDefault();
+		});
+	} 
+
+	if($.browser.opera || $.browser.mozilla || ($.browser.msie && $.browser.version >= 9)){
+		$(doc).bind('mousewheel.iscroll', $.proxy(window.popupIscroll._wheel, window.popupIscroll));
+	} else if($.browser.msie && $.browser.version < 9){
+		
+		var script = doc.createElement('script');
+		script.src = JADef.tplurl + 'js/scrollevent.js';
+		doc.body.appendChild(script);
+	}
+	
+	$(doc.body).find('a').each(function(){
+		if($(this).attr('target') != '_blank'){
+			$(this).attr('target', '_parent');
+		}
+	});
+};
+
+function bindEvents(){ 
+	$('#popup-close').click(function(){
+		console.log("click")
+		$('#popup-view').trigger('click');
+	});
+
+	$('#popup-content').click (function (e) {
+		e.stopPropagation();
+	});
+
+	$('#popup-view').click (function (e) {
+		e.stopPropagation();
+		var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion)
+
+		if(window.popupIscroll){
+			window.popupIscroll.destroy();
+			window.popupIscroll = null;
+		}
+		var jiframe = $('#popup-content').find('iframe');
+		
+		if(jiframe.length){
+			var ifmdoc = (jiframe[0].contentDocument) ? jiframe[0].contentDocument : window.frames[jiframe[0].id].document;
+			
+			$(ifmdoc).find('object').remove();
+			
+			if(isTouch){
+				$(ifmdoc).unbind('touchmove.scroll');
+			}
+			
+			if($.browser.mozilla && jiframe.length){
+				$(ifmdoc).unbind('mousewheel.iscroll');
+			}
+		}
+		
+		//fix iframe IE9
+		jiframe.attr('src', 'about:blank').css('visibility', 'hidden');
+		setTimeout(function(){
+			$('#popup-inner').remove();
+			$(document.body).removeClass ('popupview popupview-loaded');
+		}, 10);
+		
+		return false;
+	});
+	}
+
+
+
+
+function openPopupWithData(aviso) {
+	// check if window is smaller than popup width - 600px
+	if ($(document.body).width() < 700){
+		return true;
+	}
+	
+	// add div to show content
+	if (!$('#popup-view').length) {
+		$('<div id="popup-view"><div id="popup-content"><a id="popup-close" href="javascript:;" class="btn-close"></a></div>').appendTo (document.body);				
+	}
+	
+	if($(document.body).hasClass ('popupview')){
+		return false;
+	}
+	
+	// add popup class to body
+	$(document.body).addClass ('popupview');				
+
+	
+	/*$('<div id="popup-inner" />')
+		.html ($('<iframe id="popupIFrame" src="' + url + '" width="638" scrolling="no" frameborder="0" />')
+			.bind('load', ifmOnload))
+		.appendTo ('#popup-content');*/
+	$('<div id="popup-inner" />').appendTo('#popup-content')
+	
+	var template=templateManager.getTemplate('aviso');
+    	template.tmpl(aviso).appendTo('#popup-inner');
+
+	ifmOnload();
+	bindEvents();
+	return false;
+};
+
+
+

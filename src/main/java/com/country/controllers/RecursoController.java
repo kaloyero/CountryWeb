@@ -73,12 +73,12 @@ public class RecursoController {
 	}
 	
 	@RequestMapping(value = "recursosParaReservar/load/{id}", method = RequestMethod.GET)
-	public @ResponseBody String loadDisponibilidadByRecurso(ModelMap model,@PathVariable int id) throws ParseException {
+	public @ResponseBody RecursoForm loadDisponibilidadByRecurso(ModelMap model,@PathVariable int id) throws ParseException {
 		RecursoForm form = recursoManager.getResourceForm(id);
 
 		model.addAttribute("RECURSO", form);
 		
-		return form.getDisponibilidades();
+		return form;
 
 	}
 	
@@ -97,11 +97,11 @@ public class RecursoController {
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showActivitiesForBook(ModelMap model) {
 		
-		List<RecursoForm> listaRecursosForm = new ArrayList<RecursoForm>();
+		List<RecursoForm> listaRecursosForm = recursoManager.listAllForms();
 
-		for (Recurso recurso : recursoManager.listAll()) {
-			listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));
-		}
+		//for (Recurso recurso : recursoManager.listAllForms()) {
+			//listaRecursosForm.add(RecursoMapper.getForm(recurso,0,null));
+		//}
 		
 		
 		model.addAttribute("recursos", listaRecursosForm);

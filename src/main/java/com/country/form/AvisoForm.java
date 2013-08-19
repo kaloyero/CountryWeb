@@ -17,6 +17,7 @@ public class AvisoForm extends Form  {
 	private  String integranteNombre;
 	private  String integranteApellido;
 	private  String unidad;
+	private  Double importe;
 
 
 	
@@ -98,6 +99,12 @@ public class AvisoForm extends Form  {
 	}
 	public void setUnidad(String unidad) {
 		this.unidad = unidad;
+	}
+	public Double getImporte() {
+		return importe;
+	}
+	public void setImporte(Double importe) {
+		this.importe = importe;
 	}
 
 	

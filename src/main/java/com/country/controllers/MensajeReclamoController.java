@@ -81,7 +81,7 @@ public class MensajeReclamoController {
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
-			BindingResult result) throws ParseException {
+			BindingResult result,HttpServletRequest request) throws ParseException {
 		//TODO en lugar de hacer este set en el Get,se pone aca,ya que,en el caso de propietario,al no tener los campos fecha y tipo en el formulario en la UI,
 		//me obliga a ponerlos como al menos invisibles,sino estos valores vuelven a estar nulos.Y se corre peligro si alguien inspecciona el codigo html y le 
 		//cambia el tipo de relcamo a M o otra cosa
@@ -90,7 +90,12 @@ public class MensajeReclamoController {
 		form.setFecha(DateUtil.getStringToday());
 		//Seteo el TIPO de mensaje como RECLAMO
 		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
-		messageManager.save(form);
+		 if (SessionUtil.isAdminUser(request)){
+
+		 }else{
+			 form.setIntegrante(1);
+		 }
+			 messageManager.save(form);
 		
 		return "success";
 		

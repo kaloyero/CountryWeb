@@ -1,5 +1,6 @@
 package com.country.services.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -131,5 +132,18 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		return nextStatusClaim;
 	}
 
+	public List<MensajeForm> listAllForms() {
+		List<MensajeForm> list = new ArrayList<MensajeForm>();
+		List<Mensaje> mensajes = messageDao.findAll();
+		
+		for (Mensaje mensaje : mensajes) {
+			MensajeForm form = MensajeMapper.getForm(mensaje);			
+			form.setCantidadDestalles(mensaje.getDetalles().size());
+			form.setDetalles(MensajeMapper.getDetalles(mensaje.getDetalles()));
+			
+			list.add(form);
+		}
+		return list;
+	}
 
 }

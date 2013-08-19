@@ -22,6 +22,7 @@ var ServerManager = new Class({
         this.services['mensajeReclamo']["load"]="/CountryWeb/mensajeReclamo/load/";
         this.services['recurso']["load"]="/CountryWeb/recurso/recursosParaReservar/load/";
         this.services['eventoParticipar']["save"]="/CountryWeb/eventoParticipar/create/";
+        this.services['aviso']["save"]="/CountryWeb/aviso/create/";
         
         
         //this.services['avisos']={};
@@ -99,7 +100,6 @@ var ServerManager = new Class({
 		      url: self.services[config.object]["save"],
 		      data: transformedData,
 		      success: function(data) {
-		    	  console.log("@@")
 		    	  config.onSuccess(data);
 				}
 		    } );
@@ -108,13 +108,16 @@ var ServerManager = new Class({
     	var self=this;
     	$.ajax( {
 		      type: "POST",
-		      dataType: 'json', 
+		     // dataType: 'json', 
 		      url: self.services[config.object]["save"],
 		      data: JSON.stringify(config.data),
 		      contentType: 'application/json',
-		      mimeType: 'application/json',
+		      //mimeType: 'application/json',
 		      success: function(data) {
 		    	  config.onSuccess(data);
+				},
+				error:function(data){
+					console.log("Error",arguments)
 				}
 		    } );
     },

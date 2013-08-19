@@ -22,10 +22,17 @@ public class MensajeForm extends Form  {
 	private String descripcion;
 	private String integranteUnidad;
 	private String integranteApellido;
+	private int cantidadDestalles;
 	private Map<Integer, String> detalles = new HashMap<Integer, String>();
 	
 	
 	
+	public int getCantidadDestalles() {
+		return cantidadDestalles;
+	}
+	public void setCantidadDestalles(int cantidadDestalles) {
+		this.cantidadDestalles = cantidadDestalles;
+	}
 	public String getCategoriaDescripcion() {
 		return categoriaDescripcion;
 	}

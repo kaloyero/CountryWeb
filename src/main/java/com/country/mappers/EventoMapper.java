@@ -40,7 +40,7 @@ public class EventoMapper {
 
 	public static Form getForm(Evento evento, Tarifa tarifa) {
 		EventoForm form=new EventoForm();
-		if ((evento.getConcepto() != null)) {
+		if (tarifa != null) {
 			form.setConcepto(ConceptoMapper.getForm(evento.getConcepto(),tarifa));
 		}
 		form.setCupo(evento.getCupo());

@@ -24,7 +24,6 @@ var ComponentTranslator = new Class(
 					object : objectType,
 					data : json,
 					onSuccess : function(data) {
-						console.log("SEsese")
 								$.jGrowl("Creado con exito.", {
 									theme : 'success'
 								});

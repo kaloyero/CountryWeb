@@ -70,8 +70,13 @@
 							<c:if test="${evento.integrante != null}">
 								<strong>Creado por:</strong> ${evento.integranteNombre} ${evento.integranteApellido}
 													</c:if>
+								
 
 						</dd>
+						<dd class="hits">
+						<c:if test="${evento.concepto != null}"> <strong style="font-family:arial;color:#9E7474;font-size:15px;">Precio por inscripcion : </strong>
+						<strong style="font-family:arial;color:#9E7474;font-size:15px;">${evento.concepto.importe}</strong></c:if>
+							</dd>
 						<dd class="hits anotarseEvento">
 							<input type="hidden" name="idEvento" value="${evento.id}">
 						

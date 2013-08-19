@@ -45,8 +45,10 @@ var RecursoReservaRender = new Class(
 						});
 			},
 			load : function(data) {
+				$("#importeRecurso").empty();
+				$("#importeRecurso").append("<strong style='font-family:arial;color:#9E7474;font-size:25px;'>Costo :"+data.importe+"$</strong>")
 				var self = this;
-				self.disponibilidades = data;
+				self.disponibilidades = data.disponibilidades;
 				this.events = null;
 				self.eventosDisponiblesAEliminar=new Array();
 				$("#calendar").fullCalendar( 'refetchEvents' );
@@ -212,7 +214,9 @@ var RecursoReservaRender = new Class(
 							"duracion" : 1,
 							"fecha":fecha
 					};
-					translator.onSubmitJson('recursoReserva', reserva);
+		        	dialogRender.create({onAccept:function(){translator.onSubmitJson('recursoReserva', reserva)}});
+
+					
 				}else{
 					alert("Este horario esta ocupado!!")
 				}

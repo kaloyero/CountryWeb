@@ -18,6 +18,7 @@ var EventoRender = new Class(
 			},
 
 			onFinishLoading : function(dataToAppend) {
+				var self=this;
 				this.cleanCanvas();
 				$("#content").append(dataToAppend);
 				$("body").removeClass();
@@ -25,7 +26,7 @@ var EventoRender = new Class(
 				$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
 				jQuery(".corner-stamp").load('../resources/static/corner.html',function(){
     				createEffect();
-    				this.bindEvents();
+    				self.bindEvents();
 
     			});
 
@@ -36,8 +37,10 @@ var EventoRender = new Class(
 							var eventoParticipar = {
 								"evento" : $(this).find("input").val()
 							};
-							translator.onSubmitJson('eventoParticipar',
-									eventoParticipar);
+							//Remuevo por si ya agregue un htl con el div del dialogo
+				        	dialogRender.create({onAccept:function(){translator.onSubmitJson('eventoParticipar',eventoParticipar)}});
+
+				
 						});
 
 			},

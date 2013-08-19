@@ -32,8 +32,8 @@
 	<div class="item-main clearfix">
 		<!-- Item header -->
 		<div class="header item-header clearfix">
-					<h2>
-					${aviso.titulo}</a>
+					<h2><a class='openDescription'>${aviso.titulo}</a>
+					<input type="hidden"class='description' name="Language" value='${aviso.cuerpo}' >
 								
 						</h2>
 		
@@ -42,10 +42,10 @@
 		
 		
 						<dd class="category-name">
-																<strong>Categoria:</strong> ${aviso.categoriaDescription}</dd>
+																<strong>Categoria:</strong> <label class='categoria'>${aviso.categoriaDescription}</label> </dd>
 		
 						<dd class="create">
-				<strong>Creado:</strong> ${aviso.fecha}				</dd>
+				<strong>Creado:</strong> <label class='creacion'>${aviso.fecha}	</label></dd>
 		
 		
 		
@@ -57,7 +57,7 @@
 
 		<!-- Item content -->
 		<div class="content item-content">
-		<a href="http://www.flickr.com/people/joomla/">500 $</a> es el Precio	.</div>
+		<a href="http://www.flickr.com/people/joomla/">${aviso.importe} $</a> es el Precio	.</div>
 		<!-- //Item content -->
 
 		<!-- Item footer -->

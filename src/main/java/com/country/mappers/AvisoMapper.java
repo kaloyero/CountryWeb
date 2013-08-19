@@ -26,6 +26,7 @@ public class AvisoMapper {
 		Integrante integrante = new Integrante();
 		integrante.setId(((AvisoForm) form).getIntegrante());
 		dto.setIntegrante(integrante);
+		dto.setImporte(((AvisoForm) form).getImporte());
 		
 		return dto;
 
@@ -44,7 +45,7 @@ public class AvisoMapper {
 		form.setId(dto.getId());
 		form.setIntegrante(dto.getIntegrante().getId());
 		form.setIntegranteNombre(dto.getIntegrante().getPersona().getNombre() );
-		
+		form.setImporte(dto.getImporte());
 		form.setIntegranteApellido(dto.getIntegrante().getPersona().getApellido());
 
 		form.setUnidad(dto.getIntegrante().getUnidad().getCode());

@@ -20,6 +20,7 @@ var DashBoardender = new Class({
    
     onFinishLoading : function(coleccion){
     	for (tipo in coleccion){
+    		console.log("DATa",coleccion[tipo])
     		templateManager.add(tipo,coleccion[tipo])
     	}
     	jQuery(".corner-stamp").load('../resources/static/corner.html');

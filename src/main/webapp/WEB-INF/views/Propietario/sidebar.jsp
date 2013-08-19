@@ -81,7 +81,7 @@
 
 						<li>
 							<h4>
-								<a href="#">+ Clasificado</a>
+								<a class="optionNew" id="aviso_propietario_nuevo">+ Clasificado</a>
 							</h4>
 
 						</li>

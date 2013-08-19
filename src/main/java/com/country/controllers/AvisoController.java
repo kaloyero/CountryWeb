@@ -66,6 +66,7 @@ public class AvisoController {
 			@ModelAttribute(value = "AVISO") AvisoForm form,
 			BindingResult result) throws ParseException {
 		
+		form.setIntegrante(1);
 		notificationManager.save(form);
 		
 		return "success";
@@ -85,7 +86,7 @@ public class AvisoController {
 			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			return "forms/avisoForm";
 		} else {
-			return "forms/avisoForm";
+			return "Propietario/avisoForm";
 		}
 		
 

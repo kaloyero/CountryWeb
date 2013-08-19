@@ -1,5 +1,8 @@
 package com.country.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -106,4 +109,23 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		
 	}
 
+	
+	public List<EventoForm> listAllForms() {
+		List<EventoForm> list = new ArrayList<EventoForm>();
+		List<Evento> eventos = eventDao.findAll();
+		Tarifa tarifa ;
+		for (Evento evento : eventos) {
+			tarifa = null;
+			//Toma la ultima tarifa
+			if (evento.getConcepto() != null){
+				tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+
+			}		
+			
+			EventoForm form = (EventoForm) EventoMapper.getForm(evento, tarifa);
+
+			list.add(form);
+		}
+		return list;
+	}
 }

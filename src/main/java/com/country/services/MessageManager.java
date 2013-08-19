@@ -16,6 +16,7 @@ public interface MessageManager extends AbstractManager<Mensaje>{
 	void closeMessage(MensajeForm form);
 	
 	void update(MensajeForm form);
-	
+
+	List<MensajeForm> listAllForms();
 	
 }
