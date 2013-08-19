@@ -9,19 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.country.common.Constants;
 import com.country.common.DateUtil;
 import com.country.common.GenericDao;
+import com.country.common.SessionUtil;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
+import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.dao.MessageDao;
 import com.country.hibernate.dao.MessageDetailDao;
+import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.mappers.MensajeDetalleMapper;
 import com.country.mappers.MensajeMapper;
-import com.country.services.IntegratorManager;
 import com.country.services.MessageManager;
+import com.country.session.ConfigurationData;
 import com.country.session.SessionData;
 
 @Service("messageManager")
@@ -34,7 +36,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
     private MessageDetailDao messageDetailDao;
 
 	@Autowired
-    private IntegratorManager integratorManager;
+    private IntegratorDao integratorDao;
 	
 	public static final String ACTION_CLOSE =  "CLOSE";
 	
@@ -61,22 +63,29 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	@Transactional
 	public void save(MensajeForm form) {
 
+		//Seteo el empleado
+		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
+			form.setIdEmpleado(SessionData.getEmpleadoId());	
+		} else {
+			form.setIdEmpleado(ConfigurationData.getUSUARIO_DEFAULT_RECLAMOS());
+		}
 		Mensaje dto = MensajeMapper.getMensaje(form);
 
 		//Seteo el estado inicial del mensaje
 		dto.setEstado(getNextStatus(dto.getTipo(), dto.getEstado(), ""));
 		//Seteo la resolucion en blanco
 		dto.setResolucion("");
-
+			
 		//guarda el mensaje
 		messageDao.save(dto);
 		
 		// GUARDO EL DETALLE
-		//Si el que envia el mensaje es el administradortiene que ver si lo envia como ADM o como Integrante. 
+		//Si el que envia el mensaje es el administrador tiene que ver si lo envia como ADM o como Integrante. 
 		int idPersona = SessionData.getPersonaId();
-		if (Constants.PERSONA_EMPLEADO.equals( SessionData.getTipoUsuario())){
+		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
 			if (! form.isEnvio()){
-				idPersona = integratorManager.getPersonId(form.getIdIntegrante());
+				Integrante inte = integratorDao.findById(form.getIdIntegrante());
+				idPersona = inte.getPersona().getId();
 			}	
 		}
 		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(dto.getId(), form.getRespuesta(), form.getTipo(),idPersona);

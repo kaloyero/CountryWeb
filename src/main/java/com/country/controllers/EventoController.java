@@ -79,7 +79,7 @@ public class EventoController {
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 			  
 		if (SessionUtil.isAdminUser(request)){
-			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			model.addAttribute("integrantes", integratorManager.getIntegratorNamesPersonIdKey());
 			return "evento";
 		}else{
 			return "Propietario/eventoForm";
@@ -96,10 +96,7 @@ public class EventoController {
 			if (((EventoForm) form).getConcepto() != null){
 				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
 			}
-		} else {
-			//TODO tomar el integrante que crea el evento
-			form.setIntegrante(1);
-		}
+		} 
 		eventManager.save(form);
 				return "success";
 		
@@ -113,7 +110,7 @@ public class EventoController {
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 		
 		if (SessionUtil.isAdminUser(request)){
-			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			model.addAttribute("integrantes", integratorManager.getIntegratorNamesPersonIdKey());
 			return "forms/eventoForm";
 		}else{
 			return "Propietario/eventoForm";

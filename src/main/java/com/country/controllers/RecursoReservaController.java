@@ -41,9 +41,7 @@ public class RecursoReservaController {
 	public String processJson(@RequestBody
 			  ReservaForm form
 			) throws ParseException {
-		//TODO porque en Set Evento ,me pide un objecto evento y en set Integrante,solamente el Id del integrante y no un objeto Integrante?
-			
-		reservaManager.save(ReserveMapper.getReserva(form));
+			reservaManager.save(ReserveMapper.getReserva(form));
 			return "success";
 		//}
 			

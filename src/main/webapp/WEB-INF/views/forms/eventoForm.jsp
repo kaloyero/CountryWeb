@@ -16,13 +16,19 @@
 			</p>
 		</div>
 
-		<div class="_100">
+		<div class="_50">
 			<p>
 				<label for="textfield">Organiza: </label>
-				<form:select path="integrante" multiple="false"> 
+				<form:select path="personaId" multiple="false"> 
 					<form:options items="${integrantes}" itemValue="id"
 						itemLabel="nombre" /> 
 				</form:select> 		
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Administrador: </label>
+				<form:checkbox path="envioAdm" value="true"/>
 			</p>
 		</div>
 		<div class="_100">

@@ -48,8 +48,8 @@ public class Aviso implements Serializable {
 	private  AvisoCategoria categoria;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante",updatable = false, insertable = true)	
-	private  Integrante integrante;
+	@JoinColumn(name="IdPersona",updatable = false, insertable = true)	
+	private  Persona persona;
 
 	public Integer getId() {
 		return id;
@@ -115,12 +115,14 @@ public class Aviso implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public Integrante getIntegrante() {
-		return integrante;
+	public Persona getPersona() {
+		return persona;
 	}
 
-	public void setIntegrante(Integrante integrante) {
-		this.integrante = integrante;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
+
+	
 	
 }

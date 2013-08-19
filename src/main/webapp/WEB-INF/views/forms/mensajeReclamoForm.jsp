@@ -10,7 +10,7 @@
 			<p>
 				<c:if test="${MENSAJE.id == 0}">
 					<label for="textfield">Creado por Administrador: </label>
-					<form:checkbox id="checkEnvio" path="envio" value="true" onclick="alert('culo');"/>
+					<form:checkbox id="checkEnvio" path="envio" value="true" />
 				</c:if>
 				<c:if test="${MENSAJE.id != 0}">
 					<c:if test="${envio}">

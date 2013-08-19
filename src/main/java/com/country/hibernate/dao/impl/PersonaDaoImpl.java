@@ -1,9 +1,5 @@
 package com.country.hibernate.dao.impl;
 
-import java.util.List;
-
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.country.common.GenericDaoImpl;

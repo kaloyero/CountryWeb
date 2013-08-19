@@ -9,14 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.country.common.Constants;
 import com.country.common.GenericDao;
 import com.country.form.EmpleadoForm;
-import com.country.form.IntegranteForm;
 import com.country.hibernate.dao.EmployeeDao;
 import com.country.hibernate.model.Direccion;
 import com.country.hibernate.model.Empleado;
-import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Telefono;
 import com.country.mappers.EmpleadoMapper;
-import com.country.mappers.IntegranteMapper;
 import com.country.services.AddressManager;
 import com.country.services.EmployeeManager;
 import com.country.services.TelephoneManager;
@@ -90,4 +87,11 @@ public class EmployeeManagerImpl extends AbstractManagerImpl<Empleado> implement
 		//Modifico la lista de direcciones
 		addressManager.updateList(form.getPersona().getDirecciones(),dto.getPersona().getId());	
 	}
+	
+	public Empleado findEmployeeByIdPerson(int idPerson) {
+		Empleado dto = employeeDao.findEmployeeByIdPerson(idPerson);
+		return dto;
+		
+	}
+
 }

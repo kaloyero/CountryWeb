@@ -9,22 +9,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.DateUtil;
 import com.country.common.GenericDao;
-import com.country.form.ActividadForm;
+import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
-import com.country.form.IntegranteActividadForm;
-import com.country.form.IntegranteForm;
+import com.country.form.PersonaForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.EventDao;
 import com.country.hibernate.model.Evento;
-import com.country.hibernate.model.IntegranteActividades;
 import com.country.hibernate.model.Tarifa;
 import com.country.mappers.EventoMapper;
-import com.country.mappers.IntegranteActividadMapper;
 import com.country.services.ConceptManager;
 import com.country.services.EventManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
+import com.country.session.SessionData;
 
 @Service("eventManager")
 public class EventManagerImpl extends AbstractManagerImpl<Evento> implements EventManager{
@@ -66,7 +64,16 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	
 	@Transactional
 	public void save(EventoForm form) {
+		int idPerson = SessionData.getPersonaId();
+		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
+			if (! form.isEnvioAdm()){
+			   idPerson = form.getPersonaId();
+			}
+		}
+		form.setPersonaId(idPerson);
+			
 		Evento dto = EventoMapper.getEvento(form);
+		
 		
 		eventDao.save(dto);
 		
@@ -92,9 +99,10 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		reserva.setEventoId(form.getId());
 		reserva.setFecha(form.getFecha());
 		reserva.setHoraIni(form.getHourIni());
-		IntegranteForm intForm = new IntegranteForm();
-		intForm.setId(form.getIntegrante());
-		reserva.setIntegranteId(form.getIntegrante());
+		PersonaForm intForm = new PersonaForm();
+		intForm.setId(form.getPersonaId());
+		reserva.setPersona(intForm);
+		reserva.setPersonId(form.getPersonaId());
 		RecursoForm recFrom = new RecursoForm();
 		recFrom.setId(form.getRecurso());
 		reserva.setRecursoId(form.getRecurso());

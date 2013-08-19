@@ -6,20 +6,26 @@
 
 <fieldset>
 		<legend>Aviso</legend>
-		<div class="_100">
+		<div class="_50">
 			<p>
 				<label for="textfield">Publicado por: </label>
 				<c:if test="${AVISO.id == 0}">
-					<form:select path="integrante" multiple="false"> 
+					<form:select path="persona" multiple="false"> 
 						<form:options items="${integrantes}" itemValue="id"
 							itemLabel="nombre" /> 
 					</form:select> 		
 				</c:if>
 				<c:if test="${AVISO.id != 0}">
-					<form:input path="integranteNombre" class="required" readonly="true"/>				
+					<form:input path="personaNombre" class="required" readonly="true"/>				
 				</c:if>
 			</p>
 		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Administrador: </label>
+				<form:checkbox path="envioAdm" value="true"/>
+			</p>
+		</div>		
 		<div class="_50">
 			<p>
 				<label for="textfield">titulo</label>

@@ -4,7 +4,7 @@ import com.country.common.DateUtil;
 import com.country.form.EventoForm;
 import com.country.form.Form;
 import com.country.hibernate.model.Evento;
-import com.country.hibernate.model.Integrante;
+import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Tarifa;
 
 public class EventoMapper {
@@ -28,10 +28,9 @@ public class EventoMapper {
 		evento.setFecha(DateUtil.convertStringToDate(((EventoForm) form).getFecha()));
 		evento.setHourIni(((EventoForm) form).getHourIni());
 		evento.setNombre(((EventoForm) form).getNombre());
-		
-		Integrante integrante = new Integrante();
-		integrante.setId(((EventoForm) form).getIntegrante());
-		evento.setIntegrante(integrante);
+		Persona persona = new Persona();
+		persona.setId(((EventoForm) form).getPersonaId());
+		evento.setPersona(persona);
 		
 		return evento;
 
@@ -50,16 +49,11 @@ public class EventoMapper {
 		form.setHourIni(evento.getHourIni());
 		form.setId(evento.getId());
 		form.setNombre(evento.getNombre());
-		if (evento.getIntegrante() != null){
-			form.setIntegrante(evento.getIntegrante().getId());	
-			form.setIntegranteApellido(evento.getIntegrante().getPersona().getApellido());
-			form.setIntegranteNombre(evento.getIntegrante().getPersona().getNombre());
-
-		}
+		form.setPersona(PersonaMapper.getForm(evento.getPersona(), null, null));
 		form.setDiaSemana(DateUtil.getDiaDeLaSemanaName(evento.getFecha()));
 		form.setDescripcion(evento.getDescription());
-		
-		//form.setRecurso(evento.get);
+		form.setPersona(PersonaMapper.getForm(evento.getPersona(), null, null));
+		form.setPersonaId(evento.getPersona().getId());
 		
 		return form;
 	}

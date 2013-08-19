@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.DateUtil;
 import com.country.common.GenericDao;
+import com.country.common.SessionUtil;
 import com.country.form.AvisoForm;
 import com.country.hibernate.dao.NotificationDao;
 import com.country.hibernate.model.Aviso;
@@ -14,6 +15,7 @@ import com.country.hibernate.model.AvisoCategoria;
 import com.country.mappers.AvisoMapper;
 import com.country.services.NotificationCategoryManager;
 import com.country.services.NotificationManager;
+import com.country.session.SessionData;
 
 @Service("notificationManager")
 public class NotificationManagerImpl extends AbstractManagerImpl<Aviso> implements NotificationManager{
@@ -44,8 +46,17 @@ public class NotificationManagerImpl extends AbstractManagerImpl<Aviso> implemen
 
 	@Transactional
 	public int save(AvisoForm form) {
+		//Seteo la persona q crea
+		int idPerson = SessionData.getPersonaId();
+		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
+			if (! form.isEnvioAdm()){
+			   idPerson = form.getPersona();
+			}
+		}
+		form.setPersona(idPerson);
+		
+		//mapeo el aviso
 		Aviso dto = AvisoMapper.getAviso(form);
-
 		
 		AvisoCategoria categoria = notificationCategoryManager.findById(form.getCategoria());
 		//Seteo la fecha de inicio como la actual
