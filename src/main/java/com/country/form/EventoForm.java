@@ -10,6 +10,7 @@ public class EventoForm extends Form  {
 	private  int duracion;
 	private String nombre;
 	private int cupo;
+	private int reservaId;
 	private int recurso;
 	private int personaId;
 	private PersonaForm persona;
@@ -20,6 +21,16 @@ public class EventoForm extends Form  {
 	
 	
 	
+	public int getReservaId() {
+		return reservaId;
+	}
+
+
+	public void setReservaId(int reservaId) {
+		this.reservaId = reservaId;
+	}
+
+
 	public int getPersonaId() {
 		return personaId;
 	}

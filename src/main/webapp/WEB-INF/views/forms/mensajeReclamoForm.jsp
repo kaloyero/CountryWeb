@@ -13,10 +13,10 @@
 					<form:checkbox id="checkEnvio" path="envio" value="true" />
 				</c:if>
 				<c:if test="${MENSAJE.id != 0}">
-					<c:if test="${envio}">
+					<c:if test="${MENSAJE.envio}">
 						<label for="textfield">De: Administrador</label>
 					</c:if>
-					<c:if test="${!envio}">
+					<c:if test="${!MENSAJE.envio}">
 						<label for="textfield">De: </label>
 						<form:input path="integranteNombre"  readonly="true"/>					
 					</c:if>
@@ -34,11 +34,11 @@
 					</form:select> 		
 				</c:if>
 				<c:if test="${MENSAJE.id != 0}">
-					<c:if test="${envio}">
+					<c:if test="${MENSAJE.envio}">
 						<label for="textfield">Para:</label>
 						<form:input path="integranteNombre"  readonly="true"/>					
 					</c:if>
-					<c:if test="${!envio}">
+					<c:if test="${!MENSAJE.envio}">
 						<label for="textfield">Para: Administrador</label>
 					</c:if>
 				</c:if>

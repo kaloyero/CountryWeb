@@ -1,6 +1,7 @@
 package com.country.mappers;
 
 import com.country.common.DateUtil;
+import com.country.common.MapperUtil;
 import com.country.form.AvisoForm;
 import com.country.form.Form;
 import com.country.hibernate.model.Aviso;
@@ -44,6 +45,7 @@ public class AvisoMapper {
 		form.setId(dto.getId());
 		form.setPersona(dto.getPersona().getId());
 		form.setPersonaNombre(dto.getPersona().getNombre() + " " + dto.getPersona().getApellido() + " - " + dto.getPersona().getTipoDoc().getNombre() + " " + dto.getPersona().getNroDoc());
+		form.setEnvioAdm(MapperUtil.getStatusUserForm(dto.getPersona().getTipo()));
 		form.setTitulo(dto.getTittle());
 		
 		return form;

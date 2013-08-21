@@ -16,6 +16,7 @@ import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.EventDao;
 import com.country.hibernate.model.Evento;
+import com.country.hibernate.model.Reserva;
 import com.country.hibernate.model.Tarifa;
 import com.country.mappers.EventoMapper;
 import com.country.services.ConceptManager;
@@ -54,10 +55,12 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		EventoForm form = new EventoForm();
 		
 		Evento evento = findById(id);
+		//Traigo la reserva
+		Reserva reserva = reserveManager.findReserveByIdEvent(id);
 		//Toma la ultima tarifa
 		Tarifa tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
 		
-		form = (EventoForm) EventoMapper.getForm(evento, tarifa);
+		form = (EventoForm) EventoMapper.getForm(evento, tarifa,reserva);
 		return form;
 	}
 	
@@ -85,18 +88,22 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 			price.setFechaComienzo(DateUtil.getDateToday());
 			priceManager.save(price);		
 		}
-		ReservaForm reserva = getReserva(form);
-		reserveManager.save(reserva);
+		//Pregunto si hay un recurso seleccionado
+		if (form.getRecurso() >0){
+			ReservaForm reserva = getReserva(form,dto.getId());
+			reserveManager.save(reserva);
+		}
+		
 		
 		
 		
 	}
 	
 	
-	private ReservaForm getReserva(EventoForm form){
+	private ReservaForm getReserva(EventoForm form,int eventId){
 		ReservaForm reserva = new ReservaForm();
 		reserva.setDuracion(form.getDuracion());
-		reserva.setEventoId(form.getId());
+		reserva.setEventoId(eventId);
 		reserva.setFecha(form.getFecha());
 		reserva.setHoraIni(form.getHourIni());
 		PersonaForm intForm = new PersonaForm();
@@ -105,9 +112,11 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		reserva.setPersonId(form.getPersonaId());
 		RecursoForm recFrom = new RecursoForm();
 		recFrom.setId(form.getRecurso());
+		reserva.setRecurso(recFrom);
 		reserva.setRecursoId(form.getRecurso());
 		reserva.setDescripcion(form.getDescripcion());
-		
+		reserva.setEnvioAdm(form.isEnvioAdm());
+		reserva.setId(form.getReservaId());
 		return reserva;
 	}
 
@@ -119,6 +128,12 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		
 		eventDao.update(dto);
 		
+		//Pregunto si hay un recurso seleccionado
+		if (form.getRecurso() >0){
+			ReservaForm reserva = getReserva(form,dto.getId());
+			reserveManager.update(reserva);
+		}
+	
 	}
 
 	
@@ -127,9 +142,11 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		List<Evento> eventos = eventDao.findAll();
 		
 		for (Evento evento : eventos) {
+			//Traigo la reserva
+			Reserva reserva = reserveManager.findReserveByIdEvent(evento.getId());
 			//Toma la ultima tarifa
 			Tarifa tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
-			EventoForm form = (EventoForm) EventoMapper.getForm(evento, tarifa);
+			EventoForm form = (EventoForm) EventoMapper.getForm(evento, tarifa,reserva);
 
 			list.add(form);
 		}

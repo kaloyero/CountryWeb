@@ -17,5 +17,6 @@ public interface ReserveDao extends GenericDao<Reserva, Integer> {
 	 * @return
 	 */
 	public Reserva findResourceAfterBefore(boolean AfterBefore,Integer resource, Date fecha, int horaIni);
+
 	
 }

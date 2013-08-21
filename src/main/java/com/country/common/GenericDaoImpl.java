@@ -122,7 +122,14 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
             criteria.add(Restrictions.eq(propertyName, value));
             return (List<E>) criteria.getExecutableCriteria(getSession()).list();
       }
-      
+
+      @SuppressWarnings("unchecked")
+      @Transactional(readOnly = true)
+      public E findEntityByProperty(String propertyName, Object value) {
+            DetachedCriteria criteria = createDetachedCriteria();
+            criteria.add(Restrictions.eq(propertyName, value));
+            return (E) criteria.getExecutableCriteria(getSession()).uniqueResult();
+      }
       
 //  	@SuppressWarnings("unchecked")
 //  	public <T> List<T> findByNamedParam(Class<T> entityClass, String query,

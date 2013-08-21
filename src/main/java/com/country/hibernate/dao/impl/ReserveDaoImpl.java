@@ -46,4 +46,5 @@ public class ReserveDaoImpl extends GenericDaoImpl<Reserva, Integer> implements 
 
 	}
 
+
 }

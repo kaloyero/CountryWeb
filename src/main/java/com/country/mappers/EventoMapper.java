@@ -1,10 +1,12 @@
 package com.country.mappers;
 
 import com.country.common.DateUtil;
+import com.country.common.MapperUtil;
 import com.country.form.EventoForm;
 import com.country.form.Form;
 import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Persona;
+import com.country.hibernate.model.Reserva;
 import com.country.hibernate.model.Tarifa;
 
 public class EventoMapper {
@@ -37,7 +39,7 @@ public class EventoMapper {
 	}
 	
 
-	public static Form getForm(Evento evento, Tarifa tarifa) {
+	public static Form getForm(Evento evento, Tarifa tarifa,Reserva reserva) {
 		EventoForm form=new EventoForm();
 		if ((evento.getConcepto() != null)) {
 			form.setConcepto(ConceptoMapper.getForm(evento.getConcepto(),tarifa));
@@ -54,6 +56,11 @@ public class EventoMapper {
 		form.setDescripcion(evento.getDescription());
 		form.setPersona(PersonaMapper.getForm(evento.getPersona(), null, null));
 		form.setPersonaId(evento.getPersona().getId());
+		form.setEnvioAdm(MapperUtil.getStatusUserForm(evento.getPersona().getTipo()));
+		if (reserva != null){
+			form.setRecurso(reserva.getRecurso());
+			form.setReservaId(reserva.getId());
+		}
 		
 		return form;
 	}

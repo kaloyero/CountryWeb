@@ -56,7 +56,7 @@ public class Mensaje implements Serializable {
 	private Integrante integrante;
 
     @Column(name = "IdEmpleado",updatable=false)
-	private int empleado;
+	private Integer empleado;
 
 	@Column(name = "Envio",updatable=false)
 	private String envio;    
@@ -76,11 +76,11 @@ public class Mensaje implements Serializable {
 		this.integrante = integrante;
 	}
 
-	public int getEmpleado() {
+	public Integer getEmpleado() {
 		return empleado;
 	}
 
-	public void setEmpleado(int empleado) {
+	public void setEmpleado(Integer empleado) {
 		this.empleado = empleado;
 	}
 

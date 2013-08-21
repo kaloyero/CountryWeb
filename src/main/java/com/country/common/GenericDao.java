@@ -26,6 +26,8 @@ public interface GenericDao<E,PK  extends Serializable> {
     
     List<E> findAllByProperty(String propertyName,Object value);
     
+    public E findEntityByProperty(String propertyName, Object value);
+    
     List<E> listByPropertiesPagin(int pagIni,int qtRows, List<Property> properties, String searchText,String orderByProperty, boolean asc);
   	
     List<E> findByPagin(int pagIni,int qtRows, String orderByProperty, boolean asc);

@@ -40,7 +40,7 @@ public class Reserva implements Serializable {
 	@Column(name = "Duracion")
 	private  int duracion ;
 
-	@Column(name = "IdEvento")
+	@Column(name = "IdEvento",updatable=false)
 	private  int evento;
 
 	@Column(name = "IdPersona",updatable=false)

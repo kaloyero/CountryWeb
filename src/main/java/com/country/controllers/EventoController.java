@@ -21,7 +21,6 @@ import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
-import com.country.mappers.EventoMapper;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
@@ -47,13 +46,7 @@ public class EventoController {
 	public String showMainContent(ModelMap model,HttpServletRequest request) {
 		System.out.println("VALOR "+ request.getRequestURL().toString());
 		
-
-		List<EventoForm> listaEventoForm = new ArrayList<EventoForm>();
-
-		for (Evento evento : eventManager.listAll()) {
-			listaEventoForm.add((EventoForm) EventoMapper.getForm(evento,null));
-		}
-		
+		List<EventoForm> listaEventoForm = eventManager.listAllForms();
 		
 		model.addAttribute("eventos", listaEventoForm);
 		

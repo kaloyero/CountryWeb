@@ -86,10 +86,24 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		
 		if (resourceManager.checkReserveResource(dto.getRecurso(), dto.getFecha(), dto.getHoraIni(), dto.getDuracion())){
 			save(dto);
+		} else {
+			//TODO sacar por error
 		}
+			
 		
 	}
 
+	public void update(ReservaForm form) {
+
+		Reserva dto = ReserveMapper.getReserva(form);
+		
+		if (resourceManager.checkReserveResource(dto.getRecurso(), dto.getFecha(), dto.getHoraIni(), dto.getDuracion())){
+			update(dto);
+		} else {
+			//TODO sacar por error
+		}
+	}
+	
 
 	public List<Reserva> findListReservationByUnit(Integer id) {
 		List<Reserva> list = new ArrayList<Reserva>();
@@ -141,5 +155,10 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		form.setPersona(personaForm);
 		
 		return form;
+	}
+
+	public Reserva findReserveByIdEvent(int event) {
+			
+		return reserveDao.findEntityByProperty("evento", event);	
 	}
 }
