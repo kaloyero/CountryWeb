@@ -12,8 +12,8 @@ public class IntegranteActividadMapper {
 
 		IntegranteActividades dto = new IntegranteActividades();
 		dto.setId(form.getId());
-		dto.setActividad(form.getActividad());
-		dto.setIntegrante(form.getIntegrante());
+		dto.setActividad(form.getActividadId());
+		dto.setIntegrante(form.getIntegranteId());
 		dto.setFechaComienzo(DateUtil.convertStringToDate((form.getFechaIni())));
 		dto.setFechaFin(DateUtil.convertStringToDate((form.getFechaFin())));
 		return dto;
@@ -25,8 +25,8 @@ public class IntegranteActividadMapper {
 				
 				IntegranteActividadForm form =new IntegranteActividadForm();
 				form.setId(dto.getId());
-				form.setActividad(dto.getActividad());
-				form.setIntegrante(dto.getIntegrante());
+				form.setActividadId(dto.getActividad());
+				form.setIntegranteId (dto.getIntegrante());
 				form.setFechaIni(DateUtil.convertDateToString(dto.getFechaComienzo()));
 				form.setFechaFin(DateUtil.convertDateToString(dto.getFechaFin()));
 				return form;

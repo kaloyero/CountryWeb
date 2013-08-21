@@ -53,15 +53,29 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		
 		Reserva dto = findById(id);
 		
-		RecursoForm recForm = resourceManager.getResourceForm(dto.getRecurso());
-		IntegranteForm integranteForm = integratorManager.findFormById(dto.getIntegrante());
-		EventoForm eventoForm = eventManager.findFormById(dto.getEvento()); 
-				
-		form = (ReservaForm) ReserveMapper.getForm(dto,recForm , integranteForm,eventoForm );
+		form = (ReservaForm) ReserveMapper.getForm(dto);
 		
 		return form;
 	}
 	
+	public ReservaForm findFormByIdCoplete(Integer id) {
+		ReservaForm form = new ReservaForm();
+		
+		Reserva dto = findById(id);
+		
+		RecursoForm recForm = resourceManager.getResourceForm(dto.getRecurso());
+		IntegranteForm integranteForm = integratorManager.findFormById(dto.getIntegrante());
+		EventoForm eventoForm = eventManager.findFormById(dto.getEvento()); 
+				
+		form = (ReservaForm) ReserveMapper.getForm(dto);
+		//Seteo el recurso, integrante y evento.
+		form.setEvento(eventoForm);
+		form.setRecurso(recForm);
+		form.setIntegrante(integranteForm);
+		
+		return form;
+	}
+
 	
 	public void save(ReservaForm form) {
 		
@@ -100,4 +114,25 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		return posterior;
 	}
 
+	public List<ReservaForm> listAllFormsComplete() {
+
+		List<ReservaForm> list = new ArrayList<ReservaForm>();
+		List<Reserva> reservas = reserveDao.findAll();
+
+		for (Reserva res : reservas) {
+			RecursoForm recForm = resourceManager.getResourceForm(res.getRecurso());
+			IntegranteForm integranteForm = integratorManager.findFormById(res.getIntegrante());
+			EventoForm eventoForm = eventManager.findFormById(res.getEvento()); 
+					
+			ReservaForm form = (ReservaForm) ReserveMapper.getForm(res);
+			//Seteo el recurso, integrante y evento.
+			form.setEvento(eventoForm);
+			form.setRecurso(recForm);
+			form.setIntegrante(integranteForm);
+
+			list.add(form);
+		}
+		
+		return list;
+	}
 }

@@ -29,7 +29,7 @@ public class AvisoCategoria implements Serializable {
 	@Column(name = "Descripcion")
 	private String nombre;
 
-	@Column(name = "FechaIni")
+	@Column(name = "FechaIni",updatable=false)
 	private Date dateIni;
 
 	@Column(name = "FechaFin")

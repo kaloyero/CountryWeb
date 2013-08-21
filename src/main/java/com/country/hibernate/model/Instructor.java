@@ -35,7 +35,19 @@ public class Instructor implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
 	private Persona persona;
+
+	@Column(name = "Estado")
+	private String estado; 
 	
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public Instructor() {
 	}
 	

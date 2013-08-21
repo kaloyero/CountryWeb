@@ -18,11 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.DateUtil;
 import com.country.form.AvisoCategoriaForm;
-import com.country.form.TipoInfraccionForm;
 import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Evento;
-import com.country.hibernate.model.TipoInfraccion;
 import com.country.mappers.TipoMapper;
 import com.country.services.NotificationCategoryManager;
 

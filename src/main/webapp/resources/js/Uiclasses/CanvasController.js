@@ -62,6 +62,9 @@ var CanvasController = new Class({
 		 case "integrante":
 			integranteRender.onNewTab();
 			break;
+		 case "mensajeReclamo":
+			 	mensajeReclamoRender.onNewTab();
+				break;
 		 case "instructor":
 			instructorRender.onNewTab();
 			break;
@@ -86,6 +89,9 @@ var CanvasController = new Class({
 			break;
 		 case "integrante":
 				integranteRender.onLoaded();
+				break;
+		 case "mensajeReclamo":
+			 	mensajeReclamoRender.onLoaded();
 				break;
 		 case "instructor":
 				instructorRender.onLoaded();

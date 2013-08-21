@@ -9,8 +9,22 @@ import com.country.hibernate.model.IntegranteActividades;
 
 public interface IntegratorActivityManager extends AbstractManager<IntegranteActividades>{
 	
+	/**
+	 * Trae los id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	IntegranteActividadForm findFormById(Integer id);
 	
+	
+	/**
+	 * Trae la informacion completa con actividad e integrante
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public IntegranteActividadForm findFormByIdComplete(Integer id);
 	
 	/**
 	 * Inscribir el integrante a una actividad
@@ -44,4 +58,13 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	 * @return
 	 */
 	public boolean esUsuarioInscripto(int actividad, int integrante);
+	
+	
+	/**
+	 * Este metodo devuelve todas las reservas con la informacion de la actividad e integrante
+	 * 
+	 * @return
+	 */
+	public List<IntegranteActividadForm> listAllFormsComplete(); 
+	
 }

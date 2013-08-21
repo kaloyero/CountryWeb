@@ -9,14 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.DateUtil;
 import com.country.common.GenericDao;
+import com.country.form.ActividadForm;
 import com.country.form.EventoForm;
+import com.country.form.IntegranteActividadForm;
 import com.country.form.IntegranteForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.EventDao;
 import com.country.hibernate.model.Evento;
+import com.country.hibernate.model.IntegranteActividades;
 import com.country.hibernate.model.Tarifa;
 import com.country.mappers.EventoMapper;
+import com.country.mappers.IntegranteActividadMapper;
 import com.country.services.ConceptManager;
 import com.country.services.EventManager;
 import com.country.services.PriceManager;
@@ -128,4 +132,5 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		}
 		return list;
 	}
+
 }

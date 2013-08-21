@@ -54,6 +54,13 @@ public class Mensaje implements Serializable {
     @OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdIntegrante",updatable=false)	
 	private Integrante integrante;
+
+    @OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdEmpleado",updatable=false)	
+	private Empleado empleado;
+
+	@Column(name = "Envio",updatable=false)
+	private String envio;    
     
 	@OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
@@ -61,6 +68,30 @@ public class Mensaje implements Serializable {
 	private  List <MensajeDetalles> detalles ;
     
 	
+
+	public Integrante getIntegrante() {
+		return integrante;
+	}
+
+	public void setIntegrante(Integrante integrante) {
+		this.integrante = integrante;
+	}
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public String getEnvio() {
+		return envio;
+	}
+
+	public void setEnvio(String envio) {
+		this.envio = envio;
+	}
 
 	public List<MensajeDetalles> getDetalles() {
 		return detalles;
@@ -126,14 +157,7 @@ public class Mensaje implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public Integrante getIntegrante() {
-		return integrante;
-	}
-
-	public void setIntegrante(Integrante integrante) {
-		this.integrante = integrante;
-	}
-
+	
 	public String getTipo() {
 		return tipo;
 	}

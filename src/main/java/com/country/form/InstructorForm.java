@@ -8,11 +8,20 @@ public class InstructorForm extends Form  {
 	private String fechaComienzo;
 	private String fechaFin;
 	private PersonaForm persona ;
+	private boolean estado;
 	
 	public InstructorForm() {
 		persona= new PersonaForm();
 	}
 	
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
 	public Integer getId() {
 		return id;
 	}

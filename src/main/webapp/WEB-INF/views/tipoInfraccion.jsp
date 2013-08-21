@@ -4,7 +4,6 @@
  <script type="text/javascript">
 		
 		function updateTipo(id){
-			
 			translator.onUpdate('tipoInfraccion',id);
 		}
 
@@ -33,9 +32,7 @@
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Clave</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
-							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Infraccion</th>
 						</tr>
 				</thead>
 						<tbody>

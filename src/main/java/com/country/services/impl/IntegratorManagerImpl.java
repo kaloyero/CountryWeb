@@ -17,6 +17,7 @@ import com.country.hibernate.model.Telefono;
 import com.country.mappers.IntegranteMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.TelephoneManager;
+import com.country.services.UserManager;
 
 @Service("integratorManager")
 public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> implements IntegratorManager{
@@ -26,6 +27,9 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	
 	@Autowired
 	private TelephoneManager telephoneManager;
+	
+	@Autowired
+	private UserManager userManager;
 
 	protected GenericDao<Integrante, Integer> getDao() {
 		return integratorDao;
@@ -44,7 +48,8 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	}
 
 	public List<TipoForm> getIntegratorNames() {
-		List<Integrante> listIntegrators = integratorDao.findAll();
+		//usuarios activos
+		List<Integrante> listIntegrators = integratorDao.findAll(true);
 		
 		List<TipoForm> list = new ArrayList<TipoForm>();
 		for (Integrante integrator : listIntegrators) {
@@ -66,8 +71,10 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		//Seteo que es un integrante
 		dto.getPersona().setTipo(Constants.PERSONA_INTEGRANTE);
 		
+		//Creo el usuario para este integrante
+		userManager.save(dto.getUsuario());
+		
 		integratorDao.save(dto);
-
 		//Inserta telefonos
 		telephoneManager.saveList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		
@@ -77,10 +84,35 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	public void update(IntegranteForm form) {
 		Integrante dto = IntegranteMapper.getIntegrante(form);
 		
+		//Modifico el usuario para este integrante
+		userManager.update(dto.getUsuario());
+
 		integratorDao.update(dto);
+		
 		//Modifico la lista de telefonos
 		telephoneManager.updateList(form.getPersona().getTelefonos(),dto.getPersona().getId());
 		
 	}
 
+	@Transactional
+	public List<Integrante> searchComboIntegrators(String search,boolean name,boolean surName,boolean unit,boolean document) {
+		List<Integrante> lista = new ArrayList<Integrante>();
+		lista = integratorDao.searchComboIntegrators(search, name, surName, unit, document);
+	
+		return lista;
+	}
+
+
+	@Transactional
+	public List<Integrante> listAll(boolean active) {
+		List<Integrante> lista = new ArrayList<Integrante>();
+		lista = integratorDao.findAll(active);
+	
+		return lista;
+	}
+
+	public int getPersonId(int integranteId) {
+		Integrante i = integratorDao.findById(integranteId);
+		return i.getPersona().getId();
+	}
 }

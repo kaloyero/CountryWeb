@@ -34,7 +34,7 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Clave</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Descripcion</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Especie</th>
 							
 						</tr>
 				</thead>

@@ -8,10 +8,30 @@ public class ReservaForm extends Form {
 	private  int recursoId ;
 	private  int integranteId;
 	private  int eventoId=0;
+	private  RecursoForm recurso ;
+	private  IntegranteForm integrante;
+	private  EventoForm evento;
 	private  Integer horaIni ;
 	private  Integer duracion ;
 
-
+	public RecursoForm getRecurso() {
+		return recurso;
+	}
+	public void setRecurso(RecursoForm recurso) {
+		this.recurso = recurso;
+	}
+	public IntegranteForm getIntegrante() {
+		return integrante;
+	}
+	public void setIntegrante(IntegranteForm integrante) {
+		this.integrante = integrante;
+	}
+	public EventoForm getEvento() {
+		return evento;
+	}
+	public void setEvento(EventoForm evento) {
+		this.evento = evento;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -17,4 +17,12 @@ public interface InstructorManager extends AbstractManager<Instructor>{
 	void update(InstructorForm form);
 	
 	List<TipoForm> getIntegratorNames();
+	
+	/**
+	 * Devuelve todos los instructores Activos o los inactivos segun el valor del parametro 'active'
+	 * 
+	 * @param active
+	 * @return
+	 */
+	public List<Instructor> listAll(boolean active);
 }

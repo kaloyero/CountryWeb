@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.country.common.DateUtil;
+import com.country.common.MapperUtil;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
@@ -23,13 +24,12 @@ public class MensajeMapper {
 		MensajeCategorias cat = new MensajeCategorias();
 		cat.setId(form.getCategoria());
 		mensaje.setCategoria(cat);
-
 		mensaje.setEstado(form.getEstado());
-
 		mensaje.setFecha(DateUtil.convertStringToDate((form.getFecha())));
 		mensaje.setFechaCierre(DateUtil.convertStringToDate((form.getFechaCierre())));
 		Integrante integ = new Integrante();
-		integ.setId(form.getIntegrante());
+		integ.setId(form.getIdIntegrante());
+		mensaje.setEnvio(MapperUtil.getStatusUserEntity(form.isEnvio()));
 		mensaje.setIntegrante(integ);
 		mensaje.setTipo(form.getTipo());
 		mensaje.setResolucion(form.getResolucion());
@@ -53,12 +53,19 @@ public class MensajeMapper {
 		form.setFechaCierre(DateUtil.convertDateToString(mensaje.getFechaCierre()));
 		//TODO ,el integrante puede ser nulo??
 		if (mensaje.getIntegrante() != null){
-			form.setIntegrante(mensaje.getIntegrante().getId());
      		form.setIntegranteNombre(mensaje.getIntegrante().getPersona().getNombre());
      		form.setIntegranteApellido(mensaje.getIntegrante().getPersona().getApellido());
 
      		form.setIntegranteUnidad(mensaje.getIntegrante().getUnidad().getCode());
 		}
+		form.setEnvio(MapperUtil.getStatusUserForm(mensaje.getEnvio()));
+		//OJO ,el integrante puede ser nulo//NO! aca debe poner el nombre del usuario conectado
+		form.setIdIntegrante(mensaje.getIntegrante().getId());
+ 		form.setIntegranteNombre(mensaje.getIntegrante().getUnidad().getCode() + " | " +
+							mensaje.getIntegrante().getPersona().getNombre() + " " +
+							mensaje.getIntegrante().getPersona().getApellido() + " " +
+							mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
+							mensaje.getIntegrante().getPersona().getNroDoc() );
 		form.setResolucion(mensaje.getResolucion());
 
 		form.setTipo(mensaje.getTipo());

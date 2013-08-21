@@ -16,4 +16,26 @@ public interface IntegratorManager extends AbstractManager<Integrante>{
 	
 	List<TipoForm> getIntegratorNames();
 	
+	/**
+	 * Devuelve todos los integrantes Activos o los inactivos segun el valor del parametro 'active'
+	 * 
+	 * @param active
+	 * @return
+	 */
+	List<Integrante> listAll(boolean active);
+
+	/**
+	 * Este metodo filtra por searchText. Las variables boolean sirven para indicar que campos se quiere filtrar
+	 * TRAE SOLO USUARIOS ACTIVOS
+	 * 
+	 * @param searchText
+	 * @param name
+	 * @param surName
+	 * @param unit
+	 * @param document
+	 * @return
+	 */
+	List<Integrante> searchComboIntegrators(String search,boolean name,boolean surName,boolean unit,boolean document);
+	
+	int getPersonId(int integranteId);
 }
