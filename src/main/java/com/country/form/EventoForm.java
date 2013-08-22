@@ -10,14 +10,47 @@ public class EventoForm extends Form  {
 	private  int duracion;
 	private String nombre;
 	private int cupo;
+	private int reservaId;
 	private int recurso;
-	private int integrante;
-	private String integranteNombre;
-	private String integranteApellido;
+	private int personaId;
+	private PersonaForm persona;
 	ConceptoForm concepto;
 	private int cantidadUnidos;
 	private String diaSemana;
+	private boolean envioAdm=false;
 	
+	
+	
+	public int getReservaId() {
+		return reservaId;
+	}
+
+
+	public void setReservaId(int reservaId) {
+		this.reservaId = reservaId;
+	}
+
+
+	public int getPersonaId() {
+		return personaId;
+	}
+
+
+	public void setPersonaId(int personaId) {
+		this.personaId = personaId;
+	}
+
+
+	public boolean isEnvioAdm() {
+		return envioAdm;
+	}
+
+
+	public void setEnvioAdm(boolean envioAdm) {
+		this.envioAdm = envioAdm;
+	}
+
+
 	public int getCantidadUnidos() {
 		return cantidadUnidos;
 	}
@@ -46,27 +79,6 @@ public class EventoForm extends Form  {
 	public void setConcepto(ConceptoForm concepto) {
 		this.concepto = concepto;
 	}
-
-
-	public int getIntegrante() {
-		return integrante;
-	}
-
-
-	public void setIntegrante(int integrante) {
-		this.integrante = integrante;
-	}
-
-
-	public String getIntegranteNombre() {
-		return integranteNombre;
-	}
-
-
-	public void setIntegranteNombre(String integranteNombre) {
-		this.integranteNombre = integranteNombre;
-	}
-
 
 	public int getRecurso() {
 		return recurso;
@@ -135,15 +147,12 @@ public class EventoForm extends Form  {
 	public void setHourIni(Integer hourIni) {
 		this.hourIni = hourIni;
 	}
-
-
-	public String getIntegranteApellido() {
-		return integranteApellido;
+	
+	public PersonaForm getPersona() {
+		return persona;
 	}
-
-
-	public void setIntegranteApellido(String integranteApellido) {
-		this.integranteApellido = integranteApellido;
+	public void setPersona(PersonaForm persona) {
+		this.persona = persona;
 	}
 
 

@@ -64,11 +64,11 @@
 							<strong>Unidos:</strong> ${evento.cantidadUnidos} 
 						</dd>
 						<dd class="hits">
-							<c:if test="${evento.integrante == null}">
+							<c:if test="${evento.personaId == null}">
 								<strong>Creado por:</strong> Admin
 													</c:if>
-							<c:if test="${evento.integrante != null}">
-								<strong>Creado por:</strong> ${evento.integranteNombre} ${evento.integranteApellido}
+							<c:if test="${evento.personaId != null}">
+								<strong>Creado por:</strong> ${evento.persona.nombre} ${evento.persona.apellido}
 													</c:if>
 								
 

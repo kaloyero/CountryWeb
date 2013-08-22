@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +52,7 @@ public class AvisoController {
 		model.addAttribute("categorias", notificationCategoryManager.listAllCategoriesDescription());
 		
 		if (SessionUtil.isAdminUser(request)){
-			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			model.addAttribute("integrantes", integratorManager.getIntegratorNamesPersonIdKey());
 			return "aviso";
 		}else{
 			return "Propietario/avisoForm";
@@ -66,7 +65,6 @@ public class AvisoController {
 			@ModelAttribute(value = "AVISO") AvisoForm form,
 			BindingResult result) throws ParseException {
 		
-		form.setIntegrante(1);
 		notificationManager.save(form);
 		
 		return "success";
@@ -83,7 +81,6 @@ public class AvisoController {
 
 		
 		if (SessionUtil.isAdminUser(request)){
-			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			return "forms/avisoForm";
 		} else {
 			return "Propietario/avisoForm";

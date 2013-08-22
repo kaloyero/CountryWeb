@@ -10,6 +10,8 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 
 	void save(ReservaForm form);
 	
+	public void update(ReservaForm form);
+	
 	ReservaForm findFormById(Integer id);
 
 	public ReservaForm findFormByIdCoplete(Integer id);
@@ -50,6 +52,14 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 	 */
 	public Reserva findResourceAfter(Integer resource, Date fecha, int horaIni);
 
+	/**
+	 * Este metodo devuelve la reserva seg[un el evento
+	 *  
+	 * @param resource
+	 * @return
+	 */
+	public Reserva findReserveByIdEvent(int event);
+	
 	public List<ReservaForm> listAllFormsComplete();
 	
 }

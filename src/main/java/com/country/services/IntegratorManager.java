@@ -16,6 +16,8 @@ public interface IntegratorManager extends AbstractManager<Integrante>{
 	
 	List<TipoForm> getIntegratorNames();
 	
+	List<TipoForm> getIntegratorNamesPersonIdKey();
+	
 	/**
 	 * Devuelve todos los integrantes Activos o los inactivos segun el valor del parametro 'active'
 	 * 

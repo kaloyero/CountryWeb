@@ -69,7 +69,7 @@
 					<dl class="article-hit">
 				<dd class="hits">
 				<strong>Hits:</strong> 109				</dd>
-				<strong>Publicado por:</strong> ${aviso.integranteNombre} ${aviso.integranteApellido} de la unidad ${aviso.unidad}
+				<strong>Publicado por:</strong> ${aviso.personaNombre}  de la unidad 
 			</dl>
 
 		

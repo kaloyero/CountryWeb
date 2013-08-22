@@ -47,6 +47,23 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		return form;
 	}
 
+	
+	public List<TipoForm> getIntegratorNamesPersonIdKey() {
+		//usuarios activos
+		List<Integrante> listIntegrators = integratorDao.findAll(true);
+		
+		List<TipoForm> list = new ArrayList<TipoForm>();
+		for (Integrante integrator : listIntegrators) {
+			String name = integrator.getPersona().getNombre() + " " + integrator.getPersona().getApellido() + " - " + integrator.getPersona().getTipoDoc().getNombre() + " " + integrator.getPersona().getNroDoc();
+			TipoForm tipo = new TipoForm();
+			tipo.setId(integrator.getPersona().getId());
+			tipo.setNombre(name);
+			list.add(tipo);
+		}
+				
+		return list;
+	}
+
 	public List<TipoForm> getIntegratorNames() {
 		//usuarios activos
 		List<Integrante> listIntegrators = integratorDao.findAll(true);
@@ -63,6 +80,7 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		return list;
 	}
 
+	
 	
 	@Transactional
 	public void save(IntegranteForm form) {

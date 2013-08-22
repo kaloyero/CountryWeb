@@ -21,9 +21,9 @@ var InstructorRender = new Class({
     		var newEntry="";
     		if (form.find("#telNumber").val().trim() != "" ){
     			newEntry=" <span class='idTel' hidden='true'>0</span>"	;
-    			newEntry+="<span class='idTipoTe' hidden='true'>"+ form.find("#telContact").val() +" </span>";
-    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").val() +" </span>";
-	    		newEntry+="<strong>( </strong><span class='pais'> "+ form.find("#telCountry").val()+"</span>";
+    			newEntry+="<span class='idTipoTe' hidden='true'>"+ form.find("#telContact").val() +" </span> ";
+    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").val() +" </span> ";
+	    		newEntry+="<strong>( </strong><span class='pais'> "+ form.find("#telCountry").val()+"</span> ";
 	    		newEntry+= " <span class='state'>" +form.find("#telState").val() + "</span>";
 	    		newEntry+= " <span class='prefix'>" +form.find("#telPrefijo").val() + "</span><strong> ) </strong>";
 	    		newEntry+=" <span class='tel'>" +form.find("#telNumber").val()+"</span>"	;
@@ -42,14 +42,14 @@ var InstructorRender = new Class({
     		if (form.find("#dirStreetName").val().trim() != "" ){
     			
     			newEntry=" <span class='idDire' hidden='true'>0</span>"	;
-    			newEntry+="<span class='idTownDire' hidden='true'>"+ form.find("#dirTown").val() +" </span>";
-    			newEntry+="<span class='townDire' >"+ form.find("#dirTown").val() +" </span>";
-    			newEntry+="<span class='streetNameDire' >"+ form.find("#dirStreetName").val() +" </span>";
-    			newEntry+="<span class='streetNumDire' >"+ form.find("#dirStreetNum").val() +" </span>";
-    			newEntry+="<span class='floorDire' >"+ form.find("#dirFloor").val() +" </span>";
-    			newEntry+="<span class='flatDire' >"+ form.find("#dirFlat").val() +" </span>";
-    			newEntry+="<span class='towerDire' >"+ form.find("#dirTower").val() +" </span>";
-    			newEntry+="<span class='blockDire' >"+ form.find("#dirBlock").val() +" </span>";
+    			newEntry+="<span class='idTownDire' hidden='true'>"+ form.find("#dirTown").val() +"</span>";
+    			newEntry+="<span class='townDire' >"+ form.find("#dirTown option:selected").text() +"</span>";
+    			newEntry+="<span class='streetNameDire' >"+ form.find("#dirStreetName").val() +"</span>";
+    			newEntry+="<span class='streetNumDire' >"+ form.find("#dirStreetNum").val() +"</span>";
+    			newEntry+="<span class='floorDire' >"+ form.find("#dirFloor").val() +"</span>";
+    			newEntry+="<span class='flatDire' >"+ form.find("#dirFlat").val() +"</span>";
+    			newEntry+="<span class='towerDire' >"+ form.find("#dirTower").val() +"</span>";
+    			newEntry+="<span class='blockDire' >"+ form.find("#dirBlock").val() +"</span>";
     			
     			form.find("#listaDirecciones").append("<li><div class='alert success direccion'><span class='hide'>x</span> "+newEntry+"</div></li>");
 	    		self.addCloseListener(form);
@@ -102,16 +102,16 @@ var InstructorRender = new Class({
 
        	var direcciones = [];
        	$('.direccion').each(function(index) {
-       		
+       		console.log("El valor es ", $(this).find(".streetNameDire").text(),"Gracias")
 
-       		direcciones.push({	"StreetName": $(this).find(".streetNameDire").text(),
-				       			"Floor": 	parseInt($(this).find(".floorDire").text()),
-				       			"StreetName": "CERV" + streetName.toString() ,
-				       			"Flat": 	$(this).find(".flatDire").text().toString(),
-       							"Tower": 	$(this).find(".towerDire").text(),
-       							"Block": 	$(this).find(".blockDire").text(),
-       							"IdDir": 	parseInt($(this).find(".idDire").text()),
-       							"IdTownDir":  parseInt($(this).find(".idTownDire").text())
+
+       		direcciones.push({	'StreetName': $(this).find(".streetNameDire").text(),
+				       			'Floor': 	$(this).find(".floorDire").text(),
+				       			'Flat': 	$(this).find(".flatDire").text().toString(),
+       							'Tower': 	$(this).find(".towerDire").text(),
+       							'Block': 	$(this).find(".blockDire").text(),
+       							'IdDir': 	parseInt($(this).find(".idDire").text()),
+       							'IdTownDir':  parseInt($(this).find(".idTownDire").text())
        							});
        		
     	});
@@ -122,7 +122,7 @@ var InstructorRender = new Class({
        	html.push("<input type=hidden id=testa  name='persona.telefonos' value="+telefonosText+">");
        	html.push("<input type=hidden id=testa  name='persona.direcciones' value="+direccionesText+">");
        	form.append(html.join(''));
-       	console.log("DIRECION",direcciones)
+       	console.log("DIRECION",direccionesText)
     	return form;
     }    		
     

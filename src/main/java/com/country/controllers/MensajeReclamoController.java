@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,11 +89,7 @@ public class MensajeReclamoController {
 		form.setFecha(DateUtil.getStringToday());
 		//Seteo el TIPO de mensaje como RECLAMO
 		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
-		 if (SessionUtil.isAdminUser(request)){
 
-		 }else{
-			 form.setIntegrante(1);
-		 }
 			 messageManager.save(form);
 		
 		return "success";

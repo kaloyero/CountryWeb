@@ -28,6 +28,23 @@ public class SessionUtil {
 		}
 						
 	}
+	
+	public static boolean isEmployeePerson(String userType){
+		if (Constants.PERSONA_EMPLEADO.equals(userType)){
+			return true;
+		}else{
+			return false;
+		}					
+	}
+
+	public static boolean isIntegrantePerson(String userType){
+		if (Constants.PERSONA_INTEGRANTE.equals(userType)){
+			return true;
+		}else{
+			return false;
+		}
+						
+	}	
 
 	
 }

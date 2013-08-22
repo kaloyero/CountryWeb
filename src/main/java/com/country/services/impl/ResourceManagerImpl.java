@@ -184,6 +184,8 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 				//Hay una reserva anterior que se pisa con el horario que quiero reservar
 				return false;
 			}
+		} else {
+			responseAnt = true;
 		}
 		
 		//POSTERIOR
@@ -207,9 +209,11 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 				//hay una reserva que empieza en ese horario
 				return false;
 			}
+		}else {
+			responsePost = true;
 		}
 
-		if (( anterior== null && posterior ==null )|| (responseAnt && responsePost)){
+		if ((responseAnt && responsePost)){
 			return true;	
 		} 
 		

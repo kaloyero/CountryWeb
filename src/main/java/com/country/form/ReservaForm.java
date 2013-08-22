@@ -6,25 +6,27 @@ public class ReservaForm extends Form {
 	private  String fecha ;
 	private  String descripcion ;
 	private  int recursoId ;
-	private  int integranteId;
+	private  int personId;
 	private  int eventoId=0;
 	private  RecursoForm recurso ;
-	private  IntegranteForm integrante;
+	private  PersonaForm persona;
 	private  EventoForm evento;
 	private  Integer horaIni ;
 	private  Integer duracion ;
-
+	private boolean envioAdm=false;
+	
+	
+	public boolean isEnvioAdm() {
+		return envioAdm;
+	}
+	public void setEnvioAdm(boolean envioAdm) {
+		this.envioAdm = envioAdm;
+	}
 	public RecursoForm getRecurso() {
 		return recurso;
 	}
 	public void setRecurso(RecursoForm recurso) {
 		this.recurso = recurso;
-	}
-	public IntegranteForm getIntegrante() {
-		return integrante;
-	}
-	public void setIntegrante(IntegranteForm integrante) {
-		this.integrante = integrante;
 	}
 	public EventoForm getEvento() {
 		return evento;
@@ -69,17 +71,23 @@ public class ReservaForm extends Form {
 	public void setRecursoId(int recursoId) {
 		this.recursoId = recursoId;
 	}
-	public int getIntegranteId() {
-		return integranteId;
-	}
-	public void setIntegranteId(int integranteId) {
-		this.integranteId = integranteId;
-	}
 	public int getEventoId() {
 		return eventoId;
 	}
 	public void setEventoId(int eventoId) {
 		this.eventoId = eventoId;
+	}
+	public int getPersonId() {
+		return personId;
+	}
+	public void setPersonId(int personId) {
+		this.personId = personId;
+	}
+	public PersonaForm getPersona() {
+		return persona;
+	}
+	public void setPersona(PersonaForm persona) {
+		this.persona = persona;
 	}
 
 

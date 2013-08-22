@@ -13,15 +13,21 @@ public class AvisoForm extends Form  {
 	private String fechaCierre;
 	private  int categoria;
 	private  String categoriaDescription;
-	private  int integrante;
-	private  String integranteNombre;
-	private  String integranteApellido;
+
 	private  String unidad;
 	private  Double importe;
 
+	private  int persona;
+	private  String personaNombre;
 
-	
-	
+	private boolean envioAdm=false;
+
+	public boolean isEnvioAdm() {
+		return envioAdm;
+	}
+	public void setEnvioAdm(boolean envioAdm) {
+		this.envioAdm = envioAdm;
+	}
 	public String getCategoriaDescription() {
 		return categoriaDescription;
 	}
@@ -76,24 +82,19 @@ public class AvisoForm extends Form  {
 	public void setCategoria(int categoria) {
 		this.categoria = categoria;
 	}
-	public int getIntegrante() {
-		return integrante;
+	public int getPersona() {
+		return persona;
 	}
-	public void setIntegrante(int integrante) {
-		this.integrante = integrante;
+	public void setPersona(int persona) {
+		this.persona = persona;
 	}
-	public String getIntegranteNombre() {
-		return integranteNombre;
+	public String getPersonaNombre() {
+		return personaNombre;
 	}
-	public void setIntegranteNombre(String integranteNombre) {
-		this.integranteNombre = integranteNombre;
+	public void setPersonaNombre(String personaNombre) {
+		this.personaNombre = personaNombre;
 	}
-	public String getIntegranteApellido() {
-		return integranteApellido;
-	}
-	public void setIntegranteApellido(String integranteApellido) {
-		this.integranteApellido = integranteApellido;
-	}
+
 	public String getUnidad() {
 		return unidad;
 	}
@@ -106,6 +107,7 @@ public class AvisoForm extends Form  {
 	public void setImporte(Double importe) {
 		this.importe = importe;
 	}
+
 
 	
 	

@@ -33,7 +33,7 @@ public class Integrante implements Serializable {
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@Cascade(CascadeType.ALL)
-	@JoinColumn(name="IdPersona",updatable = true, insertable = true)	
+	@JoinColumn(name="IdPersona",updatable = false, insertable = true)	
 	private Persona persona;
 
 	@OneToOne(fetch=FetchType.EAGER)

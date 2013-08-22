@@ -6,20 +6,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
+import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
-import com.country.form.IntegranteForm;
+import com.country.form.PersonaForm;
 import com.country.form.RecursoForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.ReserveDao;
 import com.country.hibernate.model.Reserva;
 import com.country.mappers.ReserveMapper;
 import com.country.services.EventManager;
-import com.country.services.IntegratorManager;
+import com.country.services.PersonManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
+import com.country.session.SessionData;
 
 @Service("reserveManager")
 public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements ReserveManager{
@@ -37,7 +40,7 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
     private PriceManager priceManager;
 
 	@Autowired
-	private IntegratorManager integratorManager;
+	private PersonManager personManager;
 	
 	protected GenericDao<Reserva, Integer> getDao() {
 		return reserveDao;
@@ -62,31 +65,46 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		ReservaForm form = new ReservaForm();
 		
 		Reserva dto = findById(id);
-		
-		RecursoForm recForm = resourceManager.getResourceForm(dto.getRecurso());
-		IntegranteForm integranteForm = integratorManager.findFormById(dto.getIntegrante());
-		EventoForm eventoForm = eventManager.findFormById(dto.getEvento()); 
-				
-		form = (ReservaForm) ReserveMapper.getForm(dto);
-		//Seteo el recurso, integrante y evento.
-		form.setEvento(eventoForm);
-		form.setRecurso(recForm);
-		form.setIntegrante(integranteForm);
+		form = setForm(dto);
+
 		
 		return form;
 	}
 
-	
+	@Transactional
 	public void save(ReservaForm form) {
-		
-		Reserva dto = ReserveMapper.getReserva(form);
 
+		Reserva dto = ReserveMapper.getReserva(form);
+		
+		//PERSONA que reserva
+		int idPersona = SessionData.getPersonaId();
+		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
+			if (! form.isEnvioAdm()){
+				idPersona = form.getPersonId();
+			}	
+		}
+		dto.setPersona(idPersona);
+		
 		if (resourceManager.checkReserveResource(dto.getRecurso(), dto.getFecha(), dto.getHoraIni(), dto.getDuracion())){
 			save(dto);
+		} else {
+			//TODO sacar por error
 		}
+			
 		
 	}
 
+	public void update(ReservaForm form) {
+
+		Reserva dto = ReserveMapper.getReserva(form);
+		
+		if (resourceManager.checkReserveResource(dto.getRecurso(), dto.getFecha(), dto.getHoraIni(), dto.getDuracion())){
+			update(dto);
+		} else {
+			//TODO sacar por error
+		}
+	}
+	
 
 	public List<Reserva> findListReservationByUnit(Integer id) {
 		List<Reserva> list = new ArrayList<Reserva>();
@@ -120,19 +138,28 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		List<Reserva> reservas = reserveDao.findAll();
 
 		for (Reserva res : reservas) {
-			RecursoForm recForm = resourceManager.getResourceForm(res.getRecurso());
-			IntegranteForm integranteForm = integratorManager.findFormById(res.getIntegrante());
-			EventoForm eventoForm = eventManager.findFormById(res.getEvento()); 
-					
-			ReservaForm form = (ReservaForm) ReserveMapper.getForm(res);
-			//Seteo el recurso, integrante y evento.
-			form.setEvento(eventoForm);
-			form.setRecurso(recForm);
-			form.setIntegrante(integranteForm);
-
-			list.add(form);
+			list.add(setForm(res));
 		}
 		
 		return list;
+	}
+	
+	private ReservaForm setForm(Reserva reserva){
+		RecursoForm recForm = resourceManager.getResourceForm(reserva.getRecurso());
+		PersonaForm personaForm = personManager.findFormById(reserva.getPersona());
+		EventoForm eventoForm = eventManager.findFormById(reserva.getEvento()); 
+				
+		ReservaForm form = (ReservaForm) ReserveMapper.getForm(reserva);
+		//Seteo el recurso, persona y evento.
+		form.setEvento(eventoForm);
+		form.setRecurso(recForm);
+		form.setPersona(personaForm);
+		
+		return form;
+	}
+
+	public Reserva findReserveByIdEvent(int event) {
+			
+		return reserveDao.findEntityByProperty("evento", event);	
 	}
 }

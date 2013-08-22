@@ -1,11 +1,12 @@
 package com.country.mappers;
 
 import com.country.common.DateUtil;
+import com.country.common.MapperUtil;
 import com.country.form.AvisoForm;
 import com.country.form.Form;
 import com.country.hibernate.model.Aviso;
 import com.country.hibernate.model.AvisoCategoria;
-import com.country.hibernate.model.Integrante;
+import com.country.hibernate.model.Persona;
 
 public class AvisoMapper {
 
@@ -23,10 +24,11 @@ public class AvisoMapper {
 		dto.setFechaFin(DateUtil.convertStringToDate(((AvisoForm) form).getFechaCierre()));
 		dto.setHeader(((AvisoForm) form).getEncabezado());
 		dto.setId(((AvisoForm) form).getId());
-		Integrante integrante = new Integrante();
-		integrante.setId(((AvisoForm) form).getIntegrante());
-		dto.setIntegrante(integrante);
+
 		dto.setImporte(((AvisoForm) form).getImporte());
+		Persona persona = new Persona();
+		persona.setId(((AvisoForm) form).getPersona());
+		dto.setPersona(persona);
 		
 		return dto;
 
@@ -43,13 +45,12 @@ public class AvisoMapper {
 		form.setFecha(DateUtil.convertDateToString(dto.getFecha()));
 		form.setFechaCierre(DateUtil.convertDateToString(dto.getFechaFin()));
 		form.setId(dto.getId());
-		form.setIntegrante(dto.getIntegrante().getId());
-		form.setIntegranteNombre(dto.getIntegrante().getPersona().getNombre() );
+
 		form.setImporte(dto.getImporte());
-		form.setIntegranteApellido(dto.getIntegrante().getPersona().getApellido());
 
-		form.setUnidad(dto.getIntegrante().getUnidad().getCode());
-
+		form.setPersona(dto.getPersona().getId());
+		form.setPersonaNombre(dto.getPersona().getNombre() + " " + dto.getPersona().getApellido() + " - " + dto.getPersona().getTipoDoc().getNombre() + " " + dto.getPersona().getNroDoc());
+		form.setEnvioAdm(MapperUtil.getStatusUserForm(dto.getPersona().getTipo()));
 		form.setTitulo(dto.getTittle());
 		
 		return form;

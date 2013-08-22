@@ -65,21 +65,8 @@ public class Evento implements Serializable {
 	}
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdIntegrante",updatable = true, insertable = true)	
-	private  Integrante integrante;
-
-//	@OneToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="IdEvento",updatable = false, insertable = false)	
-//	private  Reserva reserva;
-//
-//	
-//	public Reserva getReserva() {
-//		return reserva;
-//	}
-//
-//	public void setReserva(Reserva reserva) {
-//		this.reserva = reserva;
-//	}
+	@JoinColumn(name="IdPersona",updatable = false, insertable = true)	
+	private  Persona persona;
 
 	public Integer getId() {
 		return id;
@@ -123,12 +110,12 @@ public class Evento implements Serializable {
 
 
 
-	public Integrante getIntegrante() {
-		return integrante;
+	public Persona getPersona() {
+		return persona;
 	}
 
-	public void setIntegrante(Integrante integrante) {
-		this.integrante = integrante;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 	public Integer getDuracion() {

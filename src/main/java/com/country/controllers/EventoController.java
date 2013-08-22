@@ -21,7 +21,6 @@ import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
 import com.country.hibernate.model.DataTable;
 import com.country.hibernate.model.Evento;
-import com.country.mappers.EventoMapper;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
@@ -56,6 +55,7 @@ public class EventoController {
 			 eventoDto.setCantidadUnidos(test.size());
 		}
 		
+
 		
 		model.addAttribute("eventos", listaEventoForm);
 		
@@ -81,7 +81,7 @@ public class EventoController {
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 			  
 		if (SessionUtil.isAdminUser(request)){
-			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			model.addAttribute("integrantes", integratorManager.getIntegratorNamesPersonIdKey());
 			return "evento";
 		}else{
 			return "Propietario/eventoForm";
@@ -98,10 +98,7 @@ public class EventoController {
 			if (((EventoForm) form).getConcepto() != null){
 				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
 			}
-		} else {
-			//TODO tomar el integrante que crea el evento
-			form.setIntegrante(1);
-		}
+		} 
 		eventManager.save(form);
 				return "success";
 		
@@ -115,7 +112,7 @@ public class EventoController {
 		model.addAttribute("recursos", recursoManager.listAllResourceForm());
 		
 		if (SessionUtil.isAdminUser(request)){
-			model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+			model.addAttribute("integrantes", integratorManager.getIntegratorNamesPersonIdKey());
 			return "forms/eventoForm";
 		}else{
 			return "Propietario/eventoForm";

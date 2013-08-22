@@ -30,10 +30,6 @@ public class Reserva implements Serializable {
 
 	@Column(name = "Descripcion")
 	private  String descripcion ;
-	
-//    @OneToOne(fetch= FetchType.EAGER)
-//    @JoinColumn(name="IdRecurso",updatable = false, insertable = false)	
-//	private  Recurso recurso ;
 
 	@Column(name = "IdRecurso")
 	private  int recurso ;
@@ -44,28 +40,20 @@ public class Reserva implements Serializable {
 	@Column(name = "Duracion")
 	private  int duracion ;
 
-//	@OneToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="IdEvento",nullable=true)		
-//	private  Evento evento;
-	@Column(name = "IdEvento")
+	@Column(name = "IdEvento",updatable=false)
 	private  int evento;
 
-	
-	
-//	@OneToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="IdIntegrante",updatable = false, insertable = false)	
-//	private  Integrante integrante;
-
-	@Column(name = "IdIntegrante")
-	private  int integrante ;
+	@Column(name = "IdPersona",updatable=false)
+	private  int persona ;
 
 	
-	public int getIntegrante() {
-		return integrante;
+
+	public int getPersona() {
+		return persona;
 	}
 
-	public void setIntegrante(int integrante) {
-		this.integrante = integrante;
+	public void setPersona(int persona) {
+		this.persona = persona;
 	}
 
 	public int getId() {

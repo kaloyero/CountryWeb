@@ -34,6 +34,7 @@ public class MensajeMapper {
 		mensaje.setTipo(form.getTipo());
 		mensaje.setResolucion(form.getResolucion());
 		mensaje.setTipo(form.getTipo());
+		mensaje.setEmpleado(form.getIdEmpleado());
 		
 		return mensaje;
 	
@@ -67,7 +68,7 @@ public class MensajeMapper {
 							mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
 							mensaje.getIntegrante().getPersona().getNroDoc() );
 		form.setResolucion(mensaje.getResolucion());
-
+		form.setIdEmpleado(mensaje.getEmpleado());
 		form.setTipo(mensaje.getTipo());
 		//form.setDetalles(getDetalles(mensaje.getDetalles()));
 		
