@@ -23,7 +23,7 @@ import com.country.services.ConceptManager;
 import com.country.services.EventManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
-import com.country.session.SessionData;
+import com.country.session.UsuarioInfo;
 
 @Service("eventManager")
 public class EventManagerImpl extends AbstractManagerImpl<Evento> implements EventManager{
@@ -66,9 +66,10 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	
 	
 	@Transactional
-	public void save(EventoForm form) {
-		int idPerson = SessionData.getPersonaId();
-		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
+	public void save(EventoForm form,UsuarioInfo user) {
+		
+		int idPerson = user.getPersonaId();
+		if (SessionUtil.isEmployeePerson( user.getTipoUsuario())){
 			if (! form.isEnvioAdm()){
 			   idPerson = form.getPersonaId();
 			}
@@ -91,7 +92,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		//Pregunto si hay un recurso seleccionado
 		if (form.getRecurso() >0){
 			ReservaForm reserva = getReserva(form,dto.getId());
-			reserveManager.save(reserva);
+			reserveManager.save(reserva,user);
 		}
 		
 		

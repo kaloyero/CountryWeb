@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,13 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.DateUtil;
-import com.country.form.RecursoForm;
+import com.country.common.SessionUtil;
 import com.country.form.ReservaForm;
-import com.country.hibernate.model.Cronograma;
 import com.country.hibernate.model.Reserva;
-import com.country.mappers.ReserveMapper;
 import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
+import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -39,9 +40,11 @@ public class RecursoReservaController {
 	//TODO investigar bien como puedo usar el bindResult aca.Si no le agrego el model atribute tira error,y si le agrego el model attribute,no me
 	//llega la data en formatoJson
 	public String processJson(@RequestBody
-			  ReservaForm form
+			  ReservaForm form,
+			  HttpServletRequest request
 			) throws ParseException {
-			reservaManager.save(form);
+		UsuarioInfo user = SessionUtil.getUserInfo(request);	
+		reservaManager.save(form,user);
 			return "success";
 		//}
 			

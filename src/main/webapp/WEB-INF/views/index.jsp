@@ -159,7 +159,6 @@
 					<a href="javascript:void(0);" class="option current" id="vehiculo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Vehiculo<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="mascota"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mascota<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="mensajeReclamo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Reclamos<span class="badge red"></span></a>
-					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no anda)<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="aviso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Aviso<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento<span class="badge red"></span></a>					
@@ -174,10 +173,10 @@
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoRecurso">Tipo de Recursos</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoVacuna">Tipo de Vacunas</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoVehiculo">Tipo de Vehiculos</a></li>
-	    				<li><a href="javascript:void(0);" class="option current" id="tipoAviso">Tipo de Avisos</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="mensajeCategoria">Categorias de Mensajes</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="noticiaCategoria">Categorias de Noticias</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="avisoCategoria">Categorias de Avisos</a></li>	    				
+	    				<li><a href="javascript:void(0);" class="option current" ></a></li>	    				
 	    			</ul>
 	    		</li>
 	    		

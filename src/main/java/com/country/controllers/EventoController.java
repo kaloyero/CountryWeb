@@ -25,6 +25,7 @@ import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
 import com.country.services.ResourceManager;
+import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -92,14 +93,16 @@ public class EventoController {
 	public String processForm(
 			@ModelAttribute(value = "EVENTO") EventoForm form,
 		BindingResult result,HttpServletRequest request)  throws ParseException {
-
+		UsuarioInfo user = SessionUtil.getUserInfo(request);
+		
+		
 		if (SessionUtil.isAdminUser(request)){
 			//En el caso de Admin Setea el nombre del concepto
 			if (((EventoForm) form).getConcepto() != null){
 				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
 			}
 		} 
-		eventManager.save(form);
+		eventManager.save(form,user);
 				return "success";
 		
 	}

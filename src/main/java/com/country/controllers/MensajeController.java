@@ -26,6 +26,7 @@ import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
+import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -70,9 +71,10 @@ public class MensajeController {
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
-			BindingResult result) throws ParseException {
-
-		messageManager.save(form);
+			BindingResult result,
+			HttpServletRequest request) throws ParseException {
+		UsuarioInfo user = SessionUtil.getUserInfo(request);
+		messageManager.save(form,user);
 	   return "success";
 
 		

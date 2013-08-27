@@ -20,7 +20,6 @@ import com.country.common.DateUtil;
 import com.country.form.AvisoCategoriaForm;
 import com.country.hibernate.model.AvisoCategoria;
 import com.country.hibernate.model.DataTable;
-import com.country.mappers.TipoMapper;
 import com.country.services.NotificationCategoryManager;
 
 /**
@@ -67,7 +66,7 @@ public class AvisoCategoriaController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "TIPO") AvisoCategoriaForm form,@PathVariable int id,
 			BindingResult result) throws ParseException {
-		notificationCategoryManager.update(TipoMapper.getAvisoCategoria(form));
+		notificationCategoryManager.update(form);
 		return "success";
 		
 

@@ -3,7 +3,17 @@ package com.country.common;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.country.session.UsuarioInfo;
+
 public class SessionUtil {
+
+	public static UsuarioInfo getUserInfo(HttpServletRequest request){
+		HttpSession session = request.getSession(true);
+		UsuarioInfo usuarioConectado = (UsuarioInfo) session.getAttribute("InfoUsuario");
+		
+		return usuarioConectado;
+						
+	}
 	
 	public static boolean isAdminUser(HttpServletRequest request){
 		HttpSession session = request.getSession(true);

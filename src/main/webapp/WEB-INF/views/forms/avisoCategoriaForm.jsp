@@ -12,7 +12,8 @@
 				<label for="textfield">Categoria</label>
 				<form:input path="nombre" class="required" />
 				<form:hidden path="id" />
-				<form:hidden disabled="true" path="concepto.id" />
+				<form:hidden path="concepto.id" />
+				<form:hidden path="fechaIni" />
 			</p>
 		</div>
 		<div class="_25">

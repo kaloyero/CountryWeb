@@ -133,4 +133,9 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		Integrante i = integratorDao.findById(integranteId);
 		return i.getPersona().getId();
 	}
+	
+	public Integrante getIntegratorByIdUser(int userId) {
+		Integrante i = integratorDao.findEntityByProperty("usuario.id",userId);
+		return i;
+	}
 }

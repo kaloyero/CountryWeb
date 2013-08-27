@@ -17,7 +17,7 @@
 				</c:if>
 				<c:if test="${AVISO.id != 0}">
 					<c:if test="${AVISO.envioAdm==true}">
-						Administrador (${EVENTO.persona.nombre} ${EVENTO.persona.apellido} - ${EVENTO.persona.nroDoc})
+						Administrador (${AVISO.personaNombre})
 					</c:if>
 					<c:if test="${AVISO.envioAdm==false}">
 						<form:input path="personaNombre" class="required" readonly="true"/>

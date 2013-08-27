@@ -18,15 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.SessionUtil;
 import com.country.form.AvisoForm;
-import com.country.form.EventoForm;
 import com.country.hibernate.model.Aviso;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Evento;
 import com.country.mappers.AvisoMapper;
-import com.country.mappers.EventoMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.NotificationCategoryManager;
 import com.country.services.NotificationManager;
+import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -63,9 +61,11 @@ public class AvisoController {
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "AVISO") AvisoForm form,
+			HttpServletRequest request,
 			BindingResult result) throws ParseException {
+		UsuarioInfo user = SessionUtil.getUserInfo(request);
 		
-		notificationManager.save(form);
+		notificationManager.save(form,user);
 		
 		return "success";
 		
