@@ -5,34 +5,25 @@
 <%@ page import="java.util.Date" %>
 
 
-<div class="inner content-inner clearfix">
+<div class="inner content-inner clearfix"><strong>Filtrar por : </strong><a href="#" title="">Todos | </a><a href="#" title="">Mis Eventos Creados  | </a><a href="#" title="">Eventos donde me anote  |</a>
 							<div id="masonry-container" class="clearfix masonry"
-								style="position: relative; height: 1592px;">
+								style="position: relative; height: 1592px;"><div class="corner-stamp" style="width: 227px;">
+									
+								</div>
 								
 <c:forEach items="${eventos}" var="evento">
 
-	
-<div class="tileContent item instagram item-hot masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 200px;">
+<div class="tileContent item hi-tech  no-image masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 228px;">
 <div class="inner item-inner clearfix">
 	
 	
-	<!-- Item Img -->
-	<div class="item-image">
-					<div class="img-intro-left">
-						<a href="/ja_wall/default/instagram/17975-instagram-id-339270252753126384-1323391.html" title="Nombre Evento" class="item-link">
-							<div class="img_caption none" style="float: none; width: 209px;"><img class="caption" title="Nombre Evento" src="../resources/img/propietarios/events-icon-small.png" alt="Nombre Evento"><p class="img_caption">${evento.nombre}</p></div>
-							<span>&nbsp;</span>
-				<span class="item-pin">&nbsp;</span>
-			</a>
-					</div>
-		</div>
-	<!-- //Item Img -->
+
 
 	<div class="item-main clearfix">
 		<!-- Item header -->
 		<div class="header item-header clearfix">
 					<h2>
-									<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
+					<img src="../resources/img/propietarios/events-icon-small.png" alt="Evento" height="42" width="42">				<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
 					</a>
 						</h2>
 		
@@ -42,17 +33,21 @@
 		
 						<dd class="category-name">
 		
-						<dd class="create">
 						<c:if test="${evento.cupo > 1}">
-							<strong>Se necesitan:</strong> ${evento.cupo} personas
-						<strong>Dia se la semana:</strong>: ${evento.diaSemana} 
+						<dd class="create">
+							<strong>Se necesitan:</strong> ${evento.cupo} personas</dd>
+							<dd class="create">
+						<strong>Dia se la semana:</strong>: ${evento.diaSemana} </dd>
 						</c:if>
 						<c:if test="${evento.cupo <= 1}">
-							<strong>Se realiza el:</strong> ${evento.fecha}						
+						<dd class="create">
+							<strong>Se realiza el:</strong> ${evento.fecha}	</dd>					
 						</c:if>
-					<strong>Horario comienzo:</strong> ${evento.hourIni}
-					<strong>Duracion:</strong> ${evento.duracion} horas
-					</dd>
+						<dd class="create">
+					<strong>Horario :</strong> ${evento.hourIni}</dd>
+					
+					<dd class="create">
+					<strong>Duracion:</strong> ${evento.duracion} horas</dd>
 					</dl>
 			
 		</div>
@@ -66,17 +61,22 @@
 		<div class="footer item-footer clearfix">
 					<dl class="article-hit">
 						<dd class="hits">
-							<strong>Unidos:</strong> 0 
+							<strong>Unidos:</strong> ${evento.cantidadUnidos} 
 						</dd>
 						<dd class="hits">
-							<c:if test="${evento.integrante == null}">
+							<c:if test="${evento.personaId == null}">
 								<strong>Creado por:</strong> Admin
 													</c:if>
-							<c:if test="${evento.integrante != null}">
-								<strong>Creado por:</strong> ${evento.integranteNombre} ${evento.integranteApellido}
+							<c:if test="${evento.personaId != null}">
+								<strong>Creado por:</strong> ${evento.persona.nombre} ${evento.persona.apellido}
 													</c:if>
+								
 
 						</dd>
+						<dd class="hits">
+						<c:if test="${evento.concepto != null}"> <strong style="font-family:arial;color:#9E7474;font-size:15px;">Precio por inscripcion : </strong>
+						<strong style="font-family:arial;color:#9E7474;font-size:15px;">${evento.concepto.importe}</strong></c:if>
+							</dd>
 						<dd class="hits anotarseEvento">
 							<input type="hidden" name="idEvento" value="${evento.id}">
 						
@@ -91,9 +91,7 @@
 	</div>
 </div>
 </c:forEach>
-<div class="corner-stamp" style="width: 227px;">
-									
-								</div>
+
 								
 								
 							</div>

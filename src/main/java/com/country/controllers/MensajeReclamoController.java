@@ -19,11 +19,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.common.DateUtil;
 import com.country.common.SessionUtil;
 import com.country.common.TipoMensajes;
+import com.country.form.EventoForm;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Mensaje;
+import com.country.hibernate.model.MensajeDetalles;
+import com.country.mappers.EventoMapper;
+import com.country.mappers.MensajeMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
+import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
 
 /**
@@ -41,6 +47,10 @@ public class MensajeReclamoController {
 		
 	@Autowired
 	private IntegratorManager integratorManager;
+	
+	@Autowired
+	private MessageDetailManager messageDetailManager;
+
 
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
@@ -55,10 +65,11 @@ public class MensajeReclamoController {
 		
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
-		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
+		
 		
 		
 		 if (SessionUtil.isAdminUser(request)){
+			 model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			 return "mensajeReclamo";
 		 }else{
 			 return "Propietario/mensajeForm";
@@ -69,7 +80,7 @@ public class MensajeReclamoController {
 	@RequestMapping(value = "/create",method = RequestMethod.POST)
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
-			BindingResult result) throws ParseException {
+			BindingResult result,HttpServletRequest request) throws ParseException {
 		//TODO en lugar de hacer este set en el Get,se pone aca,ya que,en el caso de propietario,al no tener los campos fecha y tipo en el formulario en la UI,
 		//me obliga a ponerlos como al menos invisibles,sino estos valores vuelven a estar nulos.Y se corre peligro si alguien inspecciona el codigo html y le 
 		//cambia el tipo de relcamo a M o otra cosa
@@ -78,7 +89,8 @@ public class MensajeReclamoController {
 		form.setFecha(DateUtil.getStringToday());
 		//Seteo el TIPO de mensaje como RECLAMO
 		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
-		messageManager.save(form);
+
+			 messageManager.save(form);
 		
 		return "success";
 		
@@ -139,10 +151,17 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String  showMessageList(ModelMap model) {
-
+		List<MensajeForm> listaReclamos = new ArrayList();
 		
-		List<Mensaje> mensajes =messageManager.listAll();
-		model.addAttribute("mensajes", mensajes);
+		for (Mensaje mensaje : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
+			 MensajeForm mensajeDto=(MensajeForm) MensajeMapper.getForm(mensaje);
+			 mensajeDto.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
+			 MensajeDetalles mensa=messageDetailManager.getFirstDetailMessage(mensajeDto.getId());
+			 mensajeDto.setDescripcion(mensa.getMensajeDetalle());
+			 listaReclamos.add(mensajeDto);
+		}
+		
+		model.addAttribute("mensajes", listaReclamos);
 		
 		
 		return "Propietario/listadoMensajes";	

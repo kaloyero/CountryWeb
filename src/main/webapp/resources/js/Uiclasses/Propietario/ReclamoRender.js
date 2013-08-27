@@ -21,12 +21,12 @@ var ReclamoRender = new Class({
     onFinishLoading : function(dataToAppend){
     	this.cleanCanvas();
     	$("#content").append(dataToAppend);
-    	jQuery(".corner-stamp").load('../resources/static/corner.html');
     	$("body").removeClass();
     	$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
-	
-    	createEffect();
-	
+
+    	jQuery(".corner-stamp").load('../resources/static/corner.html',function(){
+			createEffect();
+		});
     }
 });
 

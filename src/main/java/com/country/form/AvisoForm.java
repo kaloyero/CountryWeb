@@ -13,8 +13,13 @@ public class AvisoForm extends Form  {
 	private String fechaCierre;
 	private  int categoria;
 	private  String categoriaDescription;
+
+	private  String unidad;
+	private  Double importe;
+
 	private  int persona;
 	private  String personaNombre;
+
 	private boolean envioAdm=false;
 
 	public boolean isEnvioAdm() {
@@ -88,6 +93,19 @@ public class AvisoForm extends Form  {
 	}
 	public void setPersonaNombre(String personaNombre) {
 		this.personaNombre = personaNombre;
+	}
+
+	public String getUnidad() {
+		return unidad;
+	}
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+	public Double getImporte() {
+		return importe;
+	}
+	public void setImporte(Double importe) {
+		this.importe = importe;
 	}
 
 

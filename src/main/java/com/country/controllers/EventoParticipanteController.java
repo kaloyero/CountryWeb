@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.country.form.EventoIntegranteForm;
 import com.country.mappers.EventoIntegranteMapper;
 import com.country.services.EventIntegratorManager;
+import com.country.session.SessionData;
 
 /**
  * Handles requests for the application home page.
@@ -29,8 +30,7 @@ public class EventoParticipanteController {
 	public String processJson(@RequestBody
 			  EventoIntegranteForm form
 			) throws ParseException {
-		form.setIntegrante(1);
-		eventIntegratorManager.save(EventoIntegranteMapper.getEventoIntegrante(form));
+		eventIntegratorManager.inscribirseEvento(form.getEvento(), SessionData.getIntegranteId());
 		return "success";
 
 			

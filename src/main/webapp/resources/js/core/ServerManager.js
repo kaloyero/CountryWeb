@@ -98,7 +98,6 @@ var ServerManager = new Class({
  
 
     get: function(config){
-
     	var self=this;
     	$.ajax({
 			type: 'GET',

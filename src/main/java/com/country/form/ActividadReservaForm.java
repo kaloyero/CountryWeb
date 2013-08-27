@@ -7,6 +7,8 @@ public class ActividadReservaForm extends Form {
 
 	private String nombre;
 	private List <CronogramaForm> cronograma= new ArrayList();
+	private String descripcion = null;
+
 	
 	public ActividadReservaForm() {
 		super();
@@ -23,6 +25,12 @@ public class ActividadReservaForm extends Form {
 	}
 	public void setCronograma(List<CronogramaForm> cronograma) {
 		this.cronograma = cronograma;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 

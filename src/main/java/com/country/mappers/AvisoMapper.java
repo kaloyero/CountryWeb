@@ -24,6 +24,8 @@ public class AvisoMapper {
 		dto.setFechaFin(DateUtil.convertStringToDate(((AvisoForm) form).getFechaCierre()));
 		dto.setHeader(((AvisoForm) form).getEncabezado());
 		dto.setId(((AvisoForm) form).getId());
+
+		dto.setImporte(((AvisoForm) form).getImporte());
 		Persona persona = new Persona();
 		persona.setId(((AvisoForm) form).getPersona());
 		dto.setPersona(persona);
@@ -43,6 +45,9 @@ public class AvisoMapper {
 		form.setFecha(DateUtil.convertDateToString(dto.getFecha()));
 		form.setFechaCierre(DateUtil.convertDateToString(dto.getFechaFin()));
 		form.setId(dto.getId());
+
+		form.setImporte(dto.getImporte());
+
 		form.setPersona(dto.getPersona().getId());
 		form.setPersonaNombre(dto.getPersona().getNombre() + " " + dto.getPersona().getApellido() + " - " + dto.getPersona().getTipoDoc().getNombre() + " " + dto.getPersona().getNroDoc());
 		form.setEnvioAdm(MapperUtil.getStatusUserForm(dto.getPersona().getTipo()));

@@ -47,10 +47,18 @@ public class MensajeMapper {
 		form.setId(mensaje.getId());
 		form.setAsunto(mensaje.getAsunto());
 		form.setCategoria(mensaje.getCategoria().getId());
+
 		form.setCategoriaDescripcion(mensaje.getCategoria().getNombre());
 		form.setEstado(mensaje.getEstado());
 		form.setFecha(DateUtil.convertDateToString(mensaje.getFecha()));
 		form.setFechaCierre(DateUtil.convertDateToString(mensaje.getFechaCierre()));
+		//TODO ,el integrante puede ser nulo??
+		if (mensaje.getIntegrante() != null){
+     		form.setIntegranteNombre(mensaje.getIntegrante().getPersona().getNombre());
+     		form.setIntegranteApellido(mensaje.getIntegrante().getPersona().getApellido());
+
+     		form.setIntegranteUnidad(mensaje.getIntegrante().getUnidad().getCode());
+		}
 		form.setEnvio(MapperUtil.getStatusUserForm(mensaje.getEnvio()));
 		//OJO ,el integrante puede ser nulo//NO! aca debe poner el nombre del usuario conectado
 		form.setIdIntegrante(mensaje.getIntegrante().getId());
@@ -62,7 +70,7 @@ public class MensajeMapper {
 		form.setResolucion(mensaje.getResolucion());
 		form.setIdEmpleado(mensaje.getEmpleado());
 		form.setTipo(mensaje.getTipo());
-		form.setDetalles(getDetalles(mensaje.getDetalles()));
+		//form.setDetalles(getDetalles(mensaje.getDetalles()));
 		
 		return form;
 	

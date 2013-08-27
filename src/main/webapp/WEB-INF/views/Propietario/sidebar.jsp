@@ -15,7 +15,7 @@
 					<ul class="categories-module">
 						<li>
 							<h4>
-								<a  class="option" id="mensajeReclamo_lista_mio">Reclamos</a>
+								<a class="option" id="resumen" href="#">Resumen</a>
 							</h4>
 
 						</li>
@@ -27,19 +27,7 @@
 						</li>
 						<li>
 							<h4>
-								<a class="option" id="evento_lista_mio" >Eventos</a>
-							</h4>
-
-						</li>
-						<li>
-							<h4>
 								<a class="option" id="meMultas" href="multas.html"><font color="red">Multas</font></a>
-							</h4>
-
-						</li>
-						<li>
-							<h4>
-								<a class="option" id="Resumen" href="#">Resumen</a>
 							</h4>
 
 						</li>
@@ -60,8 +48,9 @@
 						<li class="item-502"><a class="option" id="recurso_lista">Recursos/Reserva</a></li>
 						<li class="item-502"><a class="option" id="ideas"href="#">Ideas</a></li>
 						<li class="item-503"><a class="option" id="evento_lista">Eventos</a></li>
-						<li class="item-579"><a class="option" id="avisos">Clasificados</a></li>
+						<li class="item-579"><a class="option" id="aviso">Clasificados</a></li>
 						<li class="item-598"><a class="option" id="recomendaciones" href="#">Recomendaciones</a></li>
+						<li class="item-598"><a class="option" id="recomendaciones" href="#">Servicios cerca</a></li>
 						<li class="item-560"><a class="option" id="mensajeReclamo_lista" >Reclamos</a></li>
 					</ul>
 				</div>
@@ -75,12 +64,6 @@
 				</h3>
 				<div class="box-ct clearfix">
 					<ul class="categories-module">
-						<li>
-							<h4>
-								<a href="#">+ Reserva</a>
-							</h4>
-
-						</li>
 						<li>
 							<h4>
 								<a class="optionNew" id="mensajeReclamo_propietario_nuevo">+ Reclamo</a>
@@ -98,7 +81,7 @@
 
 						<li>
 							<h4>
-								<a href="#">+ Clasificado</a>
+								<a class="optionNew" id="aviso_propietario_nuevo">+ Clasificado</a>
 							</h4>
 
 						</li>

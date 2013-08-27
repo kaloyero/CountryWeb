@@ -28,7 +28,13 @@ var RenderTranslator = new Class({
     	case "evento":
 			return eventoRender;
 			break;
-		}
+    	case "resumen":
+    		return resumenRender;
+    		break;
+    	case "aviso":
+    		return avisoRender;
+    		break;
+	}
     	
     }
     

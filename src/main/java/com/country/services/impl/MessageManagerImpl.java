@@ -27,19 +27,20 @@ import com.country.session.ConfigurationData;
 import com.country.session.SessionData;
 
 @Service("messageManager")
-public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements MessageManager{
+public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
+		MessageManager {
 
 	@Autowired
-    private MessageDao messageDao;
+	private MessageDao messageDao;
 
 	@Autowired
-    private MessageDetailDao messageDetailDao;
+	private MessageDetailDao messageDetailDao;
 
 	@Autowired
-    private IntegratorDao integratorDao;
-	
-	public static final String ACTION_CLOSE =  "CLOSE";
-	
+	private IntegratorDao integratorDao;
+
+	public static final String ACTION_CLOSE = "CLOSE";
+
 	protected GenericDao<Mensaje, Integer> getDao() {
 		return messageDao;
 	}
@@ -56,6 +57,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		Mensaje dto = findById(id);
 
 		MensajeForm form = (MensajeForm) MensajeMapper.getForm(dto);
+		form.setDetalles(MensajeMapper.getDetalles(dto.getDetalles()));
 
 		return form;
 	}
@@ -63,9 +65,9 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	@Transactional
 	public void save(MensajeForm form) {
 
-		//Seteo el empleado
-		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
-			form.setIdEmpleado(SessionData.getEmpleadoId());	
+		// Seteo el empleado
+		if (SessionUtil.isEmployeePerson(SessionData.getTipoUsuario())) {
+			form.setIdEmpleado(SessionData.getEmpleadoId());
 		} else {
 			form.setIdEmpleado(ConfigurationData.getUSUARIO_DEFAULT_RECLAMOS());
 		}
@@ -80,22 +82,25 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		
 		//Seteo el estado inicial del mensaje
 		dto.setEstado(getNextStatus(dto.getTipo(), dto.getEstado(), ""));
-		//Seteo la resolucion en blanco
+		// Seteo la resolucion en blanco
 		dto.setResolucion("");
-			
-		//guarda el mensaje
+
+		// guarda el mensaje
 		messageDao.save(dto);
-		
+
 		// GUARDO EL DETALLE
-		//Si el que envia el mensaje es el administrador tiene que ver si lo envia como ADM o como Integrante. 
+		// Si el que envia el mensaje es el administrador tiene que ver si lo
+		// envia como ADM o como Integrante.
 		int idPersona = SessionData.getPersonaId();
-		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
-			if (! form.isEnvio()){
-				Integrante inte = integratorDao.findById(form.getIdIntegrante());
+		if (SessionUtil.isEmployeePerson(SessionData.getTipoUsuario())) {
+			if (!form.isEnvio()) {
+				Integrante inte = integratorDao
+						.findById(form.getIdIntegrante());
 				idPersona = inte.getPersona().getId();
-			}	
+			}
 		}
-		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(dto.getId(), form.getRespuesta(), form.getTipo(),idPersona);
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(
+				dto.getId(), form.getRespuesta(), form.getTipo(), idPersona);
 		messageDetailDao.save(detalle);
 	}
 
@@ -103,27 +108,33 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	public void update(MensajeForm form) {
 
 		// Guardo el Detalle
-		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(form.getId(), form.getRespuesta(), form.getTipo(), SessionData.getPersonaId());
+		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(
+				form.getId(), form.getRespuesta(), form.getTipo(),
+				SessionData.getPersonaId());
 		messageDetailDao.save(detalle);
 
-		//Toma el nuevo estado
-		//TODO ver de que forma puedo tomar de la session si es Admin o Propietario
-		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), form.getAccion());
-		//actualiza el estado
-		messageDao.updateStatus(form.getId(),form.getCategoria(),newStatus);
+		// Toma el nuevo estado
+		// TODO ver de que forma puedo tomar de la session si es Admin o
+		// Propietario
+		String newStatus = getNextStatus(form.getTipo(), form.getEstado(),
+				form.getAccion());
+		// actualiza el estado
+		messageDao.updateStatus(form.getId(), form.getCategoria(), newStatus);
 
 	}
 
 	@Transactional
 	public void closeMessage(MensajeForm form) {
 
-		//Toma el nuevo estado
-		String newStatus = getNextStatus(form.getTipo(), form.getEstado(), ACTION_CLOSE);
-		//Utilizo la fecha actual para cerrar
+		// Toma el nuevo estado
+		String newStatus = getNextStatus(form.getTipo(), form.getEstado(),
+				ACTION_CLOSE);
+		// Utilizo la fecha actual para cerrar
 		Date closeDate = DateUtil.getDateToday();
-		
-		//actualiza el estado
-		messageDao.closeMessage(form.getId(),newStatus,closeDate,form.getRespuesta());
+
+		// actualiza el estado
+		messageDao.closeMessage(form.getId(), newStatus, closeDate,
+				form.getRespuesta());
 
 	}
 
@@ -132,26 +143,27 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		return list;
 	}
 
-	private String getNextStatus(String typeMessage,String estado,String accion) {
+	private String getNextStatus(String typeMessage, String estado,
+			String accion) {
 		String nextStatus = TipoMensajes.STATUS_ERROR;
 
-		//Si es un mensaje de tipo reclamo
-		if (TipoMensajes.TYPE_MESSAGE_RECLAMO.equalsIgnoreCase(typeMessage)){
-			nextStatus = getNextStatusClaim(estado,accion);				 
+		// Si es un mensaje de tipo reclamo
+		if (TipoMensajes.TYPE_MESSAGE_RECLAMO.equalsIgnoreCase(typeMessage)) {
+			nextStatus = getNextStatusClaim(estado, accion);
 		}
 
 		return nextStatus;
 	}
 
-	private String getNextStatusClaim(String estado,String accion) {
+	private String getNextStatusClaim(String estado, String accion) {
 		String nextStatusClaim = TipoMensajes.STATUS_ERROR;
 
-		//Si el mensaje no tiene un estado inicial lo pone como A: ABIERTO
-		if (StringUtils.isBlank(estado)){
+		// Si el mensaje no tiene un estado inicial lo pone como A: ABIERTO
+		if (StringUtils.isBlank(estado)) {
 			nextStatusClaim = TipoMensajes.STATUS_INIT;
-		} else if (ACTION_CLOSE.equals(accion)){
-			nextStatusClaim = TipoMensajes.STATUS_CLOSE;		
-		} else if (TipoMensajes.STATUS_IN.equals(accion)){
+		} else if (ACTION_CLOSE.equals(accion)) {
+			nextStatusClaim = TipoMensajes.STATUS_CLOSE;
+		} else if (TipoMensajes.STATUS_IN.equals(accion)) {
 			nextStatusClaim = TipoMensajes.STATUS_IN;
 		} else {
 			nextStatusClaim = TipoMensajes.STATUS_OUT;
@@ -164,16 +176,15 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 	public List<MensajeForm> listAllForms() {
 		List<MensajeForm> list = new ArrayList<MensajeForm>();
 		List<Mensaje> mensajes = messageDao.findAll();
-		
+
 		for (Mensaje mensaje : mensajes) {
-			MensajeForm form = MensajeMapper.getForm(mensaje);			
+			MensajeForm form = MensajeMapper.getForm(mensaje);
 			form.setCantidadDestalles(mensaje.getDetalles().size());
 			form.setDetalles(MensajeMapper.getDetalles(mensaje.getDetalles()));
-			
+
 			list.add(form);
 		}
 		return list;
 	}
 
-	
 }

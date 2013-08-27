@@ -46,7 +46,16 @@ public class EventoController {
 	public String showMainContent(ModelMap model,HttpServletRequest request) {
 		System.out.println("VALOR "+ request.getRequestURL().toString());
 		
+
 		List<EventoForm> listaEventoForm = eventManager.listAllForms();
+
+		for (EventoForm eventoDto : listaEventoForm) {
+			// EventoForm eventoDto=(EventoForm) EventoMapper.getForm(evento,null);
+			 List test =eventIntegratorManager.findAllIntegrantorFormByEventoId(eventoDto.getId());
+			 eventoDto.setCantidadUnidos(test.size());
+		}
+		
+
 		
 		model.addAttribute("eventos", listaEventoForm);
 		

@@ -8,6 +8,8 @@ var TemplateManager = new Class({
 			break;
 		case "mensajes":
 			return $('#reclamosTemplate');
+		case "aviso":
+		return $('#avisoTemplate');
 			break;
 
     }},

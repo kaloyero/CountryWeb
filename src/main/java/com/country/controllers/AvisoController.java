@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.SessionUtil;
 import com.country.form.AvisoForm;
+import com.country.form.EventoForm;
 import com.country.hibernate.model.Aviso;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Evento;
+import com.country.mappers.AvisoMapper;
+import com.country.mappers.EventoMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.NotificationCategoryManager;
 import com.country.services.NotificationManager;
@@ -79,7 +83,7 @@ public class AvisoController {
 		if (SessionUtil.isAdminUser(request)){
 			return "forms/avisoForm";
 		} else {
-			return "forms/avisoForm";
+			return "Propietario/avisoForm";
 		}
 		
 
@@ -109,6 +113,20 @@ public class AvisoController {
            dataTable.setiTotalDisplayRecords("5");
            dataTable.setiTotalRecords("1");
            return dataTable;
+	}
+	@RequestMapping(value = "/listaPropietario", method = RequestMethod.GET)
+	public  String showPropietarioList(ModelMap model,HttpServletRequest request)  {
+   
+		List<AvisoForm> listaAvisoForm = new ArrayList<AvisoForm>();
+
+		for (Aviso aviso: notificationManager.listAll()) {
+	
+		
+			 listaAvisoForm.add((AvisoForm) AvisoMapper.getForm(aviso));
+		}
+		
+		model.addAttribute("avisos", listaAvisoForm);
+		return "Propietario/listadoClasificados";
 	}
 
 }

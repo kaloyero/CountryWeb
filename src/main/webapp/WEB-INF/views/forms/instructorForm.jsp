@@ -77,14 +77,14 @@
 							<li>
 								<div class='alert success direccion'>
 					    			<span class='idDire' hidden='true'>${tel.id}</span>
-					    			<span class='idTownDire' hidden='true'>${tel.id} </span>
-					    			<span class='townDire' >${tel.townName} </span>
-					    			<span class='streetNameDire' >${tel.streetName} </span>
-					    			<span class='streetNumDire' >${tel.streetNumber} </span>
-	    							<span class='floorDire'>${tel.floor} </span>
-					    			<span class='flatDire' >${tel.flat} </span>
-					    			<span class='towerDire'>${tel.tower} </span>
-					    			<span class='blockDire'>${tel.block} </span>
+					    			<span class='idTownDire' hidden='true'>${tel.id}</span>&nbsp;
+					    			<span class='townDire' >${tel.townName}</span>&nbsp;
+					    			<span class='streetNameDire' >${tel.streetName}</span>&nbsp;
+					    			<span class='streetNumDire' >${tel.streetNumber}</span>&nbsp;
+	    							<span class='floorDire'>${tel.floor}</span>&nbsp;
+					    			<span class='flatDire' >${tel.flat}</span>&nbsp;
+					    			<span class='towerDire'>${tel.tower}</span>&nbsp;
+					    			<span class='blockDire'>${tel.block}</span>&nbsp;
 						    		<span class='hide'>x</span>
 								</div>
 							</li>

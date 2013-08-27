@@ -2,9 +2,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<div class="inner content-inner clearfix">
+<div class="inner content-inner clearfix"><strong>Filtrar por : </strong><a href="#" title="">Todos | </a><a href="#" title="">Mis Reclamos Creados  | </a>
 							<div id="masonry-container" class="clearfix masonry"
-								style="position: relative; height: 1592px;">
+								style="position: relative; height: 1592px;"><div class="corner-stamp" style="width: 227px;">
+									
+								</div>
 								
 <c:forEach items="${mensajes}" var="mensaje">
 <div class="tileContent item hi-tech  no-image masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 228px;">
@@ -29,16 +31,16 @@
 
 
 					<dd class="category-name">
-						<strong>Category:</strong>${mensaje.categoria.nombre}
+						<strong>Categoria:</strong>${mensaje.categoriaDescripcion}
 					</dd>
 
 					<dd class="create">
-						<strong>Created:</strong> >${mensaje.fecha}
+						<strong>Creado:</strong> ${mensaje.fecha}
 					</dd>
 
 					<dd class="create">
-						<strong>por :</strong> ${mensaje.integrante.persona.apellido} 
-						<strong>unidad :</strong> ${mensaje.integrante.unidad.code} 
+						<strong>Por :</strong> ${mensaje.integranteNombre} ${mensaje.integranteApellido}  
+						<strong>Unidad :</strong> ${mensaje.integranteUnidad} 
 						
 					</dd>
 
@@ -49,7 +51,7 @@
 			<!-- //Item header -->
 
 			<!-- Item content -->
-			<div class="content item-content">${mensa.asunto}</div>
+			<div class="content item-content">${mensaje.descripcion}</div>
 			<!-- //Item content -->
 
 			<!-- Item footer -->
@@ -78,9 +80,7 @@
 	</div>
 </div>
 </c:forEach>
-<div class="corner-stamp" style="width: 227px;">
-									
-								</div>
+
 								
 								
 							</div>

@@ -15,19 +15,19 @@ var IntegranteRender = new Class({
     },
     bindListeners: function(form){
     	var self=this;
-
+    	this.addCloseListenerToAllList(form);
     	form.find("#addPhone").click(function() {
     		var newEntry="";
     		if (form.find("#telNumber").val().trim() != "" ){
     			newEntry=" <span class='idTel' hidden='true'>0</span>"	;
     			newEntry+="<span class='idTipoTe' hidden='true'>"+ form.find("#telContact").val() +" </span>";
-    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").text() +" </span>";
+    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact option:selected").text() +" </span>";
 	    		newEntry+="<strong>( </strong><span class='pais'> "+ form.find("#telCountry").val()+"</span>";
 	    		newEntry+= " <span class='state'>" +form.find("#telState").val() + "</span>";
 	    		newEntry+= " <span class='prefix'>" +form.find("#telPrefijo").val() + "</span><strong> ) </strong>";
 	    		newEntry+=" <span class='tel'>" +form.find("#telNumber").val()+"</span>"	;
 	    		form.find("#listaTelefonos").append("<li><div class='alert success telefono'><span class='hide'>x</span> "+newEntry+"</div></li>");
-	    		self.addCloseListener();
+	    		self.addCloseListener(form);
 	    		form.find("#telCountry").val("");
 	    		form.find("#telState").val("");
 	    		form.find("#telPrefijo").val("");
@@ -37,8 +37,14 @@ var IntegranteRender = new Class({
 		});
 	
     },
-    addCloseListener: function(){
-    	$('#listaTelefonos li:last-child').click(function() {
+    addCloseListener: function(form){
+    	form.find('#listaTelefonos li:last-child').click(function() {
+    		$(this).slideUp();					   
+    	});
+    	
+    },
+    addCloseListenerToAllList: function(form){
+    	form.find('#listaTelefonos li').click(function() {
     		$(this).slideUp();					   
     	});
     	

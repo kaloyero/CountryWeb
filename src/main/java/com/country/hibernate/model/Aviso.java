@@ -42,6 +42,9 @@ public class Aviso implements Serializable {
 	
 	@Column(name = "FechaFin")
 	private Date fechaFin;
+	
+	@Column(name = "importe")
+	private Double importe;
 
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdAvisoCategoria",updatable = false, insertable = true)	
@@ -123,6 +126,13 @@ public class Aviso implements Serializable {
 		this.persona = persona;
 	}
 
-	
+	public Double getImporte() {
+		return importe;
+	}
+
+	public void setImporte(Double importe) {
+		this.importe = importe;
+	}
+
 	
 }

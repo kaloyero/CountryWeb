@@ -40,8 +40,7 @@
 				<form:input path="titulo" class="required" />
 			</p>
 		</div>
-		<div class="_50"></div>
-		<div class="_25">
+		<div class="_50">
 			<p>
 				<label for="select">Categoria</label>
 				<c:if test="${AVISO.id == 0}">
@@ -55,7 +54,11 @@
 				</c:if>
 			</p>
 		</div>
-		<div class="_25">
+		<div class="_50">
+			<p>
+				<label for="textfield">Importe</label>
+				<form:input path="importe" class="required" value="0"/>
+			</p>
 		</div>
 		<c:if test="${AVISO.id != 0}">
 			<div class="_25">

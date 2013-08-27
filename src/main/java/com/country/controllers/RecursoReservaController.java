@@ -41,7 +41,7 @@ public class RecursoReservaController {
 	public String processJson(@RequestBody
 			  ReservaForm form
 			) throws ParseException {
-			reservaManager.save(ReserveMapper.getReserva(form));
+			reservaManager.save(form);
 			return "success";
 		//}
 			

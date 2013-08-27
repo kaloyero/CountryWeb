@@ -1,12 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<div class="inner content-inner clearfix">
+<div class="inner content-inner clearfix"><strong>Filtrar por : </strong><a href="#" title="">Todas | </a><a href="#" title="">Actividades a las que me anote </a>
 							<div id="masonry-container" class="clearfix masonry"
-								style="position: relative; height: 1592px;">
+								style="position: relative; height: 1784px;"><div class="corner-stamp" style="width: 227px;">
+									
+								</div>
 <c:forEach items="${actividades}" var="actividad">
 
 <div class="tileContent item instagram item-hot masonry-brick" style="width: 228px; position: absolute; top: 0px; left: 0px;">
+		
 									<div class="inner item-inner clearfix">
 
 
@@ -17,45 +20,38 @@
 													href="/ja_wall/default/instagram/17975-instagram-id-339270252753126384-1323391.html"
 													title="Our CEO, Pete Cashmore got to hold Tardar Sauce AKA #GrumpyCat d"
 													class="item-link">
-													<div class="img_caption none" style="float: none; width: 209px;">
-														<img class="caption"
-															title="Our CEO, Pete Cashmore got to hold Tardar Sauce AKA #GrumpyCat d"
-															src="../resources/img/propietarios/images.jpeg"
-															alt="Our CEO, Pete Cashmore got to hold Tardar Sauce AKA #GrumpyCat d">
-														<p class="img_caption">${actividad.nombre}</p>
-													</div>
-													 <span>&nbsp;</span> <span class="item-pin">&nbsp;</span>
+												<div class="header item-header clearfix">
+												<h2>
+												
+												${actividad.nombre}
+												</h2>
+												<dl class="article-info">
+													<dt class="article-info-term">Detalles</dt>
+													<dd class="category-name">
+														<strong>Categoria:</strong> <a href="/ja_wall/default/instagram.html">Actividades</a>
+													</dd>
+													<dd class="create">
+														<strong style="font-family:arial;color:#9E7474;font-size:15px;">Costo:100$</strong>
+													</dd>
+											
+												</dl>
+
+											</div>
 												</a>
 											</div>
 										</div>
 										<!-- //Item Img -->
 
-										<div class="item-main clearfix">
+										<div class="item-main clearfix" style="padding-top:1px;">
 											<!-- Item header -->
-											<div class="header item-header clearfix">
-												<h2>
-												
-												${actividad.nombre}
-
-												</h2>
-												<dl class="article-info">
-													<dt class="article-info-term">Detalles</dt>
-
-
-													<dd class="category-name">
-														<strong>Categoria:</strong> <a href="/ja_wall/default/instagram.html">Actividades</a>
-													</dd>
-
-												</dl>
-
-											</div>
+										
 											<!-- //Item header -->
-
+											<strong>Descripcion:</strong>
 											<!-- Item content -->
 											<div class="content item-content">
-											   Esta actividad es .....(Descripcion?)
+											 ${actividad.descripcion}
 												<ul>
-													<p>Dias y Horarios:</p>
+													<strong><p>Dias y Horarios:</p></strong>
 													<c:forEach items="${actividad.cronograma}" var="cronograma">
 														<li><a href="#">${cronograma.dia} a las ${cronograma.horario}</a></li>
 
@@ -87,9 +83,7 @@
 									</div>
 								</div>
 					</c:forEach>
-					<div class="corner-stamp" style="width: 227px;">
-									
-								</div>
+			
 								
 								
 							</div>

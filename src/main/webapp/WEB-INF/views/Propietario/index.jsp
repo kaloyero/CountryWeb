@@ -56,10 +56,15 @@
   <script src="../resources/js/Uiclasses/Propietario/TemplateManager.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/ActividadReservaRender.js"></script>
   
+      <script src="../resources/js/Uiclasses/Propietario/DialogRender.js"></script>
+  
   <script src="../resources/js/Uiclasses/Propietario/DashBoardRender.js"></script>
    <script src="../resources/js/Uiclasses/Propietario/RecursoReservaRender.js"></script>
+   <script src="../resources/js/Uiclasses/Propietario/ResumenRender.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/ReclamoRender.js"></script>
+  
   <script src="../resources/js/Uiclasses/Propietario/EventoRender.js"></script>
+   <script src="../resources/js/Uiclasses/Propietario/AvisoRender.js"></script>
    
   
   

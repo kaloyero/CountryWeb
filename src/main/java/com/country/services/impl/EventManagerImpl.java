@@ -140,13 +140,20 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	public List<EventoForm> listAllForms() {
 		List<EventoForm> list = new ArrayList<EventoForm>();
 		List<Evento> eventos = eventDao.findAll();
+		Tarifa tarifa ;
 		
 		for (Evento evento : eventos) {
 			//Traigo la reserva
 			Reserva reserva = reserveManager.findReserveByIdEvent(evento.getId());
+			tarifa = null;
 			//Toma la ultima tarifa
-			Tarifa tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+			if (evento.getConcepto() != null){
+				tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+
+			}		
+			
 			EventoForm form = (EventoForm) EventoMapper.getForm(evento, tarifa,reserva);
+
 
 			list.add(form);
 		}

@@ -24,7 +24,6 @@ var ComponentTranslator = new Class(
 					object : objectType,
 					data : json,
 					onSuccess : function(data) {
-						console.log("SEsese")
 								$.jGrowl("Creado con exito.", {
 									theme : 'success'
 								});
@@ -71,7 +70,6 @@ var ComponentTranslator = new Class(
 				serverManager.getAll({
 					object : objectType,
 					onSuccess : function(data) {
-						console.log("Data",data)
 						canvasController.onFinishShow(type,data);
 						//self.onShowed(objectType, data);
 					}

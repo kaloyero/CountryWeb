@@ -15,10 +15,15 @@ public class MensajeForm extends Form  {
 	private int categoria;
 	private String categoriaDescripcion;
 	private String respuesta;
+	private String categoriaNombre;
+	private String integranteNombre;
+
 	private String accion;
+	private String descripcion;
+	private String integranteUnidad;
+	private String integranteApellido;
 	private int cantidadDestalles;
 	private int idIntegrante;
-	private String integranteNombre;
 	private int idEmpleado;
 	private boolean envio; //este campo hace referencia a quien creo el mensaje (ADM o integrante)
 	private Map<Integer, String> detalles = new HashMap<Integer, String>();
@@ -126,6 +131,30 @@ public class MensajeForm extends Form  {
 	}
 	public void setAccion(String accion) {
 		this.accion = accion;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getIntegranteUnidad() {
+		return integranteUnidad;
+	}
+	public void setIntegranteUnidad(String integranteUnidad) {
+		this.integranteUnidad = integranteUnidad;
+	}
+	public String getIntegranteApellido() {
+		return integranteApellido;
+	}
+	public void setIntegranteApellido(String integranteApellido) {
+		this.integranteApellido = integranteApellido;
+	}
+	public String getCategoriaNombre() {
+		return categoriaNombre;
+	}
+	public void setCategoriaNombre(String categoriaNombre) {
+		this.categoriaNombre = categoriaNombre;
 	}
 
 	
