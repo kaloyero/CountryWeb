@@ -69,8 +69,15 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		} else {
 			form.setIdEmpleado(ConfigurationData.getUSUARIO_DEFAULT_RECLAMOS());
 		}
-		Mensaje dto = MensajeMapper.getMensaje(form);
 
+		//Seteo el integrante
+		if (SessionUtil.isIntegrantePerson( SessionData.getTipoUsuario())){
+			form.setIdIntegrante(SessionData.getIntegranteId());	
+		}
+
+		//Mapeo el mensaje
+		Mensaje dto = MensajeMapper.getMensaje(form);
+		
 		//Seteo el estado inicial del mensaje
 		dto.setEstado(getNextStatus(dto.getTipo(), dto.getEstado(), ""));
 		//Seteo la resolucion en blanco
@@ -153,6 +160,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements 
 		return nextStatusClaim;
 	}
 
+	@Transactional
 	public List<MensajeForm> listAllForms() {
 		List<MensajeForm> list = new ArrayList<MensajeForm>();
 		List<Mensaje> mensajes = messageDao.findAll();

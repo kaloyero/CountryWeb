@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.common.SessionUtil;
@@ -70,7 +71,7 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 		return form;
 	}
 
-	
+	@Transactional
 	public void save(ReservaForm form) {
 
 		Reserva dto = ReserveMapper.getReserva(form);
