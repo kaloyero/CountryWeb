@@ -48,6 +48,7 @@ public class PersonaMapper {
 		form.setTipoDocumento(persona.getTipoDoc().getId());
 		form.setListaTelefonos(getTelefonosForm(tels));
 		form.setListaDirecciones(getDireccionesForm(dires));
+		form.setTipo(persona.getTipo());
 		
 		return form;
 	}

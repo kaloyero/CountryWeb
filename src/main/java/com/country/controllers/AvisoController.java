@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.Constants;
 import com.country.common.SessionUtil;
 import com.country.form.AvisoForm;
 import com.country.hibernate.model.Aviso;
@@ -106,6 +107,14 @@ public class AvisoController {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(aviso.getId()));
 				row.add(aviso.getTittle());
+				if (Constants.PERSONA_EMPLEADO.equals(aviso.getPersona().getTipo()) ){
+					row.add("ADMINISTRADOR (" + aviso.getPersona().getNombre() + " " + aviso.getPersona().getApellido()+ ")");
+				} else {
+					row.add(aviso.getPersona().getNombre() + " " + aviso.getPersona().getApellido());	
+				}
+				row.add(aviso.getCategoria().getNombre());
+				row.add(String.valueOf(aviso.getImporte()));
+				row.add("");
 				dataTable.getAaData().add(row);
 			}
 
@@ -120,8 +129,6 @@ public class AvisoController {
 		List<AvisoForm> listaAvisoForm = new ArrayList<AvisoForm>();
 
 		for (Aviso aviso: notificationManager.listAll()) {
-	
-		
 			 listaAvisoForm.add((AvisoForm) AvisoMapper.getForm(aviso));
 		}
 		

@@ -102,9 +102,9 @@ public class MensajeReclamoController {
 
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("MENSAJE", form);
-		
-		
+
 		 if (SessionUtil.isAdminUser(request)){
+			 model.addAttribute("mensajes", messageDetailManager.getDetailsByMessajeId(id));
 			 return "forms/mensajeReclamoForm";
 		 }else{
 			 return "forms/mensajeReclamoForm";
@@ -135,10 +135,19 @@ public class MensajeReclamoController {
            
 			DataTable dataTable=new DataTable();
 
-			for (Mensaje obj : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
+			for (MensajeForm obj : messageManager.listAllForms(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(obj.getId()));
 				row.add(obj.getAsunto());
+				if ( obj.isEnvio()){
+					row.add("Administrador (" + obj.getEmpleadoNombre()+")");
+					row.add(obj.getIntegranteNombre() + " " + obj.getIntegranteApellido());
+				} else {
+					row.add(obj.getIntegranteNombre() + " " + obj.getIntegranteApellido());
+					row.add("Administrador");
+				}
+				row.add(obj.getCategoriaDescripcion());
+				row.add(obj.getFecha());
 				row.add(obj.getEstado());
 				dataTable.getAaData().add(row);
 			}
@@ -151,7 +160,7 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String  showMessageList(ModelMap model) {
-		List<MensajeForm> listaReclamos = new ArrayList();
+		List<MensajeForm> listaReclamos = new ArrayList<MensajeForm>();
 		
 		for (Mensaje mensaje : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
 			 MensajeForm mensajeDto=(MensajeForm) MensajeMapper.getForm(mensaje);

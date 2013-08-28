@@ -39,6 +39,8 @@
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Documento</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">E-mail</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Telefono</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Estado</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Acciones</th>
 						</tr>
 				</thead>
 						<tbody>

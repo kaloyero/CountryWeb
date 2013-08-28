@@ -173,9 +173,9 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 	}
 
 	@Transactional
-	public List<MensajeForm> listAllForms() {
+	public List<MensajeForm> listAllForms(String type) {
 		List<MensajeForm> list = new ArrayList<MensajeForm>();
-		List<Mensaje> mensajes = messageDao.findAll();
+		List<Mensaje> mensajes = getMessajesCategoryType(type);
 
 		for (Mensaje mensaje : mensajes) {
 			MensajeForm form = MensajeMapper.getForm(mensaje);

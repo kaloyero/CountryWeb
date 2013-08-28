@@ -34,7 +34,11 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Asunto</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Estado</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Creado por</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Para</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Categoria</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Fecha creacion</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">estado</th>
 						</tr>
 					</thead>
 						<tbody>

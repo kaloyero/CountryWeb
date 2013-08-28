@@ -4,11 +4,18 @@ package com.country.form;
 public class IntegranteForm extends Form  {
 	private Integer id =0;
 	private Integer unidad;
+	private String unidadCode;
 	private PersonaForm persona ;
 	private UsuarioForm usuario ;
 	private boolean estado;
 	
 	
+	public String getUnidadCode() {
+		return unidadCode;
+	}
+	public void setUnidadCode(String unidadCode) {
+		this.unidadCode = unidadCode;
+	}
 	public UsuarioForm getUsuario() {
 		return usuario;
 	}

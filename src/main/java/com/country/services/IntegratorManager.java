@@ -48,4 +48,9 @@ public interface IntegratorManager extends AbstractManager<Integrante>{
 	 * @return
 	 */
 	public Integrante getIntegratorByIdUser(int userId);
+	
+	public List<IntegranteForm> listAllFormsComplete();
+
+	public List<IntegranteForm> listAllFormsComplete(boolean active);	
+	
 }

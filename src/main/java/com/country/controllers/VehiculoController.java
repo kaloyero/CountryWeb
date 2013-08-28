@@ -88,9 +88,12 @@ public class VehiculoController {
 			for (Vehiculo vehiculo : vehicleManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(vehiculo.getId()));
-				row.add(vehiculo.getCodigo());
 				row.add(vehiculo.getTipoVehiculo().getNombre());
-				row.add(vehiculo.getDescripcion());
+				row.add(vehiculo.getCodigo());
+				row.add(vehiculo.getCilindrada());
+				row.add(vehiculo.getUnidad().getCode());
+				//TODO acciones
+				row.add("");
 				dataTable.getAaData().add(row);
 			}
 

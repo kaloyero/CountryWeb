@@ -34,6 +34,13 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Organiza</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Costo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Se realiza</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Cupo Minimo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Inscriptos</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Estado</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Acciones</th>
 						</tr>
 					</thead>
 						<tbody>

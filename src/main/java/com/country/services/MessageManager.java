@@ -18,6 +18,6 @@ public interface MessageManager extends AbstractManager<Mensaje>{
 	
 	void update(MensajeForm form,UsuarioInfo user);
 
-	List<MensajeForm> listAllForms();
+	List<MensajeForm> listAllForms(String type);
 	
 }

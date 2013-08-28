@@ -85,7 +85,7 @@ public class ActividadController {
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showActivitiesForBook(ModelMap model) {
 		
-		List<ActividadReservaForm> listaActividadesForm = new ArrayList();
+		List<ActividadReservaForm> listaActividadesForm = new ArrayList<ActividadReservaForm>();
 
 		for (Actividad actividad : activityManager.listAllForBook()) {
 			listaActividadesForm.add(ActividadReservaMapper.getForm(actividad));
@@ -104,13 +104,18 @@ public class ActividadController {
            
            DataTable dataTable=new DataTable();
 
-			for (Actividad actividad : activityManager.listAll()) {
+			for (ActividadForm actividad : activityManager.listAllFormsComplete()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(actividad.getId()));
 				row.add(actividad.getNombre());
 				row.add(actividad.getDescripcion());
-				row.add(String.valueOf(actividad.getFechaComienzo()));
-				row.add(actividad.getDescripcion());
+				row.add(actividad.getFechaInicio());
+				row.add(String.valueOf(actividad.getImporte()));
+				//TODO reemplazar estos campos por datos
+				row.add("Nombre de profesor");
+				row.add("10");
+				//TODO agregar acciones de 'suspender actividad', 'eliminar actividad'. 
+				row.add("");
 				dataTable.getAaData().add(row);
 			};
 			dataTable.setsEcho("1");

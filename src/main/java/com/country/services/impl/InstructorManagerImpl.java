@@ -105,4 +105,32 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 	
 		return lista;
 	}
+	
+	@Transactional
+	public List<InstructorForm> listAllFormsComplete() {
+		List<InstructorForm> list = new ArrayList<InstructorForm>();
+		List<Instructor> instrucotres = instructorDao.findAll();
+
+		for (Instructor instructor : instrucotres) {
+			List<Telefono> telefonos = telephoneManager.findListByIdPerson(instructor.getPersona().getId());
+			InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor,telefonos,null);
+			list.add(form);
+		}
+		
+		return list;
+	}
+	
+	@Transactional
+	public List<InstructorForm> listAllFormsComplete(boolean active) {
+		List<InstructorForm> list = new ArrayList<InstructorForm>();
+		List<Instructor> instrucotres = listAll(active);
+
+		for (Instructor instructor : instrucotres) {
+			List<Telefono> telefonos = telephoneManager.findListByIdPerson(instructor.getPersona().getId());
+			InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor,telefonos,null);
+			list.add(form);
+		}
+		
+		return list;
+	}		
 }

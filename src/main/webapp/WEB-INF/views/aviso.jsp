@@ -34,6 +34,10 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Titulo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Publicado por</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Categoria</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Importe</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Acciones</th>
 						</tr>
 					</thead>
 						<tbody>

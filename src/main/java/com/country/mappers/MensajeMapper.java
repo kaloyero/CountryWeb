@@ -1,12 +1,13 @@
 package com.country.mappers;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.country.common.DateUtil;
 import com.country.common.MapperUtil;
+import com.country.form.MensajeDetalleForm;
 import com.country.form.MensajeForm;
+import com.country.hibernate.model.Empleado;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeCategorias;
@@ -34,7 +35,9 @@ public class MensajeMapper {
 		mensaje.setTipo(form.getTipo());
 		mensaje.setResolucion(form.getResolucion());
 		mensaje.setTipo(form.getTipo());
-		mensaje.setEmpleado(form.getIdEmpleado());
+		Empleado emp = new Empleado();
+		emp.setId(form.getIdEmpleado());
+		mensaje.setEmpleado(emp);
 		
 		return mensaje;
 	
@@ -56,7 +59,6 @@ public class MensajeMapper {
 		if (mensaje.getIntegrante() != null){
      		form.setIntegranteNombre(mensaje.getIntegrante().getPersona().getNombre());
      		form.setIntegranteApellido(mensaje.getIntegrante().getPersona().getApellido());
-
      		form.setIntegranteUnidad(mensaje.getIntegrante().getUnidad().getCode());
 		}
 		form.setEnvio(MapperUtil.getStatusUserForm(mensaje.getEnvio()));
@@ -68,7 +70,8 @@ public class MensajeMapper {
 							mensaje.getIntegrante().getPersona().getTipoDoc().getNombre() + " " + 
 							mensaje.getIntegrante().getPersona().getNroDoc() );
 		form.setResolucion(mensaje.getResolucion());
-		form.setIdEmpleado(mensaje.getEmpleado());
+		form.setIdEmpleado(mensaje.getEmpleado().getId());
+		form.setEmpleadoNombre(mensaje.getEmpleado().getPersona().getNombre() + " " + mensaje.getEmpleado().getPersona().getApellido());
 		form.setTipo(mensaje.getTipo());
 		//form.setDetalles(getDetalles(mensaje.getDetalles()));
 		
@@ -76,10 +79,14 @@ public class MensajeMapper {
 	
 	}
 
-	public static Map<Integer, String> getDetalles(List<MensajeDetalles> detalles) {
-		Map<Integer, String> lista = new HashMap<Integer, String>();
+	public static List<MensajeDetalleForm> getDetalles(List<MensajeDetalles> detalles) {
+		List<MensajeDetalleForm> lista = new ArrayList<MensajeDetalleForm>();
 		for (MensajeDetalles msjDet : detalles) {
-			lista.put(msjDet.getId(), msjDet.getMensajeDetalle());
+			MensajeDetalleForm msj = new MensajeDetalleForm();
+			msj.setId(msjDet.getId());
+			msj.setMensaje(msjDet.getMensajeDetalle());
+			msj.setNombreUsuario(msjDet.getPersona().getNombre() + " " + msjDet.getPersona().getApellido());
+
 		}
 		
 		return lista;

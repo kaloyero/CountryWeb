@@ -16,8 +16,16 @@ public class RecursoForm extends Form  {
 	private Integer maxTiempoReserva;
 	private List< Map<Integer, Integer>> reservas = new ArrayList();
 	private String disponibilidades="";
-	
 	private int tipoRecurso ;
+	private String tipoRecursoDesc ;
+	
+	
+	public String getTipoRecursoDesc() {
+		return tipoRecursoDesc;
+	}
+	public void setTipoRecursoDesc(String tipoRecursoDesc) {
+		this.tipoRecursoDesc = tipoRecursoDesc;
+	}
 	public int getId() {
 		return id;
 	}

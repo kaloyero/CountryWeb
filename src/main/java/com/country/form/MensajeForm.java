@@ -1,7 +1,7 @@
 	package com.country.form;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MensajeForm extends Form  {
 
@@ -17,7 +17,6 @@ public class MensajeForm extends Form  {
 	private String respuesta;
 	private String categoriaNombre;
 	private String integranteNombre;
-
 	private String accion;
 	private String descripcion;
 	private String integranteUnidad;
@@ -25,10 +24,18 @@ public class MensajeForm extends Form  {
 	private int cantidadDestalles;
 	private int idIntegrante;
 	private int idEmpleado;
+	private String empleadoNombre;
 	private boolean envio; //este campo hace referencia a quien creo el mensaje (ADM o integrante)
-	private Map<Integer, String> detalles = new HashMap<Integer, String>();
+	private List<MensajeDetalleForm> detalles = new ArrayList<MensajeDetalleForm>();
 	
 	
+	
+	public String getEmpleadoNombre() {
+		return empleadoNombre;
+	}
+	public void setEmpleadoNombre(String empleadoNombre) {
+		this.empleadoNombre = empleadoNombre;
+	}
 	public boolean isEnvio() {
 		return envio;
 	}
@@ -65,13 +72,14 @@ public class MensajeForm extends Form  {
 	public void setCategoriaDescripcion(String categoriaDescripcion) {
 		this.categoriaDescripcion = categoriaDescripcion;
 	}
-	public Map<Integer, String> getDetalles() {
+
+
+	public List<MensajeDetalleForm> getDetalles() {
 		return detalles;
 	}
-	public void setDetalles(Map<Integer, String> detalles) {
+	public void setDetalles(List<MensajeDetalleForm> detalles) {
 		this.detalles = detalles;
 	}
-
 	public int getId() {
 		return id;
 	}

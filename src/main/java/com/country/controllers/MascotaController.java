@@ -88,8 +88,15 @@ public class MascotaController {
 			for (Mascota mascota : petManager.listAll()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(mascota.getId()));
+				row.add(mascota.getCodigo());
 				row.add(mascota.getNombre());
-				row.add(mascota.getDistincion());
+				row.add(mascota.getSexo());
+				row.add(mascota.getColor());
+				row.add(mascota.getTamano());
+				row.add(mascota.getRaza().getNombre());
+				row.add(mascota.getUnidad().getCode());
+				//TODO Acciones
+				row.add("");
 				dataTable.getAaData().add(row);
 			}
 
