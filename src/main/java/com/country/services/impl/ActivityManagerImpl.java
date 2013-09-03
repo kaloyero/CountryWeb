@@ -158,7 +158,7 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 	@Transactional
 	public List<Actividad> listAllForBook() {
 		List<Actividad> actividades = new ArrayList<Actividad>();
-		actividades = activityDao.findAll();
+		actividades = listAll();
 		for (Actividad actividad : actividades) {
 			actividad.getCronogramas().size();
 		}
@@ -168,7 +168,7 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 	@Transactional
 	public List<ActividadForm> listAllFormsComplete() {
 		List<ActividadForm> list = new ArrayList<ActividadForm>();
-		List<Actividad> actividades = activityDao.findAll();
+		List<Actividad> actividades = listAll();
 
 		for (Actividad actividad : actividades) {
 			//Asignaciones

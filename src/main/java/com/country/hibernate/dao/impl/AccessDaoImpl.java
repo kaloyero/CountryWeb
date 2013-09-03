@@ -1,5 +1,7 @@
 package com.country.hibernate.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.country.common.GenericDaoImpl;
@@ -17,4 +19,5 @@ public class AccessDaoImpl extends GenericDaoImpl<Acceso, Integer> implements Ac
     public void update(Acceso obj) {
       	getSession().update(obj);
     }
+
 }

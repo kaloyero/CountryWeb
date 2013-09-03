@@ -140,7 +140,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 	
 	public List<EventoForm> listAllForms() {
 		List<EventoForm> list = new ArrayList<EventoForm>();
-		List<Evento> eventos = eventDao.findAll();
+		List<Evento> eventos = eventDao.findAll(false);
 		Tarifa tarifa ;
 		
 		for (Evento evento : eventos) {

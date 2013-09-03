@@ -156,7 +156,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 	public List<IntegranteActividadForm> listAllFormsComplete() {
 
 		List<IntegranteActividadForm> list = new ArrayList<IntegranteActividadForm>();
-		List<IntegranteActividades> reservas = integratorActivityDao.findAll();
+		List<IntegranteActividades> reservas = integratorActivityDao.findAll(false);
 
 		for (IntegranteActividades intAct : reservas) {
 			ActividadForm actForm = activityManager.findFormById(intAct.getActividad());

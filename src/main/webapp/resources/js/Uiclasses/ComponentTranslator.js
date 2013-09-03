@@ -85,6 +85,9 @@ var ComponentTranslator = new Class(
 				case "aviso":
 					formToSend =avisoRender.onSubmit();
 					break;
+				case "infraccion":
+					formToSend =infraccionRender.onSubmit();
+					break;
 					
 				default:
 					$
@@ -189,6 +192,10 @@ var ComponentTranslator = new Class(
 				case "evento":
 					formToSend =eventoRender.onSubmit();
 					break;				
+				case "infraccion":
+					formToSend =infraccionRender.onSubmit();
+					break;				
+
 				default:
 					$
 							.jGrowl(

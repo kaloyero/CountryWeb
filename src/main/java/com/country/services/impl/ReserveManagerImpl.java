@@ -135,7 +135,7 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	public List<ReservaForm> listAllFormsComplete() {
 
 		List<ReservaForm> list = new ArrayList<ReservaForm>();
-		List<Reserva> reservas = reserveDao.findAll();
+		List<Reserva> reservas = listAll();
 
 		for (Reserva res : reservas) {
 			list.add(setForm(res));

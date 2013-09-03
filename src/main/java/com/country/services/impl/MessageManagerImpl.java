@@ -114,7 +114,7 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 		messageDetailDao.save(detalle);
 
 		// Toma el nuevo estado
-		// TODO ver de que forma puedo tomar de la session si es Admin o
+		//TODO ver de que forma puedo tomar de la session si es Admin o
 		// Propietario
 		String newStatus = getNextStatus(form.getTipo(), form.getEstado(),
 				form.getAccion());

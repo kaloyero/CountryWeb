@@ -142,7 +142,7 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 	@Transactional
 	public List<IntegranteForm> listAllFormsComplete() {
 		List<IntegranteForm> list = new ArrayList<IntegranteForm>();
-		List<Integrante> integrantes = integratorDao.findAll();
+		List<Integrante> integrantes = listAll();
 
 		for (Integrante integrante : integrantes) {
 			List<Telefono> telefonos = telephoneManager.findListByIdPerson(integrante.getPersona().getId());

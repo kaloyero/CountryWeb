@@ -25,7 +25,7 @@ public class Infraccion implements Serializable {
 	@Column(name = "IdInfraccion", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "fecha")
+	@Column(name = "fecha",updatable=false)
 	private  Date fecha;
 
 	@Column(name = "numero")
@@ -38,7 +38,7 @@ public class Infraccion implements Serializable {
 	private  double monto ;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdUnidad")		
+	@JoinColumn(name="IdUnidad",updatable=false)		
 	private  Unidad unidad;
 
 	@OneToOne(fetch=FetchType.EAGER)
@@ -46,12 +46,12 @@ public class Infraccion implements Serializable {
 	private  TipoInfraccion tipoInfraccion;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdVehiculo")		
+	@JoinColumn(name="IdVehiculo",updatable=false,nullable=true)		
 	private  Vehiculo vehiculo;
 	
-//	@OneToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="IdMascota")		
-//	private  Mascota mascota;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdMascota",updatable=false,nullable=true)		
+	private  Mascota mascota;
 
 	public Integer getId() {
 		return id;
@@ -117,4 +117,13 @@ public class Infraccion implements Serializable {
 		this.vehiculo = vehiculo;
 	}
 
+	public Mascota getMascota() {
+		return mascota;
+	}
+
+	public void setMascota(Mascota mascota) {
+		this.mascota = mascota;
+	}
+
+	
 }

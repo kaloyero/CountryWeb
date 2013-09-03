@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.Constants;
+import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.MensajeDetalles;
@@ -95,7 +96,7 @@ public class DashboardController {
    		    noticiasJsonArray.add(noticiasJson);
 		};
 		
-		List<MensajeForm> mensajes =mensajeManager.listAllForms();
+		List<MensajeForm> mensajes =mensajeManager.listAllForms(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 	
 		JSONArray mensajeJsonArray = new JSONArray();
 		for ( MensajeForm mensaje : mensajes) {
