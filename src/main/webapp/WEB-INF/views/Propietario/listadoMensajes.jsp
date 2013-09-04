@@ -9,7 +9,7 @@
 								</div>
 								
 <c:forEach items="${mensajes}" var="mensaje">
-<div class="tileContent item hi-tech  no-image masonry-brick" style="position: absolute; top: 0px; left: 0px; width: 228px;">
+<div class="tileContent item hi-tech  no-image " style="position: absolute; top: 0px; left: 0px; width: 221px;">
 	<div class="inner item-inner clearfix">
 
 

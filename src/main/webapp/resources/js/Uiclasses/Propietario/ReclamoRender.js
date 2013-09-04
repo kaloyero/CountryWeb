@@ -1,3 +1,4 @@
+
 var ReclamoRender = new Class({
 	Extends: Render,
     initialize: function(name){

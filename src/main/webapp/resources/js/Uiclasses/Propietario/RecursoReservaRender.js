@@ -196,17 +196,15 @@ var RecursoReservaRender = new Class(
 			},
 			onEventClick:function(calEvent, jsEvent, view){
 				if (calEvent.title=="Disponible"){
-					console.log("Evento ",calEvent, jsEvent, view);
-					console.log("FEcha ", new Date (calEvent.start.getTime()))
-					console.log("FEcha2 ", calEvent.start.getDate())
-					console.log("Hora ", calEvent.start.getHours())
+
 					var date = calEvent.start.getDate();
 					var month = calEvent.start.getMonth() + 1; //Months are zero based
 					var year = calEvent.start.getFullYear();
 					var fecha=date + "-" + month + "-" + year
 					var recursoId=$("#recursoCombo").val();
 					var horaIni=calEvent.start.getHours();
-				
+					var minutes=calEvent.start.getMinutes();
+			        var horario=horaIni +":" +minutes
 					var reserva = {
 							"descripcion" : "borrarCampo",
 							"recursoId" : recursoId,

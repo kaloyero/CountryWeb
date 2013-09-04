@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ActividadReservaForm extends Form {
 
+	private int id;
 	private String nombre;
 	private List <CronogramaForm> cronograma= new ArrayList();
 	private String descripcion = null;
@@ -31,6 +32,12 @@ public class ActividadReservaForm extends Form {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

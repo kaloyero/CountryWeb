@@ -55,10 +55,13 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		EventoForm form = new EventoForm();
 		
 		Evento evento = findById(id);
+		Tarifa tarifa = null;
 		//Traigo la reserva
 		Reserva reserva = reserveManager.findReserveByIdEvent(id);
-		//Toma la ultima tarifa
-		Tarifa tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+		//Si el evento es gratis no tiene concepto
+		if (evento.getConcepto() != null)
+			//Toma la ultima tarifa
+			tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
 		
 		form = (EventoForm) EventoMapper.getForm(evento, tarifa,reserva);
 		return form;

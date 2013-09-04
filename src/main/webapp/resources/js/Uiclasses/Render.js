@@ -16,10 +16,9 @@ var Render = new Class({
      * Todos los grids se van a llenar de la misma forma
      */
     populateGrid: function(objectType){
-    	
     	var activeTable =$('.active-table').dataTable( {
     		"bProcessing": true,
-    		"sAjaxSource": "/CountryWeb/"+objectType+"/lista",
+    		"sAjaxSource": objectType+"/lista",
     		
     		"fnRowCallback": function( nRow, aData, iDisplayIndex ) {
     							//Cada vez que se dibuja una fila,se ejecuta este Callback,y se pone el ID del nodo al TR

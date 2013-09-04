@@ -6,6 +6,8 @@ public class IntegranteActividadForm extends Form  {
 	private Integer id =0;
 	private int integranteId;
 	private int actividadId;
+	private int cronogramaId;
+
 	private IntegranteForm integrante;
 	private ActividadForm actividad;	
 	private String fechaIni;
@@ -51,6 +53,12 @@ public class IntegranteActividadForm extends Form  {
 	}
 	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+	public int getCronogramaId() {
+		return cronogramaId;
+	}
+	public void setCronogramaId(int cronogramaId) {
+		this.cronogramaId = cronogramaId;
 	}
 	
 	

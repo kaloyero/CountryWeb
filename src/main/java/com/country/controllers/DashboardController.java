@@ -77,6 +77,7 @@ public class DashboardController {
    		    noticiasJson.put("titulo",noticia.getTitulo());
    		    noticiasJson.put("descripcion",noticia.getTexto());
    		    noticiasJson.put("categoria",noticia.getCategoria().getNombre());
+   		    noticiasJson.put("fecha",noticia.getFecha());
    		    noticiasJson.put("autor","Admin");
 
    		    noticiasJsonArray.add(noticiasJson);
@@ -92,6 +93,7 @@ public class DashboardController {
 			mensajeJson.put("descripcion",mensa.getMensajeDetalle());
 			mensajeJson.put("categoria",mensaje.getCategoriaDescripcion());
 			mensajeJson.put("autor",mensaje.getIntegranteNombre()); 
+			mensajeJson.put("fecha",mensaje.getFecha());
 			//+ " Unidad " + mensaje.getIntegrante().getUnidad().getCode());
 
 			mensajeJsonArray.add(mensajeJson);

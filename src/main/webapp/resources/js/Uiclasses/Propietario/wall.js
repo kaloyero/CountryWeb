@@ -10,49 +10,53 @@
  * ------------------------------------------------------------------------
  */
 
-function createEffect(){ 
+function createEffect(hideCommentSideBar){ 
 (window.$wall || window.jQuery)(function($){
 	// Masonry corner stamp modifications
 	$.Mason.prototype.resize = function() {
 		//this._getColumns();
 		//this._reLayout();
 	};
-
-	$.Mason.prototype._reLayout = function( callback ) {
-		var freeCols = this.cols,
-			cornerStampHeight = 0,
-			cornerStampCols = 0;
-
-		if ( this.options.cornerStampSelector ) {
-			var $cornerStamp = this.element.find( this.options.cornerStampSelector );
-			if($cornerStamp.length){
-				freeCols = Math.floor((
-					$cornerStamp.offset().left -
-						(this.element.offset().left +
-						this.offset.x +
-						parseInt($cornerStamp.css('marginLeft')))) / this.columnWidth );
-
-				cornerStampHeight = $cornerStamp.outerHeight(true);
-				cornerStampCols = Math.ceil($cornerStamp.outerWidth(true) / this.columnWidth);
+	var cornerStamp=null;
+	
+	if (!hideCommentSideBar) { 
+		cornerStamp='.corner-stamp';
+		$.Mason.prototype._reLayout = function( callback ) {
+			var freeCols = this.cols,
+				cornerStampHeight = 0,
+				cornerStampCols = 0;
+	
+			if ( this.options.cornerStampSelector ) {
+				var $cornerStamp = this.element.find( this.options.cornerStampSelector );
+				if($cornerStamp.length){
+					freeCols = Math.floor((
+						$cornerStamp.offset().left -
+							(this.element.offset().left +
+							this.offset.x +
+							parseInt($cornerStamp.css('marginLeft')))) / this.columnWidth );
+	
+					cornerStampHeight = $cornerStamp.outerHeight(true);
+					cornerStampCols = Math.ceil($cornerStamp.outerWidth(true) / this.columnWidth);
+				}
 			}
-		}
-
-		// reset columns
-		var i = this.cols,
-			il = Math.min(freeCols + cornerStampCols, this.cols);
-
-		this.colYs = [];
-		while (i--) {
-			this.colYs.push( this.offset.y );
-		}
-
-		for ( i = freeCols; i < il; i++ ) {
-			this.colYs[i] = this.offset.y + cornerStampHeight;
-		}
-
-		// apply layout logic to all bricks
-		this.layout( this.$bricks, callback );
-	};
+	
+			// reset columns
+			var i = this.cols,
+				il = Math.min(freeCols + cornerStampCols, this.cols);
+	
+			this.colYs = [];
+			while (i--) {
+				this.colYs.push( this.offset.y );
+			}
+	
+			for ( i = freeCols; i < il; i++ ) {
+				this.colYs[i] = this.offset.y + cornerStampHeight;
+			}
+	
+			// apply layout logic to all bricks
+			this.layout( this.$bricks, callback );
+		};
+	}
 	//End Masonry modification
 
 	var $container = $('#masonry-container'),
@@ -67,7 +71,6 @@ function createEffect(){
 	if (!$('#base-blank-item').length) {
 		$('<div id="base-blank-item" class="' + itemSelector.substr(1) + '" style="height:0;visibility:hidden" />').appendTo ($container);
 	}
-
 	var uwsid = 0,
 		lastWndWidth = 0,
 		reloadMasonry = function () {
@@ -87,7 +90,6 @@ function createEffect(){
 				mw_ = cols * cw_;
 
 			$('#base-blank-item').width(cw_);
-			console.log("AUU",cw_)
 			if ($container.data('basewidth') != cw_) {
 				$container.data('basewidth', cw_);
 				updateBrickWidth();
@@ -100,18 +102,12 @@ function createEffect(){
 		updateBrickWidth = function ($bricks) {
 
 		};
-
+		console.log("SCORNR",cornerStamp)
 	// init masonry
 	$container.masonry({
 		itemSelector: itemSelector,
 		isResizable: false,
-		cornerStampSelector: '.corner-stamp',
-		columnWidth: function() {
-			var size= $container.data ('basewidth')? $container.data ('basewidth') : $('#base-blank-item').width()
-					console.log("size",size)
-				return size
-				
-		}
+		cornerStampSelector: cornerStamp
 	});
 
 	// reload masonry when image loaded
@@ -130,7 +126,6 @@ function ifmOnload(){
 	
 	$(document.body).addClass ('popupview-loaded');
 	this.id="popupIFrame";
-	console.log("EL ID",this.id)
 	var doc=$("#popupIFrame")
 	/*var doc = this.contentDocument ? this.contentDocument : window.frames[this.id].document,
 		ifm = this;

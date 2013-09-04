@@ -13,6 +13,7 @@ public class ActividadReservaMapper {
 		
 		ActividadReservaForm form = new ActividadReservaForm();
 		form.setNombre(actividad.getNombre());
+		form.setId(actividad.getId());
 		form.setDescripcion(actividad.getDescripcion());
 		
 		

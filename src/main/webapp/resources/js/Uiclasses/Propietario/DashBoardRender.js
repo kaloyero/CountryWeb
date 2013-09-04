@@ -25,7 +25,7 @@ var DashBoardender = new Class({
     	}
     	jQuery(".corner-stamp").load('../resources/static/corner.html');
 
-    	createEffect();
+    	createEffect(true);
 
     }
 });
