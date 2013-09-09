@@ -34,6 +34,7 @@
   <script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
   <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
   <script src="resources/js/libs/jquery.visualize.js"></script>
+  <script src="resources/js/mylibs/jquery.validate.js"></script>
 
   <script src="resources/js/scriptsCoun.js"></script>
   <script src="resources/js/mylibs/jquery.dataTables.min.js"></script>

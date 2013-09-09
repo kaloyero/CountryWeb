@@ -106,7 +106,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		List<IntegranteActividades> searchList = new ArrayList<IntegranteActividades>();
 		searchList = integratorActivityDao.findAllByProperty("integrante", id);
 		for (IntegranteActividades dto : searchList) {
-			ActividadForm actividad = activityManager.findFormById(dto.getActividad());
+			ActividadForm actividad = activityManager.findFormById(dto.getCronograma());
 			list.add(actividad);
 			
 		}
@@ -119,7 +119,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 
 		
 		IntegranteActividadForm form = new IntegranteActividadForm();
-		form.setActividadId(actividad);
+		form.setCronogramaId(actividad);
 		form.setIntegranteId(integrante);
 		form.setFechaIni(fechaIni);
 		form.setFechaFin(fechaFin);
@@ -132,7 +132,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 	public void inscribirse(IntegranteActividadForm form) {
 		IntegranteActividades dto = IntegranteActividadMapper.getIntegranteActividad(form);
 
-		if (esUsuarioInscripto(form.getActividadId(),form.getIntegranteId())){
+		if (esUsuarioInscripto(form.getCronogramaId(),form.getIntegranteId())){
 			
 		} else  {
 			integratorActivityDao.save(dto);	
@@ -159,7 +159,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		List<IntegranteActividades> reservas = integratorActivityDao.findAll(false);
 
 		for (IntegranteActividades intAct : reservas) {
-			ActividadForm actForm = activityManager.findFormById(intAct.getActividad());
+			ActividadForm actForm = activityManager.findFormById(intAct.getCronograma());
 			IntegranteForm intForm = integratorManager.findFormById(intAct.getIntegrante());
 
 			IntegranteActividadForm form = (IntegranteActividadForm) IntegranteActividadMapper.getForm(intAct);

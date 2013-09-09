@@ -8,26 +8,19 @@ var InfraccionRender = new Class({
     	var form=this.getAddForm();
     	myArray = new Array();
     	
-    	console.log($("#categorias").lenth());
-    	
+    	console.log($("#categorias").get(0));
+    	console.log($("#categorias"));
     	
     	myArray[ 0 ] = "120.0";
     	myArray[ 4 ] = "150";
     	myArray[ 5 ] = "200";
     	
-    	
-    	for(var i in myArray){
-    		alert(myArray[i]);
-    	}
-    	
-    	console.log(myArray.length);
     	this.bindListeners(form);
     	
     	
     },
     onNewTab: function(){
     	var form=this.getActiveForm();
-    	console.log("dos");
     	this.bindListeners(form);
     	
     },  

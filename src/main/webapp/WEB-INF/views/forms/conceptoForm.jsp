@@ -5,7 +5,7 @@
 </script>
 
 <p></p>
-<form:form commandName="CONCEPTO" class="block-content form">
+<form:form id="conceptoForm" commandName="CONCEPTO" class="block-content form">
 
 	<fieldset>
 		<legend>General</legend>
