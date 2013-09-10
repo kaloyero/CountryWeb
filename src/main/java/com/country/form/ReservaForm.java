@@ -12,10 +12,17 @@ public class ReservaForm extends Form {
 	private  PersonaForm persona;
 	private  EventoForm evento;
 	private  Integer horaIni ;
+	private  Integer minutosIni ;
 	private  Integer duracion ;
 	private boolean envioAdm=false;
 	
 	
+	public Integer getMinutosIni() {
+		return minutosIni;
+	}
+	public void setMinutosIni(Integer minutosIni) {
+		this.minutosIni = minutosIni;
+	}
 	public boolean isEnvioAdm() {
 		return envioAdm;
 	}

@@ -149,5 +149,18 @@ public class DateUtil {
     	return Integer.parseInt(hourFormat.format(fch));
     	
     	
-    }    
+    }
+    
+    
+    public static int getMinutes(int hour, int minutes) {
+    	return (hour * 60) + minutes;
+    }
+    
+    public static int setHourInfForm(int minutes) {
+    	return minutes / 60;
+    }
+    
+    public static int setMinutesInfForm(int minutes) {
+    	return minutes % 60;
+    }
 }
