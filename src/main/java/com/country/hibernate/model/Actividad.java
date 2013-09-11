@@ -52,7 +52,7 @@ public class Actividad implements Serializable {
     @JoinColumn(name="IdActividad",updatable = false, insertable = false , nullable = true)
 	private  List <Cronograma> cronogramas ;
 	
-	@OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@BatchSize(size = 10)
     @JoinColumn(name="IdActividad",updatable = false, insertable = false, nullable = true)
 	private List <Asignacion> asignaciones;

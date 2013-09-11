@@ -37,7 +37,7 @@ public abstract class AbstractManagerImpl<E> implements AbstractManager<E> {
 	@Transactional
 	public List<E> listAll() {
 		List<E> list = new ArrayList<E>();
-		list = getDao().findAll();
+		list = getDao().findAll(false);
 		return list;
 	}
 	

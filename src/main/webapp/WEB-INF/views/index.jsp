@@ -64,6 +64,7 @@
   <script src="resources/js/Uiclasses/MensajeRender.js"></script>
   <script src="resources/js/Uiclasses/MensajeReclamoRender.js"></script>  
   <script src="resources/js/Uiclasses/EventoRender.js"></script>
+  <script src="resources/js/Uiclasses/InfraccionRender.js"></script>
   <script src="resources/js/Uiclasses/NoticiaRender.js"></script>
   <script src="resources/js/Uiclasses/SideBarController.js"></script>
   <script src="resources/js/Uiclasses/CanvasController.js"></script>
@@ -92,7 +93,7 @@
 
 			}else{
 				$(this).addClass('selected');
-				$(this).append('<img src="resources/img/check.png" alt="Smiley face" height="10" width="12">')
+				$(this).append('<img src="resources/img/check.png" alt="Smiley face" height="10" width="12">');
 				//$(this).css('background','url(img/check.png) no-repeat center');
 			}
 		});
@@ -159,11 +160,11 @@
 					<a href="javascript:void(0);" class="option current" id="vehiculo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Vehiculo<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="mascota"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mascota<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="mensajeReclamo"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Reclamos<span class="badge red"></span></a>
-					<a href="javascript:void(0);" class="option current" id="mensaje"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Mensaje (no anda)<span class="badge red"></span></a>
 					<a href="javascript:void(0);" class="option current" id="noticia"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Noticia<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="aviso"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Aviso<span class="badge red"></span></a>					
 					<a href="javascript:void(0);" class="option current" id="evento"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Evento<span class="badge red"></span></a>					
-					<a href="javascript:void(0);"><img src="src/main/webapp/resources/img/icons/packs/fugue/16x16/clipboard-list.png">Configuracion<span class="badge grey">9</span></a>
+					<a href="javascript:void(0);" class="option current" id="infraccion"><img src="resources/img/icons/packs/fugue/16x16/user-white.png">Infracciones<span class="badge red"></span></a>					
+					<a href="javascript:void(0);"><img src="src/main/webapp/resources/img/icons/packs/fugue/16x16/clipboard-list.png">Configuracion<span class="badge grey">12</span></a>
 	    			<ul class="sub">
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoAutorizacion">Tipo de Autorizaciones</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoDocumento">Tipo de Documentos</a></li>
@@ -174,10 +175,10 @@
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoRecurso">Tipo de Recursos</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoVacuna">Tipo de Vacunas</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="tipoVehiculo">Tipo de Vehiculos</a></li>
-	    				<li><a href="javascript:void(0);" class="option current" id="tipoAviso">Tipo de Avisos</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="mensajeCategoria">Categorias de Mensajes</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="noticiaCategoria">Categorias de Noticias</a></li>
 	    				<li><a href="javascript:void(0);" class="option current" id="avisoCategoria">Categorias de Avisos</a></li>	    				
+	    				<li><a href="javascript:void(0);" class="option current" ></a></li>	    				
 	    			</ul>
 	    		</li>
 	    		
@@ -192,7 +193,7 @@
     	<!-- Begin of titlebar/breadcrumbs -->
 			<div id="title-bar">
 				<ul id="breadcrumbs">
-					<li><a href="dashboard.html" title="Home"><span id="bc-home"></span></a></li>
+					<li><a href="#" title="Home"><span id="bc-home"></span></a></li>
 					<li class="no-hover">Actividades</li>
 				</ul>
 			</div> <!--! end of #title-bar -->

@@ -94,4 +94,8 @@ public class EmployeeManagerImpl extends AbstractManagerImpl<Empleado> implement
 		
 	}
 
+	public Empleado getEmployeeByIdUser(int userId) {
+		Empleado i = employeeDao.findEntityByProperty("usuario.id",userId);
+		return i;
+	}
 }

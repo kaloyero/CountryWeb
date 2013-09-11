@@ -148,6 +148,7 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		
 	}
 
+	@Transactional
 	public List<Actividad> findAllByActivityName(String name) {
 		List<Actividad> list = new ArrayList<Actividad>();
 		list = activityDao.findAllByProperty("nombre", name);
@@ -157,20 +158,23 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 	@Transactional
 	public List<Actividad> listAllForBook() {
 		List<Actividad> actividades = new ArrayList<Actividad>();
-		actividades = activityDao.findAll();
+		actividades = listAll();
 		for (Actividad actividad : actividades) {
 			actividad.getCronogramas().size();
 		}
 		return actividades;
 	}
 
+	@Transactional
 	public List<ActividadForm> listAllFormsComplete() {
 		List<ActividadForm> list = new ArrayList<ActividadForm>();
-		List<Actividad> actividades = activityDao.findAll();
+		List<Actividad> actividades = listAll();
 
 		for (Actividad actividad : actividades) {
 			//Asignaciones
-			actividad.getAsignaciones().size();
+			if (actividad.getAsignaciones() != null){
+				actividad.getAsignaciones().size();	
+			}
 			//Cronogramas
 			actividad.getCronogramas().size();
 			//Toma la ultima tarifa
@@ -183,6 +187,5 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 		return list;
 	}
 
-	
 	
 }

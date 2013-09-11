@@ -63,11 +63,19 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
       }
       
       @SuppressWarnings("unchecked")
-      public List<E> findAll() {
+      public List<E> findAll(Boolean orderByAscId) {
 //          DetachedCriteria criteria = createDetachedCriteria();
 //          return (List<E>) criteria.getExecutableCriteria(getSession()).list();
-    	  
     	  Criteria criteria = getSession().createCriteria(getEntityClass());
+    	  if (orderByAscId !=null) {
+    		if (orderByAscId){
+    			criteria.addOrder(Order.asc("id"));
+    		} else {
+    			criteria.addOrder(Order.desc("id"));
+    		}
+    		  
+    	  }
+    	  
     	  return (List<E>) criteria.list();
       }
       

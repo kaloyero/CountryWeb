@@ -66,8 +66,12 @@ var CanvasController = new Class({
 			 	mensajeReclamoRender.onNewTab();
 				break;
 		 case "instructor":
-			instructorRender.onNewTab();
-			break;
+				instructorRender.onNewTab();
+				break;
+		 case "infraccion":
+			 infraccionRender.onNewTab();
+				break;
+			
 		default :
 			render.onNewTab();
        	}
@@ -95,7 +99,10 @@ var CanvasController = new Class({
 				break;
 		 case "instructor":
 				instructorRender.onLoaded();
-			break;
+				break;
+		 case "infraccion":
+				infraccionRender.onLoaded();
+				break;			
 
 	}
 	    this.createTabs();

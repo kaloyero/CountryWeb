@@ -22,7 +22,7 @@ public interface GenericDao<E,PK  extends Serializable> {
     
     E findById(PK id);
     
-    List<E> findAll();
+    List<E> findAll(Boolean orderByAscId);
     
     List<E> findAllByProperty(String propertyName,Object value);
     

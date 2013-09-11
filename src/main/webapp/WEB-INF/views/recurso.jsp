@@ -36,8 +36,9 @@
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Recurso</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Concepto</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Tipo</th>							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Tipo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Importe</th>							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Acciones</th>							
 						</tr>
 				</thead>
 						<tbody>

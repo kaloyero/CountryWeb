@@ -1,6 +1,7 @@
 package com.country.form;
 
 
+
 public class EventoForm extends Form  {
 
 	private int id =0;
@@ -18,9 +19,7 @@ public class EventoForm extends Form  {
 	private int cantidadUnidos;
 	private String diaSemana;
 	private boolean envioAdm=false;
-	
-	
-	
+
 	public int getReservaId() {
 		return reservaId;
 	}

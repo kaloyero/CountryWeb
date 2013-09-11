@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.country.common.Constants;
 import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
+import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Evento;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.IntegratorManager;
 import com.country.services.ResourceManager;
+import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -51,7 +53,7 @@ public class EventoController {
 
 		for (EventoForm eventoDto : listaEventoForm) {
 			// EventoForm eventoDto=(EventoForm) EventoMapper.getForm(evento,null);
-			 List test =eventIntegratorManager.findAllIntegrantorFormByEventoId(eventoDto.getId());
+			 List<IntegranteForm> test =eventIntegratorManager.findAllIntegrantorFormByEventoId(eventoDto.getId());
 			 eventoDto.setCantidadUnidos(test.size());
 		}
 		
@@ -92,14 +94,16 @@ public class EventoController {
 	public String processForm(
 			@ModelAttribute(value = "EVENTO") EventoForm form,
 		BindingResult result,HttpServletRequest request)  throws ParseException {
-
+		UsuarioInfo user = SessionUtil.getUserInfo(request);
+		
+		
 		if (SessionUtil.isAdminUser(request)){
 			//En el caso de Admin Setea el nombre del concepto
 			if (((EventoForm) form).getConcepto() != null){
 				((EventoForm) form).getConcepto().setNombre(((EventoForm) form).getNombre());
 			}
 		} 
-		eventManager.save(form);
+		eventManager.save(form,user);
 				return "success";
 		
 	}
@@ -133,11 +137,26 @@ public class EventoController {
            
            DataTable dataTable=new DataTable();
 
-			for (Evento tipo : eventManager.listAll()) {
+			for (EventoForm tipo : eventManager.listAllForms()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(tipo.getId()));
-				row.add(tipo.getDescription());
 				row.add(tipo.getNombre());
+				if (Constants.PERSONA_EMPLEADO.equals(tipo.getPersona().getTipo()) ){
+					row.add("ADMINISTRADOR (" + tipo.getPersona().getNombre() + " " + tipo.getPersona().getApellido()+ ")");
+				} else {
+					row.add(tipo.getPersona().getNombre() + " " + tipo.getPersona().getApellido());	
+				}
+				if (tipo.getConcepto() != null){
+					row.add(String.valueOf(tipo.getConcepto().getImporte()));
+				} else {
+					row.add("0");
+				}
+				
+				row.add("Dia " + tipo.getFecha() + " a las " + tipo.getHourIni() + " (duracion "+ tipo.getDuracion() +" hs) ");
+				row.add(String.valueOf(tipo.getCupo()));
+				row.add(String.valueOf(tipo.getCantidadUnidos()));
+				row.add("Aprobado");
+				row.add("");
 				dataTable.getAaData().add(row);
 			}
 

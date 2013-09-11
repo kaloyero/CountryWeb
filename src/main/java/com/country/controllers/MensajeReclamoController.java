@@ -19,18 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.country.common.DateUtil;
 import com.country.common.SessionUtil;
 import com.country.common.TipoMensajes;
-import com.country.form.EventoForm;
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Mensaje;
 import com.country.hibernate.model.MensajeDetalles;
-import com.country.mappers.EventoMapper;
 import com.country.mappers.MensajeMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
+import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -81,6 +79,8 @@ public class MensajeReclamoController {
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result,HttpServletRequest request) throws ParseException {
+		UsuarioInfo user = SessionUtil.getUserInfo(request);
+		
 		//TODO en lugar de hacer este set en el Get,se pone aca,ya que,en el caso de propietario,al no tener los campos fecha y tipo en el formulario en la UI,
 		//me obliga a ponerlos como al menos invisibles,sino estos valores vuelven a estar nulos.Y se corre peligro si alguien inspecciona el codigo html y le 
 		//cambia el tipo de relcamo a M o otra cosa
@@ -90,7 +90,7 @@ public class MensajeReclamoController {
 		//Seteo el TIPO de mensaje como RECLAMO
 		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 
-			 messageManager.save(form);
+			 messageManager.save(form,user);
 		
 		return "success";
 		
@@ -102,9 +102,9 @@ public class MensajeReclamoController {
 
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("MENSAJE", form);
-		
-		
+
 		 if (SessionUtil.isAdminUser(request)){
+			 model.addAttribute("mensajes", messageDetailManager.getDetailsByMessajeId(id));
 			 return "forms/mensajeReclamoForm";
 		 }else{
 			 return "forms/mensajeReclamoForm";
@@ -117,14 +117,14 @@ public class MensajeReclamoController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
 			BindingResult result,HttpServletRequest request) throws ParseException {
-		//TODO ver de que forma en el servicio puedo averiguar si es Admin o propietario
+		UsuarioInfo user = SessionUtil.getUserInfo(request);	
 		if (SessionUtil.isAdminUser(request)){
 			 form.setAccion(TipoMensajes.STATUS_OUT);
 		 }else{
 			 form.setAccion(TipoMensajes.STATUS_IN);
 		 }
 
-		messageManager.update(form);
+		messageManager.update(form,user);
 		
 		return "success";
 		
@@ -135,10 +135,19 @@ public class MensajeReclamoController {
            
 			DataTable dataTable=new DataTable();
 
-			for (Mensaje obj : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
+			for (MensajeForm obj : messageManager.listAllForms(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(obj.getId()));
 				row.add(obj.getAsunto());
+				if ( obj.isEnvio()){
+					row.add("Administrador (" + obj.getEmpleadoNombre()+")");
+					row.add(obj.getIntegranteNombre() + " " + obj.getIntegranteApellido());
+				} else {
+					row.add(obj.getIntegranteNombre() + " " + obj.getIntegranteApellido());
+					row.add("Administrador");
+				}
+				row.add(obj.getCategoriaDescripcion());
+				row.add(obj.getFecha());
 				row.add(obj.getEstado());
 				dataTable.getAaData().add(row);
 			}
@@ -151,7 +160,7 @@ public class MensajeReclamoController {
 	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String  showMessageList(ModelMap model) {
-		List<MensajeForm> listaReclamos = new ArrayList();
+		List<MensajeForm> listaReclamos = new ArrayList<MensajeForm>();
 		
 		for (Mensaje mensaje : messageManager.getMessajesCategoryType(TipoMensajes.TYPE_MESSAGE_RECLAMO)) {
 			 MensajeForm mensajeDto=(MensajeForm) MensajeMapper.getForm(mensaje);

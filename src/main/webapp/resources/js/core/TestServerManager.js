@@ -26,7 +26,7 @@ var ServerManager = new Class({
         this.services['eventoParticipar']["save"]="../eventoParticipar/create/";
         this.services['actividadParticipar']["save"]="../actividadParticipar/create/";
 
-        this.services['aviso']["save"]="aviso/create/";
+        this.services['aviso']["save"]="../aviso/create/";
         
         
         //this.services['avisos']={};

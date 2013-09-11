@@ -22,7 +22,7 @@ import com.country.services.PersonManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
-import com.country.session.SessionData;
+import com.country.session.UsuarioInfo;
 
 @Service("reserveManager")
 public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements ReserveManager{
@@ -72,13 +72,13 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	}
 
 	@Transactional
-	public void save(ReservaForm form) {
+	public void save(ReservaForm form,UsuarioInfo user) {
 
 		Reserva dto = ReserveMapper.getReserva(form);
 		
 		//PERSONA que reserva
-		int idPersona = SessionData.getPersonaId();
-		if (SessionUtil.isEmployeePerson( SessionData.getTipoUsuario())){
+		int idPersona = user.getPersonaId();
+		if (SessionUtil.isEmployeePerson( user.getTipoUsuario())){
 			if (! form.isEnvioAdm()){
 				idPersona = form.getPersonId();
 			}	
@@ -135,7 +135,7 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	public List<ReservaForm> listAllFormsComplete() {
 
 		List<ReservaForm> list = new ArrayList<ReservaForm>();
-		List<Reserva> reservas = reserveDao.findAll();
+		List<Reserva> reservas = listAll();
 
 		for (Reserva res : reservas) {
 			list.add(setForm(res));

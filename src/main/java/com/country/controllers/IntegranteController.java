@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Integrante;
 import com.country.services.IntegratorManager;
 import com.country.services.TypeDocumentManager;
 import com.country.services.TypeTelephoneManager;
@@ -91,17 +90,25 @@ public class IntegranteController {
            
            DataTable dataTable=new DataTable();
 
-			for (Integrante integrante : integranteManager.listAll()) {
+			for (IntegranteForm integrante : integranteManager.listAllFormsComplete()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(integrante.getId()));
+				row.add(integrante.getUsuario().getUsuario());
 				row.add(integrante.getPersona().getNombre() + " " + integrante.getPersona().getApellido());
-				row.add(integrante.getPersona().getTipoDoc().getNombre() + " " + integrante.getPersona().getNroDoc());
-				row.add(integrante.getUnidad().getCode());
+				row.add(integrante.getPersona().getNroDoc());
+				row.add(integrante.getUnidadCode());
 				String tel = "";
-//				for (Telefono telefono : integrante.getPersona().getTelefonos()) {
-//					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
-//				}
+				if (! integrante.getPersona().getListaTelefonos().isEmpty()){
+					tel = integrante.getPersona().getListaTelefonos().get(0).getTipoTelefonoNombre() + " (" +  integrante.getPersona().getListaTelefonos().get(0).getCodigoPais() + " " + integrante.getPersona().getListaTelefonos().get(0).getCodigoArea() + ") " +   integrante.getPersona().getListaTelefonos().get(0).getNumero();
+				}
 				row.add(tel);
+				if (integrante.isEstado()){
+					row.add("ACTIVO");	
+				} else {
+					row.add("INACTIVO");
+				}
+				//TODO agregar acciones de 'Activar/desactivar integrante', 'eliminar integrante'. 
+				row.add("");
 				dataTable.getAaData().add(row);
 			}
 

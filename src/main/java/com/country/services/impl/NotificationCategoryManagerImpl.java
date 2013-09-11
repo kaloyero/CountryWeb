@@ -67,7 +67,7 @@ public class NotificationCategoryManagerImpl extends AbstractManagerImpl<AvisoCa
 	}
 
 	public List<TipoForm> listAllCategoriesDescription(){
-		List<AvisoCategoria> lista= notificationCategoryDao.findAll();
+		List<AvisoCategoria> lista= listAll();
 		List<TipoForm> listaCategorias= new ArrayList<TipoForm>();
 		
 		for (AvisoCategoria cat : lista) {

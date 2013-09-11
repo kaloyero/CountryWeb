@@ -22,7 +22,7 @@ var InstructorRender = new Class({
     		if (form.find("#telNumber").val().trim() != "" ){
     			newEntry=" <span class='idTel' hidden='true'>0</span>"	;
     			newEntry+="<span class='idTipoTe' hidden='true'>"+ form.find("#telContact").val() +" </span> ";
-    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact").val() +" </span> ";
+    			newEntry+="<span class='tipoTe' >"+ form.find("#telContact option:selected").text() +" </span> ";
 	    		newEntry+="<strong>( </strong><span class='pais'> "+ form.find("#telCountry").val()+"</span> ";
 	    		newEntry+= " <span class='state'>" +form.find("#telState").val() + "</span>";
 	    		newEntry+= " <span class='prefix'>" +form.find("#telPrefijo").val() + "</span><strong> ) </strong>";
@@ -43,13 +43,13 @@ var InstructorRender = new Class({
     			
     			newEntry=" <span class='idDire' hidden='true'>0</span>"	;
     			newEntry+="<span class='idTownDire' hidden='true'>"+ form.find("#dirTown").val() +"</span>";
-    			newEntry+="<span class='townDire' >"+ form.find("#dirTown option:selected").text() +"</span>";
-    			newEntry+="<span class='streetNameDire' >"+ form.find("#dirStreetName").val() +"</span>";
-    			newEntry+="<span class='streetNumDire' >"+ form.find("#dirStreetNum").val() +"</span>";
-    			newEntry+="<span class='floorDire' >"+ form.find("#dirFloor").val() +"</span>";
-    			newEntry+="<span class='flatDire' >"+ form.find("#dirFlat").val() +"</span>";
-    			newEntry+="<span class='towerDire' >"+ form.find("#dirTower").val() +"</span>";
-    			newEntry+="<span class='blockDire' >"+ form.find("#dirBlock").val() +"</span>";
+    			newEntry+="<span class='townDire' >"+ form.find("#dirTown option:selected").text() +"</span>&nbsp;";
+    			newEntry+="<span class='streetNameDire' >"+ form.find("#dirStreetName").val() +"</span>&nbsp;";
+    			newEntry+="<span class='streetNumDire' >"+ form.find("#dirStreetNum").val() +"</span>&nbsp;";
+    			newEntry+="<span class='floorDire' >"+ form.find("#dirFloor").val() +"</span>&nbsp;";
+    			newEntry+="<span class='flatDire' >"+ form.find("#dirFlat").val() +"</span>&nbsp;";
+    			newEntry+="<span class='towerDire' >"+ form.find("#dirTower").val() +"</span>&nbsp;";
+    			newEntry+="<span class='blockDire' >"+ form.find("#dirBlock").val() +"</span>&nbsp;";
     			
     			form.find("#listaDirecciones").append("<li><div class='alert success direccion'><span class='hide'>x</span> "+newEntry+"</div></li>");
 	    		self.addCloseListener(form);
@@ -106,6 +106,7 @@ var InstructorRender = new Class({
 
 
        		direcciones.push({	'StreetName': $(this).find(".streetNameDire").text(),
+       							'StreetNum': $(this).find(".streetNumDire").text(),
 				       			'Floor': 	$(this).find(".floorDire").text(),
 				       			'Flat': 	$(this).find(".flatDire").text().toString(),
        							'Tower': 	$(this).find(".towerDire").text(),

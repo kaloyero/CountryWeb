@@ -33,8 +33,14 @@
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">nombre</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Distincion</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Codigo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Sexo</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">color</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Tamano</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Raza</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Unidad</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Accion</th>
 							
 						</tr>
 				</thead>

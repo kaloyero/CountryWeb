@@ -17,7 +17,7 @@ public class HomeServiceImpl implements HomeService{
 	@Transactional(readOnly = true)
 	public String getText(){
 		
-		System.out.println("Re loco che: " + personaDao.findAll().size());
+		System.out.println("Re loco che: " + personaDao.findAll(false).size());
 		return "zaraza";
 	}
 

@@ -55,8 +55,9 @@ public class Mensaje implements Serializable {
 	@JoinColumn(name="IdIntegrante",updatable=false)	
 	private Integrante integrante;
 
-    @Column(name = "IdEmpleado",updatable=false)
-	private Integer empleado;
+    @OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="IdEmpleado",updatable=false)	
+	private Empleado empleado;
 
 	@Column(name = "Envio",updatable=false)
 	private String envio;    
@@ -76,11 +77,11 @@ public class Mensaje implements Serializable {
 		this.integrante = integrante;
 	}
 
-	public Integer getEmpleado() {
+	public Empleado getEmpleado() {
 		return empleado;
 	}
 
-	public void setEmpleado(Integer empleado) {
+	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
 

@@ -14,7 +14,7 @@
 				</c:if>
 				<c:if test="${MENSAJE.id != 0}">
 					<c:if test="${MENSAJE.envio}">
-						<label for="textfield">De: Administrador</label>
+						<label for="textfield">De: Administrador (${MENSAJE.empleadoNombre})</label>
 					</c:if>
 					<c:if test="${!MENSAJE.envio}">
 						<label for="textfield">De: </label>
@@ -100,10 +100,36 @@
 		<div class="_25"></div>
 		<div class="_100">
 			<p>
-				<label for="datepicker">Descripción</label>
+				<c:if test="${MENSAJE.id == 0}">
+					<label for="datepicker">Descripción</label>
+				</c:if>
+				<c:if test="${MENSAJE.id != 0}">			
+					<label for="datepicker">Respuesta</label>
+				</c:if>
 				<form:textarea path="respuesta" class="required datepicker" />
 			</p>
 		</div>
+		<div class="_100">
+			<BR>
+			<div class="block-border">
+				<div class="block-header">
+					<h1>Historial de mensajes</h1><span></span>
+				</div>
+				<div class="block-content">
+					<ul class="block-list" id ="historialMensajes">
+						<c:forEach var="msjhis" items="${mensajes}">
+							<li>
+								<div class='alert success telefono'>
+					    				<span>${msjhis.persona.nombre} ${msjhis.persona.apellido}</span>
+					    				<br>
+					    				<span>${msjhis.mensajeDetalle}</span>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>			
+		</div>		
 		
 
 </fieldset>

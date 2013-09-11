@@ -53,7 +53,10 @@
 		<div class="_50">
 			<p>
 				<label for="textfield">Raza</label>
-				<form:input path="raza" class="required" />
+				<form:select path="raza" multiple="false"> 
+					<form:options items="${razas}" itemValue="id" 
+						itemLabel="nombre" />
+				</form:select> 
 			</p>
 		</div>
 

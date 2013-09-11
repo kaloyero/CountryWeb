@@ -36,6 +36,7 @@ public class IntegranteMapper {
 		integranteForm.setPersona(PersonaMapper.getForm(integrante.getPersona(), null, tels));
 		integranteForm.setUsuario(UsuarioMapper.getForm(integrante.getUsuario()));
 		integranteForm.setUnidad(integrante.getUnidad().getId());
+		integranteForm.setUnidadCode(integrante.getUnidad().getCode());
 		integranteForm.setEstado(MapperUtil.getStatusForm(integrante.getEstado()));
 		return integranteForm;
 

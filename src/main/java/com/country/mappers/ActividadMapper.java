@@ -29,11 +29,12 @@ public class ActividadMapper {
 		//System.out.println("AFUERA ENRTA"+actividad.getAsignaciones());
 		form.setFechaInicio(DateUtil.convertDateToString(object.getFechaComienzo()));
 		
-		
-		for (Asignacion asignacion : object.getAsignaciones()) {
-			form.getInstructores().add(asignacion.getInstructor().getId());
-			form.setIdAsignacion(asignacion.getId());
-		}
+		if (object.getAsignaciones()!= null){
+			for (Asignacion asignacion : object.getAsignaciones()) {
+				form.getInstructores().add(asignacion.getInstructor().getId());
+				form.setIdAsignacion(asignacion.getId());
+			}
+		} 
 		
 		form.setImporte(tarifa.getImporte());
 	   

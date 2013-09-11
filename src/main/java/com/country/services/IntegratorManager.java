@@ -40,4 +40,17 @@ public interface IntegratorManager extends AbstractManager<Integrante>{
 	List<Integrante> searchComboIntegrators(String search,boolean name,boolean surName,boolean unit,boolean document);
 	
 	int getPersonId(int integranteId);
+	
+	/**
+	 * Este metodo devuelve el integrante filtrando por el userId
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public Integrante getIntegratorByIdUser(int userId);
+	
+	public List<IntegranteForm> listAllFormsComplete();
+
+	public List<IntegranteForm> listAllFormsComplete(boolean active);	
+	
 }

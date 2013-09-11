@@ -33,9 +33,11 @@
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Marca</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Codigo</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Tipo</th>
-							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">descripcion</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Cilindrada</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Unidad</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Acciones</th>
 						</tr>
 				</thead>
 						<tbody>

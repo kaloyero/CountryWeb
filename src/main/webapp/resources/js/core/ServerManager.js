@@ -30,9 +30,11 @@ var ServerManager = new Class({
         this.services['actividadesReserva']={};
         this.services['recursosReserva']={};
         this.services['evento']={};
+        this.services['infraccion']={};
         this.services['noticia']={};
         this.services['eventos']={};
         this.services['aviso']={};
+        this.services['infraccion']={};
         this.services['actividad']["load"]="actividad/load/";
         this.services['actividad']["save"]="actividad/create";
         this.services['instructor']["load"]="instructor/load/";
@@ -92,10 +94,9 @@ var ServerManager = new Class({
         this.services['aviso']["save"]="aviso/create/";
         this.services['eventos']["lista"]="evento/listaPropietario";
         this.services['aviso']["lista"]="aviso/lista";
-
-
+        this.services['infraccion']["load"]="infraccion/load/";
+        this.services['infraccion']["save"]="infraccion/create/";  
     },
- 
 
     get: function(config){
     	var self=this;

@@ -84,7 +84,7 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 	}
 
 	public List<TipoForm> getIntegratorNames() {
-		List<Instructor> listInstructors = instructorDao.findAll();
+		List<Instructor> listInstructors = listAll();
 		
 		List<TipoForm> list = new ArrayList<TipoForm>();
 		for (Instructor instructor : listInstructors) {
@@ -105,4 +105,32 @@ public class InstructorManagerImpl extends AbstractManagerImpl<Instructor> imple
 	
 		return lista;
 	}
+	
+	@Transactional
+	public List<InstructorForm> listAllFormsComplete() {
+		List<InstructorForm> list = new ArrayList<InstructorForm>();
+		List<Instructor> instrucotres = listAll();
+
+		for (Instructor instructor : instrucotres) {
+			List<Telefono> telefonos = telephoneManager.findListByIdPerson(instructor.getPersona().getId());
+			InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor,telefonos,null);
+			list.add(form);
+		}
+		
+		return list;
+	}
+	
+	@Transactional
+	public List<InstructorForm> listAllFormsComplete(boolean active) {
+		List<InstructorForm> list = new ArrayList<InstructorForm>();
+		List<Instructor> instrucotres = listAll(active);
+
+		for (Instructor instructor : instrucotres) {
+			List<Telefono> telefonos = telephoneManager.findListByIdPerson(instructor.getPersona().getId());
+			InstructorForm form = (InstructorForm) InstructorMapper.getForm(instructor,telefonos,null);
+			list.add(form);
+		}
+		
+		return list;
+	}		
 }

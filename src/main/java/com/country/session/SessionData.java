@@ -6,10 +6,10 @@ import com.country.common.Constants;
 public class SessionData {
 
 	private static int usuarioId=2;
-	private static int personaId=5;
+	private static int personaId=2;
 	private static int integranteId=2;
 	private static int empleadoId=2;
-	private static String tipoUsuario=Constants.PERSONA_INTEGRANTE;
+	private static String tipoUsuario=Constants.PERSONA_EMPLEADO;
 	
 	public static String getTipoUsuario() {
 		return tipoUsuario;

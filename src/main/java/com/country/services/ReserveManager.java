@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.country.form.ReservaForm;
 import com.country.hibernate.model.Reserva;
+import com.country.session.UsuarioInfo;
 
 public interface ReserveManager extends AbstractManager<Reserva>{
 
-	void save(ReservaForm form);
+	void save(ReservaForm form,UsuarioInfo user);
 	
 	public void update(ReservaForm form);
 	

@@ -7,7 +7,7 @@
 	<fieldset>
 			<legend>Configuracion</legend>
 	
-		<div class="_25">
+		<div class="_50">
 			<p>
 				<label for="textfield">Infraccion</label>
 				<form:input path="nombre" class="required" />
@@ -15,13 +15,12 @@
 				<form:hidden disabled="true" path="concepto.id" />
 			</p>
 		</div>
-		<div class="_25">
+		<div class="_50">
 			<p>
 				<label for="textfield">Importe</label>
 				<form:input path="concepto.importe" class="required"  maxlength="8" />
 			</p>
 		</div>
-		<div class="_50"></div>
 		<div class="100">
 			<p>
 				<label for="textfield">Descipcion</label>

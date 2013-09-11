@@ -4,9 +4,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Recurso;
-import com.country.mappers.RecursoMapper;
 import com.country.services.ResourceManager;
 import com.country.services.TypeResourceManager;
 
@@ -119,13 +114,14 @@ public class RecursoController {
             DataTable dataTable=new DataTable();
    		    System.out.println("Entrandoo!!  ");
 
-			for (Recurso recurso : recursoManager.listAll()) {
+			for (RecursoForm recurso : recursoManager.listAllForms()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(recurso.getId()));
 				row.add(recurso.getNombre());
-				row.add(recurso.getConcepto().getNombre());
-				row.add(recurso.getTipoRecurso().getNombre());
-				
+				row.add(recurso.getTipoRecursoDesc());
+				row.add(String.valueOf(recurso.getImporte()));
+				//TODO acciones "eliminar" o "suspender recurso"
+				row.add("");
 				dataTable.getAaData().add(row);
 			}
 

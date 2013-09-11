@@ -2,6 +2,7 @@ package com.country.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDao;
 import com.country.form.TipoInfraccionForm;
@@ -26,11 +27,13 @@ public class TypeInfractionManagerImpl extends AbstractManagerImpl<TipoInfraccio
 		return typeInfractionDao;
 	}
 
-	private TipoInfraccion findById(Integer id) {
+	@Transactional
+	public TipoInfraccion findById(Integer id) {
 		TipoInfraccion dto = typeInfractionDao.findById(id);
 		return dto;
 	}
 
+	@Transactional
 	public TipoInfraccionForm findByFormId(Integer id) {
 		TipoInfraccionForm form = new TipoInfraccionForm();
 		TipoInfraccion dto = findById(id);
@@ -42,6 +45,7 @@ public class TypeInfractionManagerImpl extends AbstractManagerImpl<TipoInfraccio
 		return form;
 	}
 
+	@Transactional
 	public void save(TipoInfraccionForm form) {
 		TipoInfraccion dto = TipoMapper.getTipoInfraccion(form);
 		
@@ -52,6 +56,7 @@ public class TypeInfractionManagerImpl extends AbstractManagerImpl<TipoInfraccio
 		
 	}
 
+	@Transactional
 	public void update(TipoInfraccionForm form) {
 		TipoInfraccion dto = TipoMapper.getTipoInfraccion(form);
 		

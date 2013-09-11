@@ -133,4 +133,37 @@ public class IntegratorManagerImpl extends AbstractManagerImpl<Integrante> imple
 		Integrante i = integratorDao.findById(integranteId);
 		return i.getPersona().getId();
 	}
+	
+	public Integrante getIntegratorByIdUser(int userId) {
+		Integrante i = integratorDao.findEntityByProperty("usuario.id",userId);
+		return i;
+	}
+	
+	@Transactional
+	public List<IntegranteForm> listAllFormsComplete() {
+		List<IntegranteForm> list = new ArrayList<IntegranteForm>();
+		List<Integrante> integrantes = listAll();
+
+		for (Integrante integrante : integrantes) {
+			List<Telefono> telefonos = telephoneManager.findListByIdPerson(integrante.getPersona().getId());
+			IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante,telefonos);
+			list.add(form);
+		}
+		
+		return list;
+	}
+	
+	@Transactional
+	public List<IntegranteForm> listAllFormsComplete(boolean active) {
+		List<IntegranteForm> list = new ArrayList<IntegranteForm>();
+		List<Integrante> integrantes = integratorDao.findAll(active);
+
+		for (Integrante integrante : integrantes) {
+			List<Telefono> telefonos = telephoneManager.findListByIdPerson(integrante.getPersona().getId());
+			IntegranteForm form = (IntegranteForm) IntegranteMapper.getForm(integrante,telefonos);
+			list.add(form);
+		}
+		
+		return list;
+	}		
 }

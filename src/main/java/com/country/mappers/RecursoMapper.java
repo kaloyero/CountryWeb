@@ -73,6 +73,7 @@ public class RecursoMapper {
 		form.setIdConcepto(recurso.getConcepto().getId());
 		form.setImporte(tarifa);
 		form.setTipoRecurso(recurso.getTipoRecurso().getId());
+		form.setTipoRecursoDesc(recurso.getTipoRecurso().getNombre());
 		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
 
 		form.setDisponibilidades(getDisponibilidades(listDispoRec));

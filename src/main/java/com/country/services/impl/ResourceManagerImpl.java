@@ -283,7 +283,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 
 	public List<RecursoForm> listAllForms() {
 		List<RecursoForm> list = new ArrayList<RecursoForm>();
-		List<Recurso> recursos = resourceDao.findAll();
+		List<Recurso> recursos = listAll();
 		
 		for (Recurso recurso : recursos) {
 			//Toma la ultima tarifa

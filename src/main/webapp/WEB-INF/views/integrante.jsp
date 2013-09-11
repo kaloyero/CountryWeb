@@ -33,10 +33,13 @@
 					<thead>
 						<tr>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">id</th>
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Usuario</th>							
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Nombre</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Documento</th>
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Unidad</th>							
 							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">telefono</th>							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Estado</th>							
+							<th class="sorting" rowspan="1" colspan="1" style="width: 203px;">Acciones</th>																					
 						</tr>
 				</thead>
 						<tbody>

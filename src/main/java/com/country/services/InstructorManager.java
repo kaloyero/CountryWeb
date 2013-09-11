@@ -25,4 +25,9 @@ public interface InstructorManager extends AbstractManager<Instructor>{
 	 * @return
 	 */
 	public List<Instructor> listAll(boolean active);
+	
+	public List<InstructorForm> listAllFormsComplete();
+	
+	public List<InstructorForm> listAllFormsComplete(boolean active);
+	
 }

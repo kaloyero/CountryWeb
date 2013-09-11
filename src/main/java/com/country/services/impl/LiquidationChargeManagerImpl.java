@@ -27,14 +27,14 @@ public class LiquidationChargeManagerImpl extends AbstractManagerImpl<Liquidacio
 	@Transactional
 	public void save(LiquidacionCargo dto) {
 		
-		//TODO
+		liquidationChargeDao.save(dto);
 		
 	}
 	
 	@Transactional
 	public void update(LiquidacionCargo dto) {
 		
-		//TODO
+		liquidationChargeDao.update(dto);
 
 	}
 	

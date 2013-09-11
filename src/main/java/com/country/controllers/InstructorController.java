@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.form.InstructorForm;
 import com.country.hibernate.model.DataTable;
-import com.country.hibernate.model.Instructor;
-import com.country.mappers.InstructorMapper;
 import com.country.services.CityManager;
 import com.country.services.InstructorManager;
 import com.country.services.TypeDocumentManager;
@@ -91,17 +89,25 @@ public class InstructorController {
            
            DataTable dataTable=new DataTable();
 
-			for (Instructor instructor : instructorManager.listAll()) {
+			for (InstructorForm instructor : instructorManager.listAllFormsComplete()) {
 				List <String> row =new ArrayList<String>();
 				row.add(String.valueOf(instructor.getId()));
 				row.add(instructor.getPersona().getNombre() + " " + instructor.getPersona().getApellido());
-				row.add(instructor.getPersona().getTipoDoc().getNombre() + " " +  instructor.getPersona().getNroDoc());
+				row.add(instructor.getPersona().getNroDoc());
 				row.add(instructor.getPersona().getEmail());
 				String tel = "";
-//				for (Telefono telefono : instructor.getPersona().getTelefonos()) {
-//					tel = telefono.getTipoTelefono().getNombre() + " " + String.valueOf(telefono.getNumero());
-//				}
+				if (! instructor.getPersona().getListaTelefonos().isEmpty()){
+					tel = instructor.getPersona().getListaTelefonos().get(0).getTipoTelefonoNombre() + " (" +  instructor.getPersona().getListaTelefonos().get(0).getCodigoPais() + " " + instructor.getPersona().getListaTelefonos().get(0).getCodigoArea() + ") " +   instructor.getPersona().getListaTelefonos().get(0).getNumero();
+				}
 				row.add(tel);
+				if (instructor.isEstado()){
+					row.add("ACTIVO");	
+				} else {
+					row.add("INACTIVO");
+				}
+				//TODO agregar acciones de 'Activar/desactivar instructor', 'eliminar instructor'.
+				row.add("");
+				
 				dataTable.getAaData().add(row);
 			}
  ;

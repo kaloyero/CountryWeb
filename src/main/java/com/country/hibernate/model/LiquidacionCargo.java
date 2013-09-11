@@ -54,7 +54,7 @@ public class LiquidacionCargo implements Serializable {
 	private  Infraccion infraccion;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IdUnidadConcepto")		
+	@JoinColumn(name="IdUnidadConceptos")		
 	private  UnidadConcepto unidadconcepto;
 	
     @ManyToMany(fetch=FetchType.LAZY)

@@ -24,7 +24,7 @@ import com.country.mappers.MensajeDetalleMapper;
 import com.country.mappers.MensajeMapper;
 import com.country.services.MessageManager;
 import com.country.session.ConfigurationData;
-import com.country.session.SessionData;
+import com.country.session.UsuarioInfo;
 
 @Service("messageManager")
 public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
@@ -63,22 +63,24 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 	}
 
 	@Transactional
-	public void save(MensajeForm form) {
+	public void save(MensajeForm form,UsuarioInfo user) {
 
 		// Seteo el empleado
-		if (SessionUtil.isEmployeePerson(SessionData.getTipoUsuario())) {
-			form.setIdEmpleado(SessionData.getEmpleadoId());
+		if (SessionUtil.isEmployeePerson(user.getTipoUsuario())) {
+			form.setIdEmpleado(user.getEmpleadoId());
 		} else {
 			form.setIdEmpleado(ConfigurationData.getUSUARIO_DEFAULT_RECLAMOS());
 		}
-		// Seteo el integrante
-		if (SessionUtil.isIntegrantePerson(SessionData.getTipoUsuario())) {
-			form.setIdIntegrante(SessionData.getIntegranteId());
-		}
-		// Mapeo el mensaje
-		Mensaje dto = MensajeMapper.getMensaje(form);
 
-		// Seteo el estado inicial del mensaje
+		//Seteo el integrante
+		if (SessionUtil.isIntegrantePerson( user.getTipoUsuario())){
+			form.setIdIntegrante(user.getIntegranteId());	
+		}
+
+		//Mapeo el mensaje
+		Mensaje dto = MensajeMapper.getMensaje(form);
+		
+		//Seteo el estado inicial del mensaje
 		dto.setEstado(getNextStatus(dto.getTipo(), dto.getEstado(), ""));
 		// Seteo la resolucion en blanco
 		dto.setResolucion("");
@@ -89,8 +91,8 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 		// GUARDO EL DETALLE
 		// Si el que envia el mensaje es el administrador tiene que ver si lo
 		// envia como ADM o como Integrante.
-		int idPersona = SessionData.getPersonaId();
-		if (SessionUtil.isEmployeePerson(SessionData.getTipoUsuario())) {
+		int idPersona = user.getPersonaId();
+		if (SessionUtil.isEmployeePerson(user.getTipoUsuario())) {
 			if (!form.isEnvio()) {
 				Integrante inte = integratorDao
 						.findById(form.getIdIntegrante());
@@ -103,16 +105,16 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 	}
 
 	@Transactional
-	public void update(MensajeForm form) {
+	public void update(MensajeForm form,UsuarioInfo user) {
 
 		// Guardo el Detalle
 		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(
 				form.getId(), form.getRespuesta(), form.getTipo(),
-				SessionData.getPersonaId());
+				user.getPersonaId());
 		messageDetailDao.save(detalle);
 
 		// Toma el nuevo estado
-		// TODO ver de que forma puedo tomar de la session si es Admin o
+		//TODO ver de que forma puedo tomar de la session si es Admin o
 		// Propietario
 		String newStatus = getNextStatus(form.getTipo(), form.getEstado(),
 				form.getAccion());
@@ -171,9 +173,9 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 	}
 
 	@Transactional
-	public List<MensajeForm> listAllForms() {
+	public List<MensajeForm> listAllForms(String type) {
 		List<MensajeForm> list = new ArrayList<MensajeForm>();
-		List<Mensaje> mensajes = messageDao.findAll();
+		List<Mensaje> mensajes = getMessajesCategoryType(type);
 
 		for (Mensaje mensaje : mensajes) {
 			MensajeForm form = MensajeMapper.getForm(mensaje);
