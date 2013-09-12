@@ -25,8 +25,8 @@ public class IntegranteActividades implements Serializable {
 	@Column(name = "IdIntegrante")
 	private  int integrante;
 	
-	@Column(name = "IdActividad")
-	private  int  actividad;
+	@Column(name = "IdCronograma")
+	private  int  cronograma;
 		
 	@Column(name = "FechaIni")
 	private  Date fechaComienzo ;
@@ -50,12 +50,12 @@ public class IntegranteActividades implements Serializable {
 		this.integrante = integrante;
 	}
 
-	public int getActividad() {
-		return actividad;
+	public int getCronograma() {
+		return cronograma;
 	}
 
-	public void setActividad(int actividad) {
-		this.actividad = actividad;
+	public void setCronograma(int cronograma) {
+		this.cronograma = cronograma;
 	}
 
 	public Date getFechaComienzo() {

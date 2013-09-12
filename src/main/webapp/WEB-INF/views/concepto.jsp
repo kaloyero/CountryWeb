@@ -5,7 +5,7 @@
  <script type="text/javascript">
 		
 		function updateConcepto(id){
-			translator.onUpdate('concepto',id);
+				translator.onUpdate('concepto',id);
 		}
 
 </script> 

@@ -53,11 +53,11 @@
 											 ${actividad.descripcion}
 											 											<strong><p>Dias y Horarios:</p></strong>
 											 
-											 <div style="height:120px;width:170px;border:1px solid #ccc;;overflow:auto;">
+											 <div style="height:120px;width:170px;border:1px solid #ccc;overflow:auto;">
 											 
 												<ul>
 													<c:forEach items="${actividad.cronograma}" var="cronograma">
-														<li><a class ="anotarseAcvitidad" href="#">${cronograma.dia} a las ${cronograma.horario}</a></li>
+														<li><a class ="anotarseAcvitidad" id='${cronograma.id}'>${cronograma.dia} a las ${cronograma.horario}</a></li>
 
 													</c:forEach>
 											</ul>

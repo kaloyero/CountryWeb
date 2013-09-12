@@ -5,7 +5,7 @@ public class IntegranteActividadForm extends Form  {
 
 	private Integer id =0;
 	private int integranteId;
-	private int actividadId;
+
 	private int cronogramaId;
 
 	private IntegranteForm integrante;
@@ -24,11 +24,12 @@ public class IntegranteActividadForm extends Form  {
 	public void setIntegranteId(int integranteId) {
 		this.integranteId = integranteId;
 	}
-	public int getActividadId() {
-		return actividadId;
+
+	public int getCronogramaId() {
+		return cronogramaId;
 	}
-	public void setActividadId(int actividadId) {
-		this.actividadId = actividadId;
+	public void setCronogramaId(int cronogramaId) {
+		this.cronogramaId = cronogramaId;
 	}
 	public IntegranteForm getIntegrante() {
 		return integrante;
@@ -54,12 +55,7 @@ public class IntegranteActividadForm extends Form  {
 	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public int getCronogramaId() {
-		return cronogramaId;
-	}
-	public void setCronogramaId(int cronogramaId) {
-		this.cronogramaId = cronogramaId;
-	}
+	
 	
 	
 }

@@ -25,20 +25,23 @@ var ActividadReservaRender = new Class({
 
     },
 	bindEvents : function() {
+		var self=this;
 		$(".anotarseAcvitidad").click(
 				function() {
 
 					var actividadParticipar = {
-								"actividadId" : $(this).parents(".item").find("input").val(),
-								"cronogramaId": 1,
-								"integranteId":2,
-								"fechaIni":"2013/08/08"
+								//"actividadId" : $(this).parents(".item").find("input").val(),
+								"cronogramaId": self.getCronogramaId(this)
+								
 							};
-					
+					console.log("PART",actividadParticipar)
 						dialogRender.create({onAccept:function(){translator.onSubmitJson('actividadParticipar',actividadParticipar)}});
 				});
 
 	},
+	getCronogramaId : function(element) {
+		return $(element).attr("id")
+	}
 });
 
 actividadReservaRender=new ActividadReservaRender();

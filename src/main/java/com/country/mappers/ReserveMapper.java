@@ -17,7 +17,7 @@ public class ReserveMapper {
 		dto.setDescripcion(form.getDescripcion());
 		dto.setDuracion(form.getDuracion());
 		dto.setFecha(DateUtil.convertStringToDate((form.getFecha())));
-		dto.setHoraIni(form.getHoraIni());
+		dto.setHoraIni(DateUtil.getMinutes(form.getHoraIni(), form.getMinutosIni()));
 		dto.setRecurso(form.getRecursoId());
 		dto.setPersona(form.getPersonId());
 		if (form.getEventoId()!=0 ){
@@ -43,7 +43,8 @@ public class ReserveMapper {
 		form.setFecha(DateUtil.convertDateToString(reserva.getFecha()));
 		form.setDescripcion(reserva.getDescripcion());
 		form.setDuracion(reserva.getDuracion());
-		form.setHoraIni(reserva.getHoraIni());
+		form.setHoraIni(DateUtil.setHourInfForm(reserva.getHoraIni()));
+		form.setMinutosIni(DateUtil.setMinutesInfForm(reserva.getHoraIni()));
 		form.setRecursoId(reserva.getRecurso());
 		form.setPersonId(reserva.getPersona());
 		form.setEventoId(reserva.getEvento());

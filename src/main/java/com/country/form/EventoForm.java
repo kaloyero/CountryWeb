@@ -8,6 +8,7 @@ public class EventoForm extends Form  {
 	private  String descripcion ;
 	private  String fecha ;
 	private Integer hourIni;
+	private Integer minutesIni;
 	private  int duracion;
 	private String nombre;
 	private int cupo;
@@ -19,6 +20,18 @@ public class EventoForm extends Form  {
 	private int cantidadUnidos;
 	private String diaSemana;
 	private boolean envioAdm=false;
+
+	
+	
+	public Integer getMinutesIni() {
+		return minutesIni;
+	}
+
+
+	public void setMinutesIni(Integer minutesIni) {
+		this.minutesIni = minutesIni;
+	}
+
 
 	public int getReservaId() {
 		return reservaId;

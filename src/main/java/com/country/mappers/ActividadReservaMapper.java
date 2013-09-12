@@ -19,6 +19,7 @@ public class ActividadReservaMapper {
 		
 		for (Cronograma cronograma : actividad.getCronogramas()) {
 			CronogramaForm cronogramaForm = new CronogramaForm();
+			cronogramaForm.setId(cronograma.getId());
 			cronogramaForm.setHorario(cronograma.getHoraInicio());
 			cronogramaForm.setDia(HelperCountry.getDiaSemana(cronograma.getDiaSemana()));
 			form.getCronograma().add(cronogramaForm);
