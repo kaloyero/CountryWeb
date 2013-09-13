@@ -34,7 +34,6 @@ var RecursoReservaRender = new Class(
 						function() {
 							var selectedRecurso = $(this).find(
 									'option:selected').val();
-							console.log("selectedRecurso", selectedRecurso)
 							// Si selecciono algo
 							if (selectedRecurso != -1){
 								translator.onLoad("recurso", selectedRecurso);
@@ -48,6 +47,7 @@ var RecursoReservaRender = new Class(
 				$("#importeRecurso").empty();
 				$("#importeRecurso").append("<strong style='font-family:arial;color:#9E7474;font-size:25px;'>Costo :"+data.importe+"$</strong>")
 				var self = this;
+				self.getDisponibilidadesDividedInSegments(data);
 				self.disponibilidades = data.disponibilidades;
 				this.events = null;
 				self.eventosDisponiblesAEliminar=new Array();
@@ -99,7 +99,9 @@ var RecursoReservaRender = new Class(
 							
 
 			},
-
+			getDisponibilidadesDividedInSegments : function(data) {
+				console.log("DATA",data)
+			},
 			removeEvents : function() {
 				$("#calendar").fullCalendar('removeEvents', function(event) {
 
@@ -143,7 +145,6 @@ var RecursoReservaRender = new Class(
 					selectable : true,
 
 					viewDisplay : function(view) {
-						console.log("CAMBIA")
 						return false;
 					},
 					eventRender: function(event, element) {
@@ -204,13 +205,16 @@ var RecursoReservaRender = new Class(
 					var recursoId=$("#recursoCombo").val();
 					var horaIni=calEvent.start.getHours();
 					var minutes=calEvent.start.getMinutes();
-			        var horario=horaIni +":" +minutes
+					console.log("Minutos",minutes)
+			        //var horario=horaIni +":" +minutes
 					var reserva = {
 							"descripcion" : "borrarCampo",
 							"recursoId" : recursoId,
 							"horaIni" : horaIni,
 							"duracion" : 1,
-							"fecha":fecha
+							"fecha":fecha,
+							"minutosIni":minutes
+							
 					};
 		        	dialogRender.create({onAccept:function(){translator.onSubmitJson('recursoReserva', reserva)}});
 
