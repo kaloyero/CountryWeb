@@ -12,7 +12,7 @@
 <div >
 			<p>
 				<label for="select">Recursos</label>
-				<form:select path="recursos" multiple="false" id="recursoCombo">
+				<form:select path="recursos" multiple="false" id="recursoCombo" class="recursoCombo">
 				   <option value="-1">Seleccione un Recurso</option>
 					<form:options items="${recursos}" itemValue="id"
 						itemLabel="nombre" />

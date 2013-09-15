@@ -22,8 +22,11 @@ var RenderTranslator = new Class({
 			break;
 			
 		case "recurso":	
-			return recursoReservaRender;
-			break;
+			if (application.isAddingNewEvent())
+				return recursoReservaEventoRender;
+				return recursoReservaRender;
+				
+			break;;
 
     	case "evento":
 			return eventoRender;

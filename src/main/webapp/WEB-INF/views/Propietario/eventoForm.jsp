@@ -49,11 +49,9 @@
 									</div>
 									<div class="wcgroup">
 										<label for="select">Recurso necesario:</label>
-											<form:select path="recurso" multiple="false" id="recursoCombo">
-				   								<option value="-1">Seleccione un Recurso</option>
-											<form:options items="${recursos}" itemValue="id"
-													itemLabel="nombre" />
-									</form:select>
+											
+									<input type="button" class="button" value="Reserve un recurso desde aqui de ser necesario" id="showDisponibilidades">
+									
 									</div>
 									<div class="wcgroup">
 										<label class="wlabel" id="emailmsg" for="email">
@@ -66,7 +64,7 @@
 										<label class="wlabel" id="emailmsg" for="email">
 											Horario:</label>
 										<div class="wcontrols">
-										<form:input path="hourIni" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
+										<form:input path="hourIni" size="40" class="inputbox required validate-email"  maxlength="100" aria-required="true"/>
 										
 										</div>
 										<label class="wlabel" id="emailmsg" for="email">
@@ -96,7 +94,6 @@
 									<!-- Joomla! 1.6+ JForm implementation -->
 									<div class="k2AccountPageUpdate">
 									<input type="button" class="button" value="Crear evento" onclick="translator.onSubmit('evento');">
-
 									</div>
 								</div>
 								
@@ -175,3 +172,9 @@
 					</div>
 					<!-- // ASIDE -->
 				</div>
+				<div class="tileContent">
+  <div id="disponibilidadesPanel"   style="width: 800px; height: 800px; padding: 0.4em; position: relative;display:none;" >
+
+  </div>
+
+  </div>

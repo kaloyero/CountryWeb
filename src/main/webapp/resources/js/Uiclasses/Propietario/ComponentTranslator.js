@@ -11,7 +11,6 @@ var ComponentTranslator = new Class(
 					object : objectType,
 					form : formToSend,
 					onSuccess : function(data) {
-						console.log("SEsese")
 								$.jGrowl("Creado con exito.", {
 									theme : 'success'
 								});
@@ -48,6 +47,7 @@ var ComponentTranslator = new Class(
 					object : objectType,
 					objectId : objectId,
 					onSuccess : function(data) {
+
 						canvasController.onLoaded(type,data);
 					}
 				});

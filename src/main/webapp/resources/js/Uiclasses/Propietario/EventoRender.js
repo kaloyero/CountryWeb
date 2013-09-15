@@ -4,52 +4,83 @@ var EventoRender = new Class(
 			initialize : function(name) {
 				this.name = name;
 			},
-
+			//Se ejecuta cuando se pide el listado
 			populateData : function(dataToAppend) {
 				this.onFinishLoading(dataToAppend);
 			},
+			//Se ejecuta al perdir el formulario para cargar uno nuevo
+
 			load : function(dataToAppend) {
 				this.cleanCanvas();
-				$("body").removeClass();
-				$("body").addClass("has-sidebar has-aside");
-				// $(".corner-stamp").remove()
-				$("#mainbody").prepend(dataToAppend);
+				this.addDataToMainBody(dataToAppend);
+				this.setStyle();
 				this.bindEventsForNew();
 			},
-
+			
 			onFinishLoading : function(dataToAppend) {
 				var self=this;
 				this.cleanCanvas();
-				$("#content").append(dataToAppend);
-				$("body").removeClass();
-
-				$("body").addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
+				this.addDataToContent(dataToAppend);
+				this.setStyleList();
 				jQuery(".corner-stamp").load('../resources/static/corner.html',function(){
     				createEffect();
     				self.bindEvents();
-
     			});
 
 			},
 			bindEvents : function() {
-				$(".anotarseEvento").click(
+				this.getAnotarseEventoButton().click(
 						function() {
 							var eventoParticipar = {
 								"evento" : $(this).find("input").val()
 							};
-							//Remuevo por si ya agregue un htl con el div del dialogo
-				        	dialogRender.create({onAccept:function(){translator.onSubmitJson('eventoParticipar',eventoParticipar)}});
-
-				
+				        	dialogRender.create({onAccept:function(){translator.onSubmitJson('eventoParticipar',eventoParticipar)}});	
 						});
 
 			},
 			bindEventsForNew : function() {
-
+				var self =this;
 				$('#fecha').datepicker({
 					dateFormat : 'dd-mm-yy'
 				});
+				this.getShowDisponibilidadesButton().click(function(){
+					self.loadRecursoPanel();
+					self.getNewEventFormPlaceHolder().slideToggle('slow')
+					self.getDisponibilidadPlaceHolder().slideToggle('slow');
+			
+				})
 
+			},
+			loadRecursoPanel : function() {
+				//Pregunto si ya se habia cargado el calendario de recursos
+				if (this.getCalendarPlaceHolder().length==0)
+					sideBarController.onOptionSelected('recurso_lista');
+
+			},
+			setStyle : function() {
+				this.getBody().removeClass();
+				this.getBody().addClass("has-sidebar has-aside");
+				
+			},
+			setStyleList : function() {
+				this.getBody().removeClass();
+				this.getBody().addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
+				
+			},
+			getDisponibilidadPlaceHolder : function() {
+				return $('#disponibilidadesPanel');
+			},
+			getNewEventFormPlaceHolder : function() {
+				return $('#evento_nuevo');
+			},
+			getCalendarPlaceHolder : function() {
+				return $("#calendar");
+			},
+			getShowDisponibilidadesButton : function() {
+				return $("#showDisponibilidades");
+			},
+			getAnotarseEventoButton : function() {
+				return $(".anotarseEvento");
 			}
 		});
 

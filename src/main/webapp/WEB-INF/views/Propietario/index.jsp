@@ -52,6 +52,8 @@
   <script src="../resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
   <script src="../resources/js/mylibs/jquery.notifications.js"></script>
    <script src="../resources/js/Utils.js"></script>
+     <script src="../resources/js/Uiclasses/Propietario/Application.js"></script>
+   
   <script src="../resources/js/Uiclasses/Propietario/Render.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/RenderTranslator.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/TemplateManager.js"></script>
@@ -61,6 +63,8 @@
   
   <script src="../resources/js/Uiclasses/Propietario/DashBoardRender.js"></script>
    <script src="../resources/js/Uiclasses/Propietario/RecursoReservaRender.js"></script>
+      <script src="../resources/js/Uiclasses/Propietario/RecursoReservaEventoRender.js"></script>
+   
    <script src="../resources/js/Uiclasses/Propietario/ResumenRender.js"></script>
   <script src="../resources/js/Uiclasses/Propietario/ReclamoRender.js"></script>
   

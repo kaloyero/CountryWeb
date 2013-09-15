@@ -12,59 +12,60 @@ var RecursoReservaRender = new Class(
 
 			onFinishLoading : function(dataToAppend) {
 				this.cleanCanvas();
-				$("#content").append(dataToAppend);
-				$("body").removeClass();
-				$("body")
-						.addClass(
-								"bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
+				this.addDataToContent(dataToAppend);
+				this.setStyle();
 
 				calendarController.createCalendar(null, null, this.getCalendarConfig());
 				this.bindEvents();
 				this.createSources();
-
-
 			},
-
+			setStyle : function() {
+				this.getBody().removeClass();
+				this.getBody().addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
+			},
 			bindEvents : function() {
 				this.bindRecursoEvents();
 			},
 			bindRecursoEvents : function() {
 				var self=this;
-				$("#recursoCombo").change(
+				this.getRecursoComboPlaceHolder().change(
 						function() {
-							var selectedRecurso = $(this).find(
-									'option:selected').val();
+							var selectedRecurso = $(this).find('option:selected').val();
 							// Si selecciono algo
 							if (selectedRecurso != -1){
-								translator.onLoad("recurso", selectedRecurso);
-								self.selectedRecurso=selectedRecurso;
+								self.setSelectedRecurso(selectedRecurso);
+								self.getRecursoDisponibilidades();
 							}
-								
-
-						});
+						 });
+			},
+			getRecursoDisponibilidades:function(){
+				translator.onLoad("recurso", this.getSelectedRecurso());
 			},
 			load : function(data) {
+				this.addSpecificHtml(data);
+				this.setDisponibilidades(data.disponibilidades);
+				this.events = null;
+				this.eventosDisponiblesAEliminar=new Array();
+				this.getCalendarPlaceHolder().fullCalendar( 'refetchEvents' );
+			},
+			addSpecificHtml : function(data) {
 				$("#importeRecurso").empty();
 				$("#importeRecurso").append("<strong style='font-family:arial;color:#9E7474;font-size:25px;'>Costo :"+data.importe+"$</strong>")
-				var self = this;
-				self.getDisponibilidadesDividedInSegments(data);
-				self.disponibilidades = data.disponibilidades;
-				this.events = null;
-				self.eventosDisponiblesAEliminar=new Array();
-				$("#calendar").fullCalendar( 'refetchEvents' );
+
 			},
 			createSources : function() {
+				this.createDisponibilidadesSource();
+				this.createDiasOcupadosSource();
+			},
+			createDiasOcupadosSource : function() {
 				var self =this;
-				$("#calendar").fullCalendar(
-						'addEventSource',
+				this.getCalendarPlaceHolder().fullCalendar('addEventSource',
 				{
 							events: function(start, end, callback) {
-								
 								if (self.isRecursoSelected()){
 									$.ajax({
-										url: '../recursoReserva/diasOcupados/'+self.selectedRecurso,
+										url: '../recursoReserva/diasOcupados/'+self.getSelectedRecurso(),
 										type: 'GET',
-									
 										success: function(doc) {
 											//TODO no me conviene en realidad pintar y cambiar algun valor de los eventos disponibles ya pintados en lugar
 											//de hacer todo el lio del EventAfterRender y etc?
@@ -73,54 +74,45 @@ var RecursoReservaRender = new Class(
 									});
 								}
  				            },
-				            color: 'yellow',   // an option!
+				            color: 'yellow',  
 				            textColor: 'black'		
                 });
-
-				$("#calendar").fullCalendar(
-						'addEventSource',
+			},
+			createDisponibilidadesSource : function() {
+				var self=this;
+				this.getCalendarPlaceHolder().fullCalendar('addEventSource',
 						function(start, end, callback) {
 							var translatedEvents = [];
-							var eventList = self.disponibilidades;
+							var eventList = self.getDisponibilidades();
 							self.removeEvents();
-							if (self.events) {
-								translatedEvents = self.getTranslatedEvents(
-										start, end);
-
-							} else {
-								if (eventList){ 
+							if (eventList){ 
 									self.events = JSON.parse(eventList);
 									translatedEvents = self.getTranslatedEvents(start, end);
-								}
 							}
+							
 							console.log("EVENTOS",$('#calendar').fullCalendar('clientEvents'));
 							callback(translatedEvents, [ true ]);
 						});
-							
-
 			},
-			getDisponibilidadesDividedInSegments : function(data) {
-				console.log("DATA",data)
-			},
+			
 			removeEvents : function() {
-				$("#calendar").fullCalendar('removeEvents', function(event) {
-
+				this.getCalendarPlaceHolder().fullCalendar('removeEvents', function(event) {
 					return true;
 				});
 			},
 
 			getTranslatedEvents : function(start, end) {
 				var id = 2;
-
 				var events = [];
 				var self = this;
+				//Por cada evento disponible,lo traduzco para que lo entienda el plugin de calendarios
 				$(self.getEvents()).each(function(index) {
 					var event = self.getEvents()[index];
 					var fechaDesde = new Date(start.getTime());
 					var fechaHasta = new Date(start.getTime());
-					fechaDesde.setDate(start.getDate() + event.dia)
+					fechaDesde.setDate(start.getDate() + event.dia);
 					fechaDesde.setHours(event.horaIni);
-					fechaHasta.setDate(start.getDate() + event.dia)
+					fechaHasta.setDate(start.getDate() + event.dia);
 					fechaHasta.setHours(event.horaFin);
 
 					var nuevoEvento = new Object();
@@ -131,45 +123,26 @@ var RecursoReservaRender = new Class(
 					nuevoEvento.end = fechaHasta;
 					nuevoEvento.id=id;
 					events.push(nuevoEvento);
-					id++
+					id++;
 
-				})
+				});
 				return events;
 			},
 
 			getCalendarConfig : function() {
 				var self=this;
 				var calendarConfig = {
-
-						         
 					selectable : true,
-
 					viewDisplay : function(view) {
 						return false;
 					},
 					eventRender: function(event, element) {
-				        var dateFrom=event.start;
-						var dateTo=event.end;
-						//Si encuentro un evento ocupado,no deberia mostrar el evento Disponible en ese mismo lugar,guardo el id para removerlo luego
-						if (event.title =="Disponible"){
-							$('#calendar').fullCalendar('clientEvents', function(eventa) {
-								if(eventa.start.getTime() == dateFrom.getTime() && eventa.end.getTime() == dateTo.getTime() && eventa.title!="Disponible") {
-									self.eventosDisponiblesAEliminar.push(event.id);
-								}
-						});
-						}
-
-
+						self.saveEventsToBeRemoved(event)
 				    },
 				    //Cuando se terminan de renderizados los eventos,recorro el Array de eventos a eliminar
 				    eventAfterAllRender: function(view) {
-				    	if (self.eventosDisponiblesAEliminar)
-				    		for (i=0;i<self.eventosDisponiblesAEliminar.length;i++){
-				    			$("#calendar").fullCalendar( 'removeEvents',self.eventosDisponiblesAEliminar[i] )
-				    		}
-						self.eventosDisponiblesAEliminar=new Array();
-
-				    	},
+				    	self.removeCalendarEvents();
+				    },
 				
 				    defaultView:"agendaWeek",
 				    allDayDefault: false,
@@ -182,13 +155,9 @@ var RecursoReservaRender = new Class(
 					color : 'yellow',
 					textColor : 'black',
 					eventClick : function(calEvent, jsEvent, view) {
-						
 						self.onEventClick(calEvent, jsEvent, view);
-
 					}
-
-
-				};
+			};
 
 				return calendarConfig;
 			},
@@ -198,37 +167,77 @@ var RecursoReservaRender = new Class(
 			onEventClick:function(calEvent, jsEvent, view){
 				if (calEvent.title=="Disponible"){
 
-					var date = calEvent.start.getDate();
-					var month = calEvent.start.getMonth() + 1; //Months are zero based
-					var year = calEvent.start.getFullYear();
-					var fecha=date + "-" + month + "-" + year
-					var recursoId=$("#recursoCombo").val();
-					var horaIni=calEvent.start.getHours();
-					var minutes=calEvent.start.getMinutes();
-					console.log("Minutos",minutes)
-			        //var horario=horaIni +":" +minutes
-					var reserva = {
-							"descripcion" : "borrarCampo",
-							"recursoId" : recursoId,
-							"horaIni" : horaIni,
-							"duracion" : 1,
-							"fecha":fecha,
-							"minutosIni":minutes
-							
-					};
+					var reserva = this.getReservaEntity(calEvent);
 		        	dialogRender.create({onAccept:function(){translator.onSubmitJson('recursoReserva', reserva)}});
-
-					
 				}else{
 					alert("Este horario esta ocupado!!")
 				}
 				
 			},
 			isRecursoSelected : function() {
-				console.log("Seleccionadao",$("#recursoCombo").find('option:selected').val());
 				if ($("#recursoCombo").find('option:selected').val()!=-1) return true;
 					return false;
 			},
+			getSelectedRecurso : function() {
+				return this.selectedRecurso;
+			},
+			setSelectedRecurso : function(recurso) {
+				this.selectedRecurso=recurso;
+			},
+			getDisponibilidades : function() {
+				return this.disponibilidades;
+			},
+			setDisponibilidades : function(disponibilidades) {
+				this.disponibilidades=disponibilidades;
+			},
+
+			getEventosAEliminar : function() {
+				return this.eventosDisponiblesAEliminar;
+			},
+			getCalendarPlaceHolder : function() {
+				return $("#calendar");
+			},
+			getRecursoComboPlaceHolder : function() {
+				return $("#recursoCombo");
+			},
+			//Si encuentro un evento ocupado,no deberia mostrar el evento Disponible en ese mismo lugar,guardo el id para removerlo luego
+			saveEventsToBeRemoved:function(event){
+				 var dateFrom=event.start;
+				var dateTo=event.end;
+				if (event.title =="Disponible"){
+					$('#calendar').fullCalendar('clientEvents', function(eventa) {
+						if(eventa.start.getTime() == dateFrom.getTime() && eventa.end.getTime() == dateTo.getTime() && eventa.title!="Disponible") {
+							this.getEventosAEliminar().push(event.id);
+						}
+				});
+			 }
+			},
+			removeCalendarEvents:function(){
+				if (this.getEventosAEliminar())
+		    		for (i=0;i<this.getEventosAEliminar().length;i++){
+		    			this.getCalendarPlaceHolder().fullCalendar( 'removeEvents',this.getEventosAEliminar()[i] );
+		    		}
+				this.eventosDisponiblesAEliminar=new Array();
+			},
+			getReservaEntity:function(calEvent){
+				var date = calEvent.start.getDate();
+				var month = calEvent.start.getMonth() + 1; //Months are zero based
+				var year = calEvent.start.getFullYear();
+				var fecha=date + "-" + month + "-" + year;
+				var horaIni=calEvent.start.getHours();
+				var minutes=calEvent.start.getMinutes();
+		        //var horario=horaIni +":" +minutes
+				var reserva = {
+						"descripcion" : "borrarCampo",
+						"recursoId" : this.getSelectedRecurso(),
+						"horaIni" : horaIni,
+						"duracion" : 1,
+						"fecha":fecha,
+						"minutosIni":minutes
+						
+				};
+				return reserva;
+			}
 
 		});
 

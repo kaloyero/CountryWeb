@@ -19,13 +19,23 @@ var Render = new Class({
     	
     	for (tipo in coleccion){
     		templateManager.add(tipo,coleccion[tipo])
-    		//console.log("Tipo",tipo)
-    		//console.log("OBJECT",coleccion[tipo])
     	}
     	//$(template).tmpl(data).appendTo('#masonry-container');
     	createEffect();
-    }
-
+    },
+    getBody: function(){
+    	return $('body');
+    },
+    getMainBody: function(){
+    	return $("#mainbody");
+    },
+    addDataToContent: function(dataToAppend){
+        $("#content").append(dataToAppend);
+    },
+    addDataToMainBody: function(dataToAppend){
+        this.getMainBody().append(dataToAppend);
+    },
+    
 });
 
 render=new Render();
