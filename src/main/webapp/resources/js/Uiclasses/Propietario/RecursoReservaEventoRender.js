@@ -26,14 +26,17 @@ var RecursoReservaEventoRender = new Class(
 		    });
 			},
 			onEventClick:function(calEvent, jsEvent, view){
-				var date = calEvent.start.getDate();
-				var month = calEvent.start.getMonth() + 1; //Months are zero based
-				var year = calEvent.start.getFullYear();
-				var fecha=date + "-" + month + "-" + year;
-				var horaIni=calEvent.start.getHours();
-				var minutes=calEvent.start.getMinutes();
-				$("#fecha").val(fecha)
-				$("#hourIni").val(horaIni+":"+minutes)
+				var reserva=this.getReservaEntity(calEvent);
+				$("#fecha").val(reserva.fecha)
+				$("#horarioRecursoElegido").val(reserva.horaIni+":"+reserva.minutosIni)
+				$("#recursoElegido").val(this.getSelectedRecursoName())
+				//Cuando tenemos un id con un punto (algo.algo),hay que usar las barras para que Jquery entienda
+				$("#reserva\\.horaIni").val(reserva.horaIni)
+				$("#reserva\\.duracion").val(reserva.duracion)
+				$("#reserva\\.fecha").val(reserva.fecha)
+				$("#reserva\\.recursoId").val(reserva.recursoId)
+				$("#reserva\\.minutosIni").val(reserva.minutosIni)
+
 				this.showEventPanel();
 			},
 			addSpecificHtml : function() {

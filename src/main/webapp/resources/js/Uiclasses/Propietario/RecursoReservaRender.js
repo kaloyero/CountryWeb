@@ -184,6 +184,9 @@ var RecursoReservaRender = new Class(
 			setSelectedRecurso : function(recurso) {
 				this.selectedRecurso=recurso;
 			},
+			getSelectedRecursoName : function() {
+				return this.getRecursoComboPlaceHolder().find('option:selected').text();
+			},
 			getDisponibilidades : function() {
 				return this.disponibilidades;
 			},

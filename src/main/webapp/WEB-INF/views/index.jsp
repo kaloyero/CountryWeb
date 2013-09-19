@@ -86,21 +86,7 @@
 		sideBarController.bindMenuEvents(this);
 		canvasController.createDashboard();
 		
-		$('.selectable').live("click", function(){ 
-			if ($(this).hasClass('selected')){
-				$(this).removeClass('selected');
-				//$(this).css('background','none');
-			$(this).children(':first-child').remove();
-
-			}else{
-				$(this).addClass('selected');
-				$(this).append('<img src="resources/img/check.png" alt="Smiley face" height="10" width="12">');
-				//$(this).css('background','url(img/check.png) no-repeat center');
-			}
-		});
-		
-		
-
+	
 	});
 		
 

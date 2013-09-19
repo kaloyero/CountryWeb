@@ -20,6 +20,7 @@ public class EventoForm extends Form  {
 	private int cantidadUnidos;
 	private String diaSemana;
 	private boolean envioAdm=false;
+	private ReservaForm reserva;
 
 	
 	
@@ -176,7 +177,17 @@ public class EventoForm extends Form  {
 	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
 	}
-	
+
+
+	public ReservaForm getReserva() {
+		return reserva;
+	}
+
+
+	public void setReserva(ReservaForm reserva) {
+		this.reserva = reserva;
+	}
+
 	
 
 }

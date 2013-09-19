@@ -47,22 +47,17 @@
 										<form:input path="nombre" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
 										</div>
 									</div>
+								
 									<div class="wcgroup">
-										<label for="select">Recurso necesario:</label>
+										<label class="wlabel" id="emailmsg" for="email">
+											Fecha del Evento:</label>
+										<form:input path="fecha" size="40" class="inputbox required validate-email"  maxlength="100" aria-required="true"/>
 											
-									<input type="button" class="button" value="Reserve un recurso desde aqui de ser necesario" id="showDisponibilidades">
-									
+								
 									</div>
 									<div class="wcgroup">
 										<label class="wlabel" id="emailmsg" for="email">
-											Fecha:</label>
-										<div class="wcontrols">
-										<form:input path="fecha" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
-										</div>
-									</div>
-									<div class="wcgroup">
-										<label class="wlabel" id="emailmsg" for="email">
-											Horario:</label>
+											Horario inicial:</label>
 										<div class="wcontrols">
 										<form:input path="hourIni" size="40" class="inputbox required validate-email"  maxlength="100" aria-required="true"/>
 										
@@ -77,7 +72,26 @@
 										<label class="wlabel" id="emailmsg" for="email">
 											Cupo minimo:</label>
 										<form:input path="cupo" size="40" class="inputbox required validate-email" maxlength="100" aria-required="true" required="required"/>
+											<div class="wcgroup"><b><font color="blue">
+										<label for="select">Recurso necesario:</label> </font></b>
+										<input id="recursoElegido" disabled='true' name="recursoElegido" class="inputbox required validate-email" aria-required="true" type="text" value="" size="40" maxlength="100">
+										<b><font color="blue"><label class="wlabel" id="emailmsg" for="email">
+											Horario:</label></font></b>
+										<input id="horarioRecursoElegido" disabled='true' name="horarioRecursoElegido" class="inputbox required validate-email" aria-required="true" type="text" value="" size="40" maxlength="100">
+
+									<form:input path="reserva.recursoId" class="idRecursoReserva" type ="hidden" />
+											
+										<form:input path="reserva.horaIni"  type ="hidden" />
+										<form:input path="reserva.duracion" type ="hidden" />
+										<form:input path="reserva.fecha" type ="hidden" />
+										<form:input path="reserva.minutosIni"  type ="hidden" />
 										
+									
+										
+																										
+									<input type="button" class="button" value="Reserve un recurso desde aqui de ser necesario" id="showDisponibilidades">
+									
+									</div>
 										</div>
 									</div>
 									<div class="wheader k2ProfileHeading">Descripcion</div>

@@ -48,6 +48,7 @@ var Render = new Class({
     getActiveForm: function(){
    	 return $(this.getActiveTab()).find("form");
    },
+   
    onNewTab: function(){
    	var form=this.getActiveForm();
    	$(form).find(".datepicker").datepicker({

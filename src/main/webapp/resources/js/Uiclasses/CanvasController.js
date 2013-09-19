@@ -59,6 +59,8 @@ var CanvasController = new Class({
 		 case "recurso":
 			recursoRender.onNewTab();
 			break;
+		 case "actividad":
+				actividadRender.onNewTab();
 		 case "integrante":
 			integranteRender.onNewTab();
 			break;
@@ -89,8 +91,10 @@ var CanvasController = new Class({
 		
 	   	switch (objectType) {
 		 case "recurso":
-			recursoRender.draw();
-			break;
+			 	recursoRender.draw();
+			 	break;
+		 case "actividad":
+				actividadRender.onLoaded();
 		 case "integrante":
 				integranteRender.onLoaded();
 				break;

@@ -49,6 +49,21 @@ var EventoRender = new Class(
 					self.getDisponibilidadPlaceHolder().slideToggle('slow');
 			
 				})
+				/*
+				this.getCupoInput().change(function(){
+					if($(this).val()>1) {
+						$("#diasCombo").removeAttr("disabled", "disabled");
+						$("#fecha").attr("disabled", "disabled");
+						$("#fecha").css('opacity','.2')
+
+					}else{
+						$("#fecha").removeAttr("disabled", "disabled");
+						$("#fecha").css("opacity","");
+
+						$("#diasCombo").attr("disabled", "disabled");
+
+					}
+				})*/
 
 			},
 			loadRecursoPanel : function() {
@@ -66,6 +81,9 @@ var EventoRender = new Class(
 				this.getBody().removeClass();
 				this.getBody().addClass("bd-home gridview hoverable has-sidebar basegrid-m display-fullview");
 				
+			},
+			getCupoInput : function() {
+				return $('#cupo');
 			},
 			getDisponibilidadPlaceHolder : function() {
 				return $('#disponibilidadesPanel');

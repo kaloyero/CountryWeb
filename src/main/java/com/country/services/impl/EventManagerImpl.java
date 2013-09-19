@@ -98,29 +98,23 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 			reserveManager.save(reserva,user);
 		}
 		
-		
-		
-		
 	}
 	
 	
 	private ReservaForm getReserva(EventoForm form,int eventId){
-		ReservaForm reserva = new ReservaForm();
-		reserva.setDuracion(form.getDuracion());
+		ReservaForm reserva = form.getReserva();
 		reserva.setEventoId(eventId);
-		reserva.setFecha(form.getFecha());
-		reserva.setHoraIni(form.getHourIni());
 		PersonaForm intForm = new PersonaForm();
 		intForm.setId(form.getPersonaId());
 		reserva.setPersona(intForm);
 		reserva.setPersonId(form.getPersonaId());
-		RecursoForm recFrom = new RecursoForm();
-		recFrom.setId(form.getRecurso());
-		reserva.setRecurso(recFrom);
-		reserva.setRecursoId(form.getRecurso());
-		reserva.setDescripcion(form.getDescripcion());
+		//RecursoForm recFrom = new RecursoForm();
+		//recFrom.setId(form.getRecurso());
+		//reserva.setRecurso(recFrom);
+		//reserva.setRecursoId(form.getRecurso());
+		//reserva.setDescripcion(form.getDescripcion());
 		reserva.setEnvioAdm(form.isEnvioAdm());
-		reserva.setId(form.getReservaId());
+		//reserva.setId(form.getReservaId());
 		return reserva;
 	}
 

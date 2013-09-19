@@ -60,6 +60,32 @@
 
 
 <div class="content item-content">
+	<b><p>Datos de tu ultimo Mes:</p></b>
+
+	<i><font size="4"color="blue"><p>Eventos:</p></font></i>
+	<p>Has creado *  ,te has anotado a * ,y se han unido un total de * a tus eventos.</p>
+	<p>La popularidad de los eventos que has creado es (alta-baja-media)</p>
+	
+	<i><font size="4" color="blue"><p>Actividades:</p></font></i>
+	<p>Estas inscripto en * actividades.Contabilizando tu unidad ,estan inscriptos en * actividades</p>
+	<p>El pago total de estas es de *</p>
+	<i><font size="4" color="blue"><p>Reclamos:</p></font></i>
+	<p>Tenes * reclamos abiertos.Se han cerrado con solucion * reclamos.La popularidad de los mismos es (baja-media-alta)</p>
+	<b><font size="4" color="red"><p>Infracciones:</p></font></b>
+	<p>No tenes asociadas infracciones(contabilizando la unidad)</p>
+	<i><font size="4" color="blue"><p>Clasificados:</p></font></i>
+	<p>Tenes en venta * articulos.</p>
+	<p>Haz sacado de publicacion * articulos</p>
+	<i><font size="4" color="blue"><p>Recursos:</p></font></i>
+	<p>Actualmente tenes * recursos con reserva abierta</p>
+	<p>El pago total de los recursos del periodo (contabilizando la unidad)es de *</p>
+	<p>Basandonos en tu participacion y en las de los demas relacionado a lo que publicas,tu reputacion dentro del lugar es : (Alta-Media-Baja)</p>
+	
+	
+	
+		
+	
+
 	<p>Lorem ipsum dolor sit amet consectetuer vitae metus augue Phasellus fringilla. Curabitur sapien tempor felis pellentesque Aenean Phasellus dui tincidunt tortor Vestibulum. Eu pellentesque est leo ac semper vel pretium tortor nunc et. Volutpat Aenean semper lacinia faucibus est dis hendrerit mauris magnis Curabitur. Vel Aenean pede in sodales ut porta Nulla pellentesque Integer turpis. In tempor quis dis fringilla semper.</p>
 
 <p>Nibh ut tellus Quisque eget Integer lacinia mi suscipit Ut gravida. In sagittis et pretium natoque et quam et tortor libero diam. Vitae est nonummy dignissim sagittis natoque cursus congue consectetuer habitasse tristique. Pretium eget arcu eu urna pretium ullamcorper vitae Phasellus mauris laoreet. Enim Vivamus nunc Aenean adipiscing id congue lorem Cras orci feugiat. Laoreet magna auctor elit elit lacus.</p>
