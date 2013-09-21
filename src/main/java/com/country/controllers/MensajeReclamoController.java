@@ -28,7 +28,6 @@ import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
-import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -66,7 +65,7 @@ public class MensajeReclamoController {
 		
 		
 		
-		 if (SessionUtil.isAdminUser(request)){
+		 if (SessionUtil.isAdminUser()){
 			 model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			 return "mensajeReclamo";
 		 }else{
@@ -79,7 +78,6 @@ public class MensajeReclamoController {
 	public String processForm(
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result,HttpServletRequest request) throws ParseException {
-		UsuarioInfo user = SessionUtil.getUserInfo(request);
 		
 		//TODO en lugar de hacer este set en el Get,se pone aca,ya que,en el caso de propietario,al no tener los campos fecha y tipo en el formulario en la UI,
 		//me obliga a ponerlos como al menos invisibles,sino estos valores vuelven a estar nulos.Y se corre peligro si alguien inspecciona el codigo html y le 
@@ -90,7 +88,7 @@ public class MensajeReclamoController {
 		//Seteo el TIPO de mensaje como RECLAMO
 		form.setTipo(TipoMensajes.TYPE_MESSAGE_RECLAMO);
 
-			 messageManager.save(form,user);
+			 messageManager.save(form);
 		
 		return "success";
 		
@@ -103,7 +101,7 @@ public class MensajeReclamoController {
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("MENSAJE", form);
 
-		 if (SessionUtil.isAdminUser(request)){
+		 if (SessionUtil.isAdminUser()){
 			 model.addAttribute("mensajes", messageDetailManager.getDetailsByMessajeId(id));
 			 return "forms/mensajeReclamoForm";
 		 }else{
@@ -117,14 +115,14 @@ public class MensajeReclamoController {
 	@RequestMapping(value = "/load/{id}", method = RequestMethod.POST)
 	public String update(@ModelAttribute(value = "MENSAJE") MensajeForm form,@PathVariable int id,
 			BindingResult result,HttpServletRequest request) throws ParseException {
-		UsuarioInfo user = SessionUtil.getUserInfo(request);	
-		if (SessionUtil.isAdminUser(request)){
+	
+		if (SessionUtil.isAdminUser()){
 			 form.setAccion(TipoMensajes.STATUS_OUT);
 		 }else{
 			 form.setAccion(TipoMensajes.STATUS_IN);
 		 }
 
-		messageManager.update(form,user);
+		messageManager.update(form);
 		
 		return "success";
 		

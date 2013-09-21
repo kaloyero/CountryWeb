@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.DateUtil;
-import com.country.common.SessionUtil;
 import com.country.form.ReservaForm;
 import com.country.hibernate.model.Reserva;
 import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
-import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -43,10 +41,10 @@ public class RecursoReservaController {
 			  ReservaForm form,
 			  HttpServletRequest request
 			) throws ParseException {
-		UsuarioInfo user = SessionUtil.getUserInfo(request);	
-		reservaManager.save(form,user);
+	
+		reservaManager.save(form);
 			return "success";
-		//}
+	
 			
 	}
 	//@RequestMapping(value = "/diasOcupadosa", method = RequestMethod.GET)

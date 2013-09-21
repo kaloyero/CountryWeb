@@ -13,9 +13,16 @@ public class UsuarioInfo implements Serializable {
 	private int empleadoId=2;
 	private String tipoUsuario;
 	private String nombreUsuario;
+	private String errorDescripcion;
 	
 	
 	
+	public String getErrorDescripcion() {
+		return errorDescripcion;
+	}
+	public void setErrorDescripcion(String errorDescripcion) {
+		this.errorDescripcion = errorDescripcion;
+	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}

@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.country.common.Constants;
 import com.country.common.TipoMensajes;
 import com.country.form.MensajeForm;
-import com.country.hibernate.model.Integrante;
 import com.country.hibernate.model.MensajeDetalles;
 import com.country.hibernate.model.Noticia;
-import com.country.hibernate.model.Usuario;
 import com.country.services.ConceptManager;
 import com.country.services.IntegratorManager;
 import com.country.services.MessageDetailManager;
@@ -29,7 +26,6 @@ import com.country.services.NewsManager;
 import com.country.services.PriceManager;
 import com.country.services.ResourceManager;
 import com.country.services.UserManager;
-import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -79,9 +75,7 @@ public class DashboardController {
 	public @ResponseBody  JSONObject showMainContent(ModelMap model, HttpServletRequest request) {
 		//JSONArray dashboard = new JSONArray();
 		 HttpSession session = request.getSession(true);
-	     session.setAttribute("TipoDeUsuario", "Propietario");
-	     session.setAttribute("InfoUsuario", getUserData());
-	      
+	     
 		List<Noticia> noticias =newsManager.listAll();
 		JSONArray noticiasJsonArray = new JSONArray();
 		//JSONObject noticiasJson=new JSONObject();
@@ -118,20 +112,5 @@ public class DashboardController {
 
 		return dashboard;
 	}
-	
-	private UsuarioInfo getUserData(){
-		UsuarioInfo data = new UsuarioInfo();
-		Usuario us = userManager.findById(1);
-		//Info del usuario
-		data.setUsuarioId(us.getId());
-		data.setNombreUsuario(us.getNombreUsuario());
-		
-		//Seteo q es un integrante
-		data.setTipoUsuario(Constants.PERSONA_INTEGRANTE);
-		Integrante integrante = integratorManager.getIntegratorByIdUser(us.getId());
-		data.setIntegranteId(integrante.getId());
-		data.setPersonaId(integrante.getPersona().getId());
-		
-		return data;
-	}
+
 }

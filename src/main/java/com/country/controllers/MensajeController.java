@@ -26,7 +26,6 @@ import com.country.services.IntegratorManager;
 import com.country.services.MessageCategoryManager;
 import com.country.services.MessageDetailManager;
 import com.country.services.MessageManager;
-import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -58,7 +57,7 @@ public class MensajeController {
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 		
-		if (SessionUtil.isAdminUser(request)){
+		if (SessionUtil.isAdminUser()){
 			return "mensajeForm";
 		 }else{
 			 return "Propietario/mensajeForm";
@@ -73,8 +72,8 @@ public class MensajeController {
 			@ModelAttribute(value = "MENSAJE") MensajeForm form,
 			BindingResult result,
 			HttpServletRequest request) throws ParseException {
-		UsuarioInfo user = SessionUtil.getUserInfo(request);
-		messageManager.save(form,user);
+		
+		messageManager.save(form);
 	   return "success";
 
 		

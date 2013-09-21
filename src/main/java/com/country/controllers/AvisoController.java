@@ -25,7 +25,6 @@ import com.country.mappers.AvisoMapper;
 import com.country.services.IntegratorManager;
 import com.country.services.NotificationCategoryManager;
 import com.country.services.NotificationManager;
-import com.country.session.UsuarioInfo;
 
 /**
  * Handles requests for the application home page.
@@ -50,7 +49,7 @@ public class AvisoController {
 		model.addAttribute("AVISO", aviso);
 		model.addAttribute("categorias", notificationCategoryManager.listAllCategoriesDescription());
 		
-		if (SessionUtil.isAdminUser(request)){
+		if (SessionUtil.isAdminUser()){
 			model.addAttribute("integrantes", integratorManager.getIntegratorNamesPersonIdKey());
 			return "aviso";
 		}else{
@@ -64,9 +63,8 @@ public class AvisoController {
 			@ModelAttribute(value = "AVISO") AvisoForm form,
 			HttpServletRequest request,
 			BindingResult result) throws ParseException {
-		UsuarioInfo user = SessionUtil.getUserInfo(request);
 		
-		notificationManager.save(form,user);
+		notificationManager.save(form);
 		
 		return "success";
 		
@@ -81,7 +79,7 @@ public class AvisoController {
 		model.addAttribute("AVISO", form);
 
 		
-		if (SessionUtil.isAdminUser(request)){
+		if (SessionUtil.isAdminUser()){
 			return "forms/avisoForm";
 		} else {
 			return "Propietario/avisoForm";

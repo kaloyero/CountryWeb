@@ -43,6 +43,19 @@ public class Usuario implements Serializable {
 	@Column(name = "Estado")
 	private  String estado;
 
+	@Column(name = "TipoUsuario")
+	private  String tipo;
+
+	
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public Integer getId() {
 		return id;
 	}

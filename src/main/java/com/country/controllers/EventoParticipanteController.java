@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.country.common.SessionUtil;
 import com.country.form.EventoIntegranteForm;
 import com.country.services.EventIntegratorManager;
-import com.country.session.UsuarioInfo;
+import com.country.session.SessionUsr;
 
 /**
  * Handles requests for the application home page.
@@ -33,9 +32,8 @@ public class EventoParticipanteController {
 			  EventoIntegranteForm form,
 			  HttpServletRequest request
 			) throws ParseException {
-		UsuarioInfo user = SessionUtil.getUserInfo(request);
 		
-		eventIntegratorManager.inscribirseEvento(form.getEvento(),user.getIntegranteId());
+		eventIntegratorManager.inscribirseEvento(form.getEvento(),SessionUsr.User().getIntegranteId());
 		return "success";
 
 			

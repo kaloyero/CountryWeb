@@ -24,7 +24,7 @@ import com.country.mappers.MensajeDetalleMapper;
 import com.country.mappers.MensajeMapper;
 import com.country.services.MessageManager;
 import com.country.session.ConfigurationData;
-import com.country.session.UsuarioInfo;
+import com.country.session.SessionUsr;
 
 @Service("messageManager")
 public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
@@ -63,18 +63,18 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 	}
 
 	@Transactional
-	public void save(MensajeForm form,UsuarioInfo user) {
+	public void save(MensajeForm form) {
 
 		// Seteo el empleado
-		if (SessionUtil.isEmployeePerson(user.getTipoUsuario())) {
-			form.setIdEmpleado(user.getEmpleadoId());
+		if (SessionUtil.isEmployeePerson(SessionUsr.User().getTipoUsuario())) {
+			form.setIdEmpleado(SessionUsr.User().getEmpleadoId());
 		} else {
 			form.setIdEmpleado(ConfigurationData.getUSUARIO_DEFAULT_RECLAMOS());
 		}
 
 		//Seteo el integrante
-		if (SessionUtil.isIntegrantePerson( user.getTipoUsuario())){
-			form.setIdIntegrante(user.getIntegranteId());	
+		if (SessionUtil.isIntegrantePerson( SessionUsr.User().getTipoUsuario())){
+			form.setIdIntegrante(SessionUsr.User().getIntegranteId());	
 		}
 
 		//Mapeo el mensaje
@@ -91,8 +91,8 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 		// GUARDO EL DETALLE
 		// Si el que envia el mensaje es el administrador tiene que ver si lo
 		// envia como ADM o como Integrante.
-		int idPersona = user.getPersonaId();
-		if (SessionUtil.isEmployeePerson(user.getTipoUsuario())) {
+		int idPersona = SessionUsr.User().getPersonaId();
+		if (SessionUtil.isEmployeePerson(SessionUsr.User().getTipoUsuario())) {
 			if (!form.isEnvio()) {
 				Integrante inte = integratorDao
 						.findById(form.getIdIntegrante());
@@ -105,12 +105,12 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 	}
 
 	@Transactional
-	public void update(MensajeForm form,UsuarioInfo user) {
+	public void update(MensajeForm form) {
 
 		// Guardo el Detalle
 		MensajeDetalles detalle = MensajeDetalleMapper.getMensajeDetalle(
 				form.getId(), form.getRespuesta(), form.getTipo(),
-				user.getPersonaId());
+				SessionUsr.User().getPersonaId());
 		messageDetailDao.save(detalle);
 
 		// Toma el nuevo estado

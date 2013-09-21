@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.country.form.MensajeForm;
 import com.country.hibernate.model.Mensaje;
-import com.country.session.UsuarioInfo;
 
 public interface MessageManager extends AbstractManager<Mensaje>{
 
@@ -12,11 +11,11 @@ public interface MessageManager extends AbstractManager<Mensaje>{
 	
 	List<Mensaje> getMessajesCategoryType(String type);
 
-	void save(MensajeForm form,UsuarioInfo user);
+	void save(MensajeForm form);
 	
 	void closeMessage(MensajeForm form);
 	
-	void update(MensajeForm form,UsuarioInfo user);
+	void update(MensajeForm form);
 
 	List<MensajeForm> listAllForms(String type);
 	

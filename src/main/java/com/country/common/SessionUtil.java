@@ -1,25 +1,13 @@
 package com.country.common;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import com.country.session.UsuarioInfo;
+import com.country.session.SessionUsr;
 
 public class SessionUtil {
 
-	public static UsuarioInfo getUserInfo(HttpServletRequest request){
-		HttpSession session = request.getSession(true);
-		UsuarioInfo usuarioConectado = (UsuarioInfo) session.getAttribute("InfoUsuario");
-		
-		return usuarioConectado;
-						
-	}
-	
-	public static boolean isAdminUser(HttpServletRequest request){
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		
-		if (usuarioConectado.equals("Admin")){
+	public static boolean isAdminUser(){
+		if (SessionUsr.TipoAplicacion().equals(Constants.TIPO_APLICACION_ADMIN)){
 			return true;
 		}else{
 			return false;
@@ -28,10 +16,7 @@ public class SessionUtil {
 	}
 
 	public static boolean isPropietarionUser(HttpServletRequest request){
-		HttpSession session = request.getSession(true);
-		String usuarioConectado = (String) session.getAttribute("TipoDeUsuario");
-		
-		if (usuarioConectado.equals("Propietario")){
+		if (SessionUsr.TipoAplicacion().equals(Constants.TIPO_APLICACION_PROPIETARIO)){
 			return true;
 		}else{
 			return false;

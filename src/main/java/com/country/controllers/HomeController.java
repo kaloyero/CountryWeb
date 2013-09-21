@@ -1,22 +1,27 @@
 package com.country.controllers;
 
+import java.text.ParseException;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.country.common.Constants;
-import com.country.hibernate.model.Empleado;
-import com.country.hibernate.model.Usuario;
+import com.country.common.SessionUtil;
+import com.country.form.LoginForm;
 import com.country.services.EmployeeManager;
 import com.country.services.HomeService;
 import com.country.services.UserManager;
+import com.country.session.SessionUsr;
 import com.country.session.UsuarioInfo;
 
 /**
@@ -43,13 +48,32 @@ public class HomeController {
 		String txt = homeService.getText();
 		  //Obtain the session object, create a new session if doesn't exist
         HttpSession session = request.getSession(true);
-        session.setAttribute("TipoDeUsuario", "Admin");
-        session.setAttribute("InfoUsuario", getUserData());
         
 		model.addAttribute("serverTime", txt );
 		
 		return "index";
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String processForm(
+			@ModelAttribute(value = "loginform") LoginForm form,
+			BindingResult result,HttpServletRequest request) throws ParseException {
+		
+		UsuarioInfo usr = userManager.checkAvaiableUser(form);
+		
+		if (StringUtils.isBlank(usr.getErrorDescripcion())){
+			if (SessionUtil.isEmployeePerson( usr.getTipoUsuario())){
+				SessionUsr.Aplicacion().setTipoAplicacion(Constants.TIPO_APLICACION_ADMIN);
+				return "index-admin";		
+			} else {
+				SessionUsr.Aplicacion().setTipoAplicacion(Constants.TIPO_APLICACION_PROPIETARIO);
+				return "Propietario/index";
+			}
+		} else {
+			return "loginError";	
+		}		
+		
+	}	
 
 	public HomeService getHomeService() {
 		return homeService;
@@ -58,20 +82,5 @@ public class HomeController {
 	public void setHomeService(HomeService homeService) {
 		this.homeService = homeService;
 	}
-	
-	private UsuarioInfo getUserData(){
-		UsuarioInfo data = new UsuarioInfo();
-		Usuario us = userManager.findById(2);
-		//Info del usuario
-		data.setUsuarioId(us.getId());
-		data.setNombreUsuario(us.getNombreUsuario());
-		
-		//Seteo q es un Empleado
-		data.setTipoUsuario(Constants.PERSONA_EMPLEADO);
-		Empleado empleado = employeeManager.getEmployeeByIdUser(us.getId());
-		data.setEmpleadoId(empleado.getId());
-		data.setPersonaId(empleado.getPersona().getId());
-		
-		return data;
-	}
+
 }

@@ -15,7 +15,7 @@ import com.country.hibernate.model.AvisoCategoria;
 import com.country.mappers.AvisoMapper;
 import com.country.services.NotificationCategoryManager;
 import com.country.services.NotificationManager;
-import com.country.session.UsuarioInfo;
+import com.country.session.SessionUsr;
 
 @Service("notificationManager")
 public class NotificationManagerImpl extends AbstractManagerImpl<Aviso> implements NotificationManager{
@@ -45,10 +45,10 @@ public class NotificationManagerImpl extends AbstractManagerImpl<Aviso> implemen
 	}
 
 	@Transactional
-	public int save(AvisoForm form,UsuarioInfo user) {
+	public int save(AvisoForm form) {
 		//Seteo la persona q crea
-		int idPerson = user.getPersonaId();
-		if (SessionUtil.isEmployeePerson( user.getTipoUsuario())){
+		int idPerson = SessionUsr.User().getPersonaId();
+		if (SessionUtil.isEmployeePerson( SessionUsr.User().getTipoUsuario())){
 			if (! form.isEnvioAdm()){
 			   idPerson = form.getPersona();
 			}
