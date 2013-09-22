@@ -14,34 +14,34 @@
 <!-- //META FOR IOS & HANDHELD -->
 <!-- TEMPLATE STYLESHEETS -->
 
-<link rel="stylesheet" href="../resources/css/propietario/modal.css" type="text/css">
-<link rel="stylesheet" href="../resources/css/propietario/k2.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/reset.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/core.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/navigation.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/joomla.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/modules.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/template.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/k2.css" media="all">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/print.css" media="print">
-  <link rel="stylesheet" href="../resources/css/notifications.css"> <!-- Notifications, optional -->
+<link rel="stylesheet" href="resources/css/propietario/modal.css" type="text/css">
+<link rel="stylesheet" href="resources/css/propietario/k2.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/core.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/navigation.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/joomla.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/modules.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/template.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/k2.css" media="all">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/print.css" media="print">
+  <link rel="stylesheet" href="resources/css/notifications.css"> <!-- Notifications, optional -->
 
 <!-- //TEMPLATE STYLESHEETS -->
 <!-- MEDIA QUERIES -->
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-mobile.css" media="only screen and (max-width:719px)">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-mobile-portrait.css" media="only screen and (max-width:479px)">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-tablet.css" media="only screen and (min-width:720px) and (max-width: 985px)">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-normal.css" media="only screen and (min-width:986px) and (max-width: 1235px)">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-wide.css" media="only screen and (min-width:1236px) and (max-width: 1585px)">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-wide-extra.css" media="only screen and (min-width:1586px) and (max-width: 1890px)">
-<link rel="stylesheet" type="text/css" href="../resources/css/propietario/layout-hd.css" media="only screen and (min-width:1891px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-mobile.css" media="only screen and (max-width:719px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-mobile-portrait.css" media="only screen and (max-width:479px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-tablet.css" media="only screen and (min-width:720px) and (max-width: 985px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-normal.css" media="only screen and (min-width:986px) and (max-width: 1235px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-wide.css" media="only screen and (min-width:1236px) and (max-width: 1585px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-wide-extra.css" media="only screen and (min-width:1586px) and (max-width: 1890px)">
+<link rel="stylesheet" type="text/css" href="resources/css/propietario/layout-hd.css" media="only screen and (min-width:1891px)">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="../resources/js/mylibs/jquery.masonry.min.js"></script>
-<script type="text/javascript" src="../resources/js/Uiclasses/Propietario/wall.js"></script>
-<script src="../resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
- <link rel="stylesheet" href="../resources/css/jquery-ui-1.8.15.custom.css"> <!-- jQuery UI, optional -->
+<script type="text/javascript" src="resources/js/mylibs/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="resources/js/Uiclasses/Propietario/wall.js"></script>
+<script src="resources/js/mylibs/jquery-ui-1.8.15.custom.min.js"></script>
+ <link rel="stylesheet" href="resources/css/jquery-ui-1.8.15.custom.css"> <!-- jQuery UI, optional -->
 
 
 
@@ -49,41 +49,41 @@
 <!-- CUSTOM THEMES -->
 <!-- //CUSTOM THEMES -->
 <!-- //NUESTROS JS -->
-  <script src="../resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
-  <script src="../resources/js/mylibs/jquery.notifications.js"></script>
-   <script src="../resources/js/Utils.js"></script>
-     <script src="../resources/js/Uiclasses/Propietario/Application.js"></script>
+  <script src="resources/js/libs/mootools-core-1.4.5-full-compat.js"></script>
+  <script src="resources/js/mylibs/jquery.notifications.js"></script>
+   <script src="resources/js/Utils.js"></script>
+     <script src="resources/js/Uiclasses/Propietario/Application.js"></script>
    
-  <script src="../resources/js/Uiclasses/Propietario/Render.js"></script>
-  <script src="../resources/js/Uiclasses/Propietario/RenderTranslator.js"></script>
-  <script src="../resources/js/Uiclasses/Propietario/TemplateManager.js"></script>
-  <script src="../resources/js/Uiclasses/Propietario/ActividadReservaRender.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/Render.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/RenderTranslator.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/TemplateManager.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/ActividadReservaRender.js"></script>
   
-      <script src="../resources/js/Uiclasses/Propietario/DialogRender.js"></script>
+      <script src="resources/js/Uiclasses/Propietario/DialogRender.js"></script>
   
-  <script src="../resources/js/Uiclasses/Propietario/DashBoardRender.js"></script>
-   <script src="../resources/js/Uiclasses/Propietario/RecursoReservaRender.js"></script>
-      <script src="../resources/js/Uiclasses/Propietario/RecursoReservaEventoRender.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/DashBoardRender.js"></script>
+   <script src="resources/js/Uiclasses/Propietario/RecursoReservaRender.js"></script>
+      <script src="resources/js/Uiclasses/Propietario/RecursoReservaEventoRender.js"></script>
    
-   <script src="../resources/js/Uiclasses/Propietario/ResumenRender.js"></script>
-  <script src="../resources/js/Uiclasses/Propietario/ReclamoRender.js"></script>
+   <script src="resources/js/Uiclasses/Propietario/ResumenRender.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/ReclamoRender.js"></script>
   
-  <script src="../resources/js/Uiclasses/Propietario/EventoRender.js"></script>
-   <script src="../resources/js/Uiclasses/Propietario/AvisoRender.js"></script>
+  <script src="resources/js/Uiclasses/Propietario/EventoRender.js"></script>
+   <script src="resources/js/Uiclasses/Propietario/AvisoRender.js"></script>
    
   
   
-<script src="../resources/js/Uiclasses/Propietario/ComponentTranslator.js"></script>
-<script src="../resources/js/Uiclasses/Propietario/CanvasController.js"></script>
- <script src="../resources/js/Uiclasses/CalendarController.js"></script>
+<script src="resources/js/Uiclasses/Propietario/ComponentTranslator.js"></script>
+<script src="resources/js/Uiclasses/Propietario/CanvasController.js"></script>
+ <script src="resources/js/Uiclasses/CalendarController.js"></script>
 
-<script src="../resources/js/Uiclasses/Propietario/SideBarController.js"></script>
-<script src="../resources/js/core/TestServerManager.js"></script>
-<script src="../resources/js/libs/jquery.tmpl.js"></script>
+<script src="resources/js/Uiclasses/Propietario/SideBarController.js"></script>
+<script src="resources/js/core/TestServerManager.js"></script>
+<script src="resources/js/libs/jquery.tmpl.js"></script>
 
-<link rel='stylesheet' type='text/css' href='../resources/js/libs/fullcalendar/fullcalendar.css' />
-<script type='text/javascript' src='../resources/js/libs/fullcalendar/fullcalendar.js'></script>
-<link rel="stylesheet" href="../resources/css/propietario/ui.css" >
+<link rel='stylesheet' type='text/css' href='resources/js/libs/fullcalendar/fullcalendar.css' />
+<script type='text/javascript' src='resources/js/libs/fullcalendar/fullcalendar.js'></script>
+<link rel="stylesheet" href="resources/css/propietario/ui.css" >
 
   
 
@@ -98,7 +98,7 @@
 <script type="text/javascript">
 
 	jQuery(document).ready(function($) {
-		jQuery("#sidebar").load('../dashboard/sideBar',function(){
+		jQuery("#sidebar").load('dashboard/sideBar',function(){
 			sideBarController.bindMenuEvents();
 			canvasController.show("dashboard");
 		});	
