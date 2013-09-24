@@ -63,8 +63,6 @@ public class MensajeReclamoController {
 		model.addAttribute("MENSAJE", mensaje);
 		model.addAttribute("categorias", messageCategoryManager.listAll());
 		
-		
-		
 		 if (SessionUtil.isAdminUser()){
 			 model.addAttribute("integrantes", integratorManager.getIntegratorNames());
 			 return "mensajeReclamo";

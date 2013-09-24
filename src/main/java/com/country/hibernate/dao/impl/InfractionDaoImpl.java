@@ -1,6 +1,10 @@
 package com.country.hibernate.dao.impl;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDaoImpl;
 import com.country.hibernate.dao.InfractionDao;
@@ -17,5 +21,12 @@ public class InfractionDaoImpl extends GenericDaoImpl<Infraccion, Integer> imple
     public void update(Infraccion infraccion) {
     	  getSession().update(infraccion);
       }
+
+    @Transactional
+    public Integer getNumInfraccionesByUnidad(int idUnidad){
+        DetachedCriteria criteria = createDetachedCriteria();
+        criteria.add(Restrictions.eq("unidad.id", idUnidad));
+        return (Integer) criteria.getExecutableCriteria(getSession()).setProjection(Projections.rowCount()).uniqueResult();
+    }
 
 }

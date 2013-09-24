@@ -23,6 +23,7 @@ import com.country.services.InfractionManager;
 import com.country.services.LiquidationChargeManager;
 import com.country.services.PriceManager;
 import com.country.services.TypeInfractionManager;
+import com.country.session.SessionUsr;
 
 @Service("infractionManager")
 public class InfractionManagerImpl extends AbstractManagerImpl<Infraccion> implements InfractionManager{
@@ -124,4 +125,9 @@ public class InfractionManagerImpl extends AbstractManagerImpl<Infraccion> imple
 
 	}	
 
+	
+	public Integer getNumInfraccionesByUnidad(){
+		return infractionDao.getNumInfraccionesByUnidad(SessionUsr.User().getUnidad().getId());
+		
+	}
 }

@@ -62,6 +62,10 @@ public class HomeController {
 		UsuarioInfo usr = userManager.checkAvaiableUser(form);
 		
 		if (StringUtils.isBlank(usr.getErrorDescripcion())){
+			//Si el ErrorDescripcion esta vacio es que viene sin errores.
+
+			//Seteo la informacion del usuario
+			SessionUsr.setUser(usr);
 			if (SessionUtil.isEmployeePerson( usr.getTipoUsuario())){
 				SessionUsr.Aplicacion().setTipoAplicacion(Constants.TIPO_APLICACION_ADMIN);
 				return "index-admin";		

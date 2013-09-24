@@ -156,5 +156,13 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		}
 		return list;
 	}
+	
+	public int getEventCreatedByPerson(){
+		return eventDao.getEventCreatedByPerson(SessionUsr.User().getPersonaId(), DateUtil.getDateTodayDmyFormat());
+	}
+
+	public int getEventoInscriptoByIntegrante(){
+		return eventDao.getEventoInscriptoByIntegrante(SessionUsr.User().getIntegranteId(), DateUtil.getDateTodayDmyFormat());
+	}
 
 }

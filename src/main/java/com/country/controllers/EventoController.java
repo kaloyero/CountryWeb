@@ -70,7 +70,13 @@ public class EventoController {
 		
 		return showMainContent(model,request);
 	}
-	
+	@RequestMapping(value = "/eventozara",method = RequestMethod.GET)
+	public String getEventoUser(ModelMap model,HttpServletRequest request) {
+		System.out.println("Cantidad de eventos "+ eventManager.getEventCreatedByPerson());
+		System.out.println("Cantidad de eventos inscriptos"+ eventManager.getEventoInscriptoByIntegrante());
+		
+		return "";
+	}
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model,HttpServletRequest request) {

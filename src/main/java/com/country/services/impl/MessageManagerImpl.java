@@ -187,4 +187,11 @@ public class MessageManagerImpl extends AbstractManagerImpl<Mensaje> implements
 		return list;
 	}
 
+	public int getNumReclamosAbiertos(){
+		return messageDao.getNumReclamosByIntegrante(SessionUsr.User().getIntegranteId(),TipoMensajes.TYPE_MESSAGE_RECLAMO ,null, TipoMensajes.STATUS_INIT);
+	}
+	
+	public int getNumReclamosCerrados(){
+		return messageDao.getNumReclamosByIntegrante(SessionUsr.User().getIntegranteId(),TipoMensajes.TYPE_MESSAGE_RECLAMO, null, TipoMensajes.STATUS_CLOSE);
+	}	
 }

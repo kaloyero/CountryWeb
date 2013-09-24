@@ -11,4 +11,6 @@ public interface NotificationManager extends AbstractManager<Aviso>{
 	
 	public void update(AvisoForm form);
 	
+	public Integer getNumAvisosByPerson();
+	
 }

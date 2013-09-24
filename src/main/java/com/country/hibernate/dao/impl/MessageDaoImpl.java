@@ -2,7 +2,11 @@ package com.country.hibernate.dao.impl;
 
 import java.util.Date;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDaoImpl;
 import com.country.hibernate.dao.MessageDao;
@@ -33,4 +37,20 @@ public class MessageDaoImpl extends GenericDaoImpl<Mensaje, Integer> implements 
 		update(msj);
 	}
 
+    @Transactional
+    public int getNumReclamosByIntegrante(int idIntegrante, String tipoMensaje,
+			String envioPor, String estado) {
+    	
+        DetachedCriteria criteria = createDetachedCriteria();
+        criteria.add(Restrictions.eq("integrante.id", idIntegrante));
+        criteria.add(Restrictions.eq("tipoMensaje", tipoMensaje));
+        if (envioPor != null)
+        	criteria.add(Restrictions.eq("envio", envioPor));
+        if (estado != null)
+        	criteria.add(Restrictions.eq("estado", estado));
+        return (Integer) criteria.getExecutableCriteria(getSession()).setProjection(Projections.rowCount()).uniqueResult();
+    	
+    }
+
+	
 }

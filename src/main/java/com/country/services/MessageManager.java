@@ -19,4 +19,8 @@ public interface MessageManager extends AbstractManager<Mensaje>{
 
 	List<MensajeForm> listAllForms(String type);
 	
+	public int getNumReclamosAbiertos();
+	
+	public int getNumReclamosCerrados();
+	
 }

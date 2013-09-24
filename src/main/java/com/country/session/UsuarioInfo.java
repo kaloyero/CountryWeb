@@ -2,21 +2,30 @@ package com.country.session;
 
 import java.io.Serializable;
 
+import com.country.hibernate.model.Unidad;
+
 public class UsuarioInfo implements Serializable {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = 1L;
 
-	private int usuarioId=2;
-	private int personaId=2;
-	private int integranteId=2;
-	private int empleadoId=2;
+	private int usuarioId;
+	private int personaId;
+	private int integranteId;
+	private Unidad unidad;
+	private int empleadoId;
 	private String tipoUsuario;
 	private String nombreUsuario;
 	private String errorDescripcion;
 	
 	
 	
+	public Unidad getUnidad() {
+		return unidad;
+	}
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
 	public String getErrorDescripcion() {
 		return errorDescripcion;
 	}

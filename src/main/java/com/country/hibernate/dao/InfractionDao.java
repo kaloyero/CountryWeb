@@ -5,4 +5,5 @@ import com.country.hibernate.model.Infraccion;
 
 public interface InfractionDao extends GenericDao<Infraccion, Integer> {
 
+	public Integer getNumInfraccionesByUnidad(int idUnidad);
 }

@@ -96,6 +96,10 @@ public class DateUtil {
 		Date fecha = new Date();
 		return fecha;
 	}
+
+	public static Date getDateTodayDmyFormat (){
+		return  convertStringToDate(getStringToday());	
+	}
 	
     /**
      * Suma X horas a una fecha especifica

@@ -75,5 +75,8 @@ public class NotificationManagerImpl extends AbstractManagerImpl<Aviso> implemen
 		
 		getDao().update(dto);
 	}
-	
+
+    public Integer getNumAvisosByPerson(){
+    	return notificationDao.getNumAvisosByPerson(SessionUsr.User().getPersonaId(), DateUtil.getDateTodayDmyFormat());    	
+    }
 }

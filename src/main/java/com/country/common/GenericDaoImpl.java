@@ -31,6 +31,10 @@ public abstract class GenericDaoImpl<E, PK extends Serializable> implements Gene
     protected DetachedCriteria createDetachedCriteria() {
           return DetachedCriteria.forClass(getEntityClass());
     }
+
+    protected DetachedCriteria createDetachedCriteria(Class c) {
+        return DetachedCriteria.forClass(c);
+    }
     
     protected Session getSession(){
   	  return sessionFactory.getCurrentSession();

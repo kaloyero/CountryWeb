@@ -14,4 +14,19 @@ public interface EventManager extends AbstractManager<Evento>{
 	public void update(EventoForm form);
 
 	public List<EventoForm> listAllForms();
+	
+	
+	/**
+	 * Devuelve los eventos vigentes creados por la persona
+	 * 
+	 * @return
+	 */
+	public int getEventCreatedByPerson();
+	
+	/**
+	 * Devuelve la cantidad de eventos vigentes a los q se inscribio el usuario
+	 * 
+	 * @return
+	 */
+	public int getEventoInscriptoByIntegrante();
 }
