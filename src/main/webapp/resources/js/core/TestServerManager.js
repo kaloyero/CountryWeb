@@ -18,13 +18,13 @@ var ServerManager = new Class({
 
         
         this.services['recurso']={}
-        this.services['evento']["save"]="../evento/create/";
-        this.services['recursoReserva']["save"]="../recursoReserva/create/";
-        this.services['mensajeReclamo']["save"]="../mensajeReclamo/create/";
-        this.services['mensajeReclamo']["load"]="../mensajeReclamo/load/";
-        this.services['recurso']["load"]="../recurso/recursosParaReservar/load/";
-        this.services['eventoParticipar']["save"]="../eventoParticipar/create/";
-        this.services['actividadParticipar']["save"]="../actividadParticipar/create/";
+        this.services['evento']["save"]="/evento/create/";
+        this.services['recursoReserva']["save"]="/recursoReserva/create/";
+        this.services['mensajeReclamo']["save"]="/mensajeReclamo/create/";
+        this.services['mensajeReclamo']["load"]="/mensajeReclamo/load/";
+        this.services['recurso']["load"]="/recurso/recursosParaReservar/load/";
+        this.services['eventoParticipar']["save"]="/eventoParticipar/create/";
+        this.services['actividadParticipar']["save"]="/actividadParticipar/create/";
 
         this.services['aviso']["save"]="../aviso/create/";
         
@@ -56,7 +56,7 @@ var ServerManager = new Class({
     	var self=this;
     	$.ajax({
 			type: 'GET',
-			url: self.services[type]["save"],
+			url: "/CountryWeb/" +self.services[type]["save"],
 			success: function(data) {
 				
 				config.onSuccess(data);

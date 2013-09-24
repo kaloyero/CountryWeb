@@ -10,7 +10,7 @@ var DashBoardender = new Class({
     populateData: function(dataToAppend){
     	var me=this;
     
-    	$.get("../resources/static/templateDashboard.html", function (data) {
+    	$.get("resources/static/templateDashboard.html", function (data) {
     		$('body').append(data);
     		me.onFinishLoading(dataToAppend)
     	      
@@ -23,7 +23,7 @@ var DashBoardender = new Class({
     		console.log("DATa",coleccion[tipo])
     		templateManager.add(tipo,coleccion[tipo])
     	}
-    	jQuery(".corner-stamp").load('../resources/static/corner.html');
+    	jQuery(".corner-stamp").load('resources/static/corner.html');
 
     	createEffect(true);
 
