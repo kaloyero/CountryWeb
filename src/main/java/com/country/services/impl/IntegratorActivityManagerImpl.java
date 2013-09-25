@@ -17,6 +17,7 @@ import com.country.mappers.IntegranteActividadMapper;
 import com.country.services.ActivityManager;
 import com.country.services.IntegratorActivityManager;
 import com.country.services.IntegratorManager;
+import com.country.session.SessionUsr;
 
 @Service("integratorActivityManager")
 public class IntegratorActivityManagerImpl extends AbstractManagerImpl<IntegranteActividades> implements IntegratorActivityManager{
@@ -172,4 +173,14 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		return list;
 	}
 
+	public Integer getNumActividadInscriptoByIntegrator() {
+		return integratorActivityDao.getNumActividadInscriptoByIntegrator(SessionUsr.User().getIntegranteId());
+	}
+
+	public Integer getNumActividadInscriptoByUnidad() {
+		return integratorActivityDao.getNumActividadInscriptoByUnidad(SessionUsr.User().getUnidad().getId());
+	}
+
+	
+	
 }

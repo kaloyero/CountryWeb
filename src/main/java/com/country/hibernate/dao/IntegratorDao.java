@@ -1,5 +1,6 @@
 package com.country.hibernate.dao;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.country.common.GenericDao;
@@ -27,4 +28,29 @@ public interface IntegratorDao extends GenericDao<Integrante, Integer> {
 	 * @return
 	 */
 	List<Integrante> findAll(boolean active);
+	
+	
+	/**
+	 * Recupera los integrantes por unidad 
+	 * 
+	 * @param idUnit
+	 * @return
+	 */
+	List <Integrante> getIntegratorsByUnit(int idUnit);
+
+	/**
+	 * Recupera los ids de los integrantes por unidad 
+	 * 
+	 * @param idUnit
+	 * @return
+	 */	
+	Collection<Integer> getIntegratorsNumByUnit(int idUnit);
+
+	/**
+	 * Recupera los "ids persona" de los integrantes por unidad 
+	 * 
+	 * @param idUnit
+	 * @return
+	 */	
+	Collection<Integer> getIntegPersonNumByUnit(int idUnit);
 }

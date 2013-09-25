@@ -61,5 +61,18 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 	public Reserva findReserveByIdEvent(int event);
 	
 	public List<ReservaForm> listAllFormsComplete();
+
+	/**
+	 * Devuelve la cantidad de reservas vigentes que tiene el integrante
+	 * 
+	 * @return
+	 */
+	public Integer getReserveNumByPerson();
 	
+	/**
+	 * Devuelve la cantidad de reservas vigentes que tiene la unidad
+	 * 
+	 * @return
+	 */
+	public Integer getReserveNumByUnit();
 }

@@ -67,4 +67,20 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	 */
 	public List<IntegranteActividadForm> listAllFormsComplete(); 
 	
+	/**
+	 * Devuelve la cantidad de actividades a la que esta inscripto el integrante
+	 * 
+	 * @return
+	 */
+	Integer getNumActividadInscriptoByIntegrator ();
+	
+	/**
+	 * Devuelve la cantidad de actividades a la que esta inscripto la unidad
+	 * 
+	 * @param activityId
+	 * @param unidadId
+	 * @return
+	 */
+	Integer getNumActividadInscriptoByUnidad ();
+	
 }

@@ -43,8 +43,7 @@ public class UnitManagerImpl extends AbstractManagerImpl<Unidad> implements Unit
 	}
 	
 	public List<Integrante> getIntegrators(Integer id) {
-		List <Integrante> integrators = integratorDao.findAllByProperty("unidad.id", id);
-		return integrators;
+		return integratorDao.getIntegratorsByUnit(id);
 	}
 
 	

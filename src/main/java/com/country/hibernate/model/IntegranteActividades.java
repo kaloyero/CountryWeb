@@ -73,5 +73,7 @@ public class IntegranteActividades implements Serializable {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
+
+
 	
 }

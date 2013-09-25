@@ -14,5 +14,7 @@ public interface InfractionManager extends AbstractManager<Infraccion>{
 	void update(InfraccionForm form);
 	
 	public List<InfraccionForm> listAllForms();
+	
+	Integer getNumInfraccionesByUnidad();
 
 }

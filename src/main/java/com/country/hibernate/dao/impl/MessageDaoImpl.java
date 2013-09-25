@@ -43,7 +43,7 @@ public class MessageDaoImpl extends GenericDaoImpl<Mensaje, Integer> implements 
     	
         DetachedCriteria criteria = createDetachedCriteria();
         criteria.add(Restrictions.eq("integrante.id", idIntegrante));
-        criteria.add(Restrictions.eq("tipoMensaje", tipoMensaje));
+        criteria.add(Restrictions.eq("tipo", tipoMensaje));
         if (envioPor != null)
         	criteria.add(Restrictions.eq("envio", envioPor));
         if (estado != null)

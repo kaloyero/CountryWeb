@@ -16,7 +16,22 @@ public interface ReserveDao extends GenericDao<Reserva, Integer> {
 	 * @param horaIni
 	 * @return
 	 */
-	public Reserva findResourceAfterBefore(boolean AfterBefore,Integer resource, Date fecha, int horaIni);
+	Reserva findResourceAfterBefore(boolean AfterBefore,Integer resource, Date fecha, int horaIni);
 
+	/**
+	 * Devuelve el numero de reservas vigentes por Persona
+	 * @param idPerson
+	 * @param date 
+	 * @return
+	 */
+	Integer getReserveNumByPerson(int idPerson, Date date);
 	
+	
+	/**
+	 * Devuelve el numero de reservas vigentes por Unidad
+	 * @param idUnit
+	 * @param date 
+	 * @return
+	 */
+	Integer getReserveNumByUnit(int idUnit, Date date);
 }

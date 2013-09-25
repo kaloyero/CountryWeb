@@ -19,7 +19,6 @@ public class UsuarioInfo implements Serializable {
 	private String errorDescripcion;
 	
 	
-	
 	public Unidad getUnidad() {
 		return unidad;
 	}

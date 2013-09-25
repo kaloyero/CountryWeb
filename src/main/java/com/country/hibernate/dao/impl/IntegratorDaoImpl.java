@@ -1,10 +1,13 @@
 package com.country.hibernate.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +16,6 @@ import com.country.common.Constants;
 import com.country.common.GenericDaoImpl;
 import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.model.Integrante;
-import com.country.hibernate.model.Persona;
 
 @Repository("integratorDao")
 public class IntegratorDaoImpl extends GenericDaoImpl<Integrante, Integer> implements IntegratorDao{
@@ -66,5 +68,33 @@ public class IntegratorDaoImpl extends GenericDaoImpl<Integrante, Integer> imple
 		
 		return ((List<Integrante>) criteria.list());
     }
+    
+    @Transactional
+    public List <Integrante> getIntegratorsByUnit(int idUnit){
+        return findAllByProperty("unidad.id", idUnit);
+    }
 
+    @SuppressWarnings("unchecked")
+	@Transactional
+    public Collection<Integer> getIntegratorsNumByUnit(int idUnit){
+        DetachedCriteria criteria = createDetachedCriteria();
+        criteria.setProjection(Projections.property("id"));
+        criteria.add(Restrictions.eq("unidad.id", idUnit));
+        return (Collection<Integer>) criteria.getExecutableCriteria(getSession()).list();
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Transactional
+    public Collection<Integer> getIntegPersonNumByUnit(int idUnit){
+    	Collection<Integer> list = new ArrayList<Integer>();
+        DetachedCriteria criteria = createDetachedCriteria();
+        criteria.setProjection(Projections.property("persona.id"));
+        criteria.add(Restrictions.eq("unidad.id", idUnit));
+        list = (Collection<Integer>) criteria.getExecutableCriteria(getSession()).list();
+		if (list.size() == 0){
+			list.add(0);
+		}
+		return list;        
+
+    }
 }

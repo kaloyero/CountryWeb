@@ -24,7 +24,12 @@ import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
+import com.country.services.InfractionManager;
+import com.country.services.IntegratorActivityManager;
 import com.country.services.IntegratorManager;
+import com.country.services.MessageManager;
+import com.country.services.NotificationManager;
+import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
 
 /**
@@ -42,6 +47,22 @@ public class EventoController {
 	private ResourceManager recursoManager;
 	@Autowired
 	private EventIntegratorManager eventIntegratorManager;
+	
+	//TODO borarr solo para prueba
+	@Autowired
+	private IntegratorActivityManager integratorActivityManager;
+	@Autowired
+	private ReserveManager reserveManager;
+	@Autowired
+	private MessageManager messageManager;
+	@Autowired
+	private InfractionManager infractionManager;
+	@Autowired
+	private NotificationManager notificationManager;
+	
+	
+	
+	
 
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showMainContent(ModelMap model,HttpServletRequest request) {
@@ -73,8 +94,16 @@ public class EventoController {
 	@RequestMapping(value = "/eventozara",method = RequestMethod.GET)
 	public String getEventoUser(ModelMap model,HttpServletRequest request) {
 		System.out.println("Cantidad de eventos "+ eventManager.getEventCreatedByPerson());
-		System.out.println("Cantidad de eventos inscriptos"+ eventManager.getEventoInscriptoByIntegrante());
-		
+		System.out.println("Cantidad de eventos inscriptos "+ eventManager.getEventoInscriptoByIntegrante());
+//		System.out.println("Cantidad de Actividades Inscriptas por integrante "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
+//		System.out.println("Cantidad de Actividades Inscriptas por Unidad "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
+		System.out.println("Cantidad de Reservas por Integrante "+ reserveManager.getReserveNumByPerson());
+		System.out.println("Cantidad de Reservas por unidad"+ reserveManager.getReserveNumByUnit());
+		System.out.println("Cantidad de Reclamos abiertos "+ messageManager.getNumReclamosAbiertos());
+		System.out.println("Cantidad de reclamos cerrados"+ messageManager.getNumReclamosCerrados());
+		System.out.println("Cantidad de Infracciones por unidad"+ infractionManager.getNumInfraccionesByUnidad());
+		System.out.println("Cantidad de Avisos "+ notificationManager.getNumAvisosByPerson());
+
 		return "";
 	}
 	

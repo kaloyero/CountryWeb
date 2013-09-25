@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.country.form.EventoIntegranteForm;
 import com.country.form.IntegranteActividadForm;
-import com.country.mappers.EventoIntegranteMapper;
-import com.country.services.EventIntegratorManager;
 import com.country.services.IntegratorActivityManager;
-import com.country.session.SessionData;
+import com.country.session.SessionUsr;
 
 /**
  * Handles requests for the application home page.
@@ -33,7 +30,7 @@ public class ActividadParticipanteController {
 			IntegranteActividadForm form
 			) throws ParseException {
 		
-		form.setIntegranteId(SessionData.getIntegranteId());
+		form.setIntegranteId(SessionUsr.User().getIntegranteId());
 		integratorActivityManager.inscribirse(form);
 		return "success";
 

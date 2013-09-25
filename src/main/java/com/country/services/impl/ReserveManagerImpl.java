@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.DateUtil;
 import com.country.common.GenericDao;
 import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
@@ -161,5 +162,13 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	public Reserva findReserveByIdEvent(int event) {
 			
 		return reserveDao.findEntityByProperty("evento", event);	
+	}
+
+	public Integer getReserveNumByPerson() {
+		return reserveDao.getReserveNumByPerson(SessionUsr.User().getPersonaId(), DateUtil.getDateTodayDmyFormat());
+	}
+
+	public Integer getReserveNumByUnit() {
+		return reserveDao.getReserveNumByUnit(SessionUsr.User().getUnidad().getId(), DateUtil.getDateTodayDmyFormat());
 	}
 }

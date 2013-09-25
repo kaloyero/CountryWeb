@@ -3,17 +3,25 @@ package com.country.hibernate.dao.impl;
 import java.util.Date;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDaoImpl;
+import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.dao.ReserveDao;
 import com.country.hibernate.model.Reserva;
 
 @Repository("reserveDao")
 public class ReserveDaoImpl extends GenericDaoImpl<Reserva, Integer> implements ReserveDao{
 
+	@Autowired
+	private IntegratorDao integratorDao;
+	
 	@Override
 	protected Class<Reserva> getEntityClass() {
 		return Reserva.class;
@@ -44,6 +52,23 @@ public class ReserveDaoImpl extends GenericDaoImpl<Reserva, Integer> implements 
 		 
 		return (Reserva) criteria.uniqueResult();
 
+	}
+
+	@Transactional
+	public Integer getReserveNumByPerson(int idPerson, Date date) {
+	        DetachedCriteria criteria = createDetachedCriteria();
+	        criteria.add(Restrictions.eq("persona", idPerson));
+	        criteria.add(Restrictions.ge("fecha", date));
+	        return (Integer) criteria.getExecutableCriteria(getSession()).setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	@Transactional
+	public Integer getReserveNumByUnit(int idUnit, Date date) {
+		//TODO rehacer query. Refactorizar el IN
+        DetachedCriteria criteria = createDetachedCriteria();
+	    criteria.add(Restrictions.in("persona", integratorDao.getIntegPersonNumByUnit(idUnit)));
+	    criteria.add(Restrictions.ge("fecha", date));
+	  	return (Integer) criteria.getExecutableCriteria(getSession()).setProjection(Projections.rowCount()).uniqueResult();	
 	}
 
 
