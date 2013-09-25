@@ -28,6 +28,7 @@ public class SessionUsr {
 		   	usuarioInfo.setPersonaId(usr.getPersonaId());
 		   	usuarioInfo.setTipoUsuario(usr.getTipoUsuario());
 		   	usuarioInfo.setUsuarioId(usr.getUsuarioId());
+		   	usuarioInfo.setUnidad(usr.getUnidad());
 	   }
 
 	}
