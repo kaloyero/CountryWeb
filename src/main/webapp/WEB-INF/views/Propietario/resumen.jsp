@@ -63,21 +63,26 @@
 	<b><p>Datos de tu ultimo Mes:</p></b>
 
 	<i><font size="4"color="blue"><p>Eventos:</p></font></i>
-	<p>Has creado *  ,te has anotado a * ,y se han unido un total de * a tus eventos.</p>
+	<p>Has creado <a style="font-weight:bold;" href="#">${resumen.eventosActivosTotal}</a> ,te has anotado a <a style="font-weight:bold;" href="#">${resumen.eventosInscriptosTotal}</a>.</p>
 	<p>La popularidad de los eventos que has creado es (alta-baja-media)</p>
 	
 	<i><font size="4" color="blue"><p>Actividades:</p></font></i>
 	<p>Estas inscripto en * actividades.Contabilizando tu unidad ,estan inscriptos en * actividades</p>
 	<p>El pago total de estas es de *</p>
 	<i><font size="4" color="blue"><p>Reclamos:</p></font></i>
-	<p>Tenes * reclamos abiertos.Se han cerrado con solucion * reclamos.La popularidad de los mismos es (baja-media-alta)</p>
+	<p>Tenes <a style="font-weight:bold;" href="#">${resumen.reclamosAbiertosTotal}</a> reclamos abiertos.Se han cerrado con solucion <a style="font-weight:bold;" href="#">${resumen.reclamosCerradosTotal} </a>reclamos.La popularidad de los mismos es (baja-media-alta)</p>
 	<b><font size="4" color="red"><p>Infracciones:</p></font></b>
-	<p>No tenes asociadas infracciones(contabilizando la unidad)</p>
+	<c:if test="${resumen.infraccionesUnidadTotal == 0}">
+		No tenes asociadas infracciones(contabilizando la unidad)</p>
+	</c:if>
+	<c:if test="${resumen.infraccionesUnidadTotal > 0}">
+		Tenes asociadass <a style="font-weight:bold;" href="#">${resumen.infraccionesUnidadTotal} </a> infracciones(contabilizando la unidad)</p>
+	</c:if>
 	<i><font size="4" color="blue"><p>Clasificados:</p></font></i>
-	<p>Tenes en venta * articulos.</p>
-	<p>Haz sacado de publicacion * articulos</p>
+	<p>Tenes en venta <a style="font-weight:bold;" href="#">${resumen.avisosTotal}</a> articulos.</p>
+	<p>Haz vendido * articulos(?Sirve?)</p>
 	<i><font size="4" color="blue"><p>Recursos:</p></font></i>
-	<p>Actualmente tenes * recursos con reserva abierta</p>
+	<p>Actualmente tenes <a style="font-weight:bold;" href="#">${resumen.reservasAbiertasTotal} </a> recursos con reserva abierta</p>
 	<p>El pago total de los recursos del periodo (contabilizando la unidad)es de *</p>
 	<p>Basandonos en tu participacion y en las de los demas relacionado a lo que publicas,tu reputacion dentro del lugar es : (Alta-Media-Baja)</p>
 	
