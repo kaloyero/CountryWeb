@@ -11,7 +11,8 @@ var InfraccionRender = new Class({
     	console.log($("#categorias").get(0));
     	console.log($("#categorias"));
     	
-    	myArray[ 0 ] = "120.0";
+    	myArray[ -1 ] = "0";
+    	myArray[ 0 ] = "1200";
     	myArray[ 4 ] = "150";
     	myArray[ 5 ] = "200";
     	

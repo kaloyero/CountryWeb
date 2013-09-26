@@ -59,9 +59,7 @@ public class EventoController {
 	private InfractionManager infractionManager;
 	@Autowired
 	private NotificationManager notificationManager;
-	
-	
-	
+
 	
 
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
@@ -103,7 +101,7 @@ public class EventoController {
 		System.out.println("Cantidad de reclamos cerrados"+ messageManager.getNumReclamosCerrados());
 		System.out.println("Cantidad de Infracciones por unidad"+ infractionManager.getNumInfraccionesByUnidad());
 		System.out.println("Cantidad de Avisos "+ notificationManager.getNumAvisosByPerson());
-
+		
 		return "";
 	}
 	

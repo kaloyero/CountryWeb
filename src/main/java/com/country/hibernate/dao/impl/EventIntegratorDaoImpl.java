@@ -3,6 +3,7 @@ package com.country.hibernate.dao.impl;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.country.common.GenericDaoImpl;
 import com.country.hibernate.dao.EventIntegratorDao;
@@ -23,6 +24,12 @@ public class EventIntegratorDaoImpl extends GenericDaoImpl<EventoIntegrante, Int
  
       return (EventoIntegrante) criteria.uniqueResult();
 		
+		
+	}
+
+	@Transactional
+	public void desinscribirIntegranteDeEvento(int idIntegrante, int idEvento) {
+	  	  getSession().createQuery("delete from EventoIntegrante where evento="+idEvento+" and integrante="+idIntegrante).executeUpdate();
 		
 	}
 

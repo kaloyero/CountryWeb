@@ -25,6 +25,9 @@ public class IntegranteActividades implements Serializable {
 	@Column(name = "IdIntegrante")
 	private  int integrante;
 	
+	@Column(name = "IdActividad",updatable=false)
+	private  int  actividad;
+	
 	@Column(name = "IdCronograma")
 	private  int  cronograma;
 		
@@ -40,6 +43,14 @@ public class IntegranteActividades implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getActividad() {
+		return actividad;
+	}
+
+	public void setActividad(int actividad) {
+		this.actividad = actividad;
 	}
 
 	public int getIntegrante() {

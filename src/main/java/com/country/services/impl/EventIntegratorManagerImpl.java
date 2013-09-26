@@ -78,10 +78,8 @@ public class EventIntegratorManagerImpl extends AbstractManagerImpl<EventoIntegr
 
 	@Transactional
 	public boolean desinscribirseEvento(int evento, int integrante) {
-		boolean desinscripcion = false;
-		
-		//TODO hacer que borre la inscripcion
-		
+		boolean desinscripcion = true;
+		eventIntegratorDao.desinscribirIntegranteDeEvento(integrante, evento);
 		return desinscripcion;
 	}
 	
