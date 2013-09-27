@@ -16,23 +16,40 @@
 		<div class="_50">
 			<p>
 				<label for="textfield">El dÃ­a: </label>
-				<form:input path="fecha" class="required datepicker" />
+				<c:if test="${INFRACCION.id == 0}">
+					<form:input path="fecha" class="required datepicker" />
+				</c:if>
+				<c:if test="${INFRACCION.id != 0}">
+					<form:input path="fecha"  readonly="true"/>
+				</c:if>				
+				
 			</p>
 		</div>
 
 		<div class="_50">
 			<p>
 				<label for="textfield">Infraccion: </label>
-				<form:select path="tipoInfraccion.id" multiple="false" id="infraccionSelect" > 
-					<form:options items="${categorias}" itemValue="id"
-						itemLabel="nombre" /> 
-				</form:select> 		
+				<c:if test="${INFRACCION.id == 0}">
+					<form:select path="tipoInfraccion.id" multiple="false" id="infraccionSelect" > 
+						<form:option value="-1">Seleccione una Infracción</form:option>
+						<form:options items="${categorias}" itemValue="id"
+							itemLabel="nombre" /> 
+					</form:select> 		
+				</c:if>
+				<c:if test="${INFRACCION.id != 0}">
+					<form:input path="tipoInfraccion.concepto.nombre"  readonly="true"/>
+				</c:if>								
 			</p>
 		</div>
 		<div class="_50">
 			<p>
 				<label for="textfield">Importe: </label>
-				<form:input path="importe" class="required" id="importeBox"/>
+				<c:if test="${INFRACCION.id == 0}">
+					<form:input path="importe" class="required" id="importeBox"/>
+				</c:if>
+				<c:if test="${INFRACCION.id != 0}">
+					<form:input path="importe"  readonly="true"/>
+				</c:if>
 			</p>
 		</div>
 
@@ -45,10 +62,16 @@
 		<div class="_50">
 			<p>
 				<label for="textfield">Unidad: </label>
-				<form:select path="unidadId" multiple="false" > 
-					<form:options items="${unidades}" itemValue="id"
-						itemLabel="code" /> 
-				</form:select> 		
+				<c:if test="${INFRACCION.id == 0}">
+					<form:select path="unidadId" multiple="false" > 
+						<form:options items="${unidades}" itemValue="id"
+							itemLabel="code" /> 
+					</form:select> 		
+				</c:if>
+				<c:if test="${INFRACCION.id != 0}">
+					<form:input path="unidadDesc"  readonly="true"/>				
+				</c:if>
+				
 			</p>
 		</div>
 		<div class="_25">

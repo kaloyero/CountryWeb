@@ -23,5 +23,20 @@ public interface IntegratorActivityDao extends GenericDao<IntegranteActividades,
 	 */
 	Integer getNumActividadInscriptoByUnidad (int unidadId);
 
+	/**
+	 * Este metodo borra al integrante de un cronograma
+	 * 
+	 * @param idIntegrante
+	 * @param idCronograma
+	 */
+	void desinscribirIntegranteDeCronograma(int idIntegrante, int idCronograma);
+	
+	/**
+	 * Este metodo borra al integrante de la actividad
+	 * 
+	 * @param idIntegrante
+	 * @param idActividad
+	 */
+	void desinscribirIntegranteDeActividad(int idIntegrante, int idActividad);
 	
 }

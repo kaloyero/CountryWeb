@@ -57,5 +57,13 @@ public class IntegratorActivityDaoImpl extends GenericDaoImpl<IntegranteActivida
 	  	  return (Integer) criteria.getExecutableCriteria(getSession()).setProjection(Projections.rowCount()).uniqueResult();
 	}
 
+	@Transactional
+	public void desinscribirIntegranteDeCronograma(int idIntegrante, int idCronograma) {
+	  	  getSession().createQuery("delete from IntegranteActividades where cronograma="+idCronograma+" and integrante="+idIntegrante).executeUpdate();
+	}
 
+	@Transactional
+	public void desinscribirIntegranteDeActividad(int idIntegrante,int idActividad) {
+	  	  getSession().createQuery("delete from IntegranteActividades where actividad="+idActividad+" and integrante="+idIntegrante).executeUpdate();	
+	}
 }

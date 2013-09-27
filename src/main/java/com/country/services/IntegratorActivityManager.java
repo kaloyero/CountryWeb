@@ -34,7 +34,7 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	 * @param fechaIni
 	 * @param fechaFin
 	 */
-	void inscribirse(int integrante,int actividad,String fechaIni,String fechaFin);
+	public void inscribirse(int integrante, int actividad, int cronograma, String fechaIni,String fechaFin);
 	
 	/**
 	 * Inscribir el integrante a una actividad
@@ -43,6 +43,22 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	 */
 	void inscribirse(IntegranteActividadForm form);
 
+	/**
+	 * desInscribe al integrante de una actividad y sus cronogramas
+	 * 
+	 * @param actividad
+	 * @param integrante
+	 */
+	public void desinscribirseActividad(int actividad, int integrante); 
+	
+	/**
+	 * desInscribe al integrante de un cronograma
+	 * 
+	 * @param cronograma
+	 * @param integrante
+	 */
+	public void desinscribirseCronograma(int cronograma, int integrante);
+	
 	void update(IntegranteActividadForm form);
 	
 	public List<IntegranteForm> findAllIntegrantorFormByActivityId(Integer id);
@@ -82,5 +98,7 @@ public interface IntegratorActivityManager extends AbstractManager<IntegranteAct
 	 * @return
 	 */
 	Integer getNumActividadInscriptoByUnidad ();
+
+	
 	
 }

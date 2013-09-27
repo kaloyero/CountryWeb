@@ -115,17 +115,18 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 	}
 
 	@Transactional
-	public void inscribirse(int integrante, int actividad, String fechaIni,
+	public void inscribirse(int integrante, int actividad, int cronograma, String fechaIni,
 			String fechaFin) {
 
 		
 		IntegranteActividadForm form = new IntegranteActividadForm();
-		form.setCronogramaId(actividad);
+		form.setCronogramaId(cronograma);
 		form.setIntegranteId(integrante);
 		form.setFechaIni(fechaIni);
 		form.setFechaFin(fechaFin);
+		form.setActividadId(actividad);
 		
-			inscribirse(form);	
+		inscribirse(form);	
 		
 	}
 
@@ -141,6 +142,17 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		
 	}
 
+	@Transactional
+	public void desinscribirseActividad(int actividad, int integrante) {
+		integratorActivityDao.desinscribirIntegranteDeActividad(integrante, actividad);	
+	}
+	
+	@Transactional
+	public void desinscribirseCronograma(int cronograma, int integrante) {
+		integratorActivityDao.desinscribirIntegranteDeCronograma(integrante, cronograma);
+	}
+
+	
 	@Transactional
 	public boolean esUsuarioInscripto(int actividad, int integrante) {
 		boolean inscripto = true;
@@ -173,14 +185,14 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 		return list;
 	}
 
+	@Transactional
 	public Integer getNumActividadInscriptoByIntegrator() {
 		return integratorActivityDao.getNumActividadInscriptoByIntegrator(SessionUsr.User().getIntegranteId());
 	}
 
+	@Transactional
 	public Integer getNumActividadInscriptoByUnidad() {
 		return integratorActivityDao.getNumActividadInscriptoByUnidad(SessionUsr.User().getUnidad().getId());
 	}
 
-	
-	
 }

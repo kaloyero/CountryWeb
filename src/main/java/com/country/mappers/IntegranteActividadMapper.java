@@ -13,6 +13,7 @@ public class IntegranteActividadMapper {
 		IntegranteActividades dto = new IntegranteActividades();
 		dto.setId(form.getId());
 		dto.setCronograma(form.getCronogramaId());
+		dto.setActividad(form.getActividad().getId());
 		dto.setIntegrante(form.getIntegranteId());
 		dto.setFechaComienzo(DateUtil.convertStringToDate((form.getFechaIni())));
 		dto.setFechaFin(DateUtil.convertStringToDate((form.getFechaFin())));
@@ -26,6 +27,7 @@ public class IntegranteActividadMapper {
 				IntegranteActividadForm form =new IntegranteActividadForm();
 				form.setId(dto.getId());
 				form.setCronogramaId(dto.getCronograma());
+				form.setActividadId(dto.getActividad());
 				form.setIntegranteId (dto.getIntegrante());
 				form.setFechaIni(DateUtil.convertDateToString(dto.getFechaComienzo()));
 				form.setFechaFin(DateUtil.convertDateToString(dto.getFechaFin()));
