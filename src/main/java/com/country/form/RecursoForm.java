@@ -16,6 +16,7 @@ public class RecursoForm extends Form  {
 	private Integer maxTiempoReserva;
 	private List< Map<Integer, Integer>> reservas = new ArrayList();
 	private String disponibilidades="";
+	private String disponibilidadesDivididas="";
 	private int tipoRecurso ;
 	private String tipoRecursoDesc ;
 	
@@ -84,6 +85,12 @@ public class RecursoForm extends Form  {
 	}
 	public void setIdConcepto(int idConcepto) {
 		this.idConcepto = idConcepto;
+	}
+	public String getDisponibilidadesDivididas() {
+		return disponibilidadesDivididas;
+	}
+	public void setDisponibilidadesDivididas(String disponibilidadesDivididas) {
+		this.disponibilidadesDivididas = disponibilidadesDivididas;
 	}
 
 }

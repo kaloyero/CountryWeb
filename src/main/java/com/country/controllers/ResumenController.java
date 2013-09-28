@@ -14,6 +14,7 @@ import com.country.services.ActivityManager;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.InfractionManager;
+import com.country.services.IntegratorActivityManager;
 import com.country.services.MessageManager;
 import com.country.services.NotificationManager;
 import com.country.services.ReserveManager;
@@ -28,7 +29,7 @@ public class ResumenController {
 	@Autowired
 	private EventManager eventManager;
 	@Autowired
-	private ActivityManager activityManager;
+	private IntegratorActivityManager integranteActivityManager;
 	@Autowired
 	private MessageManager messageManager;
 	@Autowired
@@ -50,7 +51,9 @@ public class ResumenController {
 				messageManager.getNumReclamosAbiertos(),
 				messageManager.getNumReclamosCerrados(),
 				infractionManager.getNumInfraccionesByUnidad(),
-				notificationManager.getNumAvisosByPerson());
+				notificationManager.getNumAvisosByPerson(),
+				integranteActivityManager.getNumActividadInscriptoByIntegrator(),
+				integranteActivityManager.getNumActividadInscriptoByUnidad());
 		model.addAttribute("resumen", resumenForm);
 		return "Propietario/resumen";
 	}

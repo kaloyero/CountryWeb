@@ -2,7 +2,7 @@
 <div class="btn-toggle sidebar-toggle">
 	<span>&nbsp;</span><strong>Sidebar</strong>
 </div>
-<div class="inner sidebar-inner clearfix"
+<div class=""
 	style="height: 468px; overflow: hidden;">
 	<div class="sidebar-inner-scrollblock"
 		style="transition: 0ms; -webkit-transition: 0ms; -webkit-transform-origin: 0px 0px; position: absolute; top: 0px; left: 0px; font-size: 12px;">
@@ -49,7 +49,6 @@
 						<li class="item-502"><a class="option" id="ideas"href="#">Ideas</a></li>
 						<li class="item-503"><a class="option" id="evento_lista">Eventos</a></li>
 						<li class="item-579"><a class="option" id="aviso">Clasificados</a></li>
-						<li class="item-598"><a class="option" id="recomendaciones" href="#">Recomendaciones</a></li>
 						<li class="item-598"><a class="option" id="recomendaciones" href="#">Servicios cerca</a></li>
 						<li class="item-560"><a class="option" id="mensajeReclamo_lista" >Reclamos</a></li>
 					</ul>
@@ -87,7 +86,13 @@
 						</li>
 						<li>
 							<h4>
-								<a href="#">+ Sugerir Idea</a>
+								<a class="optionNew" id="aviso_propietario_nuevo">+ Acceso</a>
+							</h4>
+
+						</li>
+						<li>
+							<h4>
+								<a href="#">+ Idea</a>
 							</h4>
 
 						</li>

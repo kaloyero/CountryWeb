@@ -70,7 +70,7 @@ var ServerManager = new Class({
     	var self=this;
     	$.ajax({
 			type: 'GET',
-			url: self.services[type]["load"]+config.objectId,
+			url: "/CountryWeb/" +self.services[type]["load"]+config.objectId,
 			success: function(data) {
 				
 				config.onSuccess(data);
@@ -101,7 +101,7 @@ var ServerManager = new Class({
     	var self=this;
     	$.ajax( {
 		      type: "POST",
-		      url: self.services[config.object]["save"],
+		      url: "/CountryWeb/" +self.services[config.object]["save"],
 		      data: transformedData,
 		      success: function(data) {
 		    	  config.onSuccess(data);
@@ -113,7 +113,7 @@ var ServerManager = new Class({
     	$.ajax( {
 		      type: "POST",
 		     // dataType: 'json', 
-		      url: self.services[config.object]["save"],
+		      url: "/CountryWeb/" +self.services[config.object]["save"],
 		      data: JSON.stringify(config.data),
 		      contentType: 'application/json',
 		      //mimeType: 'application/json',

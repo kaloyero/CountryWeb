@@ -75,14 +75,15 @@ public class RecursoMapper {
 		form.setTipoRecurso(recurso.getTipoRecurso().getId());
 		form.setTipoRecursoDesc(recurso.getTipoRecurso().getNombre());
 		form.setMaxTiempoReserva(recurso.getMaxTiempoReserv());
-
+		form.setDisponibilidadesDivididas(getDisponibilidadesDivididas(listDispoRec));
 		form.setDisponibilidades(getDisponibilidades(listDispoRec));
 	
 	
 		return form;
 	}
-	
-	public static String getDisponibilidades (List<RecursoDisponibilidad> disponibilidades){
+	//Devuelve las disponibilidades con division por hora TODO deberia dividirlo por algun parametro que haya elegido el admin en el tipo de recurso
+
+	public static String getDisponibilidadesDivididas (List<RecursoDisponibilidad> disponibilidades){
 		JSONArray raizDisponibilidades = new JSONArray();
 		if (disponibilidades!=null)
 			for (RecursoDisponibilidad disponibilidad :disponibilidades) {
@@ -96,30 +97,6 @@ public class RecursoMapper {
 				}
 				
 			}
-		
-		
-		
-//		
-//		JSONObject obj=new JSONObject();
-//		  obj.put("name","foo");
-//		  obj.put("num",new Integer(100));
-//		  obj.put("balance",new Double(1000.21));
-//		  obj.put("is_vip",new Boolean(true));
-//		  obj.put("nickname",null);
-//		  JSONObject obj2=new JSONObject();
-//		  obj2.put("name","foo");
-//		  obj2.put("num",new Integer(100));
-//		  obj2.put("balance",new Double(1000.21));
-//		  obj2.put("is_vip",new Boolean(true));
-//		  obj2.put("nickname",null);
-//		  
-//		  JSONArray users = new JSONArray();
-//		  users.add(obj);
-//		  users.add(obj2);
-		  
-		  
-		  
-		  
 		  StringWriter out = new StringWriter();
 		  try {
 			  raizDisponibilidades.writeJSONString(out);
@@ -129,6 +106,29 @@ public class RecursoMapper {
 		}
 		  return  out.toString();
 		
+	}
+	//Devuelve las disponibilidades sin division
+	public static String getDisponibilidades (List<RecursoDisponibilidad> disponibilidades){
+		JSONArray raizDisponibilidades = new JSONArray();
+		if (disponibilidades!=null)
+			for (RecursoDisponibilidad disponibilidad :disponibilidades) {
+				JSONObject nodoDisp=new JSONObject();
+				nodoDisp.put("dia",disponibilidad.getDiaSemana());
+				nodoDisp.put("horaIni",disponibilidad.getHoraIni());
+				nodoDisp.put("horaFin",disponibilidad.getHoraFin());
+				raizDisponibilidades.add(nodoDisp);
+			}
+
+
+		  StringWriter out = new StringWriter();
+		  try {
+			  raizDisponibilidades.writeJSONString(out);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  return  out.toString();
+
 	}
 	
 

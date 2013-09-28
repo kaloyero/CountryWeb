@@ -43,7 +43,7 @@ var RecursoReservaRender = new Class(
 			},
 			load : function(data) {
 				this.addSpecificHtml(data);
-				this.setDisponibilidades(data.disponibilidades);
+				this.setDisponibilidades(data.disponibilidadesDivididas);
 				this.events = null;
 				this.eventosDisponiblesAEliminar=new Array();
 				this.getCalendarPlaceHolder().fullCalendar( 'refetchEvents' );
