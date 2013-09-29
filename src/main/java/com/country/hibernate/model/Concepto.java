@@ -19,6 +19,12 @@ public class Concepto implements Serializable {
 
 	public Concepto() {
 	}
+	public Concepto(int id) {
+		super();
+		this.id = id;
+	}
+
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

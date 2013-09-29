@@ -4,6 +4,7 @@ import com.country.common.DateUtil;
 import com.country.common.MapperUtil;
 import com.country.form.EventoForm;
 import com.country.form.Form;
+import com.country.form.ReservaForm;
 import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Persona;
 import com.country.hibernate.model.Reserva;
@@ -49,7 +50,7 @@ public class EventoMapper {
 		form.setFecha(DateUtil.convertDateToString(evento.getFecha()));
 		form.setDuracion(evento.getDuracion());
 		form.setHourIni(DateUtil.setHourInfForm((evento.getHourIni())));
-		form.setHourIni(DateUtil.setMinutesInfForm((evento.getHourIni())));
+		form.setMinutesIni(DateUtil.setMinutesInfForm((evento.getHourIni())));
 		form.setId(evento.getId());
 		form.setNombre(evento.getNombre());
 		form.setPersona(PersonaMapper.getForm(evento.getPersona(), null, null));
@@ -59,8 +60,14 @@ public class EventoMapper {
 		form.setPersonaId(evento.getPersona().getId());
 		form.setEnvioAdm(MapperUtil.getStatusUserForm(evento.getPersona().getTipo()));
 		if (reserva != null){
-			form.setRecurso(reserva.getRecurso());
-			form.setReservaId(reserva.getId());
+			ReservaForm reservaform = new ReservaForm();
+			reservaform.setId(reserva.getId());
+			reservaform.setRecursoId(reserva.getRecurso());
+			reservaform.setFecha(DateUtil.convertDateToString(reserva.getFecha()));
+			reservaform.setDuracion(reserva.getDuracion());
+			reservaform.setHoraIni(DateUtil.setHourInfForm((reserva.getHoraIni())));
+			reservaform.setMinutosIni(DateUtil.setMinutesInfForm((reserva.getHoraIni())));
+			form.setReserva(reservaform);
 		}
 		
 		return form;

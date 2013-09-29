@@ -93,8 +93,8 @@ public class EventoController {
 	public String getEventoUser(ModelMap model,HttpServletRequest request) {
 		System.out.println("Cantidad de eventos "+ eventManager.getEventCreatedByPerson());
 		System.out.println("Cantidad de eventos inscriptos "+ eventManager.getEventoInscriptoByIntegrante());
-//		System.out.println("Cantidad de Actividades Inscriptas por integrante "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
-//		System.out.println("Cantidad de Actividades Inscriptas por Unidad "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
+		System.out.println("Cantidad de Actividades Inscriptas por integrante "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
+		System.out.println("Cantidad de Actividades Inscriptas por Unidad "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
 		System.out.println("Cantidad de Reservas por Integrante "+ reserveManager.getReserveNumByPerson());
 		System.out.println("Cantidad de Reservas por unidad"+ reserveManager.getReserveNumByUnit());
 		System.out.println("Cantidad de Reclamos abiertos "+ messageManager.getNumReclamosAbiertos());

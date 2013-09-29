@@ -14,6 +14,7 @@ import com.country.form.EventoForm;
 import com.country.form.PersonaForm;
 import com.country.form.ReservaForm;
 import com.country.hibernate.dao.EventDao;
+import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.Evento;
 import com.country.hibernate.model.Reserva;
 import com.country.hibernate.model.Tarifa;
@@ -22,6 +23,7 @@ import com.country.services.ConceptManager;
 import com.country.services.EventManager;
 import com.country.services.PriceManager;
 import com.country.services.ReserveManager;
+import com.country.session.ConfigurationData;
 import com.country.session.SessionUsr;
 
 @Service("eventManager")
@@ -57,10 +59,8 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		Tarifa tarifa = null;
 		//Traigo la reserva
 		Reserva reserva = reserveManager.findReserveByIdEvent(id);
-		//Si el evento es gratis no tiene concepto
-		if (evento.getConcepto() != null)
-			//Toma la ultima tarifa
-			tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+		//Toma la ultima tarifa
+		tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
 		
 		form = (EventoForm) EventoMapper.getForm(evento, tarifa,reserva);
 		return form;
@@ -80,12 +80,16 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 			
 		Evento dto = EventoMapper.getEvento(form);
 		
+		//Si el no tiene un concepto
+		if (dto.getConcepto() == null){
+			dto.setConcepto(new Concepto(ConfigurationData.getCONCEPTO_GRATIS_ID()));
+		}
 		
 		eventDao.save(dto);
 		
 		//Guarda el importe
 		Tarifa price = new Tarifa();
-		if (dto.getConcepto() != null){
+		if (dto.getConcepto().getId() != ConfigurationData.getCONCEPTO_GRATIS_ID()){
 			price.setConcepto(dto.getConcepto().getId());
 			price.setImporte(form.getConcepto().getImporte());
 			price.setFechaComienzo(DateUtil.getDateToday());
@@ -107,6 +111,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		intForm.setId(form.getPersonaId());
 		reserva.setPersona(intForm);
 		reserva.setPersonId(form.getPersonaId());
+		reserva.setFecha(form.getFecha());
 		//RecursoForm recFrom = new RecursoForm();
 		//recFrom.setId(form.getRecurso());
 		//reserva.setRecurso(recFrom);

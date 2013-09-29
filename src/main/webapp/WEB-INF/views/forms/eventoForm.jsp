@@ -48,16 +48,6 @@
 				</c:if>				
 			</p>
 		</div>
-		<div class="_100">
-			<p>
-				<label for="textfield">Recurso: </label>
-				<form:select path="recurso" multiple="false" id="recursoCombo">
-					<option value="-1">Seleccione un Recurso</option>
-						<form:options items="${recursos}" itemValue="id"
-							itemLabel="nombre" />
-				</form:select>
-			</p>
-		</div>
 		<div class="_20">
 			<p>
 				<label for="textfield">Cupo Mínimo: </label>
@@ -74,36 +64,36 @@
 			<p>
 				<label for="textfield">Comienza a las</label>
 				<form:select path="hourIni" multiple="false" >
-					<option value="0">00</option>
-					<option value="1">01</option>
-					<option value="2">02</option>
-					<option value="3">03</option>
-					<option value="4">04</option>
-					<option value="5">05</option>
-					<option value="6">06</option>
-					<option value="7">07</option>
-					<option value="8">08</option>
-					<option value="9">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
+					<form:option value="0">00</form:option>
+					<form:option value="1">01</form:option>
+					<form:option value="2">02</form:option>
+					<form:option value="3">03</form:option>
+					<form:option value="4">04</form:option>
+					<form:option value="5">05</form:option>
+					<form:option value="6">06</form:option>
+					<form:option value="7">07</form:option>
+					<form:option value="8">08</form:option>
+					<form:option value="9">09</form:option>
+					<form:option value="10">10</form:option>
+					<form:option value="11">11</form:option>
+					<form:option value="12">12</form:option>
+					<form:option value="13">13</form:option>
+					<form:option value="14">14</form:option>
+					<form:option value="15">15</form:option>
+					<form:option value="16">16</form:option>
+					<form:option value="17">17</form:option>
+					<form:option value="18">18</form:option>
+					<form:option value="19">19</form:option>
+					<form:option value="20">20</form:option>
+					<form:option value="21">21</form:option>
+					<form:option value="22">22</form:option>
+					<form:option value="23">23</form:option>
 				</form:select>
 				<form:select path="minutesIni" multiple="false">
-					<option value="0">00</option>
-					<option value="15">15</option>
-					<option value="30">30</option>
-					<option value="45">45</option>
+					<form:option value="0">00</form:option>
+					<form:option value="15">15</form:option>
+					<form:option value="30">30</form:option>
+					<form:option value="45">45</form:option>
 
 				</form:select>
 			</p>
@@ -118,6 +108,60 @@
 			<p>
 				<label for="textfield">Costo</label>
 				<form:input path="concepto.importe" class="required" />
+			</p>
+		</div>
+		<div class="_50">
+			<p>
+				<label for="textfield">Recurso: </label>
+				<form:select path="reserva.recursoId" multiple="false" id="recursoCombo">
+					<option value="-1">Seleccione un Recurso</option>
+						<form:options items="${recursos}" itemValue="id"
+							itemLabel="nombre" />
+				</form:select>
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Comienza a las</label>
+				<form:select path="reserva.horaIni" multiple="false" >
+					<form:option value="0">00</form:option>
+					<form:option value="1">01</form:option>
+					<form:option value="2">02</form:option>
+					<form:option value="3">03</form:option>
+					<form:option value="4">04</form:option>
+					<form:option value="5">05</form:option>
+					<form:option value="6">06</form:option>
+					<form:option value="7">07</form:option>
+					<form:option value="8">08</form:option>
+					<form:option value="9">09</form:option>
+					<form:option value="10">10</form:option>
+					<form:option value="11">11</form:option>
+					<form:option value="12">12</form:option>
+					<form:option value="13">13</form:option>
+					<form:option value="14">14</form:option>
+					<form:option value="15">15</form:option>
+					<form:option value="16">16</form:option>
+					<form:option value="17">17</form:option>
+					<form:option value="18">18</form:option>
+					<form:option value="19">19</form:option>
+					<form:option value="20">20</form:option>
+					<form:option value="21">21</form:option>
+					<form:option value="22">22</form:option>
+					<form:option value="23">23</form:option>
+				</form:select>
+				<form:select path="reserva.minutosIni" multiple="false">
+					<form:option value="0">00</form:option>
+					<form:option value="15">15</form:option>
+					<form:option value="30">30</form:option>
+					<form:option value="45">45</form:option>
+
+				</form:select>
+			</p>
+		</div>
+		<div class="_25">
+			<p>
+				<label for="textfield">Duración</label>
+				<form:input path="reserva.duracion" class="required" />
 			</p>
 		</div>
 		<div class="_100">
