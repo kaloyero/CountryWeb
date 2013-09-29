@@ -23,7 +23,7 @@
 		<!-- Item header -->
 		<div class="header item-header clearfix">
 					<h2>
-					<img src="../resources/img/propietarios/events-icon-small.png" alt="Evento" height="42" width="42">				<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
+					<img src="resources/img/propietarios/events-icon-small.png" alt="Evento" height="42" width="42">				<a href="#" class="item-link"><font color="#09c">${evento.nombre}</font>
 					</a>
 						</h2>
 		

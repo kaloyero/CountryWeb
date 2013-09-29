@@ -43,7 +43,7 @@ var RecursoReservaRender = new Class(
 			},
 			load : function(data) {
 				this.addSpecificHtml(data);
-				this.setDisponibilidades(data.disponibilidades);
+				this.setDisponibilidades(data.disponibilidadesDivididas);
 				this.events = null;
 				this.eventosDisponiblesAEliminar=new Array();
 				this.getCalendarPlaceHolder().fullCalendar( 'refetchEvents' );
@@ -64,7 +64,7 @@ var RecursoReservaRender = new Class(
 							events: function(start, end, callback) {
 								if (self.isRecursoSelected()){
 									$.ajax({
-										url: '../recursoReserva/diasOcupados/'+self.getSelectedRecurso(),
+										url: 'recursoReserva/diasOcupados/'+self.getSelectedRecurso(),
 										type: 'GET',
 										success: function(doc) {
 											//TODO no me conviene en realidad pintar y cambiar algun valor de los eventos disponibles ya pintados en lugar
