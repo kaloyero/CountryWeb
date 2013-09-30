@@ -17,16 +17,25 @@
 			</p>
 		</div>
 
-		<div class="_50">
-			<p>
-				<c:if test="${EVENTO.id == 0}">
+		<c:if test="${EVENTO.id == 0}">
+			<div class="_50">
+				<p>
+					<label for="textfield">Administrador: </label>
+					<form:checkbox path="envioAdm" value="true"/>
+				</p>
+			</div>	
+			<div class="_50">
+				<p>
 					<label for="textfield">Organiza: </label>
 					<form:select path="personaId" multiple="false"> 
 						<form:options items="${integrantes}" itemValue="id"
 							itemLabel="nombre" /> 
-					</form:select> 		
-				</c:if>
-				<c:if test="${EVENTO.id != 0}">
+					</form:select> 	
+				</p>
+			</div>				
+		</c:if>
+		<c:if test="${EVENTO.id != 0}">
+				<div class="_100">
 					<label for="textfield">Organiza: </label>
 					<c:if test="${EVENTO.envioAdm==true}">
 						Administrador (${EVENTO.persona.nombre} ${EVENTO.persona.apellido} - ${EVENTO.persona.nroDoc})
@@ -34,20 +43,8 @@
 					<c:if test="${EVENTO.envioAdm==false}">
 						${EVENTO.persona.nombre} ${EVENTO.persona.apellido} - ${EVENTO.persona.nroDoc}
 					</c:if>
-				</c:if>				
-			</p>
-		</div>
-		<div class="_50">
-			<p>
-				<c:if test="${EVENTO.id == 0}">
-					<label for="textfield">Administrador: </label>
-					<form:checkbox path="envioAdm" value="true"/>
-				</c:if>
-				<c:if test="${EVENTO.id != 0}">
-					
-				</c:if>				
-			</p>
-		</div>
+				</div>
+		</c:if>
 		<div class="_20">
 			<p>
 				<label for="textfield">Cupo Mínimo: </label>

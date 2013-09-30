@@ -8,12 +8,11 @@ public class EventoForm extends Form  {
 	private  String descripcion ;
 	private  String fecha ;
 	private Integer hourIni;
-	private Integer minutesIni;
+	private Integer minutesIni=0;
 	private  int duracion;
 	private String nombre;
 	private int cupo;
 	private int reservaId;
-	private int recurso;
 	private int personaId;
 	private PersonaForm persona;
 	ConceptoForm concepto;
@@ -92,16 +91,6 @@ public class EventoForm extends Form  {
 	public void setConcepto(ConceptoForm concepto) {
 		this.concepto = concepto;
 	}
-
-	public int getRecurso() {
-		return recurso;
-	}
-
-
-	public void setRecurso(int recurso) {
-		this.recurso = recurso;
-	}
-
 
 	public String getNombre() {
 		return nombre;

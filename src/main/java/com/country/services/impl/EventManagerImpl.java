@@ -96,7 +96,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 			priceManager.save(price);		
 		}
 		//Pregunto si hay un recurso seleccionado
-		if (form.getRecurso() >0){
+		if (form.getReserva().getRecursoId() >0){
 			ReservaForm reserva = getReserva(form,dto.getId());
 			reserveManager.save(reserva);
 		}
@@ -131,7 +131,7 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 		eventDao.update(dto);
 		
 		//Pregunto si hay un recurso seleccionado
-		if (form.getRecurso() >0){
+		if (form.getReserva().getRecursoId() >0){
 			ReservaForm reserva = getReserva(form,dto.getId());
 			reserveManager.update(reserva);
 		}

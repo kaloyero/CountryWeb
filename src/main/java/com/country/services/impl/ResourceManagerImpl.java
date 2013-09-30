@@ -169,12 +169,12 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		Reserva anterior = reserveManager.findResourceBefore(resource, fecha, horaIni);
 		Reserva posterior = reserveManager.findResourceAfter(resource, fecha, horaIni);
 		
-		Date fechaReservar = DateUtil.sumarHoras(fecha, horaIni);
+		Date fechaReservar = DateUtil.sumarMinutos(fecha, horaIni);
 		
 		//ANTERIOR
 		boolean responseAnt = false;
 		if (anterior != null){
-			Date fechaAnt = DateUtil.sumarHoras(anterior.getFecha(), anterior.getHoraIni());
+			Date fechaAnt = DateUtil.sumarMinutos(anterior.getFecha(), anterior.getHoraIni());
 			fechaAnt = DateUtil.sumarHoras(fechaAnt, anterior.getDuracion());
 			
 			// Si la reserva anterior termina antes de la reserva que quiero hacer devuelve ok
@@ -191,7 +191,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		//POSTERIOR
 		boolean responsePost = false;
 		if (posterior != null){
-			Date fechaPost = DateUtil.sumarHoras(posterior.getFecha(), posterior.getHoraIni());
+			Date fechaPost = DateUtil.sumarMinutos(posterior.getFecha(), posterior.getHoraIni());
 			
 			// Pregunto si la reserva posterior empieza despues de la hora que empieza la actual reserva 
 			if (fechaPost.after(fechaReservar) ){
@@ -225,7 +225,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 			int horaIni, int duracion) {
 		
 		//HORA INICIAL
-		Date fechaInicio = DateUtil.sumarHoras(fecha, horaIni);
+		Date fechaInicio = DateUtil.sumarMinutos(fecha, horaIni);
 		//Tomo todos los horarios disponibles en que esta el recurso ese dia.
 		List<RecursoDisponibilidad> listaDisponibilidad= resourceAvaiableManager.findResourcesAvaiableByDayOfWeek(resource, DateUtil.getDiaDeLaSemana(fechaInicio));
 		boolean disponibleHoraIni = false;
@@ -245,7 +245,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		//Tomo todos los horarios disponibles en que esta el recurso ese dia.
 		listaDisponibilidad= resourceAvaiableManager.findResourcesAvaiableByDayOfWeek(resource, DateUtil.getDiaDeLaSemana(fechaFin));
 		boolean disponibleHoraFin = false;
-		int horaFin = DateUtil.getHora(fechaFin); 
+		int horaFin = DateUtil.setHourInfForm(DateUtil.getHora(fechaFin)); 
 		for (RecursoDisponibilidad disponibilidad : listaDisponibilidad) {
 			//Comparo la hra inicial, para saber si esta dentro de los horarios de ese dia.
 			if (horaFin >= disponibilidad.getHoraIni() && horaFin <= disponibilidad.getHoraFin()){

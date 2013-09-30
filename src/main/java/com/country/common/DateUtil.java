@@ -102,6 +102,21 @@ public class DateUtil {
 	}
 	
     /**
+     * Suma X minutos a una fecha especifica
+     * 
+     * @param fch
+     * @param horas
+     * @return
+     */
+    public static Date sumarMinutos(Date fch, int minutos) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTimeInMillis(fch.getTime());
+        cal.add(Calendar.MINUTE, minutos);
+
+        return new Date(cal.getTimeInMillis());
+    }
+	
+    /**
      * Suma X horas a una fecha especifica
      * 
      * @param fch
@@ -141,7 +156,7 @@ public class DateUtil {
     public static int getDiaDeLaSemana(Date fch) {
     	GregorianCalendar cal = new GregorianCalendar();
     	cal.setTime(fch);
-    	return cal.get(Calendar.DAY_OF_WEEK);
+    	return cal.get(Calendar.DAY_OF_WEEK) -1;
     }
     public static String getDiaDeLaSemanaName(Date fch) {
     	 SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); // the day of the week abbreviated  
@@ -161,10 +176,20 @@ public class DateUtil {
     }
     
     public static int setHourInfForm(int minutes) {
-    	return minutes / 60;
+
+    	if (minutes == 0){
+    		return 0;
+    	} else {
+    		return minutes / 60;	
+    	}
+    	
     }
     
     public static int setMinutesInfForm(int minutes) {
-    	return minutes % 60;
+    	if (minutes == 0){
+    		return 0;
+    	} else {
+        	return minutes % 60;	
+    	}
     }
 }

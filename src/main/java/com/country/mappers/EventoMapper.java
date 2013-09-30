@@ -25,7 +25,6 @@ public class EventoMapper {
 		
 		
 		evento.setDescription(((EventoForm) form).getDescripcion());
-		evento.setHourIni(((EventoForm) form).getHourIni());
 		evento.setDuracion(((EventoForm) form).getDuracion());
 		evento.setCupo(((EventoForm) form).getCupo());
 		evento.setFecha(DateUtil.convertStringToDate(((EventoForm) form).getFecha()));

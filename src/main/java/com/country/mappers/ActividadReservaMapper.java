@@ -2,6 +2,7 @@ package com.country.mappers;
 
 
 import com.country.HelperCountry;
+import com.country.common.DateUtil;
 import com.country.form.ActividadReservaForm;
 import com.country.form.CronogramaForm;
 import com.country.hibernate.model.Actividad;
@@ -20,7 +21,7 @@ public class ActividadReservaMapper {
 		for (Cronograma cronograma : actividad.getCronogramas()) {
 			CronogramaForm cronogramaForm = new CronogramaForm();
 			cronogramaForm.setId(cronograma.getId());
-			cronogramaForm.setHorario(cronograma.getHoraInicio());
+			cronogramaForm.setHorario(DateUtil.setHourInfForm(cronograma.getHoraInicio()));
 			cronogramaForm.setDia(HelperCountry.getDiaSemana(cronograma.getDiaSemana()));
 			form.getCronograma().add(cronogramaForm);
 		}

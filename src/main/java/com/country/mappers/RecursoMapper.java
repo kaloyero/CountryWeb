@@ -11,6 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.country.common.DateUtil;
 import com.country.form.Form;
 import com.country.form.RecursoForm;
 import com.country.hibernate.model.Concepto;
@@ -49,8 +50,8 @@ public class RecursoMapper {
 			        	JSONObject nodo = (JSONObject)it.next();
 			        	RecursoDisponibilidad disponibilidad =new RecursoDisponibilidad();
 			        	disponibilidad.setDiaSemana(((Long) nodo.get("Dia")).intValue());
-			        	disponibilidad.setHoraIni(((Long) nodo.get("horaIni")).intValue());
-			        	disponibilidad.setHoraFin(((Long) nodo.get("horaFin")).intValue());
+			        	disponibilidad.setHoraIni(DateUtil.getMinutes(((Long) nodo.get("horaIni")).intValue(),0));
+			        	disponibilidad.setHoraFin(DateUtil.getMinutes(((Long) nodo.get("horaFin")).intValue(),0));
 			        	disponibilidad.setRecurso(((RecursoForm) form).getId());
 			        	disponibilidades.add(disponibilidad);
 			         
@@ -88,7 +89,7 @@ public class RecursoMapper {
 		if (disponibilidades!=null)
 			for (RecursoDisponibilidad disponibilidad :disponibilidades) {
 				
-				for(int i=disponibilidad.getHoraIni(); i<disponibilidad.getHoraFin(); i++) {
+				for(int i=DateUtil.setHourInfForm(disponibilidad.getHoraIni()); i<DateUtil.setHourInfForm(disponibilidad.getHoraFin()); i++) {
 					JSONObject nodoDisp=new JSONObject();
 					nodoDisp.put("dia",disponibilidad.getDiaSemana());
 					nodoDisp.put("horaIni",i);
@@ -114,8 +115,8 @@ public class RecursoMapper {
 			for (RecursoDisponibilidad disponibilidad :disponibilidades) {
 				JSONObject nodoDisp=new JSONObject();
 				nodoDisp.put("dia",disponibilidad.getDiaSemana());
-				nodoDisp.put("horaIni",disponibilidad.getHoraIni());
-				nodoDisp.put("horaFin",disponibilidad.getHoraFin());
+				nodoDisp.put("horaIni",DateUtil.setHourInfForm(disponibilidad.getHoraIni()));
+				nodoDisp.put("horaFin",DateUtil.setHourInfForm(disponibilidad.getHoraFin()));
 				raizDisponibilidades.add(nodoDisp);
 			}
 

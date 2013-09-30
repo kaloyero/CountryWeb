@@ -39,7 +39,7 @@ public class ActividadMapper {
 		form.setImporte(tarifa.getImporte());
 	   
 		for (Cronograma cronograma :object.getCronogramas()) {
-		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(cronograma.getHoraInicio()));
+		   form.getDias().get(cronograma.getDiaSemana()).add(Integer.toString(DateUtil.setHourInfForm(cronograma.getHoraInicio())));
 		}
 		
 		return form;
@@ -107,7 +107,7 @@ public class ActividadMapper {
 					cronograma.setActividad(actividad);
 					cronograma.setDiaSemana((Integer) cronogramaEleccion.getKey());
 					if (hora != ""){
-						cronograma.setHoraInicio(Integer.parseInt(hora));	
+						cronograma.setHoraInicio(DateUtil.getMinutes(Integer.parseInt(hora),0));	
 					}
 						
 					

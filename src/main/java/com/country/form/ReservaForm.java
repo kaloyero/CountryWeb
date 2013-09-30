@@ -12,7 +12,7 @@ public class ReservaForm extends Form {
 	private  PersonaForm persona;
 	private  EventoForm evento;
 	private  Integer horaIni ;
-	private  Integer minutosIni ;
+	private  Integer minutosIni=0 ;
 	private  Integer duracion ;
 	private boolean envioAdm=false;
 	
