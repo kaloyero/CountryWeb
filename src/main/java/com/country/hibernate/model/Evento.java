@@ -3,7 +3,6 @@ package com.country.hibernate.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,7 +43,7 @@ public class Evento implements Serializable {
 	@Column(name = "Nombre")
 	private String nombre;
 	
-	@OneToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IdConcepto",updatable = true, insertable = true,nullable = true)	
 	private  Concepto  concepto ;
 

@@ -10,6 +10,7 @@ import com.country.hibernate.dao.PriceDao;
 import com.country.hibernate.model.Concepto;
 import com.country.hibernate.model.Tarifa;
 import com.country.services.ConceptManager;
+import com.country.session.ConfigurationData;
 
 @Service("conceptManager")
 public class ConceptManagerImpl extends AbstractManagerImpl<Concepto> implements ConceptManager{
@@ -34,29 +35,34 @@ public class ConceptManagerImpl extends AbstractManagerImpl<Concepto> implements
 		
 		int id = conceptDao.save(dto);
 		
-		Tarifa price = new Tarifa();
-		price.setConcepto(id);
-		price.setImporte(tarifa);
-		price.setFechaComienzo(dto.getFechaComienzo());
-		priceDao.save(price);		
-
+		//Controla que no sea el Concepto gratis para eventos
+		if (id != ConfigurationData.getCONCEPTO_GRATIS_ID()){
+			Tarifa price = new Tarifa();
+			price.setConcepto(id);
+			price.setImporte(tarifa);
+			price.setFechaComienzo(dto.getFechaComienzo());
+			priceDao.save(price);
+		}
 		
 	}
 	
 	@Transactional
 	public void update(Concepto dto,Double tarifa) {
 		conceptDao.update(dto);
-		
-		//Agarro la tarifa que viene del form
-		Tarifa price = new Tarifa();
-		price.setConcepto(dto.getId());
-		price.setImporte(tarifa);
-		price.setFechaComienzo(dto.getFechaComienzo());
 
-		//si es igual a la ultima no la actualizo, sino la agrego a la lista
-		Tarifa tarifaUltima = priceDao.getLastPriceByConcept(dto.getId());
-		if (price.getImporte() != tarifaUltima.getImporte()){
-			priceDao.save(price);	
+		//Controla que no sea el Concepto gratis para eventos
+		if (dto.getId() != ConfigurationData.getCONCEPTO_GRATIS_ID()){
+			//Agarro la tarifa que viene del form
+			Tarifa price = new Tarifa();
+			price.setConcepto(dto.getId());
+			price.setImporte(tarifa);
+			price.setFechaComienzo(dto.getFechaComienzo());
+	
+			//si es igual a la ultima no la actualizo, sino la agrego a la lista
+			Tarifa tarifaUltima = priceDao.getLastPriceByConcept(dto.getId());
+			if (price.getImporte() != tarifaUltima.getImporte()){
+				priceDao.save(price);	
+			}
 		}
 
 	}

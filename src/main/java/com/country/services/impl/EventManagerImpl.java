@@ -80,21 +80,19 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 			
 		Evento dto = EventoMapper.getEvento(form);
 		
+		
+		
 		//Si el no tiene un concepto
 		if (dto.getConcepto() == null){
 			dto.setConcepto(new Concepto(ConfigurationData.getCONCEPTO_GRATIS_ID()));
+		} else {
+			conceptManager.save(dto.getConcepto());
+			
+			
 		}
 		
 		eventDao.save(dto);
 		
-		//Guarda el importe
-		Tarifa price = new Tarifa();
-		if (dto.getConcepto().getId() != ConfigurationData.getCONCEPTO_GRATIS_ID()){
-			price.setConcepto(dto.getConcepto().getId());
-			price.setImporte(form.getConcepto().getImporte());
-			price.setFechaComienzo(DateUtil.getDateToday());
-			priceManager.save(price);		
-		}
 		//Pregunto si hay un recurso seleccionado
 		if (form.getReserva().getRecursoId() >0){
 			ReservaForm reserva = getReserva(form,dto.getId());

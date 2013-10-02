@@ -245,7 +245,7 @@ public class ResourceManagerImpl extends AbstractManagerImpl<Recurso> implements
 		//Tomo todos los horarios disponibles en que esta el recurso ese dia.
 		listaDisponibilidad= resourceAvaiableManager.findResourcesAvaiableByDayOfWeek(resource, DateUtil.getDiaDeLaSemana(fechaFin));
 		boolean disponibleHoraFin = false;
-		int horaFin = DateUtil.setHourInfForm(DateUtil.getHora(fechaFin)); 
+		int horaFin = DateUtil.getMinutes(DateUtil.getHora(fechaFin),0); 
 		for (RecursoDisponibilidad disponibilidad : listaDisponibilidad) {
 			//Comparo la hra inicial, para saber si esta dentro de los horarios de ese dia.
 			if (horaFin >= disponibilidad.getHoraIni() && horaFin <= disponibilidad.getHoraFin()){
