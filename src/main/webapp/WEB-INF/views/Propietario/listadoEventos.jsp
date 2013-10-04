@@ -37,12 +37,9 @@
 						<dd class="create">
 							<strong>Se necesitan:</strong> ${evento.cupo} personas</dd>
 							<dd class="create">
-						<strong>Dia se la semana:</strong>: ${evento.diaSemana} </dd>
 						</c:if>
-						<c:if test="${evento.cupo <= 1}">
 						<dd class="create">
 							<strong>Se realiza el:</strong> ${evento.fecha}	</dd>					
-						</c:if>
 						<dd class="create">
 					<strong>Horario :</strong> ${evento.hourIni}</dd>
 					

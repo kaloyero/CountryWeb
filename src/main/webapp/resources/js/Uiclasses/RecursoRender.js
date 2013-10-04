@@ -12,6 +12,8 @@ var RecursoRender = new Class({
     onNewTab: function(){
     	var form=this.getActiveForm();
     	this.createCalendarComponent(form);
+    	this.hideCalendarHeader();
+
     	//var obj = JSON.parse($(form).find("#disponibilidades").attr("value"));
     	//console.log("OBBJ",obj);
     },
@@ -162,6 +164,7 @@ var RecursoRender = new Class({
     	var disponibilidades = [];
     	var html = [];
     	var form=this.getActiveForm();
+    	console.log("FORM",form)
     	var eventList =this.getCreatedEvents(form);
     	console.log("EVENTLIUST",eventList)
     	

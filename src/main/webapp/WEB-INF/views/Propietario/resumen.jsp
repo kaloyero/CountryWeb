@@ -63,10 +63,14 @@
 	<b><p>Datos de tu ultimo Mes:</p></b>
 	
 	<i><font size="4"color="blue"><p>General:</p></font></i>
-	<p>Tu unidad esta compuesta por:	</p>
-	<p>Las caracteristica de tu Auto:	</p>
+	<p>Tu unidad esta compuesta por:	</p><c:forEach items="${resumen.integrantesByUnidad}" var="integrante" varStatus="status">
+	${integrante.persona.nombre}
+	
+	
+	</c:forEach>
+	<p>Las caracteristica de tu/tus Autos:	</p>
 	<p>Las mascotas de la unidad:	</p>
-	<p>Esta semana ,pediste acceso para las siguientes visitas:	</p>
+	<p>Los accesos habilitados son:	</p>
 	<p>El total de Expensas del mes fueron de :	</p>
 	<i><font size="4"color="blue"><p>Eventos:</p></font></i>
 	<p>Has creado <a style="font-weight:bold;" href="#">${resumen.eventosActivosTotal}</a> ,te has anotado a <a style="font-weight:bold;" href="#">${resumen.eventosInscriptosTotal}</a>.</p>

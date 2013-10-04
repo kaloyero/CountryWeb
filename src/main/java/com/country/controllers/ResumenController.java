@@ -19,6 +19,7 @@ import com.country.services.MessageManager;
 import com.country.services.NotificationManager;
 import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
+import com.country.session.SessionUsr;
 
 /**
  * Handles requests for the application home page.
@@ -53,7 +54,9 @@ public class ResumenController {
 				infractionManager.getNumInfraccionesByUnidad(),
 				notificationManager.getNumAvisosByPerson(),
 				integranteActivityManager.getNumActividadInscriptoByIntegrator(),
-				integranteActivityManager.getNumActividadInscriptoByUnidad());
+				integranteActivityManager.getNumActividadInscriptoByUnidad(),SessionUsr.User().getUnidad().getIntegrantes());
+		//
+		
 		model.addAttribute("resumen", resumenForm);
 		return "Propietario/resumen";
 	}

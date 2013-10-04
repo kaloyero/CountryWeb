@@ -42,6 +42,7 @@ var RecursoReservaRender = new Class(
 				translator.onLoad("recurso", this.getSelectedRecurso());
 			},
 			load : function(data) {
+				console.log("DATA",data)
 				this.addSpecificHtml(data);
 				this.setDisponibilidades(data.disponibilidadesDivididas);
 				this.events = null;

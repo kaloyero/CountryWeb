@@ -89,21 +89,6 @@ public class EventoController {
 		
 		return showMainContent(model,request);
 	}
-	@RequestMapping(value = "/eventozara",method = RequestMethod.GET)
-	public String getEventoUser(ModelMap model,HttpServletRequest request) {
-		System.out.println("Cantidad de eventos "+ eventManager.getEventCreatedByPerson());
-		System.out.println("Cantidad de eventos inscriptos "+ eventManager.getEventoInscriptoByIntegrante());
-		System.out.println("Cantidad de Actividades Inscriptas por integrante "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
-		System.out.println("Cantidad de Actividades Inscriptas por Unidad "+ integratorActivityManager.getNumActividadInscriptoByIntegrator());
-		System.out.println("Cantidad de Reservas por Integrante "+ reserveManager.getReserveNumByPerson());
-		System.out.println("Cantidad de Reservas por unidad"+ reserveManager.getReserveNumByUnit());
-		System.out.println("Cantidad de Reclamos abiertos "+ messageManager.getNumReclamosAbiertos());
-		System.out.println("Cantidad de reclamos cerrados"+ messageManager.getNumReclamosCerrados());
-		System.out.println("Cantidad de Infracciones por unidad"+ infractionManager.getNumInfraccionesByUnidad());
-		System.out.println("Cantidad de Avisos "+ notificationManager.getNumAvisosByPerson());
-		
-		return "";
-	}
 	
 	@RequestMapping(value = "/create",method = RequestMethod.GET)
 	public String showForm(ModelMap model,HttpServletRequest request) {

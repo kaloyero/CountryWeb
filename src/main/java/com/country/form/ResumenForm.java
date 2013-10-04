@@ -17,13 +17,14 @@ public class ResumenForm extends Form  {
 	private int reclamosAbiertosTotal;
 	private int reclamosCerradosTotal;
 	private int infraccionesUnidadTotal;
+	private List integrantesByUnidad;
 	private int avisosTotal;
 	
 	public ResumenForm(int eventCreatedByPerson,
 			int eventoInscriptoByIntegrante, Integer reserveNumByPerson,
 			Integer reserveNumByUnit, int numReclamosAbiertos,
 			int numReclamosCerrados, Integer numInfraccionesByUnidad,
-			Integer numAvisosByPerson,Integer actividadesByPerson,Integer actividadesByUnidad) {
+			Integer numAvisosByPerson,Integer actividadesByPerson,Integer actividadesByUnidad,List integrantes) {
 		
 		this.setEventosActivosTotal(eventCreatedByPerson);
 		this.setEventosInscriptosTotal(eventoInscriptoByIntegrante);
@@ -35,6 +36,7 @@ public class ResumenForm extends Form  {
 		this.setAvisosTotal(numAvisosByPerson);
 		this.setActividaddesTotal(actividadesByPerson);
 		this.setActividaddesTotalUnidad(actividadesByUnidad);
+		this.setIntegrantesByUnidad(integrantes);
 		
 	}
 	public int getEventosActivosTotal() {
@@ -96,6 +98,12 @@ public class ResumenForm extends Form  {
 	}
 	public void setActividaddesTotalUnidad(int actividaddesTotalUnidad) {
 		this.actividaddesTotalUnidad = actividaddesTotalUnidad;
+	}
+	public List getIntegrantesByUnidad() {
+		return integrantesByUnidad;
+	}
+	public void setIntegrantesByUnidad(List integrantesByUnidad) {
+		this.integrantesByUnidad = integrantesByUnidad;
 	}
 
 	

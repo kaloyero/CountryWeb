@@ -97,7 +97,7 @@ var ServerManager = new Class({
     	//console.log("SER",config.form.serialize())
     	var transformedData="";
     	if (config.form)
-    	transformedData =config.form.serialize()
+    		transformedData =config.form.serialize();
     	var self=this;
     	$.ajax( {
 		      type: "POST",

@@ -74,6 +74,7 @@ public class UserManagerImpl extends AbstractManagerImpl<Usuario> implements Use
 				Integrante intg = integratorManager.getIntegratorByIdUser(usuario.getId());
 				usuarioInfo.setIntegranteId(intg.getId());
 				usuarioInfo.setPersonaId(intg.getPersona().getId());
+				intg.getUnidad().getIntegrantes().size();
 				usuarioInfo.setUnidad(intg.getUnidad());
 			}
 		}
