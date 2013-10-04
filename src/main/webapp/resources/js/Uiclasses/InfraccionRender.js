@@ -1,4 +1,7 @@
 var myArray = [];
+
+
+
 var InfraccionRender = new Class({
 	Extends: Render,
     initialize: function(name){
@@ -10,6 +13,7 @@ var InfraccionRender = new Class({
     	
     	console.log($("#categorias").get(0));
     	console.log($("#categorias"));
+    	
     	
     	myArray[ -1 ] = "0";
     	myArray[ 0 ] = "1200";
