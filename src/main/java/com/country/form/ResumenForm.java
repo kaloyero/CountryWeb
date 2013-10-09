@@ -18,13 +18,15 @@ public class ResumenForm extends Form  {
 	private int reclamosCerradosTotal;
 	private int infraccionesUnidadTotal;
 	private List integrantesByUnidad;
+	private List vehiculosByUnidad;
+	private List mascotasByUnidad;
 	private int avisosTotal;
 	
 	public ResumenForm(int eventCreatedByPerson,
 			int eventoInscriptoByIntegrante, Integer reserveNumByPerson,
 			Integer reserveNumByUnit, int numReclamosAbiertos,
 			int numReclamosCerrados, Integer numInfraccionesByUnidad,
-			Integer numAvisosByPerson,Integer actividadesByPerson,Integer actividadesByUnidad,List integrantes) {
+			Integer numAvisosByPerson,Integer actividadesByPerson,Integer actividadesByUnidad,List integrantes,List vehiculos,List mascotas) {
 		
 		this.setEventosActivosTotal(eventCreatedByPerson);
 		this.setEventosInscriptosTotal(eventoInscriptoByIntegrante);
@@ -37,6 +39,8 @@ public class ResumenForm extends Form  {
 		this.setActividaddesTotal(actividadesByPerson);
 		this.setActividaddesTotalUnidad(actividadesByUnidad);
 		this.setIntegrantesByUnidad(integrantes);
+		this.setVehiculosByUnidad(vehiculos);
+		this.setMascotasByUnidad(mascotas);
 		
 	}
 	public int getEventosActivosTotal() {
@@ -104,6 +108,18 @@ public class ResumenForm extends Form  {
 	}
 	public void setIntegrantesByUnidad(List integrantesByUnidad) {
 		this.integrantesByUnidad = integrantesByUnidad;
+	}
+	public List getVehiculosByUnidad() {
+		return vehiculosByUnidad;
+	}
+	public void setVehiculosByUnidad(List vehiculosByUnidad) {
+		this.vehiculosByUnidad = vehiculosByUnidad;
+	}
+	public List getMascotasByUnidad() {
+		return mascotasByUnidad;
+	}
+	public void setMascotasByUnidad(List mascotasByUnidad) {
+		this.mascotasByUnidad = mascotasByUnidad;
 	}
 
 	

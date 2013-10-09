@@ -68,8 +68,16 @@
 	
 	
 	</c:forEach>
-	<p>Las caracteristica de tu/tus Autos:	</p>
-	<p>Las mascotas de la unidad:	</p>
+	<p>Las caracteristica de tu/tus Autos:	</p><c:forEach items="${resumen.vehiculosByUnidad}" var="vehiculo" varStatus="status">
+	${vehiculo.codigo} ${vehiculo.tipoVehiculo.nombre}
+	
+	
+	</c:forEach>
+	<p>Las mascotas de la unidad:	</p><c:forEach items="${resumen.mascotasByUnidad}" var="mascota" varStatus="status">
+	${mascota.nombre}
+	
+	
+	</c:forEach>
 	<p>Los accesos habilitados son:	</p>
 	<p>El total de Expensas del mes fueron de :	</p>
 	<i><font size="4"color="blue"><p>Eventos:</p></font></i>

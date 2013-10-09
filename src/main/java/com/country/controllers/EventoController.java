@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.country.common.Constants;
+import com.country.common.DateUtil;
 import com.country.common.SessionUtil;
 import com.country.form.EventoForm;
 import com.country.form.IntegranteForm;
 import com.country.hibernate.model.DataTable;
+import com.country.hibernate.model.Recurso;
+import com.country.hibernate.model.Reserva;
 import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.InfractionManager;
@@ -59,6 +62,7 @@ public class EventoController {
 	private InfractionManager infractionManager;
 	@Autowired
 	private NotificationManager notificationManager;
+	
 
 	
 
@@ -66,12 +70,20 @@ public class EventoController {
 	public String showMainContent(ModelMap model,HttpServletRequest request) {
 		System.out.println("VALOR "+ request.getRequestURL().toString());
 		
-
+        //TODO deberia haber un metodo dentro de eventManager que haga todo esto,algo asi como ListaAllFormPropietarios
 		List<EventoForm> listaEventoForm = eventManager.listAllForms();
 
 		for (EventoForm eventoDto : listaEventoForm) {
 			// EventoForm eventoDto=(EventoForm) EventoMapper.getForm(evento,null);
+			//TODO MejorarfindReserveByIdEvent
 			 List<IntegranteForm> test =eventIntegratorManager.findAllIntegrantorFormByEventoId(eventoDto.getId());
+			 Reserva reserva =reserveManager.findReserveByIdEvent(eventoDto.getId());
+			 if (reserva != null) {
+				 eventoDto.getReserva().setHoraIni(reserva.getHoraIni());
+				 eventoDto.getReserva().setNombreRecurso(((Recurso) recursoManager.findById(reserva.getRecurso())).getNombre());
+				 eventoDto.getReserva().setHoraIni(DateUtil.setHourInfForm(reserva.getHoraIni()));
+				 eventoDto.getReserva().setHoraFin(DateUtil.setHourInfForm(reserva.getHoraIni())+reserva.getDuracion());
+			 }
 			 eventoDto.setCantidadUnidos(test.size());
 		}
 		

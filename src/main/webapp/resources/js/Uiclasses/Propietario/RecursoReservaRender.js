@@ -207,11 +207,13 @@ var RecursoReservaRender = new Class(
 			//Si encuentro un evento ocupado,no deberia mostrar el evento Disponible en ese mismo lugar,guardo el id para removerlo luego
 			saveEventsToBeRemoved:function(event){
 				 var dateFrom=event.start;
+				 var self =this;
 				var dateTo=event.end;
 				if (event.title =="Disponible"){
+					
 					$('#calendar').fullCalendar('clientEvents', function(eventa) {
 						if(eventa.start.getTime() == dateFrom.getTime() && eventa.end.getTime() == dateTo.getTime() && eventa.title!="Disponible") {
-							this.getEventosAEliminar().push(event.id);
+							self.getEventosAEliminar().push(event.id);
 						}
 				});
 			 }

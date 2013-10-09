@@ -60,12 +60,12 @@ public class RecursoReservaController {
 			
 			Calendar fechaComienzo = Calendar.getInstance(); // locale-specific
 			fechaComienzo.setTime(reserva.getFecha());
-			fechaComienzo.set(Calendar.HOUR_OF_DAY, reserva.getHoraIni());
+			fechaComienzo.set(Calendar.HOUR_OF_DAY, DateUtil.setHourInfForm(reserva.getHoraIni()));
 			fechaComienzo.set(Calendar.MINUTE, 0);
 			fechaComienzo.set(Calendar.SECOND, 0);
 			fechaComienzo.set(Calendar.MILLISECOND, 0);
 			//La hora hasta es la horainicio + la duracion
-			Integer horaHasta=(reserva.getHoraIni() + reserva.getDuracion());
+			Integer horaHasta=(DateUtil.setHourInfForm(reserva.getHoraIni()) + reserva.getDuracion());
 			
 			Calendar fechaFin = Calendar.getInstance(); // locale-specific
 			fechaFin.setTime(reserva.getFecha());

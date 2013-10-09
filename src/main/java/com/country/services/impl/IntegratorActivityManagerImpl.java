@@ -156,7 +156,7 @@ public class IntegratorActivityManagerImpl extends AbstractManagerImpl<Integrant
 	@Transactional
 	public boolean esUsuarioInscripto(int actividad, int integrante) {
 		boolean inscripto = true;
-		
+		//Todo nombre findActivityByUser
 		IntegranteActividades dto = integratorActivityDao.findByActivityUser(actividad, integrante);
 		if (dto == null  || dto.getId() == 0  ){
 			//el usuario no esta inscripto

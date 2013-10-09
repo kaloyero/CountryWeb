@@ -1,5 +1,7 @@
 package com.country.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,10 @@ public class VehicleManagerImpl extends AbstractManagerImpl<Vehiculo> implements
 
 	public Vehiculo findById(Integer id) {
 		Vehiculo dto = vehicleDao.findById(id);
+		return dto;
+	}
+	public List<Vehiculo> findVehicleByUnidad(Integer unidadId) {
+		List<Vehiculo> dto = vehicleDao.findVehiclesByUnidad(unidadId);
 		return dto;
 	}
 	

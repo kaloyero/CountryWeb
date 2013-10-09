@@ -67,9 +67,20 @@
 							<c:if test="${evento.personaId != null}">
 								<strong>Creado por:</strong> ${evento.persona.nombre} ${evento.persona.apellido}
 													</c:if>
-								
-
+		
 						</dd>
+						
+								<c:if test="${evento.reserva != null}">
+								<p></p>
+								<font size="3"><strong>Recurso reservado:</strong> </font>
+								<dd class="hits">
+								${evento.reserva.nombreRecurso}
+								<dd class="hits">
+								Desde las : ${evento.reserva.horaIni} Hasta las :${evento.reserva.horaFin}
+						</dd>
+								
+								</dd>
+									</c:if>
 						<dd class="hits">
 						<c:if test="${evento.concepto != null}"> <strong style="font-family:arial;color:#9E7474;font-size:15px;">Precio por inscripcion : </strong>
 						<strong style="font-family:arial;color:#9E7474;font-size:15px;">${evento.concepto.importe}</strong></c:if>

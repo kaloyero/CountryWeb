@@ -12,8 +12,17 @@ public class ReservaForm extends Form {
 	private  PersonaForm persona;
 	private  EventoForm evento;
 	private  Integer horaIni ;
+	private  Integer horaFin ;
 	private  Integer minutosIni=0 ;
 	private  Integer duracion ;
+	private  String nombreRecurso ;
+	
+	public String getNombreRecurso() {
+		return nombreRecurso;
+	}
+	public void setNombreRecurso(String nombreRecurso) {
+		this.nombreRecurso = nombreRecurso;
+	}
 	private boolean envioAdm=false;
 	
 	
@@ -95,6 +104,12 @@ public class ReservaForm extends Form {
 	}
 	public void setPersona(PersonaForm persona) {
 		this.persona = persona;
+	}
+	public Integer getHoraFin() {
+		return horaFin;
+	}
+	public void setHoraFin(Integer horaFin) {
+		this.horaFin = horaFin;
 	}
 
 

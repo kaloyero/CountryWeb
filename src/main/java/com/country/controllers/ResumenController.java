@@ -17,8 +17,10 @@ import com.country.services.InfractionManager;
 import com.country.services.IntegratorActivityManager;
 import com.country.services.MessageManager;
 import com.country.services.NotificationManager;
+import com.country.services.PetManager;
 import com.country.services.ReserveManager;
 import com.country.services.ResourceManager;
+import com.country.services.VehicleManager;
 import com.country.session.SessionUsr;
 
 /**
@@ -37,6 +39,11 @@ public class ResumenController {
 	private InfractionManager infractionManager;
 	@Autowired
 	private NotificationManager notificationManager;
+	@Autowired
+	private VehicleManager vehiculoManager;
+	@Autowired
+	private PetManager mascotaManager;
+	
 	
 	@Autowired
 	private ReserveManager reserveManager;
@@ -54,7 +61,9 @@ public class ResumenController {
 				infractionManager.getNumInfraccionesByUnidad(),
 				notificationManager.getNumAvisosByPerson(),
 				integranteActivityManager.getNumActividadInscriptoByIntegrator(),
-				integranteActivityManager.getNumActividadInscriptoByUnidad(),SessionUsr.User().getUnidad().getIntegrantes());
+				integranteActivityManager.getNumActividadInscriptoByUnidad(),
+				SessionUsr.User().getUnidad().getIntegrantes(),vehiculoManager.findVehicleByUnidad(SessionUsr.User().getUnidad().getId()),
+				mascotaManager.findByMascotasByUnidad(SessionUsr.User().getUnidad().getId()));
 		//
 		
 		model.addAttribute("resumen", resumenForm);
