@@ -26,6 +26,10 @@ import com.country.services.ReserveManager;
 import com.country.session.ConfigurationData;
 import com.country.session.SessionUsr;
 
+/**
+ * @author kaloye
+ *
+ */
 @Service("eventManager")
 public class EventManagerImpl extends AbstractManagerImpl<Evento> implements EventManager{
 
@@ -138,26 +142,8 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 
 	
 	public List<EventoForm> listAllForms() {
-		List<EventoForm> list = new ArrayList<EventoForm>();
 		List<Evento> eventos = eventDao.findAll(false);
-		Tarifa tarifa ;
-		
-		for (Evento evento : eventos) {
-			//Traigo la reserva
-			Reserva reserva = reserveManager.findReserveByIdEvent(evento.getId());
-			tarifa = null;
-			//Toma la ultima tarifa
-			if (evento.getConcepto() != null){
-				tarifa = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
-
-			}		
-			
-			EventoForm form = (EventoForm) EventoMapper.getForm(evento, tarifa,reserva);
-
-
-			list.add(form);
-		}
-		return list;
+		return getFormList(eventos,true,true);
 	}
 	
 	public int getEventCreatedByPerson(){
@@ -166,6 +152,40 @@ public class EventManagerImpl extends AbstractManagerImpl<Evento> implements Eve
 
 	public int getEventoInscriptoByIntegrante(){
 		return eventDao.getEventoInscriptoByIntegrante(SessionUsr.User().getIntegranteId(), DateUtil.getDateTodayDmyFormat());
+	}
+
+	public List<EventoForm> getEventoInscriptoBySemana(String fechaDesde) {
+		List<Evento> list = eventDao.getEventoInscriptoByDate(SessionUsr.User().getIntegranteId(), fechaDesde, null, 6);
+		return getFormList(list,false,false);
+		
+	}
+
+	/**
+	 * Mapea la lista de evento a eventoForm
+	 * 
+	 * @param list
+	 * @param tarifa Si tarifa igual a true, trae la tarifa del evento
+	 * @param reserva Si reserva igual a true, trae la reserva del evento
+	 * @return
+	 */
+	@Transactional
+	private List<EventoForm>  getFormList (List<Evento> list, boolean tarifa, boolean reserva){
+		List<EventoForm> listaForm = new ArrayList<EventoForm>();
+		for (Evento evento : list) {
+			Reserva rsrv = null;
+			Tarifa trf =null;
+			
+			if (reserva){
+				rsrv = reserveManager.findReserveByIdEvent(evento.getId());				
+			}
+			if (tarifa){
+				if (evento.getConcepto() != null){
+					trf = priceManager.getLastPriceByConcept(evento.getConcepto().getId());
+				}		
+			}
+			listaForm.add((EventoForm) EventoMapper.getForm(evento, trf,rsrv));
+		}
+		return listaForm; 
 	}
 
 }

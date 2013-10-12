@@ -134,15 +134,8 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 	}
 
 	public List<ReservaForm> listAllFormsComplete() {
-
-		List<ReservaForm> list = new ArrayList<ReservaForm>();
 		List<Reserva> reservas = listAll();
-
-		for (Reserva res : reservas) {
-			list.add(setForm(res));
-		}
-		
-		return list;
+		return getFormList(reservas);
 	}
 	
 	private ReservaForm setForm(Reserva reserva){
@@ -170,5 +163,24 @@ public class ReserveManagerImpl extends AbstractManagerImpl<Reserva> implements 
 
 	public Integer getReserveNumByUnit() {
 		return reserveDao.getReserveNumByUnit(SessionUsr.User().getUnidad().getId(), DateUtil.getDateTodayDmyFormat());
+	}
+
+	public List<ReservaForm> getReservaBySemana(String fechaDesde) {
+		List<Reserva> reservas = reserveDao.getRecursoReesrvadoByDate(SessionUsr.User().getPersonaId(), fechaDesde, null, 6);
+		return getFormList(reservas);
+	}
+	
+	/**
+	 * Mapea la lista de Reserva a ReservaForm
+	 * 
+	 * @param list
+	 * @return
+	 */
+	private List<ReservaForm>  getFormList (List<Reserva> list){
+		List<ReservaForm> listaForm = new ArrayList<ReservaForm>();
+		for (Reserva res : list) {
+			listaForm.add(setForm(res));
+		}
+		return listaForm; 
 	}
 }

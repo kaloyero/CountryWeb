@@ -38,5 +38,6 @@ public interface IntegratorActivityDao extends GenericDao<IntegranteActividades,
 	 * @param idActividad
 	 */
 	void desinscribirIntegranteDeActividad(int idIntegrante, int idActividad);
+
 	
 }

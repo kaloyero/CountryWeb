@@ -66,4 +66,5 @@ public class IntegratorActivityDaoImpl extends GenericDaoImpl<IntegranteActivida
 	public void desinscribirIntegranteDeActividad(int idIntegrante,int idActividad) {
 	  	  getSession().createQuery("delete from IntegranteActividades where actividad="+idActividad+" and integrante="+idIntegrante).executeUpdate();	
 	}
+
 }

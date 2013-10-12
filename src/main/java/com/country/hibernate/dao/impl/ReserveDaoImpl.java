@@ -1,6 +1,7 @@
 package com.country.hibernate.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.country.common.DateUtil;
 import com.country.common.GenericDaoImpl;
 import com.country.hibernate.dao.IntegratorDao;
 import com.country.hibernate.dao.ReserveDao;
@@ -69,6 +71,24 @@ public class ReserveDaoImpl extends GenericDaoImpl<Reserva, Integer> implements 
 	    criteria.add(Restrictions.in("persona", integratorDao.getIntegPersonNumByUnit(idUnit)));
 	    criteria.add(Restrictions.ge("fecha", date));
 	  	return (Integer) criteria.getExecutableCriteria(getSession()).setProjection(Projections.rowCount()).uniqueResult();	
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<Reserva> getRecursoReesrvadoByDate(int idPersona,
+			String fechaDesde, String fechaHasta, int cantDias) {
+
+		DetachedCriteria criteria = createDetachedCriteria();
+	    criteria.add(Restrictions.eq("persona",idPersona));
+	    criteria.add(Restrictions.ge("fecha", DateUtil.convertStringToDate(fechaDesde)));
+		//Si la fecha hasta viene null le sumo cantidad de dias para saber la fecha hasta
+		if (fechaHasta != null){
+			criteria.add(Restrictions.ge("fecha", DateUtil.convertStringToDate(fechaHasta)));	
+		} else {
+			criteria.add(Restrictions.ge("fecha", DateUtil.sumarDias(DateUtil.convertStringToDate(fechaDesde),cantDias)));	
+		}	    
+		return (List<Reserva>) criteria.getExecutableCriteria(getSession()).list();
+		
 	}
 
 

@@ -1,6 +1,7 @@
 package com.country.hibernate.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.country.common.GenericDao;
 import com.country.hibernate.model.Reserva;
@@ -34,4 +35,16 @@ public interface ReserveDao extends GenericDao<Reserva, Integer> {
 	 * @return
 	 */
 	Integer getReserveNumByUnit(int idUnit, Date date);
+	
+    /**
+     * Este metodo devuelve todos los RECURSOS reservados para una persona en una fecha determinada.
+     * La fecha fin puede estar dada por fechaHasta o cantDias. Sifecha hasta es 'null' usara cantDias
+     * 
+     * @param idPersona
+     * @param fechaDesde
+     * @param fechaHasta
+     * @param cantDias cantidad de dias.
+     * @returnó
+     */
+    List<Reserva> getRecursoReesrvadoByDate(int idPersona,String fechaDesde, String fechaHasta, int cantDias);
 }

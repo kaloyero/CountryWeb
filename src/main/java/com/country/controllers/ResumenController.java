@@ -8,10 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.country.form.RecursoForm;
 import com.country.form.ResumenForm;
 import com.country.services.ActivityManager;
-import com.country.services.EventIntegratorManager;
 import com.country.services.EventManager;
 import com.country.services.InfractionManager;
 import com.country.services.IntegratorActivityManager;
@@ -19,7 +17,6 @@ import com.country.services.MessageManager;
 import com.country.services.NotificationManager;
 import com.country.services.PetManager;
 import com.country.services.ReserveManager;
-import com.country.services.ResourceManager;
 import com.country.services.VehicleManager;
 import com.country.session.SessionUsr;
 
@@ -43,15 +40,16 @@ public class ResumenController {
 	private VehicleManager vehiculoManager;
 	@Autowired
 	private PetManager mascotaManager;
-	
-	
 	@Autowired
 	private ReserveManager reserveManager;
+
 	
 	
 	@RequestMapping(value = "/listaPropietario",method = RequestMethod.GET)
 	public String showResumen(ModelMap model, HttpServletRequest request) {
-		ResumenForm resumenForm=new ResumenForm(
+			ResumenForm resumenForm=new ResumenForm(
+
+				
 				eventManager.getEventCreatedByPerson(),
 				eventManager.getEventoInscriptoByIntegrante(),
 				reserveManager.getReserveNumByPerson(),
@@ -64,6 +62,8 @@ public class ResumenController {
 				integranteActivityManager.getNumActividadInscriptoByUnidad(),
 				SessionUsr.User().getUnidad().getIntegrantes(),vehiculoManager.findVehicleByUnidad(SessionUsr.User().getUnidad().getId()),
 				mascotaManager.findByMascotasByUnidad(SessionUsr.User().getUnidad().getId()));
+		
+		
 		//
 		
 		model.addAttribute("resumen", resumenForm);

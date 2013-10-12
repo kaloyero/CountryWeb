@@ -29,4 +29,12 @@ public interface EventManager extends AbstractManager<Evento>{
 	 * @return
 	 */
 	public int getEventoInscriptoByIntegrante();
+	
+	/**
+	 * Devuelve los eventos vigentes para el integrante en una semana.
+	 * 
+	 * @return
+	 */
+	public List<EventoForm> getEventoInscriptoBySemana(String fechaDesde);
+	
 }

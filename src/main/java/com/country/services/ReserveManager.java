@@ -75,4 +75,12 @@ public interface ReserveManager extends AbstractManager<Reserva>{
 	 * @return
 	 */
 	public Integer getReserveNumByUnit();
+	
+	/**
+	 * Devuelve laS reservas vigentes para el integrante en una semana.
+	 * 
+	 * @return
+	 */
+	public List<ReservaForm> getReservaBySemana(String fechaDesde);
+
 }

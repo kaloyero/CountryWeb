@@ -21,6 +21,7 @@ import com.country.hibernate.model.Tarifa;
 import com.country.mappers.ActividadMapper;
 import com.country.services.ActivityManager;
 import com.country.services.PriceManager;
+import com.country.session.SessionUsr;
 
 @Service("activityManager")
 public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implements ActivityManager{
@@ -167,25 +168,48 @@ public class ActivityManagerImpl extends AbstractManagerImpl<Actividad> implemen
 
 	@Transactional
 	public List<ActividadForm> listAllFormsComplete() {
-		List<ActividadForm> list = new ArrayList<ActividadForm>();
 		List<Actividad> actividades = listAll();
-
-		for (Actividad actividad : actividades) {
-			//Asignaciones
-			if (actividad.getAsignaciones() != null){
-				actividad.getAsignaciones().size();	
-			}
-			//Cronogramas
-			actividad.getCronogramas().size();
-			//Toma la ultima tarifa
-			Tarifa tarifa = priceManager.getLastPriceByConcept(actividad.getConcepto().getId());
-			
-			ActividadForm form = (ActividadForm) ActividadMapper.getForm(actividad, tarifa);
-			list.add(form);
-		}
-		
-		return list;
+		return getFormList(actividades,true,true,true);
 	}
 
-	
+	@Transactional
+	public List<ActividadForm> getActividadInscriptoBySemana(String fechaDesde) {
+		List<Actividad> list = activityDao.getActividadInscriptoByDate(SessionUsr.User().getIntegranteId(), fechaDesde, null, 6);
+		return getFormList(list,false,false,false);
+	}
+
+	/**
+	 * Mapea la lista de actividad a actividadForm
+	 * 
+	 * @param list
+	 * @param tarifa tarifa Si tarifa igual a true, trae la tarifa de la actividad
+	 * @param asignacion Si asignacion igual a true, trae las asignaciones de la actividad
+	 * @param cronograma Si cronograma igual a true, trae los cronogramas de la actividad
+	 * @return
+	 */
+	private List<ActividadForm>  getFormList (List<Actividad> list,boolean tarifa,boolean asignacion, boolean cronograma){
+		List<ActividadForm> listaForm = new ArrayList<ActividadForm>();
+		for (Actividad act : list) {
+			Tarifa trf =null;
+			if (asignacion){
+				//Asignaciones
+				if (act.getAsignaciones() != null){
+					act.getAsignaciones().size();	
+				}
+			}
+			if (cronograma){
+				//Cronogramas
+				act.getCronogramas().size();
+			}
+			if (tarifa){
+				if (act.getConcepto() != null){
+					trf = priceManager.getLastPriceByConcept(act.getConcepto().getId());
+				}		
+			}
+
+			listaForm.add((ActividadForm) ActividadMapper.getForm(act,trf));
+		}
+		return listaForm; 
+	}
+
 }

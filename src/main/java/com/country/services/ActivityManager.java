@@ -3,6 +3,7 @@ package com.country.services;
 import java.util.List;
 
 import com.country.form.ActividadForm;
+import com.country.form.ReservaForm;
 import com.country.hibernate.model.Actividad;
 import com.country.hibernate.model.Asignacion;
 
@@ -22,5 +23,12 @@ public interface ActivityManager extends AbstractManager<Actividad>{
 	void update(Actividad actividad, List<Asignacion> listAsignacion, Double tarifa);
 
 	public List<ActividadForm> listAllFormsComplete();
-	
+
+	/**
+	 * Devuelve laS actividades vigentes para el integrante en una semana.
+	 * 
+	 * @return
+	 */
+	public List<ActividadForm> getActividadInscriptoBySemana(String fechaDesde);
+
 }
